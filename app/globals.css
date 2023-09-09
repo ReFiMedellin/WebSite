@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .logo {
+    @apply p-3 rounded-full bg-purple-700 text-2xl text-white ; 
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -26,6 +32,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }

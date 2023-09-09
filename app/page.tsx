@@ -8,6 +8,8 @@ import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
 import { useEffect, useState } from 'react';
 import { parseEther } from 'viem';
 import { AnimatePresence, motion } from 'framer-motion';
+import {RxInstagramLogo, RxLinkedinLogo, RxTwitterLogo} from 'react-icons/rx'
+import {FaTelegramPlane} from 'react-icons/fa'
 
 // const a =
 const cards = [1, 2, 3, 4, 5, 6];
@@ -20,10 +22,14 @@ export default function Home() {
     to: '0xd4AC6c14B4C96F7e66049210F56cb07468028d4e',
     value: parseEther(value),
   });
-  const { sendTransaction } = useSendTransaction(config);
-  useEffect(() => {
-    console.debug(sendTransaction);
-  }, [sendTransaction]);
+  const { sendTransactionAsync } = useSendTransaction(config);
+
+  const handleOnSendDonation = async (e: any) => {
+    e.preventDefault();
+    await sendTransactionAsync?.();
+    setIsSendingModal(false);
+  };
+
   return (
     <main className='flex min-h-screen flex-col items-center justify-between'>
       <AnimatePresence>
@@ -31,7 +37,7 @@ export default function Home() {
           <motion.div className='fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'>
             <motion.div className='bg-white rounded-lg flex flex-col gap-2 p-2'>
               <h1>Primero ingresa el valor a donar</h1>
-              <form action=''>
+              <form className='flex flex-col gap-1 justify-center items-start' onSubmit={handleOnSendDonation}>
                 <label htmlFor='Cantidad en ETH'>
                   <input
                     type='number'
@@ -42,7 +48,7 @@ export default function Home() {
                   />
                   <button
                     type='submit'
-                    disabled={!sendTransaction || value === '0'}
+                    disabled={!sendTransactionAsync || value === '0'}
                   >
                     Enviar
                   </button>
@@ -192,13 +198,30 @@ export default function Home() {
         </div>
       </section>
       <footer className=' bg-slate-200 w-full '>
-        <div className='flex py-60 px-14 flex-row justify-between items-center gap-20'>
-          <div className='flex flex-col justify-center items-center w-1/2'>
-            <h1 className='text-4xl w-full text-start font-bold'>Contacto</h1>
+        <div className='flex py-10 px-14 flex-row justify-between items-center gap-20'>
+          <div className='flex flex-col justify-center gap-5 items-start w-1/2'>
+            <h1 className='text-4xl font-bold'>Más información</h1>
+            <p>Para contactarnos envianos un mensaje a <span className='font-bold'>admin@refimedellin.org</span></p>
+            <p>Si quieres apoyarnos puedes enviar tu donación a Wallet <span className='font-bold'>(Ethereum): 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e</span></p>
+          <div className='flex flex-row justify-start items-center gap-5'>
+            <Link className='logo' target='_blank' href={'https://twitter.com/ReFiMedellin'}>
+             <RxTwitterLogo/>
+            </Link>
+            <Link className='logo' target='_blank' href={'https://instagram.com/refimedellin'}>
+             <RxInstagramLogo/>
+            </Link>
+            <Link className='logo' target='_blank' href={'https://t.me/refimedellin'}>
+              <FaTelegramPlane/>
+            </Link>
+            <Link className='logo' target='_blank' href={'https://www.linkedin.com/company/refimedellin'}>
+              <RxLinkedinLogo/>
+            </Link>
+          </div>
           </div>
         </div>
-        <div className='h-[20vh] bg-gray-700 text-white  flex justify-center items-center text-center'>
+        <div className='py-5 bg-gray-700 text-white  flex flex-col gap-1 justify-center items-center text-center'>
           <p>®2023 Refi medellin, made with 🩵 by Refi medellín team</p>
+          <Link target='_blank' href={'https://github.com/Another-DevX'} >Developed by <span className='text-blue-400 font-bold' >Another_Dev</span></Link>
         </div>
       </footer>
     </main>
