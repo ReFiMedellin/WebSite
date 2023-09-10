@@ -70,13 +70,13 @@ export default function Home() {
                 ¡Bienvenido a ReFi Medellín!
               </h1>
               <p>
-                El primer Nodo colombiano de{' '}
+                Somos el primer Nodo Colombiano de{' '}
                 <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://www.refidao.com/'}
                   target='_blank'
                 >
-                  ReFi DAO{' '}
+                  ReFiDAO{' '}
                 </Link>
                 encargado de promover proyectos ReFi de la región.
               </p>
