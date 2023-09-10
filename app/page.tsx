@@ -17,8 +17,8 @@ export default function Home() {
                 ¡Bienvenido a ReFi Medellín!
               </h1>
               <p>
-                El primer Nodo colombiano de ReFi DAO encargado de promover
-                proyectos ReFi de la región.
+                Somos el primer Nodo Colombiano de [ReFiDAO](https://www.refidao.com/) encargado de promover
+                proyectos ReFi en la región.
               </p>
               <p>
                 En ReFi Medellín, creemos en los proyectos regenerativos y el
@@ -27,10 +27,10 @@ export default function Home() {
               </p>
               <div className='flex flex-row gap-2'>
                 <button className='px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-lg'>
-                  Lorem
+                  Únete a nuestra Comunidad
                 </button>
                 <button className='px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-lg'>
-                  Ipsum
+                  Apóyanos en Giveth.io
                 </button>
               </div>
             </div>
