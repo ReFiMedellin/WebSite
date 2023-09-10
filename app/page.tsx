@@ -17,7 +17,7 @@ export default function Home() {
                 ¡Bienvenido a ReFi Medellín!
               </h1>
               <p>
-                Somos el primer Nodo Colombiano de [ReFiDAO](https://www.refidao.com/) encargado de promover
+                Somos el primer Nodo Colombiano de ReFiDAO encargado de promover
                 proyectos ReFi en la región.
               </p>
               <p>
