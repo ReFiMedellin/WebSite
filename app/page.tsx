@@ -121,7 +121,7 @@ export default function Home() {
               href={'#proyectos'}
               className='w-full text-center bg-purple-700 rounded-md text-white font-bold  text-lg px-12 py-2'
             >
-              Sabe más
+              Conoce un poco más
             </Link>
           </div>
         </div>
@@ -159,15 +159,10 @@ export default function Home() {
           <div className='flex flex-col gap-5'>
             <h1 className='text-4xl font-bold'>¡Apoya el cambio!</h1>
             <p>
-              Our aim is to empower the youth in Medellín to address some of our
-              city&apos;s most pressing challenges through hackathons,
-              incubation, and investment. These challenges include poverty,
-              inequality, youth unemployment, and a general lack of access to
-              resource flows such as energy, water, sanitation, housing, and
-              education.
+              Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación. ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!
               <br />
-              We kindly ask for your support and donations, so we can start our
-              journey of youth-led education for regeneration!
+              
+              Les pedimos amablemente su apoyo y donaciones para que podamos iniciar nuestro viaje de la ¡educación dirigida por jóvenes para la regeneración!
               <br />
               Wallet (Ethereum): 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
@@ -177,13 +172,13 @@ export default function Home() {
                 href={'https://giveth.io/project/refi-medellin'}
                 className='text-center bg-purple-700 text-white rounded-md w-full font-bold px-8 py-4'
               >
-                Apoyanos en givet
+                Apòyanos en Givet.io
               </Link>
               <button
                 onClick={() => setIsSendingModal(true)}
                 className='bg-purple-700 text-white rounded-md w-full font-bold px-8 py-4'
               >
-                Apoyanos directamente
+                Apóyanos Directamente
               </button>
             </div>
           </div>
@@ -237,7 +232,15 @@ export default function Home() {
           </div>
         </div>
         <div className='py-5 bg-gray-700 text-white  flex flex-col gap-1 justify-center items-center text-center'>
-          <p>®2023 Refi medellin, made with 🩵 by Refi medellín team</p>
+          <p>®2023 Refi Medellín, made with 🩵 by {' '}
+                <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://refimedellin.notion.site/0fd39ac0a6cf4ee8bfe3d950c18bc9ed?v=d9dafe69cda7413a8d85cac3da405c40'}
+                  target='_blank'
+                >
+                  Refi Medellín Team{' '}
+                </Link> 
+          </p>
           <Link target='_blank' href={'https://github.com/Another-DevX'}>
             Developed by{' '}
             <span className='text-blue-400 font-bold'>Another_Dev</span>
