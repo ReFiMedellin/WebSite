@@ -229,6 +229,23 @@ export default function Home() {
               >
                 <RxLinkedinLogo />
               </Link>
+
+               <Link
+                className='logo'
+                target='_blank'
+                href={'https://youtube.com/@ReFiMedellin'}
+              >
+                <RxYouTubeLogo />
+              </Link>
+
+               <Link
+                className='logo'
+                target='_blank'
+                href={'https://chat.whatsapp.com/C2dUH2dmZyTJdLjWkE1ILG'}
+              >
+                <RxWhatsAppLogo />
+              </Link>
+
             </div>
           </div>
         </div>
