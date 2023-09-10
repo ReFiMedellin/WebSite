@@ -78,7 +78,7 @@ export default function Home() {
                 >
                   ReFiDAO{' '}
                 </Link>
-                encargado de promover proyectos ReFi de la región.
+                encargado de promover proyectos ReFi en la región.
               </p>
               <p>
                 En ReFi Medellín, creemos en los proyectos regenerativos y el
@@ -115,17 +115,7 @@ export default function Home() {
               Medellín, Colombia.
             </h1>
             <p>
-              Estamos emocionados de anunciar la formación de un Nodo Local de
-              ReFi en Medellín, liderado por Juan Giraldo, Tereza Bizkova,
-              Alejandro Soto, Eamonn, Sergio, Green Digital Guardians y
-              Dotlabs() para fomentar conversaciones comunitarias en torno a
-              innovaciones orientadas a la regeneración (ROIs) habilitadas por
-              Web3. Nuestro objetivo es empoderar a los jóvenes en Medellín para
-              abordar algunos de los desafíos más urgentes de nuestra ciudad a
-              través de hackatones, incubación e inversión. Estos desafíos
-              incluyen la pobreza, la desigualdad, el desempleo juvenil y una
-              falta general de acceso a flujos de recursos como energía, agua,
-              saneamiento, vivienda y educación.
+              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por Juan Giraldo, Tereza Bizkova, Alejandro Soto, Eamonn, Green Digital Guardians y Dotlabs()! Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación. ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!
             </p>
             <Link
               href={'#proyectos'}
