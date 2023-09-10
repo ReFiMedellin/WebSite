@@ -161,7 +161,8 @@ export default function Home() {
             <p>
               Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación. ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!
               <br />
-              
+            </p>
+            <p>
               Les pedimos amablemente su apoyo y donaciones para que podamos iniciar nuestro viaje de la ¡educación dirigida por jóvenes para la regeneración!
               <br />
               Wallet (Ethereum): 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
@@ -172,7 +173,7 @@ export default function Home() {
                 href={'https://giveth.io/project/refi-medellin'}
                 className='text-center bg-purple-700 text-white rounded-md w-full font-bold px-8 py-4'
               >
-                Apòyanos en Givet.io
+                Apòyanos en Giveth.io
               </Link>
               <button
                 onClick={() => setIsSendingModal(true)}
