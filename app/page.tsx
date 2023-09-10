@@ -165,7 +165,7 @@ export default function Home() {
             <p>
               Les pedimos amablemente su apoyo y donaciones para que podamos iniciar nuestro viaje de la ¡educación dirigida por jóvenes para la regeneración!
               <br />
-              Wallet (Ethereum): 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              <span className='font-bold'>Wallet (Ethereum):</span> 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
             <div className='flex flex-row w-full justify-center items-center gap-4'>
               <Link
@@ -197,8 +197,8 @@ export default function Home() {
             <p>
               Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
               <span className='font-bold'>
-                (Ethereum): 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
-              </span>
+                (Ethereum):</span>
+               0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
             <div className='flex flex-row justify-start items-center gap-5'>
               <Link
