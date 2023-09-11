@@ -62,14 +62,14 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <section className='flex flex-row justify-center items-center h-screen bg-neutral-900 w-full'>
-        <div className='h-full w-5/6 flex flex-row justify-center items-center'>
+      <section className='flex flex-row justify-center items-center h-[95vh] bg-neutral-900 w-full'>
+        <div className='h-full lg:w-5/6 flex flex-row justify-center items-center'>
           <div className='flex justify-center items-center w-full h-full'>
             <div className='text-white w-5/6 flex flex-col gap-5'>
-              <h1 className='font-bold text-6xl'>
+              <h1 className='font-bold text-4xl md:text-6xl'>
                 ¡Bienvenido a ReFi Medellín!
               </h1>
-              <p>
+              <p className='text-base'>
                 Somos el primer Nodo Colombiano de{' '}
                 <Link
                   className='text-blue-400 font-bold cursor-pointer'
@@ -89,26 +89,36 @@ export default function Home() {
                 <Link
                   href={'https://t.me/refimedellin'}
                   target='_blank'
-                  className='text-center px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-lg'
+                  className='text-center px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-base md:text-lg'
                 >
                   Únete a la comunidad
                 </Link>
                 <Link
                   href={'https://giveth.io/project/refi-medellin'}
                   target='_blank'
-                  className='text-center px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-lg'
+                  className='text-center px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-base md:text-lg'
                 >
                   Apóyanos en Giveth.io
                 </Link>
               </div>
             </div>
           </div>
-          <Image height={420} src={Logo} alt='Logo ReFi' />
+          <Image
+            className='hidden lg:block'
+            height={420}
+            src={Logo}
+            alt='Logo ReFi'
+          />
         </div>
       </section>
-      <section className='h-screen flex justify-center items-center bg-black w-full'>
+      <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center bg-black w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
-          <Image src={Logo} alt='refi logo' height={480} />
+          <Image
+            className='hidden lg:block'
+            src={Logo}
+            alt='refi logo'
+            height={480}
+          />
           <div className='text-white flex gap-5  flex-col justify-center items-center h-full  w-full'>
             <h1 className='text-4xl font-bold'>
               Únete al movimiento hacia un futuro más sostenible y equitativo en
@@ -138,18 +148,23 @@ export default function Home() {
       </section>
       <section
         id='proyectos'
-        className='h-screen w-full bg-purple-700 flex flex-col justify-center items-center gap-10'
+        className='min-h-screen py-10 lg:py-0 w-full bg-purple-700 flex flex-col justify-center items-center gap-10'
       >
         <h1 className='font-bold w-full text-center text-white text-5xl'>
           Proyectos
         </h1>
-        <div className='grid grid-cols-2 gap-5 w-5/6 justify-center items-center'>
+        <div className='grid lg:grid-cols-2 gap-5 w-5/6 justify-center items-center'>
           {cards.map((card, index) => (
             <div
               key={index}
               className='py-6 flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
             >
-              <Image src={Logo2} alt='logo refi' height={120} />
+              <Image
+                className='hidden lg:block'
+                src={Logo2}
+                alt='logo refi'
+                height={120}
+              />
               <div>
                 <h1 className='text-lg font-bold'>
                   Engage the local community
@@ -164,50 +179,55 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className='h-screen flex justify-center items-center w-full'>
+      <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
-          <div className='flex flex-col gap-5'>
-            <h1 className='text-4xl font-bold'>¡Apoya el cambio!</h1>
-            <p>
-              Nuestro objetivo es promover conversaciones comunitarias sobre
-              soluciones regenerativas innovadoras habilitadas por la tecnología
-              Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín
-              para abordar algunos de los desafíos más apremiantes que enfrenta
-              nuestra ciudad, como la pobreza, la desigualdad, el desempleo
-              juvenil y el acceso limitado a recursos como energía, agua,
-              saneamiento, vivienda y educación. ¡Únase a nosotros en
-              hackatones, incubación e inversión para ayudar a marcar la
-              diferencia en nuestra comunidad!
-              <br />
-            </p>
-            <p>
-              Les pedimos amablemente su apoyo y donaciones para que podamos
-              iniciar nuestro viaje de la ¡educación dirigida por jóvenes para
-              la regeneración!
-              <br />
-              <span className='font-bold'>Wallet (Ethereum):</span>{' '}
-              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
-            </p>
-            <div className='flex flex-row w-full justify-center items-center gap-4'>
+          <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
+            <div className='w-full'>
+              <h1 className='text-4xl font-bold'>¡Apoya el cambio!</h1>
+              <p className='break-words'>
+                Nuestro objetivo es promover conversaciones comunitarias sobre
+                soluciones regenerativas innovadoras habilitadas por la
+                tecnología Web3. Estamos comprometidos a empoderar a los jóvenes
+                de Medellín para abordar algunos de los desafíos más apremiantes
+                que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el
+                desempleo juvenil y el acceso limitado a recursos como energía,
+                agua, saneamiento, vivienda y educación. ¡Únase a nosotros en
+                hackatones, incubación e inversión para ayudar a marcar la
+                diferencia en nuestra comunidad!
+                <br />
+                Les pedimos amablemente su apoyo y donaciones para que podamos
+                iniciar nuestro viaje de la ¡educación dirigida por jóvenes para
+                la regeneración!
+                <br />
+                <span className='font-bold'>Wallet (Ethereum):</span>
+                0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              </p>
+            </div>
+            <div className='flex flex-row w-full justify-center items-center gap-2 lg:gap-4'>
               <Link
                 target='_blank'
                 href={'https://giveth.io/project/refi-medellin'}
-                className='text-center bg-purple-700 text-white rounded-md w-full font-bold px-8 py-4'
+                className='text-center bg-purple-700 text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
                 Apòyanos en Giveth.io
               </Link>
               <button
                 onClick={() => setIsSendingModal(true)}
-                className='bg-purple-700 text-white rounded-md w-full font-bold px-8 py-4'
+                className='bg-purple-700 text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
                 Apóyanos Directamente
               </button>
             </div>
           </div>
-          <Image src={Logo2} alt='refi logo' height={480} />
+          <Image
+            className='hidden lg:block'
+            src={Logo2}
+            alt='refi logo'
+            height={480}
+          />
         </div>
       </section>
-      <section className='h-screen flex justify-center bg-slate-300 items-center w-full'>
+      <section className='min-h-screen py-10 lg:py-0 flex justify-center bg-slate-300 items-center w-full'>
         <div className='flex flex-col gap-5 justify-center  items-center'>
           <h1 className='font-bold text-4xl text-black'>Equipo</h1>
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
@@ -249,20 +269,22 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className=' bg-slate-200 w-full '>
-        <div className='flex py-10 px-14 flex-row justify-between items-center gap-20'>
-          <div className='flex flex-col justify-center gap-5 items-start w-1/2'>
+      <footer className='bg-slate-200 w-full '>
+        <div className='flex px-5 py-10 lg:px-14 flex-row justify-between items-center gap-20'>
+          <div className='flex flex-col justify-center gap-5 items-start w-full lg:w-1/2'>
             <h1 className='text-4xl font-bold'>Más información</h1>
+            <div className='w-full'>
             <p>
               Para contactarnos envianos un mensaje a{' '}
               <span className='font-bold'>admin@refimedellin.org</span>
             </p>
-            <p>
+            <p className='break-words' >
               Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
               <span className='font-bold'>(Ethereum):</span>
               0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
-            <div className='flex flex-row justify-start items-center gap-5'>
+            </div>
+            <div className='flex flex-row flex-wrap justify-start items-center gap-5'>
               <Link
                 className='logo'
                 target='_blank'
@@ -310,7 +332,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='py-5 bg-gray-700 text-white  flex flex-col gap-1 justify-center items-center text-center'>
+        <div className='py-5 bg-gray-700 text-white  px-2 flex flex-col gap-1 justify-center items-center text-center'>
           <p>
             ®2023 Refi Medellín, made with 🩵 by{' '}
             <Link
@@ -328,7 +350,7 @@ export default function Home() {
             <span className='text-blue-400 font-bold'>Another_Dev</span>
           </Link>
         </div>
-      </footer>
+      </footer> 
     </main>
   );
 }
