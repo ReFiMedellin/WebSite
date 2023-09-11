@@ -147,7 +147,7 @@ export default function Home() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className='py-6 flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 bg-white'
+              className='py-6 flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
             >
               <Image src={Logo2} alt='logo refi' height={120} />
               <div>
@@ -207,42 +207,42 @@ export default function Home() {
           <Image src={Logo2} alt='refi logo' height={480} />
         </div>
       </section>
-      <section className='h-screen flex justify-center bg-white items-center w-full'>
-        <div className='flex flex-col gap-5 justify-center items-center'>
+      <section className='h-screen flex justify-center bg-slate-300 items-center w-full'>
+        <div className='flex flex-col gap-5 justify-center  items-center'>
           <h1 className='font-bold text-4xl text-black'>Equipo</h1>
-          <div className='flex-row flex  flex-wrap justify-center items-center gap-2'>
-            <div className='h-full pt-5 rounded-md bg-slate-200'>
+          <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1>Juanito alimaña</h1>
-                <p>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-            <div className='h-full pt-5 rounded-md bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1>Juanito alimaña</h1>
-                <p>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-            <div className='h-full pt-5 rounded-md bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1>Juanito alimaña</h1>
-                <p>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-            <div className='h-full pt-5 rounded-md bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1>Juanito alimaña</h1>
-                <p>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-            <div className='h-full pt-5 rounded-md bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1>Juanito alimaña</h1>
-                <p>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>

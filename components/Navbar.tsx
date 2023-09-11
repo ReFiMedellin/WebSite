@@ -8,7 +8,10 @@ function Navbar() {
     <nav className='fixed top-0 w-full py-6 bg-white bg-opacity-50'>
       <ul className='w-full flex px-10 flex-row gap-2 justify-between items-center' >
         <li>
-          <Link href={'#'} >Blog</Link>
+          <Link href={'/'} >Home</Link>
+        </li>
+        <li>
+          <Link href={'/blog'} >Blog</Link>
         </li>
         <li>
           <Link href={'/community'} >Contenido exclusivo</Link>

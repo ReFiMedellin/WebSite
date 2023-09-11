@@ -44,7 +44,11 @@ function Page() {
  
   return (
     <>
-      {hasNFT ? <div className='bg-red-500 h-screen w-screen'>Bienvenido</div> : <div className='bg-blue-500 h-screen w-screen'>No tienes acceso</div>}
+      {hasNFT ?   <div className='h-screen w-screen flex justify-center items-center'>
+        <h1 className='font-bold text-8xl'>Disponible pronto!</h1>
+    </div> :  <div className='h-screen w-screen flex justify-center items-center'>
+        <h1 className='font-bold text-8xl'>No tienes acceso</h1>
+    </div>}
     </>
   );
 }
