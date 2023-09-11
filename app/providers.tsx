@@ -8,7 +8,6 @@ import {
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { arbitrum, mainnet, polygon } from 'wagmi/chains';
-import { SessionProvider } from 'next-auth/react';
 
 const chains = [arbitrum, mainnet, polygon];
 const projectId = '344c4ee91d5e35fec2368e61edfbe959';
@@ -28,12 +27,12 @@ function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <SessionProvider >
+    <>
       <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
       {isMounted && (
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       )}
-    </SessionProvider>
+    </>
   );
 }
 
