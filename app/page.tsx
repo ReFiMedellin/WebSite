@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { parseEther } from 'viem';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RxInstagramLogo, RxLinkedinLogo, RxTwitterLogo } from 'react-icons/rx';
-import { FaTelegramPlane } from 'react-icons/fa';
+import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 
 // const a =
 const cards = [1, 2, 3, 4, 5, 6];
@@ -62,7 +62,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <div className='flex flex-row justify-center items-center h-screen bg-neutral-900 w-full'>
+      <section className='flex flex-row justify-center items-center h-screen bg-neutral-900 w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center items-center'>
           <div className='flex justify-center items-center w-full h-full'>
             <div className='text-white w-5/6 flex flex-col gap-5'>
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
           <Image height={420} src={Logo} alt='Logo ReFi' />
         </div>
-      </div>
+      </section>
       <section className='h-screen flex justify-center items-center bg-black w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image src={Logo} alt='refi logo' height={480} />
@@ -115,7 +115,17 @@ export default function Home() {
               Medellín, Colombia.
             </h1>
             <p>
-              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por Juan Giraldo, Tereza Bizkova, Alejandro Soto, Eamonn, Green Digital Guardians y Dotlabs()! Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación. ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!
+              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por Juan
+              Giraldo, Tereza Bizkova, Alejandro Soto, Eamonn, Green Digital
+              Guardians y Dotlabs()! Nuestro objetivo es promover conversaciones
+              comunitarias sobre soluciones regenerativas innovadoras
+              habilitadas por la tecnología Web3. Estamos comprometidos a
+              empoderar a los jóvenes de Medellín para abordar algunos de los
+              desafíos más apremiantes que enfrenta nuestra ciudad, como la
+              pobreza, la desigualdad, el desempleo juvenil y el acceso limitado
+              a recursos como energía, agua, saneamiento, vivienda y educación.
+              ¡Únase a nosotros en hackatones, incubación e inversión para
+              ayudar a marcar la diferencia en nuestra comunidad!
             </p>
             <Link
               href={'#proyectos'}
@@ -159,13 +169,24 @@ export default function Home() {
           <div className='flex flex-col gap-5'>
             <h1 className='text-4xl font-bold'>¡Apoya el cambio!</h1>
             <p>
-              Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación. ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!
+              Nuestro objetivo es promover conversaciones comunitarias sobre
+              soluciones regenerativas innovadoras habilitadas por la tecnología
+              Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín
+              para abordar algunos de los desafíos más apremiantes que enfrenta
+              nuestra ciudad, como la pobreza, la desigualdad, el desempleo
+              juvenil y el acceso limitado a recursos como energía, agua,
+              saneamiento, vivienda y educación. ¡Únase a nosotros en
+              hackatones, incubación e inversión para ayudar a marcar la
+              diferencia en nuestra comunidad!
               <br />
             </p>
             <p>
-              Les pedimos amablemente su apoyo y donaciones para que podamos iniciar nuestro viaje de la ¡educación dirigida por jóvenes para la regeneración!
+              Les pedimos amablemente su apoyo y donaciones para que podamos
+              iniciar nuestro viaje de la ¡educación dirigida por jóvenes para
+              la regeneración!
               <br />
-              <span className='font-bold'>Wallet (Ethereum):</span> 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              <span className='font-bold'>Wallet (Ethereum):</span>{' '}
+              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
             <div className='flex flex-row w-full justify-center items-center gap-4'>
               <Link
@@ -186,6 +207,48 @@ export default function Home() {
           <Image src={Logo2} alt='refi logo' height={480} />
         </div>
       </section>
+      <section className='h-screen flex justify-center bg-white items-center w-full'>
+        <div className='flex flex-col gap-5 justify-center items-center'>
+          <h1 className='font-bold text-4xl text-black'>Equipo</h1>
+          <div className='flex-row flex  flex-wrap justify-center items-center gap-2'>
+            <div className='h-full pt-5 rounded-md bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1>Juanito alimaña</h1>
+                <p>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+            <div className='h-full pt-5 rounded-md bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1>Juanito alimaña</h1>
+                <p>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+            <div className='h-full pt-5 rounded-md bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1>Juanito alimaña</h1>
+                <p>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+            <div className='h-full pt-5 rounded-md bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1>Juanito alimaña</h1>
+                <p>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+            <div className='h-full pt-5 rounded-md bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1>Juanito alimaña</h1>
+                <p>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+          </div>
+        </div>
+      </section>
       <footer className=' bg-slate-200 w-full '>
         <div className='flex py-10 px-14 flex-row justify-between items-center gap-20'>
           <div className='flex flex-col justify-center gap-5 items-start w-1/2'>
@@ -196,9 +259,8 @@ export default function Home() {
             </p>
             <p>
               Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
-              <span className='font-bold'>
-                (Ethereum):</span>
-               0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              <span className='font-bold'>(Ethereum):</span>
+              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
             <div className='flex flex-row justify-start items-center gap-5'>
               <Link
@@ -230,34 +292,36 @@ export default function Home() {
                 <RxLinkedinLogo />
               </Link>
 
-               <Link
+              <Link
                 className='logo'
                 target='_blank'
                 href={'https://youtube.com/@ReFiMedellin'}
               >
-                <RxYouTubeLogo />
+                <FaYoutube />
               </Link>
 
-               <Link
+              <Link
                 className='logo'
                 target='_blank'
                 href={'https://chat.whatsapp.com/C2dUH2dmZyTJdLjWkE1ILG'}
               >
-                <RxWhatsAppLogo />
+                <FaWhatsapp />
               </Link>
-
             </div>
           </div>
         </div>
         <div className='py-5 bg-gray-700 text-white  flex flex-col gap-1 justify-center items-center text-center'>
-          <p>®2023 Refi Medellín, made with 🩵 by {' '}
-                <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://refimedellin.notion.site/0fd39ac0a6cf4ee8bfe3d950c18bc9ed?v=d9dafe69cda7413a8d85cac3da405c40'}
-                  target='_blank'
-                >
-                  Refi Medellín Team{' '}
-                </Link> 
+          <p>
+            ®2023 Refi Medellín, made with 🩵 by{' '}
+            <Link
+              className='text-blue-400 font-bold cursor-pointer'
+              href={
+                'https://refimedellin.notion.site/0fd39ac0a6cf4ee8bfe3d950c18bc9ed?v=d9dafe69cda7413a8d85cac3da405c40'
+              }
+              target='_blank'
+            >
+              Refi Medellín Team{' '}
+            </Link>
           </p>
           <Link target='_blank' href={'https://github.com/Another-DevX'}>
             Developed by{' '}

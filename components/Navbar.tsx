@@ -11,7 +11,7 @@ function Navbar() {
           <Link href={'#'} >Blog</Link>
         </li>
         <li>
-          <Link href={'#'} >Contenido exclusivo</Link>
+          <Link href={'/community'} >Contenido exclusivo</Link>
         </li>
         <li>
           <Web3Button />
