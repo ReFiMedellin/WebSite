@@ -124,7 +124,14 @@ export default function Home() {
               Medellín, Colombia.
             </h1>
             <p>
-              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por {' '}
+              ¡Bienvenido al Nodo primer Nodo Local{' '}
+                <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://www.refidao.com/'}
+                  target='_blank'
+                >
+                  ReFiDAO{' '}
+                </Link> de Colombia:  <span className='font-bold'>ReFi Medellín</span>, liderado por {' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://linktr.ee/juanjgiraldoc'}
