@@ -125,16 +125,80 @@ export default function Home() {
               Medellín, Colombia.
             </h1>
             <p>
-              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por
+              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por 
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://www.refidao.com/'}
+                  href={'https://linktr.ee/juanjgiraldoc'}
                   target='_blank'
                 >
                   Juan Giraldo{' '}
-                </Link>
-              , Tereza Bizkova, Alejandro Soto, Ximena Monclou, 0xflypeztic, Eamonn, Green Digital
-              Guardians, Inkom.io y Dotlabs()! Nuestro objetivo es promover conversaciones
+                </Link>,
+
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://www.linkedin.com/in/tereza-bizkova/'}
+                  target='_blank'
+                >
+                  Tereza Bizkova{' '}
+                </Link>,
+
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://github.com/alejandro99so'}
+                  target='_blank'
+                >
+                  Alejandro Soto{' '}
+                </Link>,
+
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://www.linkedin.com/in/ximenamonclou/'}
+                  target='_blank'
+                >
+                  Ximena Monclou{' '}
+                </Link>,
+
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={''}
+                  target='_blank'
+                >
+                  0xflypeztic{' '}
+                </Link>,
+
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://twitter.com/cryptochimba'}
+                  target='_blank'
+                >
+                  Eamonn{' '}
+                </Link>,
+
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://dgguardians.com/'}
+                  target='_blank'
+                >
+                  Green Digital Guardians{' '}
+                </Link>,
+
+                  <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://inkom.io/'}
+                  target='_blank'
+                >
+                  Inkom.io{' '}
+                </Link> y
+
+               <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://dotlabs.academy/'}
+                  target='_blank'
+                >
+                  Dotlabs()!{' '}
+                </Link>,
+              
+              Nuestro objetivo es promover conversaciones
               comunitarias sobre soluciones regenerativas innovadoras
               habilitadas por la tecnología Web3. Estamos comprometidos a
               empoderar a los jóvenes de Medellín para abordar algunos de los
