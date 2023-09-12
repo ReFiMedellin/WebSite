@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import Logo from '@/assets/images/logo.png';
+import Logo from '@/assets/images/CleanLogo.png';
 import Logo2 from '@/assets/images/logo2.png';
 import Link from 'next/link';
 import { Web3Button, useWeb3Modal } from '@web3modal/react';
@@ -105,7 +105,7 @@ export default function Home() {
           <Image
             className='hidden lg:block'
             height={420}
-            src={CleanLogo}
+            src={Logo}
             alt='Logo ReFi'
           />
         </div>
@@ -114,7 +114,7 @@ export default function Home() {
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image
             className='hidden lg:block'
-            src={CleanLogo}
+            src={Logo}
             alt='refi logo'
             height={480}
           />
