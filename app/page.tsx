@@ -125,9 +125,16 @@ export default function Home() {
               Medellín, Colombia.
             </h1>
             <p>
-              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por Juan
-              Giraldo, Tereza Bizkova, Alejandro Soto, Eamonn, Green Digital
-              Guardians y Dotlabs()! Nuestro objetivo es promover conversaciones
+              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por
+              <Link
+                  className='text-blue-400 font-bold cursor-pointer'
+                  href={'https://www.refidao.com/'}
+                  target='_blank'
+                >
+                  Juan Giraldo{' '}
+                </Link>
+              , Tereza Bizkova, Alejandro Soto, Ximena Monclou, 0xflypeztic, Eamonn, Green Digital
+              Guardians, Inkom.io y Dotlabs()! Nuestro objetivo es promover conversaciones
               comunitarias sobre soluciones regenerativas innovadoras
               habilitadas por la tecnología Web3. Estamos comprometidos a
               empoderar a los jóvenes de Medellín para abordar algunos de los
@@ -167,12 +174,10 @@ export default function Home() {
               />
               <div>
                 <h1 className='text-lg font-bold'>
-                  Engage the local community
+                  Involucrar a la comunidad local
                 </h1>
                 <p>
-                  Host four ReFi Medellín events over the next year. These
-                  events will include expert guest speakers in ReFi, Web3, and
-                  urban challenges in Latin American cities.
+                  Realizar eventos que contarán con expertos en ReFi, Web3 y desafíos urbanos en ciudades latinoamericanas
                 </p>
               </div>
             </div>
