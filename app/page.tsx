@@ -262,8 +262,10 @@ export default function Home() {
                 de Medellín para abordar algunos de los desafíos más apremiantes
                 que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el
                 desempleo juvenil y el acceso limitado a recursos como energía,
-                agua, saneamiento, vivienda y educación. ¡Únase a nosotros en
-                hackatones, incubación e inversión para ayudar a marcar la
+                agua, saneamiento, vivienda y educación. 
+                <br />
+                <br />
+                ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la
                 diferencia en nuestra comunidad!
                 <br />
                 <br />
@@ -306,35 +308,63 @@ export default function Home() {
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <h1 className='text-start w-full font-bold text-lg' >Juan Giraldo</h1>
                 <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <h1 className='text-start w-full font-bold text-lg' >Tereza Bizkova</h1>
                 <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <h1 className='text-start w-full font-bold text-lg' >Alejandro Soto</h1>
                 <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <h1 className='text-start w-full font-bold text-lg' >Ximena Monclou</h1>
                 <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
+                <h1 className='text-start w-full font-bold text-lg' >0xflypeztyc</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1 className='text-start w-full font-bold text-lg' >Eamon</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1 className='text-start w-full font-bold text-lg' >Green Digital Guardians</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1 className='text-start w-full font-bold text-lg' >Inko.io</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+              </div>
+              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+            </div>
+             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h1 className='text-start w-full font-bold text-lg' >DotLabs()</h1>
                 <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
