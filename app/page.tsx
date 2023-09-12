@@ -105,7 +105,7 @@ export default function Home() {
           <Image
             className='hidden lg:block'
             height={420}
-            src={Logo-Transparente}
+            src={CleanLogo}
             alt='Logo ReFi'
           />
         </div>
@@ -114,7 +114,7 @@ export default function Home() {
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image
             className='hidden lg:block'
-            src={Logo-Transparente}
+            src={CleanLogo}
             alt='refi logo'
             height={480}
           />
