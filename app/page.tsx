@@ -79,8 +79,7 @@ export default function Home() {
                   ReFiDAO{' '}
                 </Link>
                 encargado de promover proyectos ReFi en la región.
-              </p>
-              <p>
+              <br /> <br />
                 En ReFi Medellín, creemos en los proyectos regenerativos y el
                 impacto transformador que estos tienen. ¡Es hora de pensar
                 diferente y regenerarnos juntos!
@@ -190,16 +189,17 @@ export default function Home() {
                   Dotlabs()
                 </Link>!
             <br />
+            <br />
               Nuestro objetivo es promover conversaciones
               comunitarias sobre soluciones regenerativas innovadoras
               habilitadas por la tecnología Web3. 
-          <br />
+          <br /><br />
               Estamos comprometidos a
               empoderar a los jóvenes de Medellín para abordar algunos de los
               desafíos más apremiantes que enfrenta nuestra ciudad, como la
               pobreza, la desigualdad, el desempleo juvenil y el acceso limitado
               a recursos como energía, agua, saneamiento, vivienda y educación.
-           <br />
+           <br /><br />
             ¡Únase a nosotros en hackatones, incubación e inversión para
               ayudar a marcar la diferencia en nuestra comunidad!
             </p>
