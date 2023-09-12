@@ -234,7 +234,7 @@ export default function Home() {
             >
               <Image
                 className='hidden lg:block'
-                src={Logo2}
+                src={Logo}
                 alt='logo refi'
                 height={120}
               />
@@ -296,7 +296,7 @@ export default function Home() {
           </div>
           <Image
             className='hidden lg:block'
-            src={Logo2}
+            src={Logo}
             alt='refi logo'
             height={480}
           />
