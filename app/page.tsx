@@ -131,57 +131,57 @@ export default function Home() {
                   href={'https://linktr.ee/juanjgiraldoc'}
                   target='_blank'
                 >
-                  Juan Giraldo{' '}
-                </Link>, 
+                  Juan Giraldo
+                </Link>,{' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://www.linkedin.com/in/tereza-bizkova/'}
                   target='_blank'
                 >
-                  Tereza Bizkova{' '}
-                </Link>, 
+                  Tereza Bizkova
+                </Link>,{' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://github.com/alejandro99so'}
                   target='_blank'
                 >
-                  Alejandro Soto{' '}
-                </Link>, 
+                  Alejandro Soto
+                </Link>,{' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://www.linkedin.com/in/ximenamonclou/'}
                   target='_blank'
                 >
-                  Ximena Monclou{' '}
-                </Link>, 
+                  Ximena Monclou
+                </Link>,{' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={''}
                   target='_blank'
                 >
-                  0xflypeztic{' '}
-                </Link>, 
+                  0xflypeztic
+                </Link>,{' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://twitter.com/cryptochimba'}
                   target='_blank'
                 >
-                  Eamonn{' '}
-                </Link>, 
+                  Eamonn
+                </Link>,{' '} 
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://dgguardians.com/'}
                   target='_blank'
                 >
-                  Green Digital Guardians{' '}
-                </Link>, 
+                  Green Digital Guardians
+                </Link>,{' '}
                   <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://inkom.io/'}
                   target='_blank'
                 >
-                  Inkom.io{' '}
-                </Link> y 
+                  Inkom.io
+                </Link> y{' '}
                <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://dotlabs.academy/'}
