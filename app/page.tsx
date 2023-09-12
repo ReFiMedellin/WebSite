@@ -125,7 +125,7 @@ export default function Home() {
               Medellín, Colombia.
             </h1>
             <p>
-              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por 
+              ¡Bienvenido al Nodo Local Medellín ReFi, liderado por {' '}
               <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://linktr.ee/juanjgiraldoc'}
@@ -189,10 +189,14 @@ export default function Home() {
                 >
                   Dotlabs()!{' '}
                 </Link>
-              
+            </p>
+            <p>
               Nuestro objetivo es promover conversaciones
               comunitarias sobre soluciones regenerativas innovadoras
-              habilitadas por la tecnología Web3. Estamos comprometidos a
+              habilitadas por la tecnología Web3. 
+            </p>
+            <p>
+              Estamos comprometidos a
               empoderar a los jóvenes de Medellín para abordar algunos de los
               desafíos más apremiantes que enfrenta nuestra ciudad, como la
               pobreza, la desigualdad, el desempleo juvenil y el acceso limitado
