@@ -187,8 +187,8 @@ export default function Home() {
                   href={'https://dotlabs.academy/'}
                   target='_blank'
                 >
-                  Dotlabs()!{' '}
-                </Link>
+                  Dotlabs()
+                </Link>!
             <br />
               Nuestro objetivo es promover conversaciones
               comunitarias sobre soluciones regenerativas innovadoras
