@@ -309,63 +309,63 @@ export default function Home() {
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Juan Giraldo</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Founder</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Tereza Bizkova</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Co-Founder</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Alejandro Soto</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Co-Founder</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Ximena Monclou</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Legal</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >0xflypeztyc</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Branding & Social</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
              <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Eamon</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Co-Founder</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
              <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Green Digital Guardians</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Partner</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
              <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >Inko.io</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Treasury</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
              <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg' >DotLabs()</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <p className='w-full text-start font-light text-sm text-slate-700'>Educational Partner</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
