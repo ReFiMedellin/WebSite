@@ -383,7 +383,8 @@ export default function Home() {
             </p>
             <p className='break-words' >
               Si quieres apoyarnos puedes enviar tu donación a la Wallet{' '}
-              <span className='font-bold'>(EVM Compatible):</span>
+              <br />
+              <span className='font-bold'>(EVM Compatible):</span>{' '}
               0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
             </p>
             </div>
