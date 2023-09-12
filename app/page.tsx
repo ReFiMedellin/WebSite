@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import Logo from '@/assets/images/Logo Transparent-Man.png.png';
+import Logo from '@/assets/images/Logo Transparent-Man.png';
 import Logo2 from '@/assets/images/logo2.png';
 import Link from 'next/link';
 import { Web3Button, useWeb3Modal } from '@web3modal/react';
