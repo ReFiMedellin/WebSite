@@ -19,7 +19,6 @@ import { RiCloseFill } from 'react-icons/ri'
 const cards = [1, 2, 3, 4, 5, 6]
 
 export default function Home () {
-  const { open, close } = useWeb3Modal()
   const [value, setValue] = useState('0')
   const [isSendingModal, setIsSendingModal] = useState(false)
   const [showModal, setShowModal] = useState(false)
@@ -89,27 +88,34 @@ export default function Home () {
             exit={{ opacity: 0 }}
             className='fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
           >
-            <motion.div className='bg-white rounded-lg flex flex-col gap-2 p-2'>
-              <h1>Primero ingresa el valor a donar</h1>
+            <motion.div className='relative max-w-[90vw] bg-white p-8 rounded-lg flex flex-col gap-2 '>
+            <RiCloseFill
+                onClick={() => setIsSendingModal(false)}
+                className='absolute top-3 right-3 font-bold text-xl cursor-pointer'
+              />
+              <h1 className='text-2xl font-bold' >Primero ingresa el valor a donar</h1>
               <form
-                className='flex flex-col gap-1 justify-center items-start'
+                className='flex flex-col gap-2 justify-center items-start'
                 onSubmit={handleOnSendDonation}
               >
-                <label htmlFor='Cantidad en ETH'>
+                <label className='w-full' htmlFor='amount'>
+                  Cantidad en ETH
                   <input
+                  className='w-full border-2 indent-2 border-purple-700 rounded-md text-black font-bold  text-lg '
                     type='number'
                     name='Cantidad en ETH'
-                    id='Cantidad en ETH'
+                    id='amount'
                     value={value}
                     onChange={e => setValue(e.target.value.toString())}
                   />
-                  <button
+                </label>
+                <button
+                className='w-full text-center bg-purple-700 rounded-md text-white font-bold  text-lg px-12 py-2'
                     type='submit'
                     disabled={!sendTransactionAsync || value === '0'}
                   >
                     Enviar
                   </button>
-                </label>
               </form>
             </motion.div>
           </motion.div>
@@ -164,7 +170,7 @@ export default function Home () {
           />
         </div>
       </section>
-      <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center bg-black w-full'>
+      <section id='aboutUS' className='min-h-screen py-10 lg:py-0 flex justify-center items-center bg-black w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image
             className='hidden lg:block'
