@@ -312,7 +312,6 @@ export default function Home () {
               </div>
             </div>
       
-        //Proyecto 2
          <div
               onClick={() => {
                 setShowModal(true)
@@ -336,8 +335,7 @@ export default function Home () {
                 </p>
               </div>
             </div>
-        
-        //Proyecto 3
+    
          <div
               onClick={() => {
                 setShowModal(true)
@@ -362,7 +360,6 @@ export default function Home () {
               </div>
             </div>
 
-        //Proyecto 4
          <div
               onClick={() => {
                 setShowModal(true)
@@ -387,7 +384,6 @@ export default function Home () {
               </div>
             </div>
 
-        //Proyecto5
          <div
               onClick={() => {
                 setShowModal(true)
@@ -412,7 +408,6 @@ export default function Home () {
               </div>
             </div>
 
-        //Proyecto 6
          <div
               onClick={() => {
                 setShowModal(true)
