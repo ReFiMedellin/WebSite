@@ -279,10 +279,13 @@ export default function Home () {
           </div>
         </div>
       </section>
+     
+      
       <section
         id='proyectos'
         className='min-h-screen py-10 lg:py-0 w-full bg-purple-700 flex flex-col justify-center items-center gap-10'
-      >
+      > 
+        
         <h1 className='font-bold w-full text-center text-white text-5xl'>
           Proyectos
         </h1>
@@ -433,8 +436,9 @@ export default function Home () {
             </div>
         
 
-        </div>
+        </div>  
       </section>
+     
       <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
