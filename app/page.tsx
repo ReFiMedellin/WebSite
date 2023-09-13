@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import LogoMan from '@/assets/images/Logo Transparent-Man.png'
-import LogoWoman from '@/assets/images/Logo Transparent-Woman.png'
+import LogoMan from '@/assets/images/Logo White-Man.webp'
+import LogoWoman from '@/assets/images/Logo White-Woman.webp'
 import Link from 'next/link'
 import { Web3Button, useWeb3Modal } from '@web3modal/react'
 import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
@@ -421,7 +421,7 @@ export default function Home () {
             </div>
              <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Inko.io</h1>
+                <h1 className='text-start w-full font-bold text-lg' >Inkom.io</h1>
                 <p className='w-full text-start font-light text-sm text-slate-700'>Treasury</p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
