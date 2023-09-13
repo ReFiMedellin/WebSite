@@ -69,7 +69,7 @@ export default function Home () {
             <motion.div className='relative bg-white rounded-lg w-[90vw] h-[80vh] flex flex-col gap-2 p-5 md:p-10 lg:w-[80vw] md:h-[60vh]'>
               <RiCloseFill
                 onClick={() => setShowModal(false)}
-                className='absolute md:top-4 md:right-4 top-1 right-1 font-bold text-xl cursor-pointer'
+                className='absolute md:top-4 md:right-4 top-1 right-1 font-bold text-xl cursor-pointer transition-all hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
               <div className='overflow-y-scroll '>
                 <ReactMarkdown className='prose-sm md:prose lg:prose-xl'>
@@ -91,7 +91,7 @@ export default function Home () {
             <motion.div className='relative max-w-[90vw] bg-white p-8 rounded-lg flex flex-col gap-2 '>
             <RiCloseFill
                 onClick={() => setIsSendingModal(false)}
-                className='absolute top-3 right-3 font-bold text-xl cursor-pointer'
+                className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
               <h1 className='text-2xl font-bold' >Primero ingresa el valor a donar</h1>
               <form
