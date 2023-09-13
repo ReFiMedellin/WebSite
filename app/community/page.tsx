@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { zeroAddress } from 'viem';
 import { useAccount, useContractRead } from 'wagmi';
 import erc1155ABI from '@/constants/ABI/erc1155ABI.json';
 import { useRouter } from 'next/navigation';
@@ -53,6 +52,7 @@ Espera muchas Sorpresas pronto...
     </div> :  <div className='h-screen w-screen flex justify-center items-center'>
         <h1 className='font-bold text-8xl'>No tienes acceso</h1>
     </div>}
+    ...Loading
     </>
   );
 }
