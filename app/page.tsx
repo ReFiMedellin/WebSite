@@ -1,58 +1,63 @@
-'use client'
-import Image from 'next/image'
-import LogoMan from '@/assets/images/Logo Transparent-Man.png'
-import LogoWoman from '@/assets/images/Logo Transparent-Woman.png'
-import Link from 'next/link'
-import { Web3Button, useWeb3Modal } from '@web3modal/react'
-import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
-import { useEffect, useState } from 'react'
-import { parseEther } from 'viem'
-import { AnimatePresence, motion } from 'framer-motion'
-import { RxInstagramLogo, RxLinkedinLogo, RxNotionLogo, RxTwitterLogo } from 'react-icons/rx'
-import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa'
-import axios from 'axios'
-import ReactMarkdown from 'react-markdown'
-import { RiCloseFill } from 'react-icons/ri'
+'use client';
+import Image from 'next/image';
+import LogoMan from '@/assets/images/Logo Transparent-Man.png';
+import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
+import Link from 'next/link';
+import { Web3Button, useWeb3Modal } from '@web3modal/react';
+import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
+import { useEffect, useState } from 'react';
+import { parseEther } from 'viem';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  RxInstagramLogo,
+  RxLinkedinLogo,
+  RxNotionLogo,
+  RxTwitterLogo,
+} from 'react-icons/rx';
+import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import { RiCloseFill } from 'react-icons/ri';
 
 // const a =
 
-const cards = [1, 2, 3, 4, 5, 6]
+const cards = [1, 2, 3, 4, 5, 6];
 
-export default function Home () {
-  const [value, setValue] = useState('0')
-  const [isSendingModal, setIsSendingModal] = useState(false)
-  const [showModal, setShowModal] = useState(false)
+export default function Home() {
+  const [value, setValue] = useState('0');
+  const [isSendingModal, setIsSendingModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { config, error } = usePrepareSendTransaction({
     to: '0xd4AC6c14B4C96F7e66049210F56cb07468028d4e',
-    value: parseEther(value)
-  })
-  const [modalMD, setModalMD] = useState('')
-  const { sendTransactionAsync } = useSendTransaction(config)
+    value: parseEther(value),
+  });
+  const [modalMD, setModalMD] = useState('');
+  const { sendTransactionAsync } = useSendTransaction(config);
 
   const handleOnSendDonation = async (e: any) => {
-    e.preventDefault()
-    await sendTransactionAsync?.()
-    setIsSendingModal(false)
-  }
+    e.preventDefault();
+    await sendTransactionAsync?.();
+    setIsSendingModal(false);
+  };
 
-  async function fetchMD (url: string) {
-    const owner = 'ReFiMedellin'
-    const repo = '.github'
-    const path = 'Impact%20Onboarding/ETHRules.md'
+  async function fetchMD(url: string) {
+    const owner = 'ReFiMedellin';
+    const repo = '.github';
+    const path = 'Impact%20Onboarding/ETHRules.md';
 
     try {
-      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
       const response = await axios.get(url, {
         headers: {
-          Accept: 'application/vnd.github.v3.raw'
-        }
-      })
+          Accept: 'application/vnd.github.v3.raw',
+        },
+      });
       // const content = Buffer.from(response.data.content, 'base64').toString('utf8');
-      console.debug(response.data)
-      setModalMD(response.data)
+      console.debug(response.data);
+      setModalMD(response.data);
       // return content;
     } catch (error) {
-      throw new Error(`Failed to fetch Markdown content: ${error}`)
+      throw new Error(`Failed to fetch Markdown content: ${error}`);
     }
   }
 
@@ -89,11 +94,13 @@ export default function Home () {
             className='fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
           >
             <motion.div className='relative max-w-[90vw] bg-white p-8 rounded-lg flex flex-col gap-2 '>
-            <RiCloseFill
+              <RiCloseFill
                 onClick={() => setIsSendingModal(false)}
                 className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
-              <h1 className='text-2xl font-bold' >Primero ingresa el valor a donar</h1>
+              <h1 className='text-2xl font-bold'>
+                Primero ingresa el valor a donar
+              </h1>
               <form
                 className='flex flex-col gap-2 justify-center items-start'
                 onSubmit={handleOnSendDonation}
@@ -101,21 +108,21 @@ export default function Home () {
                 <label className='w-full' htmlFor='amount'>
                   Cantidad en ETH
                   <input
-                  className='w-full border-2 indent-2 border-purple-700 rounded-md text-black font-bold  text-lg '
+                    className='w-full border-2 indent-2 border-purple-700 rounded-md text-black font-bold  text-lg '
                     type='number'
                     name='Cantidad en ETH'
                     id='amount'
                     value={value}
-                    onChange={e => setValue(e.target.value.toString())}
+                    onChange={(e) => setValue(e.target.value.toString())}
                   />
                 </label>
                 <button
-                className='w-full text-center bg-purple-700 rounded-md text-white font-bold  text-lg px-12 py-2'
-                    type='submit'
-                    disabled={!sendTransactionAsync || value === '0'}
-                  >
-                    Enviar
-                  </button>
+                  className='w-full text-center bg-purple-700 rounded-md text-white font-bold  text-lg px-12 py-2'
+                  type='submit'
+                  disabled={!sendTransactionAsync || value === '0'}
+                >
+                  Enviar
+                </button>
               </form>
             </motion.div>
           </motion.div>
@@ -139,7 +146,7 @@ export default function Home () {
                   ReFiDAO{' '}
                 </Link>
                 encargado de promover proyectos ReFi en la región.
-              <br /> <br />
+                <br /> <br />
                 En ReFi Medellín, creemos en los proyectos regenerativos y el
                 impacto transformador que estos tienen. ¡Es hora de pensar
                 diferente y regenerarnos juntos!
@@ -170,7 +177,10 @@ export default function Home () {
           />
         </div>
       </section>
-      <section id='aboutUS' className='min-h-screen py-10 lg:py-0 flex justify-center items-center bg-black w-full'>
+      <section
+        id='aboutUS'
+        className='min-h-screen py-10 lg:py-0 flex justify-center items-center bg-black w-full'
+      >
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image
             className='hidden lg:block'
@@ -185,89 +195,102 @@ export default function Home () {
             </h1>
             <p>
               ¡Bienvenido al primer Nodo Local de{' '}
-                <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://www.refidao.com/'}
-                  target='_blank'
-                >
-                  ReFiDAO{' '}
-                </Link> en Colombia:  <span className='font-bold'>ReFi Medellín</span>, liderado por {' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://linktr.ee/juanjgiraldoc'}
-                  target='_blank'
-                >
-                  Juan Giraldo
-                </Link>,{' '}
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://www.refidao.com/'}
+                target='_blank'
+              >
+                ReFiDAO{' '}
+              </Link>{' '}
+              en Colombia: <span className='font-bold'>ReFi Medellín</span>,
+              liderado por{' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://www.linkedin.com/in/tereza-bizkova/'}
-                  target='_blank'
-                >
-                  Tereza Bizkova
-                </Link>,{' '}
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://linktr.ee/juanjgiraldoc'}
+                target='_blank'
+              >
+                Juan Giraldo
+              </Link>
+              ,{' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://github.com/alejandro99so'}
-                  target='_blank'
-                >
-                  Alejandro Soto
-                </Link>,{' '}
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://www.linkedin.com/in/tereza-bizkova/'}
+                target='_blank'
+              >
+                Tereza Bizkova
+              </Link>
+              ,{' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://www.linkedin.com/in/ximenamonclou/'}
-                  target='_blank'
-                >
-                  Ximena Monclou
-                </Link>,{' '}
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://github.com/alejandro99so'}
+                target='_blank'
+              >
+                Alejandro Soto
+              </Link>
+              ,{' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={''}
-                  target='_blank'
-                >
-                  0xflypeztic
-                </Link>,{' '}
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://www.linkedin.com/in/ximenamonclou/'}
+                target='_blank'
+              >
+                Ximena Monclou
+              </Link>
+              ,{' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://twitter.com/cryptochimba'}
-                  target='_blank'
-                >
-                  Eamonn
-                </Link>,{' '} 
+                className='text-blue-400 font-bold cursor-pointer'
+                href={''}
+                target='_blank'
+              >
+                0xflypeztic
+              </Link>
+              ,{' '}
               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://dgguardians.com/'}
-                  target='_blank'
-                >
-                  Green Digital Guardians
-                </Link>,{' '}
-                  <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://inkom.io/'}
-                  target='_blank'
-                >
-                  Inkom.io
-                </Link> y{' '}
-               <Link
-                  className='text-blue-400 font-bold cursor-pointer'
-                  href={'https://dotlabs.academy/'}
-                  target='_blank'
-                >
-                  Dotlabs()
-                </Link>!
-            <br />
-            <br />
-              Nuestro objetivo es promover conversaciones
-              comunitarias sobre soluciones regenerativas innovadoras
-              habilitadas por la tecnología Web3. 
-          <br /><br />
-              Estamos comprometidos a
-              empoderar a los jóvenes de Medellín para abordar algunos de los
-              desafíos más apremiantes que enfrenta nuestra ciudad, como la
-              pobreza, la desigualdad, el desempleo juvenil y el acceso limitado
-              a recursos como energía, agua, saneamiento, vivienda y educación.
-           <br /><br />
-            ¡Únase a nosotros en hackatones, incubación e inversión para
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://twitter.com/cryptochimba'}
+                target='_blank'
+              >
+                Eamonn
+              </Link>
+              ,{' '}
+              <Link
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://dgguardians.com/'}
+                target='_blank'
+              >
+                Green Digital Guardians
+              </Link>
+              ,{' '}
+              <Link
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://inkom.io/'}
+                target='_blank'
+              >
+                Inkom.io
+              </Link>{' '}
+              y{' '}
+              <Link
+                className='text-blue-400 font-bold cursor-pointer'
+                href={'https://dotlabs.academy/'}
+                target='_blank'
+              >
+                Dotlabs()
+              </Link>
+              !
+              <br />
+              <br />
+              Nuestro objetivo es promover conversaciones comunitarias sobre
+              soluciones regenerativas innovadoras habilitadas por la tecnología
+              Web3.
+              <br />
+              <br />
+              Estamos comprometidos a empoderar a los jóvenes de Medellín para
+              abordar algunos de los desafíos más apremiantes que enfrenta
+              nuestra ciudad, como la pobreza, la desigualdad, el desempleo
+              juvenil y el acceso limitado a recursos como energía, agua,
+              saneamiento, vivienda y educación.
+              <br />
+              <br />
+              ¡Únase a nosotros en hackatones, incubación e inversión para
               ayudar a marcar la diferencia en nuestra comunidad!
             </p>
             <Link
@@ -279,166 +302,161 @@ export default function Home () {
           </div>
         </div>
       </section>
-     
-      
+
       <section
         id='proyectos'
         className='min-h-screen py-10 lg:py-0 w-full bg-purple-700 flex flex-col justify-center items-center gap-10'
-      > 
-        
+      >
         <h1 className='font-bold w-full text-center text-white text-5xl'>
           Proyectos
         </h1>
         <div className='grid lg:grid-cols-2 gap-5 w-5/6 justify-center items-center'>
-         
-            <div
-              onClick={() => {
-                setShowModal(true)
-                fetchMD('')
-              }}
-              key={index}
-              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
-            >
-              <Image
-                className='hidden lg:block'
-                src={LogoMan}
-                alt='logo refi'
-                height={120}
-              />
-              <div>
-                <h1 className='text-lg font-bold'>
-                  Involucrar a la comunidad local
-                </h1>
-                <p>
-                  Realizar eventos que contarán con expertos en ReFi, Web3 y desafíos urbanos en ciudades latinoamericanas.
-                </p>
-              </div>
+          <div
+            onClick={() => {
+              setShowModal(true);
+              fetchMD('');
+            }}
+            className='card'
+          >
+            <Image
+              className='hidden lg:block'
+              src={LogoMan}
+              alt='logo refi'
+              height={120}
+            />
+            <div>
+              <h1 className='text-lg font-bold'>
+                Involucrar a la comunidad local
+              </h1>
+              <p>
+                Realizar eventos que contarán con expertos en ReFi, Web3 y
+                desafíos urbanos en ciudades latinoamericanas.
+              </p>
             </div>
-      
-         <div
-              onClick={() => {
-                setShowModal(true)
-                fetchMD('')
-              }}
-              key={index}
-              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
-            >
-              <Image
-                className='hidden lg:block'
-                src={LogoMan}
-                alt='logo refi'
-                height={120}
-              />
-              <div>
-                <h1 className='text-lg font-bold'>
-                  Hackathones de ReFi
-                </h1>
-                <p>
-                  Esperamos involucrar a jóvenes de diferentes comunidades de desarrolladores, universidades y organizaciones del sector privado interesadas en Web3 y sostenibilidad.
-                </p>
-              </div>
-            </div>
-    
-         <div
-              onClick={() => {
-                setShowModal(true)
-                fetchMD('')
-              }}
-              key={index}
-              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
-            >
-              <Image
-                className='hidden lg:block'
-                src={LogoMan}
-                alt='logo refi'
-                height={120}
-              />
-              <div>
-                <h1 className='text-lg font-bold'>
-                  Apoyar las innovaciones orientadas a la regeneración (ROIs) y Web3
-                </h1>
-                <p>
-                  Incubar e invertir en empresas sociales que surjan de los hackathones de ReFi Medellín.
-                </p>
-              </div>
-            </div>
+          </div>
 
-         <div
-              onClick={() => {
-                setShowModal(true)
-                fetchMD('')
-              }}
-              key={index}
-              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
-            >
-              <Image
-                className='hidden lg:block'
-                src={LogoMan}
-                alt='logo refi'
-                height={120}
-              />
-              <div>
-                <h1 className='text-lg font-bold'>
-                  Onboarding de impacto
-                </h1>
-                <p>
-                  Cualquier grupo ecológico activo o grupo de amigos que desee realizar una actividad de impacto, como plantar árboles, limpiar ambientes, recolectar basura, etc., puede contactarnos y solicitar apoyo.
-                </p>
-              </div>
+          <div
+            onClick={() => {
+              setShowModal(true);
+              fetchMD('');
+            }}
+            className='card'
+          >
+            <Image
+              className='hidden lg:block'
+              src={LogoMan}
+              alt='logo refi'
+              height={120}
+            />
+            <div>
+              <h1 className='text-lg font-bold'>Hackathones de ReFi</h1>
+              <p>
+                Esperamos involucrar a jóvenes de diferentes comunidades de
+                desarrolladores, universidades y organizaciones del sector
+                privado interesadas en Web3 y sostenibilidad.
+              </p>
             </div>
+          </div>
 
-         <div
-              onClick={() => {
-                setShowModal(true)
-                fetchMD('')
-              }}
-              key={index}
-              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
-            >
-              <Image
-                className='hidden lg:block'
-                src={LogoMan}
-                alt='logo refi'
-                height={120}
-              />
-              <div>
-                <h1 className='text-lg font-bold'>
-                  Mantener a Medellín como la Ciudad de la Eterna Primavera
-                </h1>
-                <p>
-                  Actividad dedicada a plantar flores y ayudar a regenerar el insecto de las flores en Medellín, ayudando así a proteger a Medellín como Ciudad de la Eterna Primavera.
-                </p>
-              </div>
+          <div
+            onClick={() => {
+              setShowModal(true);
+              fetchMD('');
+            }}
+            className='card'
+          >
+            <Image
+              className='hidden lg:block'
+              src={LogoMan}
+              alt='logo refi'
+              height={120}
+            />
+            <div>
+              <h1 className='text-lg font-bold'>
+                Apoyar las innovaciones orientadas a la regeneración (ROIs) y
+                Web3
+              </h1>
+              <p>
+                Incubar e invertir en empresas sociales que surjan de los
+                hackathones de ReFi Medellín.
+              </p>
             </div>
+          </div>
 
-         <div
-              onClick={() => {
-                setShowModal(true)
-                fetchMD('')
-              }}
-              key={index}
-              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
-            >
-              <Image
-                className='hidden lg:block'
-                src={LogoMan}
-                alt='logo refi'
-                height={120}
-              />
-              <div>
-                <h1 className='text-lg font-bold'>
-                  Talleres de ReFi Medellín
-                </h1>
-                <p>
-                  Host ReFi Medellín events. These events will include expert guest speakers in ReFi, Web3, and urban challenges in Latin American cities.
-                </p>
-              </div>
+          <div
+            onClick={() => {
+              setShowModal(true);
+              fetchMD('');
+            }}
+            className='card'
+          >
+            <Image
+              className='hidden lg:block'
+              src={LogoMan}
+              alt='logo refi'
+              height={120}
+            />
+            <div>
+              <h1 className='text-lg font-bold'>Onboarding de impacto</h1>
+              <p>
+                Cualquier grupo ecológico activo o grupo de amigos que desee
+                realizar una actividad de impacto, como plantar árboles, limpiar
+                ambientes, recolectar basura, etc., puede contactarnos y
+                solicitar apoyo.
+              </p>
             </div>
-        
+          </div>
 
-        </div>  
+          <div
+            onClick={() => {
+              setShowModal(true);
+              fetchMD('');
+            }}
+            className='card'
+          >
+            <Image
+              className='hidden lg:block'
+              src={LogoMan}
+              alt='logo refi'
+              height={120}
+            />
+            <div>
+              <h1 className='text-lg font-bold'>
+                Mantener a Medellín como la Ciudad de la Eterna Primavera
+              </h1>
+              <p>
+                Actividad dedicada a plantar flores y ayudar a regenerar el
+                insecto de las flores en Medellín, ayudando así a proteger a
+                Medellín como Ciudad de la Eterna Primavera.
+              </p>
+            </div>
+          </div>
+
+          <div
+            onClick={() => {
+              setShowModal(true);
+              fetchMD('');
+            }}
+            className='card'
+          >
+            <Image
+              className='hidden lg:block'
+              src={LogoMan}
+              alt='logo refi'
+              height={120}
+            />
+            <div>
+              <h1 className='text-lg font-bold'>Talleres de ReFi Medellín</h1>
+              <p>
+                Host ReFi Medellín events. These events will include expert
+                guest speakers in ReFi, Web3, and urban challenges in Latin
+                American cities.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
-     
+
       <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center w-full'>
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
@@ -451,11 +469,11 @@ export default function Home () {
                 de Medellín para abordar algunos de los desafíos más apremiantes
                 que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el
                 desempleo juvenil y el acceso limitado a recursos como energía,
-                agua, saneamiento, vivienda y educación. 
+                agua, saneamiento, vivienda y educación.
                 <br />
                 <br />
-                ¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la
-                diferencia en nuestra comunidad!
+                ¡Únase a nosotros en hackatones, incubación e inversión para
+                ayudar a marcar la diferencia en nuestra comunidad!
                 <br />
                 <br />
                 Les pedimos amablemente su apoyo y donaciones para que podamos
@@ -497,64 +515,98 @@ export default function Home () {
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juan Giraldo</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Founder</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Juan Giraldo
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Founder
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Tereza Bizkova</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Co-Founder</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Tereza Bizkova
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Co-Founder
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Alejandro Soto</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Co-Founder</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Alejandro Soto
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Co-Founder
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Ximena Monclou</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Legal</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Ximena Monclou
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Legal
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >0xflypeztyc</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Branding & Social</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  0xflypeztyc
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Branding & Social
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Eamon</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Co-Founder</p>
+                <h1 className='text-start w-full font-bold text-lg'>Eamon</h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Co-Founder
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Green Digital Guardians</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Partner</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Green Digital Guardians
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Partner
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Inkom.io</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Treasury</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Inkom.io
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Treasury
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
-             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >DotLabs()</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>Educational Partner</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  DotLabs()
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Educational Partner
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
@@ -566,15 +618,15 @@ export default function Home () {
           <div className='flex flex-col justify-center gap-5 items-start w-full lg:w-1/2'>
             <h1 className='text-4xl font-bold'>Más información</h1>
             <div className='w-full'>
-            <p>
-              Para contactarnos envianos un mensaje a{' '}
-              <span className='font-bold'>admin@refimedellin.org</span>
-            </p>
-            <p className='break-words' >
-              Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
-              <span className='font-bold'>(Ethereum):</span>
-              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
-            </p>
+              <p>
+                Para contactarnos envianos un mensaje a{' '}
+                <span className='font-bold'>admin@refimedellin.org</span>
+              </p>
+              <p className='break-words'>
+                Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
+                <span className='font-bold'>(Ethereum):</span>
+                0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              </p>
             </div>
             <div className='flex flex-row flex-wrap justify-start items-center gap-5'>
               <Link
@@ -623,9 +675,11 @@ export default function Home () {
               <Link
                 className='logo'
                 target='_blank'
-                href={'https://refimedellin.notion.site/cacd321bb2204a5888d88d3288d1bec4?v=d1871f2a1dd34bfeae1afe476e6d8b9f'}
+                href={
+                  'https://refimedellin.notion.site/cacd321bb2204a5888d88d3288d1bec4?v=d1871f2a1dd34bfeae1afe476e6d8b9f'
+                }
               >
-                <RxNotionLogo/>
+                <RxNotionLogo />
               </Link>
             </div>
           </div>
@@ -650,5 +704,5 @@ export default function Home () {
         </div>
       </footer>
     </main>
-  )
+  );
 }

@@ -6,6 +6,10 @@
   .logo {
     @apply p-3 rounded-full bg-purple-700 text-2xl text-white ; 
   }
+
+  .card{
+    @apply h-52 py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white
+  }
 }
 
 /* :root {
