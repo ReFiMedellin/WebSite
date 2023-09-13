@@ -287,7 +287,7 @@ export default function Home () {
           Proyectos
         </h1>
         <div className='grid lg:grid-cols-2 gap-5 w-5/6 justify-center items-center'>
-          {cards.map((card, index) => (
+         
             <div
               onClick={() => {
                 setShowModal(true)
@@ -307,11 +307,137 @@ export default function Home () {
                   Involucrar a la comunidad local
                 </h1>
                 <p>
-                  Realizar eventos que contarán con expertos en ReFi, Web3 y desafíos urbanos en ciudades latinoamericanas
+                  Realizar eventos que contarán con expertos en ReFi, Web3 y desafíos urbanos en ciudades latinoamericanas.
                 </p>
               </div>
             </div>
-          ))}
+      
+        //Proyecto 2
+         <div
+              onClick={() => {
+                setShowModal(true)
+                fetchMD('')
+              }}
+              key={index}
+              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
+            >
+              <Image
+                className='hidden lg:block'
+                src={LogoMan}
+                alt='logo refi'
+                height={120}
+              />
+              <div>
+                <h1 className='text-lg font-bold'>
+                  Hackathones de ReFi
+                </h1>
+                <p>
+                  Esperamos involucrar a jóvenes de diferentes comunidades de desarrolladores, universidades y organizaciones del sector privado interesadas en Web3 y sostenibilidad.
+                </p>
+              </div>
+            </div>
+        
+        //Proyecto 3
+         <div
+              onClick={() => {
+                setShowModal(true)
+                fetchMD('')
+              }}
+              key={index}
+              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
+            >
+              <Image
+                className='hidden lg:block'
+                src={LogoMan}
+                alt='logo refi'
+                height={120}
+              />
+              <div>
+                <h1 className='text-lg font-bold'>
+                  Apoyar las innovaciones orientadas a la regeneración (ROIs) y Web3
+                </h1>
+                <p>
+                  Incubar e invertir en empresas sociales que surjan de los hackathones de ReFi Medellín.
+                </p>
+              </div>
+            </div>
+
+        //Proyecto 4
+         <div
+              onClick={() => {
+                setShowModal(true)
+                fetchMD('')
+              }}
+              key={index}
+              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
+            >
+              <Image
+                className='hidden lg:block'
+                src={LogoMan}
+                alt='logo refi'
+                height={120}
+              />
+              <div>
+                <h1 className='text-lg font-bold'>
+                  Onboarding de impacto
+                </h1>
+                <p>
+                  Cualquier grupo ecológico activo o grupo de amigos que desee realizar una actividad de impacto, como plantar árboles, limpiar ambientes, recolectar basura, etc., puede contactarnos y solicitar apoyo.
+                </p>
+              </div>
+            </div>
+
+        //Proyecto5
+         <div
+              onClick={() => {
+                setShowModal(true)
+                fetchMD('')
+              }}
+              key={index}
+              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
+            >
+              <Image
+                className='hidden lg:block'
+                src={LogoMan}
+                alt='logo refi'
+                height={120}
+              />
+              <div>
+                <h1 className='text-lg font-bold'>
+                  Mantener a Medellín como la Ciudad de la Eterna Primavera
+                </h1>
+                <p>
+                  Actividad dedicada a plantar flores y ayudar a regenerar el insecto de las flores en Medellín, ayudando así a proteger a Medellín como Ciudad de la Eterna Primavera.
+                </p>
+              </div>
+            </div>
+
+        //Proyecto 6
+         <div
+              onClick={() => {
+                setShowModal(true)
+                fetchMD('')
+              }}
+              key={index}
+              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
+            >
+              <Image
+                className='hidden lg:block'
+                src={LogoMan}
+                alt='logo refi'
+                height={120}
+              />
+              <div>
+                <h1 className='text-lg font-bold'>
+                  Talleres de ReFi Medellín
+                </h1>
+                <p>
+                  Host ReFi Medellín events. These events will include expert guest speakers in ReFi, Web3, and urban challenges in Latin American cities.
+                </p>
+              </div>
+            </div>
+        
+
         </div>
       </section>
       <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center w-full'>
