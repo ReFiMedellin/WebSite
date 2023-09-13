@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import Logo from '@/assets/images/Logo Transparent-Man.png'
-import Logo2 from '@/assets/images/logo2.png'
+import LogoMan from '@/assets/images/Logo Transparent-Man.png'
+import LogoWoman from '@/assets/images/Logo Transparent-Woman.png'
 import Link from 'next/link'
 import { Web3Button, useWeb3Modal } from '@web3modal/react'
 import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
@@ -165,7 +165,7 @@ export default function Home () {
           <Image
             className='hidden lg:block'
             height={420}
-            src={Logo}
+            src={LogoMan}
             alt='Logo ReFi'
           />
         </div>
@@ -174,7 +174,7 @@ export default function Home () {
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image
             className='hidden lg:block'
-            src={Logo}
+            src={LogoWoman}
             alt='refi logo'
             height={480}
           />
@@ -298,7 +298,7 @@ export default function Home () {
             >
               <Image
                 className='hidden lg:block'
-                src={Logo}
+                src={LogoMan}
                 alt='logo refi'
                 height={120}
               />
@@ -360,7 +360,7 @@ export default function Home () {
           </div>
           <Image
             className='hidden lg:block'
-            src={Logo}
+            src={LogoMan}
             alt='refi logo'
             height={480}
           />
