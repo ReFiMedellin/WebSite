@@ -1,40 +1,94 @@
-'use client';
-import Image from 'next/image';
-import Logo from '@/assets/images/logo.png';
-import Logo2 from '@/assets/images/logo2.png';
-import Link from 'next/link';
-import { Web3Button, useWeb3Modal } from '@web3modal/react';
-import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
-import { useEffect, useState } from 'react';
-import { parseEther } from 'viem';
-import { AnimatePresence, motion } from 'framer-motion';
-import { RxInstagramLogo, RxLinkedinLogo, RxTwitterLogo } from 'react-icons/rx';
-import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa';
+'use client'
+import Image from 'next/image'
+import Logo from '@/assets/images/logo.png'
+import Logo2 from '@/assets/images/logo2.png'
+import Link from 'next/link'
+import { Web3Button, useWeb3Modal } from '@web3modal/react'
+import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
+import { useEffect, useState } from 'react'
+import { parseEther } from 'viem'
+import { AnimatePresence, motion } from 'framer-motion'
+import { RxInstagramLogo, RxLinkedinLogo, RxTwitterLogo } from 'react-icons/rx'
+import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa'
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
+import { RiCloseFill } from 'react-icons/ri'
 
 // const a =
-const cards = [1, 2, 3, 4, 5, 6];
 
-export default function Home() {
-  const { open, close } = useWeb3Modal();
-  const [value, setValue] = useState('0');
-  const [isSendingModal, setIsSendingModal] = useState(false);
+const cards = [1, 2, 3, 4, 5, 6]
+
+export default function Home () {
+  const { open, close } = useWeb3Modal()
+  const [value, setValue] = useState('0')
+  const [isSendingModal, setIsSendingModal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const { config, error } = usePrepareSendTransaction({
     to: '0xd4AC6c14B4C96F7e66049210F56cb07468028d4e',
-    value: parseEther(value),
-  });
-  const { sendTransactionAsync } = useSendTransaction(config);
+    value: parseEther(value)
+  })
+  const [modalMD, setModalMD] = useState('')
+  const { sendTransactionAsync } = useSendTransaction(config)
 
   const handleOnSendDonation = async (e: any) => {
-    e.preventDefault();
-    await sendTransactionAsync?.();
-    setIsSendingModal(false);
-  };
+    e.preventDefault()
+    await sendTransactionAsync?.()
+    setIsSendingModal(false)
+  }
+
+  async function fetchMD (url: string) {
+    const owner = 'ReFiMedellin'
+    const repo = '.github'
+    const path = 'Impact%20Onboarding/ETHRules.md'
+
+    try {
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
+      const response = await axios.get(url, {
+        headers: {
+          Accept: 'application/vnd.github.v3.raw'
+        }
+      })
+      // const content = Buffer.from(response.data.content, 'base64').toString('utf8');
+      console.debug(response.data)
+      setModalMD(response.data)
+      // return content;
+    } catch (error) {
+      throw new Error(`Failed to fetch Markdown content: ${error}`)
+    }
+  }
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between'>
       <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 100 }}
+            exit={{ opacity: 0 }}
+            className='fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm flex justify-center items-center'
+          >
+            <motion.div className='relative bg-white rounded-lg w-[90vw] h-[80vh] flex flex-col gap-2 p-5 md:p-10 lg:w-[80vw] md:h-[60vh]'>
+              <RiCloseFill
+                onClick={() => setShowModal(false)}
+                className='absolute md:top-4 md:right-4 top-1 right-1 font-bold text-xl cursor-pointer'
+              />
+              <div className='overflow-y-scroll '>
+                <ReactMarkdown className='prose-sm md:prose lg:prose-xl'>
+                  {modalMD}
+                </ReactMarkdown>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
         {isSendingModal && (
-          <motion.div className='fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 100 }}
+            exit={{ opacity: 0 }}
+            className='fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
+          >
             <motion.div className='bg-white rounded-lg flex flex-col gap-2 p-2'>
               <h1>Primero ingresa el valor a donar</h1>
               <form
@@ -47,7 +101,7 @@ export default function Home() {
                     name='Cantidad en ETH'
                     id='Cantidad en ETH'
                     value={value}
-                    onChange={(e) => setValue(e.target.value.toString())}
+                    onChange={e => setValue(e.target.value.toString())}
                   />
                   <button
                     type='submit'
@@ -156,6 +210,10 @@ export default function Home() {
         <div className='grid lg:grid-cols-2 gap-5 w-5/6 justify-center items-center'>
           {cards.map((card, index) => (
             <div
+              onClick={() => {
+                setShowModal(true)
+                fetchMD('')
+              }}
               key={index}
               className='py-6 flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
             >
@@ -233,36 +291,56 @@ export default function Home() {
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Juanito alimaña
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  CEO
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Juanito alimaña
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  CEO
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Juanito alimaña
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  CEO
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Juanito alimaña
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  CEO
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
             <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg' >Juanito alimaña</h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>CEO</p>
+                <h1 className='text-start w-full font-bold text-lg'>
+                  Juanito alimaña
+                </h1>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  CEO
+                </p>
               </div>
               <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
             </div>
@@ -274,15 +352,15 @@ export default function Home() {
           <div className='flex flex-col justify-center gap-5 items-start w-full lg:w-1/2'>
             <h1 className='text-4xl font-bold'>Más información</h1>
             <div className='w-full'>
-            <p>
-              Para contactarnos envianos un mensaje a{' '}
-              <span className='font-bold'>admin@refimedellin.org</span>
-            </p>
-            <p className='break-words' >
-              Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
-              <span className='font-bold'>(Ethereum):</span>
-              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
-            </p>
+              <p>
+                Para contactarnos envianos un mensaje a{' '}
+                <span className='font-bold'>admin@refimedellin.org</span>
+              </p>
+              <p className='break-words'>
+                Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
+                <span className='font-bold'>(Ethereum):</span>
+                0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              </p>
             </div>
             <div className='flex flex-row flex-wrap justify-start items-center gap-5'>
               <Link
@@ -350,7 +428,7 @@ export default function Home() {
             <span className='text-blue-400 font-bold'>Another_Dev</span>
           </Link>
         </div>
-      </footer> 
+      </footer>
     </main>
-  );
+  )
 }
