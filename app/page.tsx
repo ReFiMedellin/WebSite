@@ -8,7 +8,7 @@ import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 import { useEffect, useState } from 'react'
 import { parseEther } from 'viem'
 import { AnimatePresence, motion } from 'framer-motion'
-import { RxInstagramLogo, RxLinkedinLogo, RxTwitterLogo } from 'react-icons/rx'
+import { RxInstagramLogo, RxLinkedinLogo, RxNotionLogo, RxTwitterLogo } from 'react-icons/rx'
 import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
@@ -288,7 +288,7 @@ export default function Home () {
                 fetchMD('')
               }}
               key={index}
-              className='py-6 flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
+              className='py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white'
             >
               <Image
                 className='hidden lg:block'
@@ -360,7 +360,7 @@ export default function Home () {
           />
         </div>
       </section>
-      <section className='min-h-screen py-10 lg:py-0 flex justify-center bg-slate-300 items-center w-full'>
+      <section className='min-h-screen py-10 flex justify-center bg-slate-300 items-center w-full'>
         <div className='flex flex-col gap-5 justify-center  items-center'>
           <h1 className='font-bold text-4xl text-black'>Equipo</h1>
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
@@ -482,13 +482,19 @@ export default function Home () {
               >
                 <FaYoutube />
               </Link>
-
               <Link
                 className='logo'
                 target='_blank'
                 href={'https://chat.whatsapp.com/C2dUH2dmZyTJdLjWkE1ILG'}
               >
                 <FaWhatsapp />
+              </Link>
+              <Link
+                className='logo'
+                target='_blank'
+                href={'https://refimedellin.notion.site/cacd321bb2204a5888d88d3288d1bec4?v=d1871f2a1dd34bfeae1afe476e6d8b9f'}
+              >
+                <RxNotionLogo/>
               </Link>
             </div>
           </div>
