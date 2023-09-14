@@ -51,16 +51,7 @@ Espera muchas Sorpresas...
         </p>
     </div> :  <div className='h-screen w-screen flex justify-center items-center'>
         <h1 className='font-bold text-8xl'>No tienes acceso</h1>
-        <p className='text-sm md:text-lg lg:text-2xl font-light'>
-          Para tener acceso a esta sección de <span className='font-bold'>Contenido Exclusivo</span> para Miembros de la <span className='font-bold'>Comunidad ReFiMedellín</span>debes poseer uno de nuestros NFTs en tu Wallet, puedes conseguir uno 
-            <Link
-                className='text-blue-400 font-bold cursor-pointer'
-                href={'https://bueno.art/refimedellin/refi-medellin-origin/tokens'}
-                target='_blank'
-              >
-                Aquí
-            </Link>{' '}...
-              <br />
+        
 Espera muchas Sorpresas...
         </p>
     </div>}
