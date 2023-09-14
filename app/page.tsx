@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Medellin from '@/assets/images/Medellin.png';
 import LogoMan from '@/assets/images/Logo Transparent-Man.png';
 import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
 import Link from 'next/link';
@@ -172,8 +173,8 @@ export default function Home() {
           <Image
             className='hidden lg:block'
             height={420}
-            src={LogoMan}
-            alt='Logo ReFi'
+            src={Medellin}
+            alt='Medellin'
           />
         </div>
       </section>

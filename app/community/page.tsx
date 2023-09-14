@@ -49,7 +49,7 @@ function Page() {
           Bienvenido a la sección de Contenido Exclusivo para Miembros de la Comunidad ReFiMedellín, si estás aquí es porque tienes uno de nuestros NFTs en tu Wallet, no lo pierdas porque si lo haces no podrás acceder a esta sección... <br />
 Espera muchas Sorpresas...
         </p>
-    </div> :  <div className='h-screen w-screen flex justify-center items-center'>
+    </div> :  <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
         <h1 className='font-bold text-8xl'>No tienes acceso</h1>
         <p className='text-sm md:text-lg lg:text-2xl font-light'>
           Para acceder a esta sección de Contenido Exclusivo para Miembros de la Comunidad ReFiMedellín, necesitas tener uno de nuestros NFTs en tu Wallet, si deseas puedes adquirir uno Aquí.. <br />
