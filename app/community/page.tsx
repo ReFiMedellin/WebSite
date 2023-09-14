@@ -54,7 +54,6 @@ Espera muchas Sorpresas...
         <p className='text-sm md:text-lg lg:text-2xl font-light'>
           Para acceder a esta sección de Contenido Exclusivo para Miembros de la Comunidad ReFiMedellín, necesitas tener uno de nuestros NFTs en tu Wallet, si deseas puedes adquirir uno
           <Link
-            className='text-blue-400 font-bold cursor-pointer'
             href={'https://www.refidao.com/'}
             target='_blank'
           >
