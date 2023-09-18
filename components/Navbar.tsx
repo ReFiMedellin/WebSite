@@ -10,7 +10,7 @@ function Navbar() {
   const isMobile = useIsMobile();
 
   return (
-    <nav className='fixed top-0 w-full py-6 bg-white bg-opacity-90 shadow-lg'>
+    <nav className='fixed top-0 w-full py-6 z-50 bg-white bg-opacity-90 shadow-lg'>
       <ul className='w-full flex px-10 flex-row gap-2 justify-between text-black font-bold items-center'>
         {isMobile ? (
           <>
@@ -28,10 +28,10 @@ function Navbar() {
               <Link href={'/'}>Inicio</Link>
             </li>
             <li>
-              <Link href={'/blog'}>Blog</Link>
+              <Link href={'/community'}>Contenido exclusivo</Link>
             </li>
             <li>
-              <Link href={'/community'}>Contenido exclusivo</Link>
+              <Link href={'http://blog.refimedellin.blog.org/'}>Blog</Link>
             </li>
             <li>
               <Web3Button />
@@ -52,10 +52,10 @@ function Navbar() {
               <Link href={'/'}>Inicio</Link>
             </li>
             <li>
-              <Link href={'/blog'}>Blog</Link>
+              <Link href={'/community'}>Contenido exclusivo</Link>
             </li>
             <li>
-              <Link href={'/community'}>Contenido exclusivo</Link>
+              <Link href={'http://blog.refimedellin.blog.org/'}>Blog</Link>
             </li>
           </motion.ul>
 

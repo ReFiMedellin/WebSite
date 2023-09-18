@@ -10,6 +10,11 @@
   .card{
     @apply h-52 py-6 cursor-pointer flex flex-row gap-2 justify-center items-center shadow-md w-full rounded-md p-5 text-black bg-white
   }
+
+  .main-bg{
+    background-image: url('../assets/images/Skyline1.webp');
+    background-size: cover;
+  }
 }
 
 /* :root {

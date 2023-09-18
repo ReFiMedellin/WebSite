@@ -1,9 +1,10 @@
 'use client';
 import Image from 'next/image';
-import Medellin from '@/assets/images/Medellin.png';
+import BordeBottom from '@/assets/images/Borde-ReFi.png';
 import LogoMan from '@/assets/images/Logo Transparent-Man.png';
 import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
 import Link from 'next/link';
+import LOGO from '@/assets/images/Logo Transparent-Man.png'
 import { Web3Button, useWeb3Modal } from '@web3modal/react';
 import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
 import { useEffect, useState } from 'react';
@@ -130,8 +131,8 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <section className='flex flex-row justify-center items-center h-[95vh] bg-neutral-900 w-full'>
-        <div className='h-full lg:w-5/6 flex flex-row justify-center items-center'>
+      <section className='flex flex-row relative first-bg justify-center items-center h-screen main-bg w-full'>
+        <div className='h-full lg:w-5/6  flex flex-row justify-center items-center'>
           <div className='flex justify-center items-center w-full h-full'>
             <div className='text-white w-5/6 flex flex-col gap-5'>
               <h1 className='font-bold text-4xl md:text-6xl'>
@@ -170,10 +171,18 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div>
+
           <Image
-            className='hidden lg:block'
-            height={420}
-            src={Medellin}
+          className='w-full h-full'
+          height={480}
+          src={LOGO}
+          alt='Medellin'
+          />
+          </div>
+          <Image
+            className='absolute bottom-0 w-[100vw] left-0'
+            src={BordeBottom}
             alt='Medellin'
           />
         </div>
