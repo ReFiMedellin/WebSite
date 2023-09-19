@@ -7,7 +7,7 @@ import Providers from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'ReFiMedellín',
+  title: 'ReFi Medellín',
   description: 'Developed by Another_Dev',
 };
 
