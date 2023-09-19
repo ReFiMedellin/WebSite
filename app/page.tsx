@@ -9,7 +9,8 @@ import Tereza from '@/assets/images/PFP-Tereza.webp'
 import Alejandro from '@/assets/images/PFP-Alejandro.webp'
 import xflypeztyc from '@/assets/images/PFP-0xflypeztic.webp'
 import Ximena from '@/assets/images/PFP-Ximena.webp'
-import Eamon from '@/assets/images/PFP-Dotlabs.webp'
+import Eamon from '@/assets/images/PFP-Eamon.webp'
+import Edward from '@/assets/images/PFP-Edward.webp'
 import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
 import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
@@ -532,7 +533,7 @@ export default function Home() {
         <div className='flex flex-col gap-5 justify-center  items-center'>
           <h2 className='font-bold text-4xl text-black'>Equipo</h2>
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
-            <div className='h-96  w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76  w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg'>
                   Juan Giraldo
