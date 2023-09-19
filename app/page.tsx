@@ -79,7 +79,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 100 }}
             exit={{ opacity: 0 }}
-            className='fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm flex justify-center items-center'
+            className='fixed top-0 left-0 z-50 right-0 bottom-0 backdrop-blur-sm flex justify-center items-center'
           >
             <motion.div className='relative bg-white rounded-lg w-[90vw] h-[80vh] flex flex-col gap-2 p-5 md:p-10 lg:w-[80vw] md:h-[60vh]'>
               <RiCloseFill
