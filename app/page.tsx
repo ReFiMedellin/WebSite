@@ -474,6 +474,11 @@ export default function Home() {
               </p>
             </div>
           </div>
+          <Image
+            className='absolute bottom-0 w-[100vw] left-0'
+            src={BordeBottom}
+            alt='Medellin'
+          />
         </div>
       </section>
       <section className='min-h-screen py-20 relative bg-[#F1F0FF] flex justify-center items-center w-full'>
