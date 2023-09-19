@@ -4,17 +4,15 @@ import BordeBottom from '@/assets/images/Borde-ReFi.png';
 import BordeTop from '@/assets/images/Borde-Superior-Seccion.webp';
 import LogoMan from '@/assets/images/Logo Transparent-Man.png';
 import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
-
 import Juan from '@/assets/images/PFP-Juan.webp'
 import Tereza from '@/assets/images/PFP-Tereza.webp'
 import Alejandro from '@/assets/images/PFP-Alejandro.webp'
 import xflypeztyc from '@/assets/images/PFP-0xflypeztic.webp'
 import Ximena from '@/assets/images/PFP-Ximena.webp'
-import Eamon from '@/assets/images/PFP-Eamon.jpg'
+import Eamon from '@/assets/images/PFP-Dotlabs.webp'
 import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
 import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
-
 import Link from 'next/link';
 import LOGO from '@/assets/images/Logo Transparent-Man.png'
 import { Web3Button, useWeb3Modal } from '@web3modal/react';
