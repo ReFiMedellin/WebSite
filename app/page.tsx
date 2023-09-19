@@ -585,7 +585,7 @@ export default function Home() {
                   Edward
                 </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Branding & Social
+                  Technical Stuff
                 </p>
               </div>
               <Image src={Edward} alt='Refi member' className='w-full h-full rounded-b-md' />
