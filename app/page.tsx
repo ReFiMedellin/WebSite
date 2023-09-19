@@ -545,7 +545,7 @@ export default function Home() {
               {/* <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' /> */}
               <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   Tereza Bizkova
@@ -556,7 +556,7 @@ export default function Home() {
               </div>
               <Image src={Tereza} alt='Refi member' className='w-full h-full rounded-b-md' />
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   Alejandro Soto
@@ -567,7 +567,7 @@ export default function Home() {
               </div>
               <Image src={Alejandro} alt='Refi member' className='w-full h-full rounded-b-md' />
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   Ximena Monclou
@@ -578,8 +578,20 @@ export default function Home() {
               </div>
               <Image src={Ximena} alt='Refi member' className='w-full h-full rounded-b-md' />
               
+              </div>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+              <div className='px-5 text-center'>
+                <h4 className='text-start w-full font-bold text-lg'>
+                  Edward
+                </h4>
+                <p className='w-full text-start font-light text-sm text-slate-700'>
+                  Branding & Social
+                </p>
+              </div>
+              <Image src={Edward} alt='Refi member' className='w-full h-full rounded-b-md' />
+
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   0xflypeztyc
@@ -591,7 +603,7 @@ export default function Home() {
               <Image src={xflypeztyc} alt='Refi member' className='w-full h-full rounded-b-md' />
               
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>Eamon</h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
@@ -601,7 +613,7 @@ export default function Home() {
               <Image src={Eamon} alt='Refi member' className='w-full h-full rounded-b-md' />
               
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   Green Digital Guardians
@@ -613,7 +625,7 @@ export default function Home() {
               <Image src={GDG} alt='Refi member' className='w-full h-full rounded-b-md' />
               
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   Inkom.io
@@ -625,7 +637,7 @@ export default function Home() {
               <Image src={Inkom} alt='Refi member' className='w-full h-full rounded-b-md' />
               
             </div>
-            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h4 className='text-start w-full font-bold text-lg'>
                   DotLabs()
