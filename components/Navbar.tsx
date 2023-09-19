@@ -55,7 +55,7 @@ function Navbar() {
               <Link href={'/community'}>Contenido exclusivo</Link>
             </li>
             <li>
-              <Link href={'http://blog.refimedellin.blog.org/'}>Blog</Link>
+              <Link href={'http://blog.refimedellin.org/'}>Blog</Link>
             </li>
           </motion.ul>
 

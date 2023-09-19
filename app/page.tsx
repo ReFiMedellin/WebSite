@@ -4,13 +4,17 @@ import BordeBottom from '@/assets/images/Borde-ReFi.png';
 import BordeTop from '@/assets/images/Borde-Superior-Seccion.webp';
 import LogoMan from '@/assets/images/Logo Transparent-Man.png';
 import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
+
 import Juan from '@/assets/images/PFP-Juan.webp'
 import Tereza from '@/assets/images/PFP-Tereza.webp'
-import Ximena from '@/assets/images/PFP-Ximena.webp'
 import Alejandro from '@/assets/images/PFP-Alejandro.webp'
+import xflypeztyc from '@/assets/images/PFP-0xflypeztic.webp'
+import Ximena from '@/assets/images/PFP-Ximena.webp'
+import Eamon from '@/assets/images/PFP-Eamon.jpg'
 import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
 import Inkom from '@/assets/images/PFP-Inkom.webp'
-import xflypeztyc from '@/assets/images/PFP-0xflypeztic.webp'
+import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
+
 import Link from 'next/link';
 import LOGO from '@/assets/images/Logo Transparent-Man.png'
 import { Web3Button, useWeb3Modal } from '@web3modal/react';
@@ -595,7 +599,7 @@ export default function Home() {
                   Co-Founder
                 </p>
               </div>
-              <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
+              <Image src={Eamon} alt='Refi member' className='w-full h-full rounded-b-md' />
               
             </div>
             <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
@@ -631,7 +635,7 @@ export default function Home() {
                   Educational Partner
                 </p>
               </div>
-              <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
+              <Image src={DotLabs} alt='Refi member' className='w-full h-full rounded-b-md' />
               
             </div>
           </div>
