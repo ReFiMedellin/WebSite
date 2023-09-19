@@ -1,8 +1,16 @@
 'use client';
 import Image from 'next/image';
 import BordeBottom from '@/assets/images/Borde-ReFi.png';
+import BordeTop from '@/assets/images/Borde Superior Sección.webp';
 import LogoMan from '@/assets/images/Logo Transparent-Man.png';
 import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
+import Juan from '@/assets/images/PFP-Juan.webp'
+import Tereza from '@/assets/images/PFP-Tereza.webp'
+import Ximena from '@/assets/images/PFP-Ximena.webp'
+import Alejandro from '@/assets/images/PFP-Alejandro.webp'
+import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
+import Inkom from '@/assets/images/PFP-Inkom.webp'
+import xflypeztyc from '@/assets/images/PFP-0xflypeztic.webp'
 import Link from 'next/link';
 import LOGO from '@/assets/images/Logo Transparent-Man.png'
 import { Web3Button, useWeb3Modal } from '@web3modal/react';
@@ -100,9 +108,9 @@ export default function Home() {
                 onClick={() => setIsSendingModal(false)}
                 className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
-              <h1 className='text-2xl font-bold'>
+              <h3 className='text-2xl font-bold'>
                 Primero ingresa el valor a donar
-              </h1>
+              </h3>
               <form
                 className='flex flex-col gap-2 justify-center items-start'
                 onSubmit={handleOnSendDonation}
@@ -131,7 +139,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <section className='flex flex-row relative first-bg justify-center items-center h-screen main-bg w-full'>
+      <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen bg-[#1B2731] w-full'>
         <div className='h-full lg:w-5/6  flex flex-row justify-center items-center'>
           <div className='flex justify-center items-center w-full h-full'>
             <div className='text-white w-5/6 flex flex-col gap-5'>
@@ -157,14 +165,14 @@ export default function Home() {
                 <Link
                   href={'https://t.me/refimedellin'}
                   target='_blank'
-                  className='text-center px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-base md:text-lg'
+                  className='text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg'
                 >
                   Únete a la comunidad
                 </Link>
                 <Link
                   href={'https://giveth.io/project/refi-medellin'}
                   target='_blank'
-                  className='text-center px-4 py-2 w-full rounded-md bg-purple-700 text-white font-bold text-base md:text-lg'
+                  className='text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg'
                 >
                   Apóyanos en Giveth.io
                 </Link>
@@ -174,8 +182,8 @@ export default function Home() {
           <div>
 
           <Image
-          className='w-full h-full'
-          height={480}
+          className='hidden lg:block w-full h-full'
+          height={300}
           src={LOGO}
           alt='Medellin'
           />
@@ -189,7 +197,7 @@ export default function Home() {
       </section>
       <section
         id='aboutUS'
-        className='min-h-screen py-10 lg:py-0 flex justify-center items-center bg-black w-full'
+        className='min-h-screen relative py-20 flex justify-center items-center bg-slate-900 w-full'
       >
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <Image
@@ -199,10 +207,10 @@ export default function Home() {
             height={480}
           />
           <div className='text-white flex gap-5  flex-col justify-center items-center h-full  w-full'>
-            <h1 className='text-4xl font-bold'>
+            <h2 className='text-4xl font-bold'>
               Únete al movimiento hacia un futuro más sostenible y equitativo en
               Medellín, Colombia.
-            </h1>
+            </h2>
             <p>
               ¡Bienvenido al primer Nodo Local de{' '}
               <Link
@@ -305,21 +313,20 @@ export default function Home() {
             </p>
             <Link
               href={'#proyectos'}
-              className='w-full text-center bg-purple-700 rounded-md text-white font-bold  text-lg px-12 py-2'
+              className='w-full text-center bg-[#4571E1] rounded-md text-white font-bold  text-lg px-12 py-2'
             >
               Conoce un poco más
             </Link>
           </div>
         </div>
       </section>
-
       <section
         id='proyectos'
-        className='min-h-screen py-10 lg:py-0 w-full bg-purple-700 flex flex-col justify-center items-center gap-10'
+        className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
       >
-        <h1 className='font-bold w-full text-center text-white text-5xl'>
+        <h2 className='font-bold w-full text-center text-white text-5xl'>
           Proyectos
-        </h1>
+        </h2>
         <div className='grid lg:grid-cols-2 gap-5 w-5/6 justify-center items-center'>
           <div
             onClick={() => {
@@ -335,9 +342,9 @@ export default function Home() {
               height={120}
             />
             <div>
-              <h1 className='text-lg font-bold'>
+              <h3 className='text-lg font-bold'>
                 Involucrar a la comunidad local
-              </h1>
+              </h3>
               <p>
                 Realizar eventos que contarán con expertos en ReFi, Web3 y
                 desafíos urbanos en ciudades latinoamericanas.
@@ -359,7 +366,7 @@ export default function Home() {
               height={120}
             />
             <div>
-              <h1 className='text-lg font-bold'>Hackathones de ReFi</h1>
+              <h3 className='text-lg font-bold'>Hackathones de ReFi</h3>
               <p>
                 Esperamos involucrar a jóvenes de diferentes comunidades de
                 desarrolladores, universidades y organizaciones del sector
@@ -382,10 +389,10 @@ export default function Home() {
               height={120}
             />
             <div>
-              <h1 className='text-lg font-bold'>
+              <h3 className='text-lg font-bold'>
                 Apoyar las innovaciones orientadas a la regeneración (ROIs) y
                 Web3
-              </h1>
+              </h3>
               <p>
                 Incubar e invertir en empresas sociales que surjan de los
                 hackathones de ReFi Medellín.
@@ -407,7 +414,7 @@ export default function Home() {
               height={120}
             />
             <div>
-              <h1 className='text-lg font-bold'>Onboarding de impacto</h1>
+              <h3 className='text-lg font-bold'>Onboarding de impacto</h3>
               <p>
                 Cualquier grupo ecológico activo o grupo de amigos que desee
                 realizar una actividad de impacto, como plantar árboles, limpiar
@@ -431,9 +438,9 @@ export default function Home() {
               height={120}
             />
             <div>
-              <h1 className='text-lg font-bold'>
+              <h3 className='text-lg font-bold'>
                 Mantener a Medellín como la Ciudad de la Eterna Primavera
-              </h1>
+              </h3>
               <p>
                 Actividad dedicada a plantar flores y ayudar a regenerar el
                 insecto de las flores en Medellín, ayudando así a proteger a
@@ -456,7 +463,7 @@ export default function Home() {
               height={120}
             />
             <div>
-              <h1 className='text-lg font-bold'>Talleres de ReFi Medellín</h1>
+              <h3 className='text-lg font-bold'>Talleres de ReFi Medellín</h3>
               <p>
                 Host ReFi Medellín events. These events will include expert
                 guest speakers in ReFi, Web3, and urban challenges in Latin
@@ -466,13 +473,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className='min-h-screen py-10 lg:py-0 flex justify-center items-center w-full'>
+      <section className='min-h-screen py-20 relative bg-[#F1F0FF] flex justify-center items-center w-full'>
+      <Image className='w-screen absolute top-0 ' src={BordeTop} alt='borde superior' />
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
-            <div className='w-full'>
-              <h1 className='text-4xl font-bold'>¡Apoya el cambio!</h1>
-              <p className='break-words'>
+            <div className='flex gap-5 break-words  flex-col justify-center items-center h-full  w-full'>
+              <h2 className='text-4xl w-full font-bold'>¡Apoya el cambio!</h2>
+              <p className='break-words w-full'>
                 Nuestro objetivo es promover conversaciones comunitarias sobre
                 soluciones regenerativas innovadoras habilitadas por la
                 tecnología Web3. Estamos comprometidos a empoderar a los jóvenes
@@ -499,13 +506,13 @@ export default function Home() {
               <Link
                 target='_blank'
                 href={'https://giveth.io/project/refi-medellin'}
-                className='text-center bg-purple-700 text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
+                className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
                 Apòyanos en Giveth.io
               </Link>
               <button
                 onClick={() => setIsSendingModal(true)}
-                className='bg-purple-700 text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
+                className='bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
                 Apóyanos Directamente
               </button>
@@ -519,11 +526,11 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className='min-h-screen py-10 flex justify-center bg-slate-300 items-center w-full'>
+    <section className='min-h-screen py-20  flex justify-center bg-[#F1F0FF] items-center w-full'>
         <div className='flex flex-col gap-5 justify-center  items-center'>
-          <h1 className='font-bold text-4xl text-black'>Equipo</h1>
+          <h2 className='font-bold text-4xl text-black'>Equipo</h2>
           <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96  w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
                 <h1 className='text-start w-full font-bold text-lg'>
                   Juan Giraldo
@@ -532,93 +539,100 @@ export default function Home() {
                   Founder
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              {/* <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' /> */}
+              <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   Tereza Bizkova
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Co-Founder
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={Tereza} alt='Refi member' className='w-full h-full rounded-b-md' />
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   Alejandro Soto
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Co-Founder
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={Alejandro} alt='Refi member' className='w-full h-full rounded-b-md' />
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   Ximena Monclou
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Legal
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={Ximena} alt='Refi member' className='w-full h-full rounded-b-md' />
+              
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   0xflypeztyc
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Branding & Social
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={xflypeztyc} alt='Refi member' className='w-full h-full rounded-b-md' />
+              
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>Eamon</h1>
+                <h4 className='text-start w-full font-bold text-lg'>Eamon</h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Co-Founder
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
+              
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   Green Digital Guardians
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Partner
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={GDG} alt='Refi member' className='w-full h-full rounded-b-md' />
+              
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   Inkom.io
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Treasury
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={Inkom} alt='Refi member' className='w-full h-full rounded-b-md' />
+              
             </div>
-            <div className='h-full pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
+            <div className='h-96 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
               <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
+                <h4 className='text-start w-full font-bold text-lg'>
                   DotLabs()
-                </h1>
+                </h4>
                 <p className='w-full text-start font-light text-sm text-slate-700'>
                   Educational Partner
                 </p>
               </div>
-              <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' />
+              <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
+              
             </div>
           </div>
         </div>
@@ -626,7 +640,7 @@ export default function Home() {
       <footer className='bg-slate-200 w-full '>
         <div className='flex px-5 py-10 lg:px-14 flex-row justify-between items-center gap-20'>
           <div className='flex flex-col justify-center gap-5 items-start w-full lg:w-1/2'>
-            <h1 className='text-4xl font-bold'>Más información</h1>
+            <h2 className='text-4xl font-bold'>Más información</h2>
             <div className='w-full'>
               <p>
                 Para contactarnos envianos un mensaje a{' '}

@@ -10,8 +10,8 @@ function Navbar() {
   const isMobile = useIsMobile();
 
   return (
-    <nav className='fixed top-0 w-full py-6 z-50 bg-white bg-opacity-90 shadow-lg'>
-      <ul className='w-full flex px-10 flex-row gap-2 justify-between text-black font-bold items-center'>
+    <nav className='fixed top-0 w-full py-6 z-50  bg-black backdrop-blur-md bg-opacity-40 shadow-lg'>
+      <ul className='w-full text-white flex px-10 flex-row gap-2 justify-between font-bold items-center'>
         {isMobile ? (
           <>
             <RxTextAlignJustify
@@ -31,7 +31,7 @@ function Navbar() {
               <Link href={'/community'}>Contenido exclusivo</Link>
             </li>
             <li>
-              <Link href={'http://blog.refimedellin.blog.org/'}>Blog</Link>
+              <Link href={'https://blog.refimedellin.org/'}>Blog</Link>
             </li>
             <li>
               <Web3Button />
@@ -42,10 +42,10 @@ function Navbar() {
       <AnimatePresence>
       {isMenuOpen && (
           <motion.ul
-          className='flex overflow-hidden flex-col gap-2 px-10 text-black font-bold items-start
+          className='flex overflow-hidden  flex-col gap-6  px-10 text-white font-bold text-xl items-start
           justify-center'
           initial={{ opacity: 0, height:'0px'}}
-          animate={{ opacity: 1, height:'100px'}}
+          animate={{ opacity: 1, height:'180px'}}
           exit={{ opacity:0,height:'0px'}}
            >
             <li>
