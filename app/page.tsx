@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import BordeBottom from '@/assets/images/Borde-ReFi.png';
-import BordeTop from '@/assets/images/Borde-Superior-Sección.webp';
+import BordeTop from '@/assets/images/Borde-Superior-Seccion.webp';
 import LogoMan from '@/assets/images/Logo Transparent-Man.png';
 import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
 import Juan from '@/assets/images/PFP-Juan.webp'
