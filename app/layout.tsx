@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'ReFi Medellín',
-  description: 'Developed by Another_Dev',
+  description: 'Somos el primer Nodo Colombiano de ReFiDAO encargado de promover proyectos ReFi en la región. \nEn ReFi Medellín, creemos en los proyectos regenerativos y el impacto transformador que estos tienen. ¡Es hora de pensar diferente y regenerarnos juntos!',
 };
 
 export default function RootLayout({

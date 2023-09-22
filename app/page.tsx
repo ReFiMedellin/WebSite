@@ -104,9 +104,9 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 100 }}
             exit={{ opacity: 0 }}
-            className='fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
+            className='fixed top-0 left-0 z-20 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
           >
-            <motion.div className='relative max-w-[90vw] bg-white p-8 rounded-lg flex flex-col gap-2 '>
+            <motion.div className='relative max-w-[90vw] z-30 bg-white p-8 rounded-lg flex flex-col gap-2 '>
               <RiCloseFill
                 onClick={() => setIsSendingModal(false)}
                 className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
@@ -136,7 +136,7 @@ export default function Home() {
                 >
                   Enviar
                 </button>
-              </form>
+              </form> 
             </motion.div>
           </motion.div>
         )}
