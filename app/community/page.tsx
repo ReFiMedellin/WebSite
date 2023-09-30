@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import Image from 'next/image'
 import Web3 from 'web3'
+import Link from 'next/link'
 
 
 function Page () {
@@ -83,7 +84,7 @@ function Page () {
           <p className='text-sm md:text-lg lg:text-2xl font-light'>
             Para acceder a esta sección de Contenido Exclusivo para Miembros de
             la Comunidad ReFiMedellín, necesitas tener uno de nuestros NFTs en
-            tu Wallet, si deseas puedes adquirir uno Aquí...
+            tu Wallet, <Link className='hover:text-blue-700 transition-all ease-in-out font-bold' href={'https://bueno.art/refimedellin/refi-medellin-origin/tokens'} target='_blank'>si deseas puedes adquirir uno Aquí... </Link> 
             <br />
             Espera muchas Sorpresas...
           </p>

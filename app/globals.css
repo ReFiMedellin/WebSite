@@ -6,9 +6,16 @@
   .logo {
     @apply p-3 rounded-full bg-purple-700 text-2xl text-white ; 
   }
+  .logo_teammember {
+    @apply p-2 rounded-full bg-purple-700 text-lg text-white ; 
+  }
+
 
   .card{
-    @apply h-56 py-6 cursor-pointer flex flex-row  gap-6 justify-center items-center w-full rounded-md p-5 text-black bg-slate-200  shadow-xl backdrop-blur-md bg-opacity-40
+    @apply py-6 pr-12 lg:pr-6 cursor-pointer lg:h-56 flex lg:flex-row  gap-6 justify-center items-center w-full rounded-md p-5 text-black bg-slate-200  shadow-xl backdrop-blur-md
+  }
+  .cardImage{
+    @apply w-12 h-12 lg:h-24 lg:w-24 xl:h-32 xl:w-32 ; 
   }
 
   .main-bg{

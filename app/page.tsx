@@ -1,9 +1,9 @@
-'use client';
-import Image from 'next/image';
-import BordeBottom from '@/assets/images/Borde-ReFi.png';
-import BordeTop from '@/assets/images/Borde-Superior-Seccion.webp';
-import LogoMan from '@/assets/images/Logo Transparent-Man.png';
-import LogoWoman from '@/assets/images/Logo Transparent-Woman.png';
+'use client'
+import Image from 'next/image'
+import BordeBottom from '@/assets/images/Borde-ReFi.png'
+import BordeTop from '@/assets/images/Borde Superior Sección.webp'
+import LogoMan from '@/assets/images/Logo Transparent-Man.png'
+import LogoWoman from '@/assets/images/Logo Transparent-Woman.png'
 import Juan from '@/assets/images/PFP-Juan.webp'
 import Tereza from '@/assets/images/PFP-Tereza.webp'
 import Alejandro from '@/assets/images/PFP-Alejandro.webp'
@@ -14,63 +14,69 @@ import Edward from '@/assets/images/PFP-Edward.webp'
 import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
 import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
-import Link from 'next/link';
+import Link from 'next/link'
 import LOGO from '@/assets/images/Logo Transparent-Man.png'
-import { Web3Button, useWeb3Modal } from '@web3modal/react';
-import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
-import { useEffect, useState } from 'react';
-import { parseEther } from 'viem';
-import { AnimatePresence, motion } from 'framer-motion';
+import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
+import { useEffect, useState } from 'react'
+import { parseEther } from 'viem'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   RxInstagramLogo,
   RxLinkedinLogo,
   RxNotionLogo,
-  RxTwitterLogo,
-} from 'react-icons/rx';
-import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa';
-import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-import { RiCloseFill } from 'react-icons/ri';
+  RxTwitterLogo
+} from 'react-icons/rx'
+import { FaTelegramPlane, FaWhatsapp, FaYoutube } from 'react-icons/fa'
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
+import { RiCloseFill } from 'react-icons/ri'
+import Cards from '@/components/Cards'
+import TeamMembers from '@/components/TeamMembers'
 
 // const a =
 
-const cards = [1, 2, 3, 4, 5, 6];
+const cards = [1, 2, 3, 4, 5, 6]
 
-export default function Home() {
-  const [value, setValue] = useState('0');
-  const [isSendingModal, setIsSendingModal] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+export default function Home () {
+  const [value, setValue] = useState('0')
+  const [isSendingModal, setIsSendingModal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const { config, error } = usePrepareSendTransaction({
     to: '0xd4AC6c14B4C96F7e66049210F56cb07468028d4e',
-    value: parseEther(value),
-  });
-  const [modalMD, setModalMD] = useState('');
-  const { sendTransactionAsync } = useSendTransaction(config);
+    value: parseEther(value)
+  })
+  const [modalMD, setModalMD] = useState('')
+  const { sendTransactionAsync } = useSendTransaction(config)
 
   const handleOnSendDonation = async (e: any) => {
-    e.preventDefault();
-    await sendTransactionAsync?.();
-    setIsSendingModal(false);
-  };
+    e.preventDefault()
+    try {
+      await sendTransactionAsync?.()
+      setIsSendingModal(false)
+    } catch (e) {
+      console.error(e)
+      setIsSendingModal(false)
+    }
+  }
 
-  async function fetchMD(url: string) {
-    const owner = 'ReFiMedellin';
-    const repo = '.github';
-    const path = 'Impact%20Onboarding/ETHRules.md';
+  async function fetchMD (path: string) {
+    const owner = 'ReFiMedellin'
+    const repo = '.github'
 
     try {
-      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
       const response = await axios.get(url, {
         headers: {
-          Accept: 'application/vnd.github.v3.raw',
-        },
-      });
+          Accept: 'application/vnd.github.v3.raw'
+        }
+      })
       // const content = Buffer.from(response.data.content, 'base64').toString('utf8');
-      console.debug(response.data);
-      setModalMD(response.data);
+      console.debug(response.data)
+      setModalMD(response.data)
+      setShowModal(true)
       // return content;
     } catch (error) {
-      throw new Error(`Failed to fetch Markdown content: ${error}`);
+      throw new Error(`Failed to fetch Markdown content: ${error}`)
     }
   }
 
@@ -106,7 +112,7 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className='fixed top-0 left-0 z-20 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
           >
-            <motion.div className='relative max-w-[90vw] z-30 bg-white p-8 rounded-lg flex flex-col gap-2 '>
+            <motion.div className='relative max-w-[90vw] z-50 bg-white p-8 rounded-lg flex flex-col gap-2 '>
               <RiCloseFill
                 onClick={() => setIsSendingModal(false)}
                 className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
@@ -126,17 +132,27 @@ export default function Home() {
                     name='Cantidad en ETH'
                     id='amount'
                     value={value}
-                    onChange={(e) => setValue(e.target.value.toString())}
+                    onChange={e => setValue(e.target.value.toString())}
                   />
                 </label>
+                <p className='text-sm font-light text-gray-400'>
+                  Recuerda que solo se habilitara el boton si ingresas una
+                  cantidad igual o menor al ETH almacenado en tu wallet
+                </p>
                 <button
-                  className='w-full text-center bg-purple-700 rounded-md text-white font-bold  text-lg px-12 py-2'
+                  className={`${
+                    !sendTransactionAsync ||
+                    parseFloat(value) === 0.0 ||
+                    value === ''
+                      ? 'bg-purple-900'
+                      : 'bg-purple-700'
+                  } w-full text-center  rounded-md text-white font-bold  text-lg px-12 py-2`}
                   type='submit'
                   disabled={!sendTransactionAsync || value === '0'}
                 >
                   Enviar
                 </button>
-              </form> 
+              </form>
             </motion.div>
           </motion.div>
         )}
@@ -183,13 +199,12 @@ export default function Home() {
             </div>
           </div>
           <div>
-
-          <Image
-          className='hidden lg:block w-full h-full'
-          height={300}
-          src={LOGO}
-          alt='Medellin'
-          />
+            <Image
+              className='hidden lg:block w-full h-full'
+              height={300}
+              src={LOGO}
+              alt='Medellin'
+            />
           </div>
           <Image
             className='absolute bottom-0 w-[100vw] left-0'
@@ -323,161 +338,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section
-        id='proyectos'
-        className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
-      >
-        <h2 className='font-bold w-full text-center text-white text-5xl'>
-          Proyectos
-        </h2>
-        <div className='grid lg:grid-cols-2 gap-5 w-5/6 justify-center items-center'>
-          <div
-            onClick={() => {
-              setShowModal(true);
-              fetchMD('');
-            }}
-            className='card'
-          >
-            <Image
-              className='hidden lg:block'
-              src={LogoMan}
-              alt='logo refi'
-              height={120}
-            />
-            <div>
-              <h3 className='text-lg font-bold'>
-                Involucrar a la comunidad local
-              </h3>
-              <p>
-                Realizar eventos que contarán con expertos en ReFi, Web3 y
-                desafíos urbanos en ciudades latinoamericanas.
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setShowModal(true);
-              fetchMD('');
-            }}
-            className='card'
-          >
-            <Image
-              className='hidden lg:block'
-              src={LogoMan}
-              alt='logo refi'
-              height={120}
-            />
-            <div>
-              <h3 className='text-lg font-bold'>Hackathones de ReFi</h3>
-              <p>
-                Esperamos involucrar a jóvenes de diferentes comunidades de
-                desarrolladores, universidades y organizaciones del sector
-                privado interesadas en Web3 y sostenibilidad.
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setShowModal(true);
-              fetchMD('');
-            }}
-            className='card'
-          >
-            <Image
-              className='hidden lg:block'
-              src={LogoMan}
-              alt='logo refi'
-              height={120}
-            />
-            <div>
-              <h3 className='text-lg font-bold'>
-                Apoyar las innovaciones orientadas a la regeneración (ROIs) y
-                Web3
-              </h3>
-              <p>
-                Incubar e invertir en empresas sociales que surjan de los
-                hackathones de ReFi Medellín.
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setShowModal(true);
-              fetchMD('');
-            }}
-            className='card'
-          >
-            <Image
-              className='hidden lg:block'
-              src={LogoMan}
-              alt='logo refi'
-              height={120}
-            />
-            <div>
-              <h3 className='text-lg font-bold'>Onboarding de impacto</h3>
-              <p>
-                Cualquier grupo ecológico activo o grupo de amigos que desee
-                realizar una actividad de impacto, como plantar árboles, limpiar
-                ambientes, recolectar basura, etc., puede contactarnos y
-                solicitar apoyo.
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setShowModal(true);
-              fetchMD('');
-            }}
-            className='card'
-          >
-            <Image
-              className='hidden lg:block'
-              src={LogoMan}
-              alt='logo refi'
-              height={120}
-            />
-            <div>
-              <h3 className='text-lg font-bold'>
-                Mantener a Medellín como la Ciudad de la Eterna Primavera
-              </h3>
-              <p>
-                Actividad dedicada a plantar flores y ayudar a regenerar el
-                insecto de las flores en Medellín, ayudando así a proteger a
-                Medellín como Ciudad de la Eterna Primavera.
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setShowModal(true);
-              fetchMD('');
-            }}
-            className='card'
-          >
-            <Image
-              className='hidden lg:block'
-              src={LogoMan}
-              alt='logo refi'
-              height={120}
-            />
-            <div>
-              <h3 className='text-lg font-bold'>Talleres de ReFi Medellín</h3>
-              <p>
-                Host ReFi Medellín events. These events will include expert
-                guest speakers in ReFi, Web3, and urban challenges in Latin
-                American cities.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className='min-h-screen py-20 relative bg-[#F1F0FF] flex justify-center items-center w-full'>
-      <Image className='w-screen absolute top-0 ' src={BordeTop} alt='borde superior' />
+      <section className='min-h-screen py-32 relative bg-[#F1F0FF] flex justify-center items-center w-full'>
+        <Image
+          className='w-screen absolute top-0 '
+          src={BordeTop}
+          alt='borde superior'
+        />
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
             <div className='flex gap-5 break-words  flex-col justify-center items-center h-full  w-full'>
@@ -505,7 +371,7 @@ export default function Home() {
                 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
               </p>
             </div>
-            <div className='flex flex-row w-full justify-center items-center gap-2 lg:gap-4'>
+            <div className='flex z-10 flex-row w-full justify-center items-center gap-2 lg:gap-4'>
               <Link
                 target='_blank'
                 href={'https://giveth.io/project/refi-medellin'}
@@ -534,127 +400,24 @@ export default function Home() {
           />
         </div>
       </section>
-    <section className='min-h-screen py-20  flex justify-center bg-[#F1F0FF] items-center w-full'>
+      <section
+        id='proyectos'
+        className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
+      >
+        <h2 className='font-bold w-full text-center text-white text-5xl'>
+          Proyectos
+        </h2>
+        <Cards fetchMD={fetchMD} />
+      </section>
+      <section className='min-h-screen py-32 relative flex justify-center bg-[#F1F0FF] items-center w-full'>
+        <Image
+          className='w-screen absolute top-0 '
+          src={BordeTop}
+          alt='borde superior'
+        />
         <div className='flex flex-col gap-5 justify-center  items-center'>
           <h2 className='font-bold text-4xl text-black'>Equipo</h2>
-          <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
-            <div className='h-76  w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h1 className='text-start w-full font-bold text-lg'>
-                  Juan Giraldo
-                </h1>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Founder
-                </p>
-              </div>
-              {/* <div className='w-64 h-80 px-5 rounded-md bg-neutral-200' /> */}
-              <Image src={Juan} alt='Refi member' className='w-full h-full rounded-b-md' />
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  Tereza Bizkova
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Co-Founder
-                </p>
-              </div>
-              <Image src={Tereza} alt='Refi member' className='w-full h-full rounded-b-md' />
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  Alejandro Soto
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Co-Founder
-                </p>
-              </div>
-              <Image src={Alejandro} alt='Refi member' className='w-full h-full rounded-b-md' />
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  Ximena Monclou
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Legal
-                </p>
-              </div>
-              <Image src={Ximena} alt='Refi member' className='w-full h-full rounded-b-md' />
-              
-              </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  Edward
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Technical Stuff
-                </p>
-              </div>
-              <Image src={Edward} alt='Refi member' className='w-full h-full rounded-b-md' />
-
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  0xflypeztyc
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Branding & Social
-                </p>
-              </div>
-              <Image src={xflypeztyc} alt='Refi member' className='w-full h-full rounded-b-md' />
-              
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>Eamon</h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Co-Founder
-                </p>
-              </div>
-              <Image src={Eamon} alt='Refi member' className='w-full h-full rounded-b-md' />
-              
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  Green Digital Guardians
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Partner
-                </p>
-              </div>
-              <Image src={GDG} alt='Refi member' className='w-full h-full rounded-b-md' />
-              
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  Inkom.io
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Treasury
-                </p>
-              </div>
-              <Image src={Inkom} alt='Refi member' className='w-full h-full rounded-b-md' />
-              
-            </div>
-            <div className='h-76 w-64 pt-5 rounded-md shadow-lg flex flex-col gap-2 bg-slate-200'>
-              <div className='px-5 text-center'>
-                <h4 className='text-start w-full font-bold text-lg'>
-                  DotLabs()
-                </h4>
-                <p className='w-full text-start font-light text-sm text-slate-700'>
-                  Educational Partner
-                </p>
-              </div>
-              <Image src={DotLabs} alt='Refi member' className='w-full h-full rounded-b-md' />
-              
-            </div>
-          </div>
+          <TeamMembers />
         </div>
       </section>
       <footer className='bg-slate-200 w-full '>
@@ -748,5 +511,5 @@ export default function Home() {
         </div>
       </footer>
     </main>
-  );
+  )
 }
