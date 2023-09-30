@@ -23,7 +23,7 @@ const TeamMembers = () => {
       socialLinks: {
         twitter: 'https://twitter.com/JuanJGiraldoC',
         instagram: 'https://www.instagram.com/juanjosegiraldo/',
-        telegram: '@juanjgiraldoc',
+        telegram: 'https://t.me/juanjgiraldoc',
         linkedin: 'https://www.linkedin.com/in/juancamp1987/'
       }
     },
@@ -34,8 +34,8 @@ const TeamMembers = () => {
       socialLinks: {
         twitter: 'https://twitter.com/TerezaBizkova',
         instagram: 'https://www.instagram.com/lightlust/',
-        telegram: '@alejandro99so',
-        linkedin: 'https://www.linkedin.com/in/alejandro99so/'
+        telegram: 'https://t.me/TerezaBB',
+        linkedin: 'https://www.linkedin.com/in/tereza-bizkova/'
       }
     },
     {
@@ -45,8 +45,8 @@ const TeamMembers = () => {
       socialLinks: {
         twitter: 'https://twitter.com/alejandro99so',
         instagram: 'https://www.instagram.com/alejandro99so/',
-        telegram: '@juanjgiraldoc',
-        linkedin: 'https://www.linkedin.com/in/juancamp1987/'
+        telegram: 'https://t.me/alejandro99so',
+        linkedin: 'https://www.linkedin.com/in/alejandro99so/'
       }
     },
     {
@@ -56,7 +56,7 @@ const TeamMembers = () => {
       socialLinks: {
         twitter: 'https://twitter.com/ximemonclou',
         instagram: 'https://www.instagram.com/ximemonclou/',
-        telegram: '@ximemonclou',
+        telegram: 'https://t.me/ximemonclou',
         linkedin: 'https://www.linkedin.com/in/ximenamonclou/'
       }
     },
@@ -67,7 +67,7 @@ const TeamMembers = () => {
       socialLinks: {
         twitter: 'https://twitter.com/JuanJGiraldoC',
         instagram: 'https://www.instagram.com/juanjosegiraldo/',
-        telegram: '@juanjgiraldoc',
+        telegram: 'https://t.me/juanjgiraldoc',
         linkedin: 'https://www.linkedin.com/in/juancamp1987/'
       }
     },
@@ -93,7 +93,7 @@ const TeamMembers = () => {
       socialLinks: {
         twitter: 'https://twitter.com/dg_guardians',
         instagram: 'https://www.instagram.com/dg_guardians/',
-        telegram: '@dg_guardians',
+        telegram: 'https://t.me/dg_guardians',
         linkedin: 'https://www.linkedin.com/company/dg-guardians/'
       }
     },
