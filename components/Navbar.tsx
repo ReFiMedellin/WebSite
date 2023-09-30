@@ -2,12 +2,17 @@
 import useIsMobile from '@/hooks/useIsMobile'
 import { Web3Button } from '@web3modal/react'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RxTextAlignJustify } from 'react-icons/rx'
 import { AnimatePresence, motion } from 'framer-motion'
 function Navbar () {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isMobile = useIsMobile()
+  const [isMounted, setIsMounted] = useState(false)
+
+useEffect(()=>{
+  setIsMounted(true)
+},[])
 
   type Routes = {
     link: string
@@ -28,6 +33,10 @@ function Navbar () {
       name: 'Blog'
     }
   ]
+
+  if(!isMounted){
+    return null
+  }
 
   return (
     <nav className='fixed top-0 w-full py-6 z-50  bg-black backdrop-blur-md bg-opacity-40 shadow-lg'>

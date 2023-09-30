@@ -1,13 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
-const erc1155ABI  = require('@/constants/ABI/erc1155ABI.json')
+const erc1155ABI = require('@/constants/ABI/erc1155ABI.json')
 import { useRouter } from 'next/navigation'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import Image from 'next/image'
 import Web3 from 'web3'
 import Link from 'next/link'
-
+import { AnimatePresence, motion } from 'framer-motion'
+import { Web3Button } from '@web3modal/react'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -20,8 +21,7 @@ function Page () {
     new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')
   )
 
-
-  const contract  = new web3.eth.Contract(
+  const contract = new web3.eth.Contract(
     erc1155ABI,
     '0x6500dD04e67925A94975D787eF08E2d7786649D9'
   )
@@ -37,8 +37,8 @@ function Page () {
       console.debug(contract.options.jsonInterface)
       try {
         const data = await contract.methods
-        //TODO: FIX THIS TYPE
-        // @ts-ignore
+          //TODO: FIX THIS TYPE
+          // @ts-ignore
           .balanceOfBatch(Array(tokenIds.length).fill(address), tokenIds)
           .call()
         data &&
@@ -57,12 +57,54 @@ function Page () {
 
   if (!isMounted) return null
 
-  if (isDisconnected) {
-    setTimeout(() => {
-      router.back()
-    }, 2000)
-
-    return <div>Conectate a tu wallet</div>
+  if (isDisconnected && isMounted) {
+    return (
+      <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>
+        <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
+          <h1 className='font-bold text-4xl lg:text-8xl'>No tienes acceso</h1>
+          <p className='text-sm md:text-lg lg:text-2xl font-light'>
+            El contenido exclusivo está disponible únicamente para los holders
+            de cualquier colección de NFTs ReFiMedellin, por favor conecta tu
+            billetera para poder verificar que poseas uno,{' '}
+            <Link
+              className='hover:text-blue-700 transition-all ease-in-out font-bold'
+              href={
+                'https://bueno.art/refimedellin/refi-medellin-origin/tokens'
+              }
+              target='_blank'
+            >
+              si no tienes uno
+            puedes comprarlo acá.
+            </Link>
+            <br />
+          </p>
+        </div>
+        <Image
+          className='absolute bottom-0 w-[100vw] left-0'
+          src={BordeBottom}
+          alt='Medellin'
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 100 }}
+          className='fixed  top-0 left-0 z-50 right-0 bottom-0 backdrop-blur-sm flex justify-center items-center'
+        >
+          <motion.div className='text-black max-w-[90vw] relative bg-white rounded-lg flex flex-col gap-4 p-5 md:p-10'>
+            <h2 className='font-bold text-xl text-center lg:text-4xl '>
+              Para acceder aquí primero debes conectar tu wallet
+            </h2>
+            <div className='flex flex-row gap-5 justify-center items-center'>
+              <button
+                className='p-3 rounded-md bg-[#4571E1] transition-all ease-in-out hover:bg-[#1a3e98] w-full text-white font-bold'
+                onClick={() => router.push('/')}
+              >
+                Volver
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+    )
   }
 
   return (
@@ -80,13 +122,22 @@ function Page () {
         </div>
       ) : (
         <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-8xl'>No tienes acceso</h1>
+          <h1 className='font-bold text-4xl lg:text-8xl'>No tienes acceso</h1>
           <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            Para acceder a esta sección de Contenido Exclusivo para Miembros de
-            la Comunidad ReFiMedellín, necesitas tener uno de nuestros NFTs en
-            tu Wallet, <Link className='hover:text-blue-700 transition-all ease-in-out font-bold' href={'https://bueno.art/refimedellin/refi-medellin-origin/tokens'} target='_blank'>si deseas puedes adquirir uno Aquí... </Link> 
+            El contenido exclusivo está disponible únicamente para los holders
+            de cualquier colección de NFTs ReFiMedellin, por favor conecta tu
+            billetera para poder verificar que poseas uno,{' '}
+            <Link
+              className='hover:text-blue-700 transition-all ease-in-out font-bold'
+              href={
+                'https://bueno.art/refimedellin/refi-medellin-origin/tokens'
+              }
+              target='_blank'
+            >
+              si no tienes uno
+            puedes comprarlo acá.
+            </Link>
             <br />
-            Espera muchas Sorpresas...
           </p>
         </div>
       )}
