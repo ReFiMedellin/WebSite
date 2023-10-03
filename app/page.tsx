@@ -379,12 +379,13 @@ export default function Home () {
               >
                 Apòyanos en Giveth.io
               </Link>
-              <button
-                onClick={() => setIsSendingModal(true)}
-                className='bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
+              <Link
+                href={'/donate?network=ethereum'}
+                className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
+
               >
                 Apóyanos Directamente
-              </button>
+              </Link>
             </div>
           </div>
           <Image

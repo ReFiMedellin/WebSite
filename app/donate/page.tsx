@@ -14,6 +14,12 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { zeroAddress } from 'viem'
 import ChainLinkContracts from '@/constants/chainLinkContracts'
 import Link from 'next/link'
+import Image from 'next/image'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faClone} from '@fortawesome/free-solid-svg-icons'
+import errorIcon from '@/assets/icons/exclamation.png'
+import checkIcon from '@/assets/icons/check-circle.png'
+
 
 type donationData = {
   token: Address
@@ -52,6 +58,7 @@ function Page () {
     ethereum: 1,
     polygon: 137,
     celo: 42220,
+    Alfajores: 44787,
     optimism: 10,
     arbitrum: 42161
   }
@@ -153,6 +160,12 @@ function Page () {
           oracle: ChainLinkContracts.CELO.CELO.oracle as Address
         })
         break
+      case 'alfajores' || 'Alfajores':
+        setData({
+          token: '0xETHER',
+          oracle: '0x022F9dCC73C5Fb43F2b4eF2EF9ad3eDD1D853946'
+        })
+        break
       case 'optimism' || 'OP Mainnet':
         setData({
           token: '0xETHER',
@@ -187,10 +200,7 @@ function Page () {
   }, [currentPricing])
 
   useEffect(() => {
-    if (
-      parseFloat(price) >= 0.001 ||
-      parseFloat(price) === 0
-    ) {
+    if (parseFloat(price) >= 0.001 || parseFloat(price) === 0) {
       setIsCorrectAmmount({
         ...isCorrectAmmount,
         onlyAmmount: true,
@@ -319,6 +329,8 @@ function Page () {
         return 'Ethereum'
       case 'polygon':
         return 'Polygon'
+      case 'alfajores':
+        return 'Alfajores'
       case 'celo':
         return 'Celo'
       case 'optimism':
@@ -391,6 +403,20 @@ function Page () {
             name: 'cUSD',
             contract: '0x765de816845861e75a25fca122bb6898b8b1282a',
             oracle: ChainLinkContracts.CELO.cUSD.oracle
+          }
+        ])
+        break
+      case 'alfajores' || 'Alfajores':
+        setTokens([
+          {
+            name: 'Celo',
+            contract: '0xETHER',
+            oracle: '0x022F9dCC73C5Fb43F2b4eF2EF9ad3eDD1D853946'
+          },
+          {
+            name: 'cUSD',
+            contract: '0x874069fa1eb16d44d622f2e0ca25eea172369bc1',
+            oracle: '0x7bcB65B53D5a7FfD2119449B8CbC370c9058fd52'
           }
         ])
         break
@@ -468,6 +494,9 @@ function Page () {
       case 'celo':
         switchNetwork?.(chainIds.celo)
         break
+      case 'alfajores':
+        switchNetwork?.(chainIds.Alfajores)
+        break
       case 'optimism':
         switchNetwork?.(chainIds.optimism)
         break
@@ -486,6 +515,8 @@ function Page () {
         return 'tx/'
       case 'Goerli':
         return '/address/'
+      case 'Alfajores':
+        return '/tx/'
       case 'Polygon':
         return '/tx/'
       case 'Celo':
@@ -548,7 +579,7 @@ function Page () {
 
   const handleOnChangeNetwork = (e: any) => {
     e.preventDefault()
-    router.replace(`/investment?network=${e.target.network.value}`)
+    router.replace(`/donate?network=${e.target.network.value}`)
     chainSwitch(e.target.network.value)
     setIsChangingNetwork(false)
     setPrice('0')
@@ -582,7 +613,7 @@ function Page () {
         )}
         {(txnSuccess || txnNativeSuccess) && awaitTxn && !awaitTxnLoading && (
           <div className='flex flex-col justify-center items-center gap-4'>
-            {/* <Image src={checkIcon} alt='check-icon' /> */}
+            <Image src={checkIcon} alt='check-icon' />
             <h1 className='text-xl font-bold '>Abono completado con éxito</h1>
             <div className='flex flex-row w-full items-center justify-center gap-2'>
               <Link
@@ -600,7 +631,7 @@ function Page () {
                 }
                 className='border-[1px] border-solid rounded-md h-full  border-gray-500 p-1'
               >
-                {/* <FontAwesomeIcon icon={faClone} /> */}
+                <FontAwesomeIcon icon={faClone} />
               </button>
             </div>
             <button
@@ -613,9 +644,10 @@ function Page () {
         )}
         {(txnError || txnNativeError || awaitTxnError) && (
           <div className='flex flex-col justify-center items-center gap-4'>
-            {/* <Image src={errorIcon} alt='check-icon' /> */}
+            <Image src={errorIcon} alt='check-icon' />
             <h1 className='text-sm font-bold text-center'>
-              Ha ocurrido un error con la operación, revisa nuevamente que poseas la cantidad de tokens en tu wallet
+              Ha ocurrido un error con la operación, revisa nuevamente que
+              poseas la cantidad de tokens en tu wallet
             </h1>
             <button
               className='border-2 border-[#374151] px-4 py-2 rounded-md'
@@ -628,24 +660,24 @@ function Page () {
       </Modal>
       <Modal show={isChangingNetwork}>
         <span className='flex flex-row justify-between items-center w-full'>
-          <h1>Primero escoje donde</h1>
-          {/* <button onClick={() => setIsChangingNetwork(false)}>x</button> */}
+          <h2>Primero escoje donde</h2>
+          <button className='text-black font-bold' onClick={() => setIsChangingNetwork(false)}>x</button>
         </span>
         <div className='border-b-[1px] border-[#4571E1] w-full' />
         <form
-          //   onSubmit={handleOnChangeNetwork}
+          onSubmit={handleOnChangeNetwork}
           className='flex flex-col gap-2 w-full justify-center items-center'
         >
           <label htmlFor='' className='text-sm w-full'>
             ¿Que red quieres usar?
           </label>
           <select
-            // disabled={!switchNetwork}
+            disabled={!switchNetwork}
             className='bg-[#4571E1] text-white  bg-opacity-40 py-3 px-2 rounded-lg w-full'
             name='network'
             id='network'
-            // value={networkValue}
-            // onChange={e => setNetworkValue(e.target.value)}
+            value={networkValue}
+            onChange={e => setNetworkValue(e.target.value)}
           >
             <option value='ethereum'>Ethereum</option>
             <option value='polygon'>Polygon</option>
