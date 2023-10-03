@@ -7,7 +7,7 @@ import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import Image from 'next/image'
 import Web3 from 'web3'
 import Link from 'next/link'
-import {  motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -72,8 +72,7 @@ function Page () {
               }
               target='_blank'
             >
-              si no tienes uno
-            puedes comprarlo acá.
+              si no tienes uno puedes comprarlo acá.
             </Link>
             <br />
           </p>
@@ -92,6 +91,20 @@ function Page () {
             <h2 className='font-bold text-xl text-center lg:text-4xl '>
               Para acceder aquí primero debes conectar tu wallet
             </h2>
+            <p className='text-center' >
+              El contenido exclusivo está disponible únicamente para los holders
+              de cualquier colección de NFTs ReFiMedellin, por favor conecta tu
+              billetera para poder verificar que poseas uno,{' '}
+              <Link
+                className='hover:text-blue-700 transition-all ease-in-out font-bold'
+                href={
+                  'https://bueno.art/refimedellin/refi-medellin-origin/tokens'
+                }
+                target='_blank'
+              >
+                si no tienes uno puedes comprarlo acá.
+              </Link>
+            </p>
             <div className='flex flex-row gap-5 justify-center items-center'>
               <button
                 className='p-3 rounded-md bg-[#4571E1] transition-all ease-in-out hover:bg-[#1a3e98] w-full text-white font-bold'
@@ -132,8 +145,7 @@ function Page () {
               }
               target='_blank'
             >
-              si no tienes uno
-            puedes comprarlo acá.
+              si no tienes uno puedes comprarlo acá.
             </Link>
             <br />
           </p>

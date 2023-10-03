@@ -41,6 +41,7 @@ export default function Home () {
   const [value, setValue] = useState('0')
   const [isSendingModal, setIsSendingModal] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [isModalMD, setIsModalMD] = useState(false)
   const { config, error } = usePrepareSendTransaction({
     to: '0xd4AC6c14B4C96F7e66049210F56cb07468028d4e',
     value: parseEther(value)
@@ -60,6 +61,11 @@ export default function Home () {
   }
 
   async function fetchMD (path: string) {
+    if (path === '') {
+      setIsModalMD(false)
+      setShowModal(true)
+      return
+    }
     const owner = 'ReFiMedellin'
     const repo = '.github'
 
@@ -73,6 +79,7 @@ export default function Home () {
       // const content = Buffer.from(response.data.content, 'base64').toString('utf8');
       console.debug(response.data)
       setModalMD(response.data)
+      setIsModalMD(true)
       setShowModal(true)
       // return content;
     } catch (error) {
@@ -95,11 +102,17 @@ export default function Home () {
                 onClick={() => setShowModal(false)}
                 className='absolute md:top-4 md:right-4 top-1 right-1 font-bold text-xl cursor-pointer transition-all hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
-              <div className='overflow-y-scroll '>
-                <ReactMarkdown className='prose-sm md:prose lg:prose-xl'>
-                  {modalMD}
-                </ReactMarkdown>
-              </div>
+              {isModalMD ?(
+                <div className='overflow-y-scroll '>
+                  <ReactMarkdown className='prose-sm md:prose lg:prose-xl'>
+                    {modalMD}
+                  </ReactMarkdown>
+                </div>
+              ):
+                <div className='w-full h-full flex justify-center items-center'>
+                  <h2 className='text-center font-bold text-xl md:text-4xl break-words'>Actualmente estamos en construcción...</h2>
+                </div>
+              }
             </motion.div>
           </motion.div>
         )}
@@ -382,7 +395,6 @@ export default function Home () {
               <Link
                 href={'/donate?network=ethereum'}
                 className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
-
               >
                 Apóyanos Directamente
               </Link>

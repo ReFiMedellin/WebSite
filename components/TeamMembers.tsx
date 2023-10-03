@@ -65,10 +65,9 @@ const TeamMembers = () => {
       role: 'Technical Stuff',
       imageSrc: Edward,
       socialLinks: {
-        twitter: 'https://twitter.com/JuanJGiraldoC',
-        instagram: 'https://www.instagram.com/juanjosegiraldo/',
-        telegram: 'https://t.me/juanjgiraldoc',
-        linkedin: 'https://www.linkedin.com/in/juancamp1987/'
+        twitter: 'https://twitter.com/Tiranicida',
+        instagram: 'https://www.instagram.com/edwardca.dev/',
+        telegram:'https://t.me/Tiranicida',
       }
     },
     {
@@ -76,6 +75,8 @@ const TeamMembers = () => {
       role: 'Branding & Social',
       imageSrc: xflypeztyc,
       socialLinks: {
+        twitter:'https://twitter.com/0xflypeztic',
+        telegram:'https://t.me/xflypeztic',
       }
     },
     {
@@ -83,7 +84,8 @@ const TeamMembers = () => {
       role: 'Co-Founder',
       imageSrc: Eamon,
       socialLinks: {
-        telegram: '@cryptochimba',
+        twitter: 'https://twitter.com/cryptochimba',
+        telegram: 'https://t.me/cryptochimba'
       }
     },
     {
@@ -102,14 +104,16 @@ const TeamMembers = () => {
       role: 'Treasury',
       imageSrc: Inkom,
       socialLinks: {
+        twitter:'https://twitter.com/inkom_io',
+        instagram:'https://www.instagram.com/inkom.io/',
+        telegram: 'https://t.me/inkom-io'
       }
     },
     {
       name: 'DotLabs()',
       role: 'Educational Partner',
       imageSrc: DotLabs,
-      socialLinks: {
-      }
+      socialLinks: {}
     }
   ]
 

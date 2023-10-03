@@ -7,7 +7,7 @@ const cardData = [
     name: 'Involucrar a la comunidad local',
     description:
       'Realizar eventos que contarán con expertos en ReFi, Web3 y desafíos urbanos en ciudades latinoamericanas.',
-    openModal: false,
+    openModal: true,
     image: LogoMan,
     url:''
   },
@@ -15,7 +15,7 @@ const cardData = [
     name: 'Hackathones de ReFi',
     description:
       'Esperamos involucrar a jóvenes de diferentes comunidades de desarrolladores, universidades y organizaciones del sector privado interesadas en Web3 y sostenibilidad.',
-    openModal: false,
+    openModal: true,
     image: LogoMan,
     url:''
   },
@@ -23,7 +23,7 @@ const cardData = [
     name: 'Apoyar las innovaciones orientadas a la regeneración (ROIs) y Web3',
     description:
       'Incubar e invertir en empresas sociales que surjan de los hackathones de ReFi Medellín.',
-    openModal: false,
+    openModal: true,
     image: LogoMan,
     url:''
   },
@@ -39,7 +39,7 @@ const cardData = [
     name: 'Mantener a Medellín como la Ciudad de la Eterna Primavera',
     description:
       'Actividad dedicada a plantar flores y ayudar a regenerar el insecto de las flores en Medellín, ayudando así a proteger a Medellín como Ciudad de la Eterna Primavera.',
-    openModal: false,
+    openModal: true,
     image: LogoMan,
     url:''
   },
@@ -47,7 +47,7 @@ const cardData = [
     name: 'Talleres de ReFi Medellín',
     description:
       'Host ReFi Medellín events. These events will include expert guest speakers in ReFi, Web3, and urban challenges in Latin American cities.',
-    openModal: false,
+    openModal: true,
     image: LogoMan,
     url:''
   }
