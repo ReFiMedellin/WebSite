@@ -1,5 +1,5 @@
 'use client'
-import useIsMobile from '@/hooks/useIsMobile'
+import { useIsMobile } from '@/hooks'
 import { Web3Button } from '@web3modal/react'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'

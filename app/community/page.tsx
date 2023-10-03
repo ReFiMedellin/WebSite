@@ -116,7 +116,6 @@ function Page () {
             Bienvenido a la sección de Contenido Exclusivo para Miembros de la
             Comunidad ReFiMedellín, si estás aquí es porque tienes uno de
             nuestros NFTs en tu Wallet, no lo pierdas porque si lo haces no
-            podrás acceder a esta sección... <br />
             Espera muchas Sorpresas...
           </p>
         </div>
