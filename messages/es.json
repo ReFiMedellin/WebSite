@@ -1,0 +1,14 @@
+{
+  "Landing": {
+    "home": {
+      "title": "¡Bienvenido a ReFi Medellín!",
+      "description": {
+        "part1": "Somos el primer Nodo Colombiano de",
+        "part2": "encargado de promover proyectos ReFi en la región.",
+        "part3": "En ReFi Medellín, creemos en los proyectos regenerativos y el impacto transformador que estos tienen. ¡Es hora de pensar diferente y regenerarnos juntos!"
+      },
+      "button1": "Únete a la comunidad",
+      "button2": "Apóyanos en Giveth.io"
+    }
+  }
+}

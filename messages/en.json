@@ -1,0 +1,14 @@
+{
+  "Landing": {
+    "home": {
+      "title": "Welcome to ReFi Medellín!",
+      "description": {
+        "part1": "We are the first Colombian Node of",
+        "part2": "responsible for promoting ReFi projects in the region.",
+        "part3": "At ReFi Medellín, we believe in regenerative projects and the transformative impact they have. It's time to think differently and regenerate together!"
+      },
+      "button1": "Join the community",
+      "button2": "Support us on Giveth.io"
+    }
+  }
+}

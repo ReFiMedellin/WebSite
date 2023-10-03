@@ -32,12 +32,11 @@ import ReactMarkdown from 'react-markdown'
 import { RiCloseFill } from 'react-icons/ri'
 import Cards from '@/components/Cards'
 import TeamMembers from '@/components/TeamMembers'
+import {useTranslations} from 'next-intl';
 
-// const a =
-
-const cards = [1, 2, 3, 4, 5, 6]
 
 export default function Home () {
+  const t = useTranslations('Landing');
   const [value, setValue] = useState('0')
   const [isSendingModal, setIsSendingModal] = useState(false)
   const [showModal, setShowModal] = useState(false)
@@ -176,10 +175,10 @@ export default function Home () {
           <div className='flex justify-center items-center w-full h-full'>
             <div className='text-white w-5/6 flex flex-col gap-5'>
               <h1 className='font-bold text-4xl md:text-6xl'>
-                ¡Bienvenido a ReFi Medellín!
+                {t('home.title')}
               </h1>
               <p className='text-base'>
-                Somos el primer Nodo Colombiano de{' '}
+                {t('home.description.part1')}{' '}
                 <Link
                   className='text-blue-400 font-bold cursor-pointer'
                   href={'https://www.refidao.com/'}
@@ -187,11 +186,9 @@ export default function Home () {
                 >
                   ReFiDAO{' '}
                 </Link>
-                encargado de promover proyectos ReFi en la región.
+                  {t('home.description.part2')}
                 <br /> <br />
-                En ReFi Medellín, creemos en los proyectos regenerativos y el
-                impacto transformador que estos tienen. ¡Es hora de pensar
-                diferente y regenerarnos juntos!
+                  {t('home.description.part3')}
               </p>
               <div className='flex flex-row gap-2'>
                 <Link
@@ -199,14 +196,14 @@ export default function Home () {
                   target='_blank'
                   className='text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg'
                 >
-                  Únete a la comunidad
+                  {t('home.button1')}
                 </Link>
                 <Link
                   href={'https://giveth.io/project/refi-medellin'}
                   target='_blank'
                   className='text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg'
                 >
-                  Apóyanos en Giveth.io
+                  {t('home.button2')}
                 </Link>
               </div>
             </div>
