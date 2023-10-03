@@ -9,6 +9,89 @@
       },
       "button1": "Join the community",
       "button2": "Support us on Giveth.io"
+    },
+    "aboutUs": {
+      "title": "Join the movement towards a more sustainable and equitable future in Medellín, Colombia.",
+      "description": {
+        "part1": "Welcome to the first Local Node of",
+        "part2": "in Colombia:",
+        "part3": "led by",
+        "part4": "Our goal is to promote community conversations about innovative regenerative solutions enabled by Web3 technology.",
+        "part5": "We are committed to empowering the youth of Medellín to tackle some of the most pressing challenges facing our city, such as poverty, inequality, youth unemployment, and limited access to resources like energy, water, sanitation, housing, and education.",
+        "part6": "Join us in hackathons, incubation, and investment to help make a difference in our community!"
+      },
+      "button": "Learn more"
+    },
+    "donate": {
+      "title": "Support the Change!",
+      "description": {
+        "part1": "Our goal is to promote community conversations about innovative regenerative solutions enabled by Web3 technology. We are committed to empowering the youth of Medellín to tackle some of the most pressing challenges facing our city, such as poverty, inequality, youth unemployment, and limited access to resources like energy, water, sanitation, housing, and education.",
+        "part2": "Join us in hackathons, incubation, and investment to help make a difference in our community!",
+        "part3": "We kindly ask for your support and donations so that we can begin our journey of youth-led education for regeneration!"
+      },
+      "buttons": {
+        "option1": "Support us on Giveth.io",
+        "option2": "Support us Directly"
+      }
+    },
+    "projects": "Projects",
+    "team": "Team",
+    "footer": {
+      "title": "More Information",
+      "description": {
+        "part1": "To contact us, send us a message to",
+        "part2": "If you want to support us, you can send your donation to Wallet"
+      }
+    }
+  },
+  "Cards": {
+    "1": {
+      "name": "Engage the Local Community",
+      "description": "Host events featuring experts in ReFi, Web3, and urban challenges in Latin American cities."
+    },
+    "2": {
+      "name": "ReFi Hackathons",
+      "description": "We aim to engage young people from various developer communities, universities, and private sector organizations interested in Web3 and sustainability."
+    },
+    "3": {
+      "name": "Support Regeneration-Oriented Innovations (ROIs) and Web3",
+      "description": "Incubate and invest in social enterprises that emerge from the ReFi Medellín hackathons."
+    },
+    "4": {
+      "name": "Impact Onboarding",
+      "description": "Any active ecological group or group of friends wishing to carry out an impact activity, such as planting trees, cleaning environments, collecting garbage, etc., can contact us and request support."
+    },
+    "5": {
+      "name": "Keep Medellín as the City of Eternal Spring",
+      "description": "Activity dedicated to planting flowers and helping to regenerate the flower insect in Medellín, thus helping to protect Medellín as the City of Eternal Spring."
+    },
+    "6": {
+      "name": "ReFi Medellín Workshops",
+      "description": "Host ReFi Medellín events. These events will include expert guest speakers in ReFi, Web3, and urban challenges in Latin American cities."
+    }
+  },
+  "ExclusiveContent": {
+    "hasNFT": {
+      "title": "Coming Soon!",
+      "description": "Welcome to the Exclusive Content section for ReFiMedellín Community Members. If you're here, it's because you have one of our NFTs in your Wallet. Don't lose it, as many surprises await you if you keep it..."
+    },
+    "hasnotNFT": {
+      "title": "You Do Not Have Access",
+      "description": "Exclusive content is only available to holders of any ReFiMedellin NFT collection. Please connect your wallet to verify that you own one.",
+      "link": "If you don't have one, you can buy it here."
+    },
+    "modal": {
+      "title": "To access this area, you must first connect your wallet",
+      "description": "Exclusive content is only available to holders of any ReFiMedellin NFT collection. Please connect your wallet to verify that you own one.",
+      "link": "If you don't have one, you can buy it here.",
+      "button": "Go back"
+    }
+  },
+  "Navbar": {
+    "/": "Home",
+    "/community": "Exclusive content",
+    "https://blog": {
+      "refimedellin": { "org/": "Blog" }
     }
   }
 }

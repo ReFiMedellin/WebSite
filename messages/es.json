@@ -9,6 +9,89 @@
       },
       "button1": "Únete a la comunidad",
       "button2": "Apóyanos en Giveth.io"
+    },
+    "aboutUs": {
+      "title": "Únete al movimiento hacia un futuro más sostenible y equitativo en Medellín, Colombia.",
+      "description": {
+        "part1": "¡Bienvenido al primer Nodo Local de",
+        "part2": "en Colombia:",
+        "part3": "liderado por",
+        "part4": "Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3.",
+        "part5": "Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación.",
+        "part6": "¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!"
+      },
+      "button": "Conoce un poco más"
+    },
+    "donate": {
+      "title": "¡Apoya el cambio!",
+      "description": {
+        "part1": "Nuestro objetivo es promover conversaciones comunitarias sobre soluciones regenerativas innovadoras habilitadas por la tecnología Web3. Estamos comprometidos a empoderar a los jóvenes de Medellín para abordar algunos de los desafíos más apremiantes que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el desempleo juvenil y el acceso limitado a recursos como energía, agua, saneamiento, vivienda y educación.",
+        "part2": "¡Únase a nosotros en hackatones, incubación e inversión para ayudar a marcar la diferencia en nuestra comunidad!",
+        "part3": "Les pedimos amablemente su apoyo y donaciones para que podamos iniciar nuestro viaje de la ¡educación dirigida por jóvenes para la regeneración!"
+      },
+      "buttons": {
+        "option1": "Apóyanos en Giveth.io",
+        "option2": "Apóyanos Directamente"
+      }
+    },
+    "projects": "Proyectos",
+    "team":"Equipo",
+    "footer":{
+      "title":"Más información",
+      "description":{
+        "part1":"Para contactarnos envianos un mensaje a",
+        "part2":"Si quieres apoyarnos puedes enviar tu donación a Wallet"
+      }
+    }
+  },
+  "Cards": {
+    "1": {
+      "name": "Involucrar a la comunidad local",
+      "description": "Realizar eventos que contarán con expertos en ReFi, Web3 y desafíos urbanos en ciudades latinoamericanas."
+    },
+    "2": {
+      "name": "Hackathones de ReFi",
+      "description": "Esperamos involucrar a jóvenes de diferentes comunidades de desarrolladores, universidades y organizaciones del sector privado interesadas en Web3 y sostenibilidad."
+    },
+    "3": {
+      "name": "Apoyar las innovaciones orientadas a la regeneración (ROIs) y Web3",
+      "description": "Incubar e invertir en empresas sociales que surjan de los hackathones de ReFi Medellín."
+    },
+    "4": {
+      "name": "Onboarding de impacto",
+      "description": "Cualquier grupo ecológico activo o grupo de amigos que desee realizar una actividad de impacto, como plantar árboles, limpiar ambientes, recolectar basura, etc., puede contactarnos y solicitar apoyo."
+    },
+    "5": {
+      "name": "Mantener a Medellín como la Ciudad de la Eterna Primavera",
+      "description": "Actividad dedicada a plantar flores y ayudar a regenerar el insecto de las flores en Medellín, ayudando así a proteger a Medellín como Ciudad de la Eterna Primavera."
+    },
+    "6": {
+      "name": "Talleres de ReFi Medellín",
+      "description": "Host ReFi Medellín events. These events will include expert guest speakers in ReFi, Web3, and urban challenges in Latin American cities."
+    }
+  },
+  "ExclusiveContent":{
+    "hasNFT":{
+      "title":"Disponible pronto!",
+      "description":"Bienvenido a la sección de Contenido Exclusivo para Miembros de la Comunidad ReFiMedellín, si estás aquí es porque tienes uno de nuestros NFTs en tu Wallet, no lo pierdas porque si lo haces no Espera muchas Sorpresas..."
+    },
+    "hasnotNFT":{
+      "title":"No tienes acceso",
+      "description":" El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno",
+      "link":"si no tienes uno puedes comprarlo acá."
+    },
+    "modal":{
+      "title":"Para acceder aquí primero debes conectar tu wallet",
+      "description":" El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno,",
+      "link":"si no tienes uno puedes comprarlo acá.",
+      "button":"Volver"
+    }
+  },
+  "Navbar":{
+    "/": "Inicio",
+    "/community":"Contenido exclusivo",
+    "https://blog": {
+      "refimedellin": { "org/": "Blog" }
     }
   }
 }

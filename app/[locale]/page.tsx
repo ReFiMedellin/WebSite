@@ -32,11 +32,10 @@ import ReactMarkdown from 'react-markdown'
 import { RiCloseFill } from 'react-icons/ri'
 import Cards from '@/components/Cards'
 import TeamMembers from '@/components/TeamMembers'
-import {useTranslations} from 'next-intl';
-
+import { useTranslations } from 'next-intl'
 
 export default function Home () {
-  const t = useTranslations('Landing');
+  const t = useTranslations('Landing')
   const [value, setValue] = useState('0')
   const [isSendingModal, setIsSendingModal] = useState(false)
   const [showModal, setShowModal] = useState(false)
@@ -101,17 +100,19 @@ export default function Home () {
                 onClick={() => setShowModal(false)}
                 className='absolute md:top-4 md:right-4 top-1 right-1 font-bold text-xl cursor-pointer transition-all hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
-              {isModalMD ?(
+              {isModalMD ? (
                 <div className='overflow-y-scroll '>
                   <ReactMarkdown className='prose-sm md:prose lg:prose-xl'>
                     {modalMD}
                   </ReactMarkdown>
                 </div>
-              ):
+              ) : (
                 <div className='w-full h-full flex justify-center items-center'>
-                  <h2 className='text-center font-bold text-xl md:text-4xl break-words'>Actualmente estamos en construcción...</h2>
+                  <h2 className='text-center font-bold text-xl md:text-4xl break-words'>
+                    Actualmente estamos en construcción...
+                  </h2>
                 </div>
-              }
+              )}
             </motion.div>
           </motion.div>
         )}
@@ -186,9 +187,9 @@ export default function Home () {
                 >
                   ReFiDAO{' '}
                 </Link>
-                  {t('home.description.part2')}
+                {t('home.description.part2')}
                 <br /> <br />
-                  {t('home.description.part3')}
+                {t('home.description.part3')}
               </p>
               <div className='flex flex-row gap-2'>
                 <Link
@@ -235,12 +236,9 @@ export default function Home () {
             height={480}
           />
           <div className='text-white flex gap-5  flex-col justify-center items-center h-full  w-full'>
-            <h2 className='text-4xl font-bold'>
-              Únete al movimiento hacia un futuro más sostenible y equitativo en
-              Medellín, Colombia.
-            </h2>
+            <h2 className='text-4xl font-bold'>{t('aboutUs.title')}</h2>
             <p>
-              ¡Bienvenido al primer Nodo Local de{' '}
+              {t('aboutUs.description.part1')}{' '}
               <Link
                 className='text-blue-400 font-bold cursor-pointer'
                 href={'https://www.refidao.com/'}
@@ -248,8 +246,9 @@ export default function Home () {
               >
                 ReFiDAO{' '}
               </Link>{' '}
-              en Colombia: <span className='font-bold'>ReFi Medellín</span>,
-              liderado por{' '}
+              {t('aboutUs.description.part2')}{' '}
+              <span className='font-bold'>ReFi Medellín</span>,
+              {t('aboutUs.description.part3')}{' '}
               <Link
                 className='text-blue-400 font-bold cursor-pointer'
                 href={'https://linktr.ee/juanjgiraldoc'}
@@ -324,26 +323,19 @@ export default function Home () {
               !
               <br />
               <br />
-              Nuestro objetivo es promover conversaciones comunitarias sobre
-              soluciones regenerativas innovadoras habilitadas por la tecnología
-              Web3.
+              {t('aboutUs.description.part4')}
               <br />
               <br />
-              Estamos comprometidos a empoderar a los jóvenes de Medellín para
-              abordar algunos de los desafíos más apremiantes que enfrenta
-              nuestra ciudad, como la pobreza, la desigualdad, el desempleo
-              juvenil y el acceso limitado a recursos como energía, agua,
-              saneamiento, vivienda y educación.
+              {t('aboutUs.description.part5')}
               <br />
               <br />
-              ¡Únase a nosotros en hackatones, incubación e inversión para
-              ayudar a marcar la diferencia en nuestra comunidad!
+              {t('aboutUs.description.part6')}
             </p>
             <Link
               href={'#proyectos'}
               className='w-full text-center bg-[#4571E1] rounded-md text-white font-bold  text-lg px-12 py-2'
             >
-              Conoce un poco más
+              {t('aboutUs.button')}
             </Link>
           </div>
         </div>
@@ -357,24 +349,15 @@ export default function Home () {
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
             <div className='flex gap-5 break-words  flex-col justify-center items-center h-full  w-full'>
-              <h2 className='text-4xl w-full font-bold'>¡Apoya el cambio!</h2>
+              <h2 className='text-4xl w-full font-bold'>{t('donate.title')}</h2>
               <p className='break-words w-full'>
-                Nuestro objetivo es promover conversaciones comunitarias sobre
-                soluciones regenerativas innovadoras habilitadas por la
-                tecnología Web3. Estamos comprometidos a empoderar a los jóvenes
-                de Medellín para abordar algunos de los desafíos más apremiantes
-                que enfrenta nuestra ciudad, como la pobreza, la desigualdad, el
-                desempleo juvenil y el acceso limitado a recursos como energía,
-                agua, saneamiento, vivienda y educación.
+                {t('donate.description.part1')}
                 <br />
                 <br />
-                ¡Únase a nosotros en hackatones, incubación e inversión para
-                ayudar a marcar la diferencia en nuestra comunidad!
+                {t('donate.description.part2')}
                 <br />
                 <br />
-                Les pedimos amablemente su apoyo y donaciones para que podamos
-                iniciar nuestro viaje de la ¡educación dirigida por jóvenes para
-                la regeneración!
+                {t('donate.description.part3')}
                 <br />
                 <br />
                 <span className='font-bold'>Wallet (Ethereum):</span>
@@ -387,13 +370,13 @@ export default function Home () {
                 href={'https://giveth.io/project/refi-medellin'}
                 className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
-                Apòyanos en Giveth.io
+                {t('donate.buttons.option1')}
               </Link>
               <Link
                 href={'/donate?network=ethereum'}
                 className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
-                Apóyanos Directamente
+                {t('donate.buttons.option2')}
               </Link>
             </div>
           </div>
@@ -415,7 +398,7 @@ export default function Home () {
         className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
       >
         <h2 className='font-bold w-full text-center text-white text-5xl'>
-          Proyectos
+          {t('projects')}
         </h2>
         <Cards fetchMD={fetchMD} />
       </section>
@@ -426,21 +409,21 @@ export default function Home () {
           alt='borde superior'
         />
         <div className='flex flex-col gap-5 justify-center  items-center'>
-          <h2 className='font-bold text-4xl text-black'>Equipo</h2>
+          <h2 className='font-bold text-4xl text-black'>{t('team')}</h2>
           <TeamMembers />
         </div>
       </section>
       <footer className='bg-slate-200 w-full '>
         <div className='flex px-5 py-10 lg:px-14 flex-row justify-between items-center gap-20'>
           <div className='flex flex-col justify-center gap-5 items-start w-full lg:w-1/2'>
-            <h2 className='text-4xl font-bold'>Más información</h2>
+            <h2 className='text-4xl font-bold'>{t('footer.title')}</h2>
             <div className='w-full'>
               <p>
-                Para contactarnos envianos un mensaje a{' '}
+                {t('footer.description.part1')}{' '}
                 <span className='font-bold'>admin@refimedellin.org</span>
               </p>
               <p className='break-words'>
-                Si quieres apoyarnos puedes enviar tu donación a Wallet{' '}
+                {t('footer.description.part2')}{' '}
                 <span className='font-bold'>(Ethereum):</span>
                 0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
               </p>

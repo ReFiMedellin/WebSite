@@ -5,36 +5,34 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { RxTextAlignJustify } from 'react-icons/rx'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 function Navbar () {
+  const t = useTranslations('Navbar')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isMobile = useIsMobile()
   const [isMounted, setIsMounted] = useState(false)
 
-useEffect(()=>{
-  setIsMounted(true)
-},[])
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   type Routes = {
     link: string
-    name: string
   }
 
   const routes: Routes[] = [
     {
-      link: '/',
-      name: 'Inicio'
+      link: '/'
     },
     {
-      link: '/community',
-      name: 'Contenido exclusivo'
+      link: '/community'
     },
     {
-      link: 'https://blog.refimedellin.org/',
-      name: 'Blog'
+      link: 'https://blog.refimedellin.org/'
     }
   ]
 
-  if(!isMounted){
+  if (!isMounted) {
     return null
   }
 
@@ -53,10 +51,10 @@ useEffect(()=>{
           </>
         ) : (
           <>
-            {routes.map(({ link, name }, index) => (
+            {routes.map(({ link }, index) => (
               <li key={index}>
                 <Link onClick={() => setIsMenuOpen(false)} href={link}>
-                  {name}
+                  {t(`${link}`)}
                 </Link>
               </li>
             ))}
@@ -76,10 +74,10 @@ useEffect(()=>{
             exit={{ opacity: 0, height: '0px' }}
           >
             {' '}
-            {routes.map(({ link, name }, index) => (
+            {routes.map(({ link }, index) => (
               <li key={index}>
                 <Link onClick={() => setIsMenuOpen(false)} href={link}>
-                  {name}
+                  {t(`${link}`)}
                 </Link>
               </li>
             ))}

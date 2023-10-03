@@ -8,10 +8,11 @@ import Image from 'next/image'
 import Web3 from 'web3'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+  const t = useTranslations('ExclusiveContent')
   const [isMounted, setIsMounted] = useState(false)
   const [hasNFT, setHasNFT] = useState(false)
   const router = useRouter()
@@ -60,11 +61,11 @@ function Page () {
     return (
       <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>
         <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-4xl lg:text-8xl'>No tienes acceso</h1>
+          <h1 className='font-bold text-4xl lg:text-8xl'>
+            {t('hasnotNFT.title')}
+          </h1>
           <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            El contenido exclusivo está disponible únicamente para los holders
-            de cualquier colección de NFTs ReFiMedellin, por favor conecta tu
-            billetera para poder verificar que poseas uno,{' '}
+            {t('hasnotNFT.description')}{' '}
             <Link
               className='hover:text-blue-700 transition-all ease-in-out font-bold'
               href={
@@ -72,7 +73,7 @@ function Page () {
               }
               target='_blank'
             >
-              si no tienes uno puedes comprarlo acá.
+              {t('hasnotNFT.link')}
             </Link>
             <br />
           </p>
@@ -89,12 +90,10 @@ function Page () {
         >
           <motion.div className='text-black max-w-[90vw] relative bg-white rounded-lg flex flex-col gap-4 p-5 md:p-10'>
             <h2 className='font-bold text-xl text-center lg:text-4xl '>
-              Para acceder aquí primero debes conectar tu wallet
+              {t('modal.title')}
             </h2>
-            <p className='text-center' >
-              El contenido exclusivo está disponible únicamente para los holders
-              de cualquier colección de NFTs ReFiMedellin, por favor conecta tu
-              billetera para poder verificar que poseas uno,{' '}
+            <p className='text-center'>
+              {t('modal.description')}{' '}
               <Link
                 className='hover:text-blue-700 transition-all ease-in-out font-bold'
                 href={
@@ -102,7 +101,7 @@ function Page () {
                 }
                 target='_blank'
               >
-                si no tienes uno puedes comprarlo acá.
+                {t('modal.link')}
               </Link>
             </p>
             <div className='flex flex-row gap-5 justify-center items-center'>
@@ -110,7 +109,7 @@ function Page () {
                 className='p-3 rounded-md bg-[#4571E1] transition-all ease-in-out hover:bg-[#1a3e98] w-full text-white font-bold'
                 onClick={() => router.push('/')}
               >
-                Volver
+                {t('modal.button')}
               </button>
             </div>
           </motion.div>
@@ -123,21 +122,20 @@ function Page () {
     <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>
       {hasNFT ? (
         <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-4xl lg:text-8xl'>Disponible pronto!</h1>
+          <h1 className='font-bold text-4xl lg:text-8xl'>
+            {t('hasNFT.title')}
+          </h1>
           <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            Bienvenido a la sección de Contenido Exclusivo para Miembros de la
-            Comunidad ReFiMedellín, si estás aquí es porque tienes uno de
-            nuestros NFTs en tu Wallet, no lo pierdas porque si lo haces no
-            Espera muchas Sorpresas...
+            {t('hasNFT.description')}
           </p>
         </div>
       ) : (
         <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-4xl lg:text-8xl'>No tienes acceso</h1>
+          <h1 className='font-bold text-4xl lg:text-8xl'>
+            {t('hasnotNFT.title')}
+          </h1>
           <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            El contenido exclusivo está disponible únicamente para los holders
-            de cualquier colección de NFTs ReFiMedellin, por favor conecta tu
-            billetera para poder verificar que poseas uno,{' '}
+            {t('hasnotNFT.description')}{' '}
             <Link
               className='hover:text-blue-700 transition-all ease-in-out font-bold'
               href={
@@ -145,7 +143,7 @@ function Page () {
               }
               target='_blank'
             >
-              si no tienes uno puedes comprarlo acá.
+              {t('hasnotNFT.link')}
             </Link>
             <br />
           </p>
