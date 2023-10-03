@@ -19,6 +19,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faClone} from '@fortawesome/free-solid-svg-icons'
 import errorIcon from '@/assets/icons/exclamation.png'
 import checkIcon from '@/assets/icons/check-circle.png'
+import BordeBottom from '@/assets/images/Borde-ReFi.png'
 
 
 type donationData = {
@@ -200,7 +201,7 @@ function Page () {
   }, [currentPricing])
 
   useEffect(() => {
-    if (parseFloat(price) >= 0.001 || parseFloat(price) === 0) {
+    if (parseFloat(price) >= 1 || parseFloat(price) === 0) {
       setIsCorrectAmmount({
         ...isCorrectAmmount,
         onlyAmmount: true,
@@ -302,6 +303,7 @@ function Page () {
       chain?.name !== getChainName(searchParams.network)
     ) {
       setIsCorrectNetwork(false)
+      chainSwitch(searchParams.network)
     } else if (isConnected && searchParams) {
       setIsCorrectNetwork(true)
     }
@@ -589,7 +591,7 @@ function Page () {
   if (!isMounted) return null
 
   return (
-    <main className='min-h-screen w-full flex place-items-center place-content-center'>
+    <main className='min-h-screen  bg-[#1B2731] w-full flex place-items-center place-content-center'>
       <Modal show={showModal}>
         {(isSendingTXN || awaitTxnLoading) && (
           <>
@@ -699,12 +701,12 @@ function Page () {
         className='p-3 gap-4 overflow-hidden relative max-w-md w-11/12 sm:w-10/12 md:9/12 bg-[#e3e3e3]  text-black rounded-lg flex flex-col justify-center items-center'
       >
         <h1 className='font-bold w-full text-start text-base'>
-          Adicionar capital
+          Donar a ReFi Medellín
         </h1>
         {(chain?.unsupported || !isConnected) && (
           <>
             <div className=' w-full border-b-[#797979] border-opacity-20 rounded-md border-[1px]' />
-            <p className=' text-start w-full text-xs opacity-80'>
+            <p className='text-start w-full text-xs opacity-80'>
               {chain?.unsupported
                 ? 'Estas en la red equivocada'
                 : 'Primero conecta tu billetera'}
@@ -809,6 +811,11 @@ function Page () {
           </form>
         )}
       </motion.div>
+      <Image
+          className='absolute bottom-0 w-[100vw] left-0'
+          src={BordeBottom}
+          alt='Medellin'
+        />
     </main>
   )
 }

@@ -7,8 +7,7 @@ import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import Image from 'next/image'
 import Web3 from 'web3'
 import Link from 'next/link'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Web3Button } from '@web3modal/react'
+import {  motion } from 'framer-motion'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
