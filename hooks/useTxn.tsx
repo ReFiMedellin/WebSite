@@ -7,7 +7,7 @@ type address = `0x${string}`
 export default function useTxn (
   tokenContract: address,
   amount: number,
-  chain: string
+  chain: 'Ethereum' | 'Polygon' | 'Celo' | 'OP Mainnet' | 'Arbitrum One'
 ) {
   // console.debug(recipents)
   const { address } = useAccount()
@@ -19,6 +19,14 @@ export default function useTxn (
   } = useToken({
     address: tokenContract
   })
+
+  const recipents = {
+    Ethereum: process.env.NEXT_PUBLIC_ETHEREUM_RECIPENT,
+    Polygon: process.env.NEXT_PUBLIC_POLYGON_RECIPENT,
+    Celo: process.env.NEXT_PUBLIC_CELO_RECIPENT,
+    'OP Mainnet': process.env.NEXT_PUBLIC_OPTIMISM_RECIPENT,
+    'Arbitrum One': process.env.NEXT_PUBLIC_ARBITRUM_RECIPENT
+  }
 
   const {
     data: txnData,
@@ -35,12 +43,10 @@ export default function useTxn (
     account: address,
     functionName: 'transfer',
     args: [
-      process.env.NEXT_PUBLIC_RECIPENT,
+      recipents[chain],
       data && amount ? parseUnits(amount.toString(), data.decimals) : BigInt(0)
     ]
   })
-  console.debug(process.env.NEXT_PUBLIC_RECIPENT)
-  console.debug({ txnData, txnLoading, txnSuccess, txnError, txnErrorData })
   return {
     txnData,
     txnLoading,

@@ -93,5 +93,37 @@
     "https://blog": {
       "refimedellin": { "org/": "Blog" }
     }
+  },
+  "Donate": {
+    "title": "First Choose Where",
+    "whichNetwork": "Which network do you want to use?",
+    "whichToken": "Which token do you want to use?",
+    "amount": "Amount",
+    "buttons": {
+      "whichNetwork": "Next",
+      "donate": "Donate to ReFi Medellín"
+    },
+    "messages": {
+      "incorrectNetwork": "You are on the wrong network",
+      "connectWallet": "First connect your wallet",
+      "usdValue": "Approximate value in USD",
+      "minValue": "Donate from 1 USD"
+    },
+    "modal": {
+      "state": {
+        "loading": {
+          "title": "Processing Your Transaction",
+          "description": "Check your wallet and sign the transaction"
+        },
+        "success": {
+          "title": "Donation Successfully Completed",
+          "close": "Close"
+        },
+        "error": {
+          "title": "An error has occurred with the operation, please double-check that you have enough tokens in your wallet",
+          "close": "Close"
+        }
+      }
+    }
   }
 }

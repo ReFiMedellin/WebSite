@@ -15,12 +15,12 @@ import { zeroAddress } from 'viem'
 import ChainLinkContracts from '@/constants/chainLinkContracts'
 import Link from 'next/link'
 import Image from 'next/image'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faClone} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClone } from '@fortawesome/free-solid-svg-icons'
 import errorIcon from '@/assets/icons/exclamation.png'
 import checkIcon from '@/assets/icons/check-circle.png'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
-
+import { useTranslations } from 'next-intl'
 
 type donationData = {
   token: Address
@@ -32,7 +32,7 @@ type donationData = {
 type availableChains =
   | 'Ethereum'
   | 'Polygon'
-  | 'Optimism'
+  | 'OP Mainnet'
   | 'Arbitrum One'
   | 'Celo'
 
@@ -47,6 +47,7 @@ type Token = {
 }
 
 function Page () {
+  const t = useTranslations('Donate')
   const params = useSearchParams()
   const searchParams: Params = useMemo(
     () => ({ network: params.get('network') as availableChains }),
@@ -120,7 +121,7 @@ function Page () {
     txnError: txnNativeError,
     txnErrorData: txnNativeErrorData,
     sendTransaction: sendNativeTransaction
-  } = useNativeTxn(data?.amount as number)
+  } = useNativeTxn(data?.amount as number, data?.chain as availableChains)
   const {
     txnData,
     txnLoading,
@@ -596,7 +597,7 @@ function Page () {
         {(isSendingTXN || awaitTxnLoading) && (
           <>
             <h1 className='text-xl font-bold text-center'>
-              Procesando tu transacción
+              {t('modal.state.loading.title')}
             </h1>
             <div className='w-full items-center justify-center flex gap-4  flex-col'>
               <div
@@ -608,7 +609,7 @@ function Page () {
                 </span>
               </div>
               <p className='text-sm text-center'>
-                Revisa tu billetera y firma la transacción
+                {t('modal.state.loading.description')}
               </p>
             </div>
           </>
@@ -616,7 +617,9 @@ function Page () {
         {(txnSuccess || txnNativeSuccess) && awaitTxn && !awaitTxnLoading && (
           <div className='flex flex-col justify-center items-center gap-4'>
             <Image src={checkIcon} alt='check-icon' />
-            <h1 className='text-xl font-bold '>Abono completado con éxito</h1>
+            <h1 className='text-xl font-bold '>
+              {t('modal.state.success.title')}
+            </h1>
             <div className='flex flex-row w-full items-center justify-center gap-2'>
               <Link
                 target='_blank'
@@ -640,7 +643,7 @@ function Page () {
               className='border-2 border-[#374151] px-4 py-2 rounded-md'
               onClick={handleOnCloseModal}
             >
-              Cerrar
+              {t('modal.state.success.close')}
             </button>
           </div>
         )}
@@ -648,22 +651,26 @@ function Page () {
           <div className='flex flex-col justify-center items-center gap-4'>
             <Image src={errorIcon} alt='check-icon' />
             <h1 className='text-sm font-bold text-center'>
-              Ha ocurrido un error con la operación, revisa nuevamente que
-              poseas la cantidad de tokens en tu wallet
+              {t('modal.state.error.title')}
             </h1>
             <button
               className='border-2 border-[#374151] px-4 py-2 rounded-md'
               onClick={handleOnCloseModal}
             >
-              Cerrar
+              {t('modal.state.error.close')}
             </button>
           </div>
         )}
       </Modal>
       <Modal show={isChangingNetwork}>
         <span className='flex flex-row justify-between items-center w-full'>
-          <h2>Primero escoje donde</h2>
-          <button className='text-black font-bold' onClick={() => setIsChangingNetwork(false)}>x</button>
+          <h2>{t('title')}</h2>
+          <button
+            className='text-black font-bold'
+            onClick={() => setIsChangingNetwork(false)}
+          >
+            x
+          </button>
         </span>
         <div className='border-b-[1px] border-[#4571E1] w-full' />
         <form
@@ -671,7 +678,7 @@ function Page () {
           className='flex flex-col gap-2 w-full justify-center items-center'
         >
           <label htmlFor='' className='text-sm w-full'>
-            ¿Que red quieres usar?
+            {t('whichNetwork')}
           </label>
           <select
             disabled={!switchNetwork}
@@ -691,7 +698,7 @@ function Page () {
             className='w-full  px-5 py-2 bg-[#4571E1] text-white   font-bold rounded-lg'
             type='submit'
           >
-            Siguiente
+            {t('buttons.whichNetwork')}
           </button>
         </form>
       </Modal>
@@ -701,15 +708,15 @@ function Page () {
         className='p-3 gap-4 overflow-hidden relative max-w-md w-11/12 sm:w-10/12 md:9/12 bg-[#e3e3e3]  text-black rounded-lg flex flex-col justify-center items-center'
       >
         <h1 className='font-bold w-full text-start text-base'>
-          Donar a ReFi Medellín
+          {t('buttons.donate')}
         </h1>
         {(chain?.unsupported || !isConnected) && (
           <>
             <div className=' w-full border-b-[#797979] border-opacity-20 rounded-md border-[1px]' />
             <p className='text-start w-full text-xs opacity-80'>
               {chain?.unsupported
-                ? 'Estas en la red equivocada'
-                : 'Primero conecta tu billetera'}
+                ? t('messages.incorrectNetwork')
+                : t('messages.connectWallet')}
             </p>
           </>
         )}
@@ -750,7 +757,7 @@ function Page () {
             action=''
           >
             <label htmlFor='token' className='text-sm  w-full'>
-              ¿Que token quieres usar?
+              {t('whichToken')}
             </label>
             <select
               disabled={!isCorrectNetwork}
@@ -767,7 +774,7 @@ function Page () {
               ))}
             </select>
             <label className='text-sm  w-full' htmlFor='amount'>
-              Cantidad
+              {t('amount')}
             </label>
             <input
               ref={priceRef}
@@ -785,7 +792,7 @@ function Page () {
             />
             <div className='flex max-w-full w-full flex-col items-center justify-center gap-5'>
               <div className=' min-h-fit  max-w-full relative flex w-full flex-col gap-2'>
-                <p className=' text-sm w-full'>Valor aproximado en USD</p>
+                <p className=' text-sm w-full'>{t('messages.usdValue')}</p>
                 <div className='overflow-hidden max-w-[80vw] whitespace-nowrap '>
                   <h1
                     className={`${
@@ -793,7 +800,7 @@ function Page () {
                     } font-bold text-4xl`}
                   >{`≈ $${price}`}</h1>
                   {isCorrectAmmount.submit && (
-                    <p className='text-red-700'>Dona desde 1 USD</p>
+                    <p className='text-red-700'>{t('messages.minValue')}</p>
                   )}
                 </div>
               </div>
@@ -805,17 +812,17 @@ function Page () {
                 disabled={price === '0' || isSendingTXN || !isCorrectNetwork}
               >
                 <span className='text-xl font-bold'>+</span>
-                Donate to ReFi Medellín
+                {t('buttons.donate')}
               </button>
             </div>
           </form>
         )}
       </motion.div>
       <Image
-          className='absolute bottom-0 w-[100vw] left-0'
-          src={BordeBottom}
-          alt='Medellin'
-        />
+        className='absolute bottom-0 w-[100vw] left-0'
+        src={BordeBottom}
+        alt='Medellin'
+      />
     </main>
   )
 }
