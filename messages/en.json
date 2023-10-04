@@ -34,7 +34,10 @@
         "option2": "Support us Directly"
       }
     },
-    "projects": "Projects",
+    "projects":{
+      "title": "Projects",
+      "modalNotProject":"We are currently under construction..."
+    },
     "team": "Team",
     "footer": {
       "title": "More Information",

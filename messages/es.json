@@ -34,7 +34,10 @@
         "option2": "Apóyanos Directamente"
       }
     },
-    "projects": "Proyectos",
+    "projects":{
+      "title": "Proyectos",
+      "modalNotProject": "Actualmente estamos en construcción..."
+    },
     "team":"Equipo",
     "footer":{
       "title":"Más información",

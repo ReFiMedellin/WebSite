@@ -109,7 +109,7 @@ export default function Home () {
               ) : (
                 <div className='w-full h-full flex justify-center items-center'>
                   <h2 className='text-center font-bold text-xl md:text-4xl break-words'>
-                    Actualmente estamos en construcción...
+                    {t('projects.modalNotProject')}
                   </h2>
                 </div>
               )}
@@ -398,7 +398,7 @@ export default function Home () {
         className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
       >
         <h2 className='font-bold w-full text-center text-white text-5xl'>
-          {t('projects')}
+          {t('projects.title')}
         </h2>
         <Cards fetchMD={fetchMD} />
       </section>
