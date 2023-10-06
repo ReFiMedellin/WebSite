@@ -202,6 +202,7 @@ function Page () {
   }, [currentPricing])
 
   useEffect(() => {
+    if(price === 'No disponible') return
     if (parseFloat(price) >= 1 || parseFloat(price) === 0) {
       setIsCorrectAmmount({
         ...isCorrectAmmount,
@@ -392,6 +393,11 @@ function Page () {
             name: 'USDT',
             contract: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
             oracle: '0x0A6513e40db6EB1b165753AD52E80663aeA50545'
+          },
+          {
+            name: 'uWAT',
+            contract: '0xdD875635231E68E846cE190b1396AC0295D9e577',
+            oracle: '0x0A6513e40db6EB1b165753AD52E80663aeA50545'
           }
         ])
         break
@@ -539,6 +545,10 @@ function Page () {
 
     const normalizedValue = e.target.value.replace(',', '.') // Reemplazar comas con puntos
     if (normalizedValue === '') return setPrice('0')
+    if (data?.token === '0xdD875635231E68E846cE190b1396AC0295D9e577') {
+      setPrice('No disponible')
+      return
+    }
     setPrice(getPricing(parseFloat(normalizedValue)))
   }
 
