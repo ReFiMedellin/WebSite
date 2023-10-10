@@ -395,7 +395,7 @@ function Page () {
             oracle: '0x0A6513e40db6EB1b165753AD52E80663aeA50545'
           },
           {
-            name: 'uWAT',
+            name: 'uWatt',
             contract: '0xdD875635231E68E846cE190b1396AC0295D9e577',
             oracle: '0x0A6513e40db6EB1b165753AD52E80663aeA50545'
           }
