@@ -1,5 +1,18 @@
 {
   "Landing": {
+    "popUp":{
+      "title":"Apoya a ReFiMedellín",
+      "description":{
+        "part1":"En esta ronda de QF desde el",
+        "part2":"10 de Octubre hasta el 23 de octubre 11:00 am",
+        "part3":" no dejes pasar esta oportunidad, cada dolar cuenta."
+      },
+      "subDescription":"Recuerda que tu donación debe hacerse usando la red de Optimism",
+      "buttons":{
+        "option1":"Apoyar",
+        "option2":"Cerrar"
+      }
+    },
     "home": {
       "title": "¡Bienvenido a ReFi Medellín!",
       "description": {

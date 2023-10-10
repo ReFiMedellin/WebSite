@@ -1,5 +1,18 @@
 {
   "Landing": {
+    "popUp": {
+      "title": "Support ReFiMedellín",
+      "description": {
+        "part1": "In this QF round from",
+        "part2": "October 10th to October 23rd 11:00 am",
+        "part3": "don't miss this opportunity, every dollar counts."
+      },
+      "subDescription": "Remember that your donation must be made using the Optimism network",
+      "buttons": {
+        "option1": "Support",
+        "option2": "Close"
+      }
+    },
     "home": {
       "title": "Welcome to ReFi Medellín!",
       "description": {
@@ -34,9 +47,9 @@
         "option2": "Support us Directly"
       }
     },
-    "projects":{
+    "projects": {
       "title": "Projects",
-      "modalNotProject":"We are currently under construction..."
+      "modalNotProject": "We are currently under construction..."
     },
     "team": "Team",
     "footer": {
