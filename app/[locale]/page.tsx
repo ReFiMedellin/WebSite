@@ -193,7 +193,7 @@ export default function Home () {
               <p>
                 {t('popUp.description.part1')}{' '}
                 <span className='font-bold'>
-                  1{t('popUp.description.part2')}{' '}
+                  {t('popUp.description.part2')}{' '}
                 </span>
                 {t('popUp.description.part3')}
               </p>
