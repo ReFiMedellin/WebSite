@@ -183,7 +183,7 @@ export default function Home () {
               initial={{ y: -100 }}
               animate={{ y: 0 }}
               exit={{ y: 100 }}
-              className='relative max-w-[90vw] w-1/2 z-50 bg-white p-8 rounded-lg flex flex-col gap-4 '
+              className='relative max-w-[90vw] lg:w-1/2 z-50 bg-white p-8 rounded-lg flex flex-col gap-4 '
             >
               <RiCloseFill
                 onClick={() => setIsSendingModal(false)}
