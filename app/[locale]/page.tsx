@@ -397,9 +397,9 @@ export default function Home () {
         />
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
-            <div className='flex gap-5 break-words  flex-col justify-center items-center h-full  w-full'>
+            <div className='flex gap-5 flex-col justify-center items-center h-full  w-full'>
               <h2 className='text-4xl w-full font-bold'>{t('donate.title')}</h2>
-              <p className='break-words w-full'>
+              <p className='w-full'>
                 {t('donate.description.part1')}
                 <br />
                 <br />
@@ -417,13 +417,13 @@ export default function Home () {
               <Link
                 target='_blank'
                 href={'https://giveth.io/project/refi-medellin'}
-                className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
+                className='text-center bg-[#4571E1] text-white rounded-md w-full text-sm font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
                 {t('donate.buttons.option1')}
               </Link>
               <Link
                 href={'/donate?network=ethereum'}
-                className='text-center bg-[#4571E1] text-white rounded-md w-full font-bold  py-2 font-sm lg:px-8 lg:py-4'
+                className='text-center bg-[#4571E1] text-white rounded-md w-full  text-sm font-bold  py-2 font-sm lg:px-8 lg:py-4'
               >
                 {t('donate.buttons.option2')}
               </Link>
@@ -433,7 +433,7 @@ export default function Home () {
             className='hidden lg:block'
             src={LogoMan}
             alt='refi logo'
-            height={480}
+            height={380}
           />
           <Image
             className='absolute bottom-0 w-[100vw] left-0'
