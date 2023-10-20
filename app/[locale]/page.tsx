@@ -183,10 +183,10 @@ export default function Home () {
               initial={{ y: -100 }}
               animate={{ y: 0 }}
               exit={{ y: 100 }}
-              className='relative max-w-[90vw] lg:w-1/2 z-50 bg-white p-8 rounded-lg flex flex-col gap-4 '
+              className='relative max-w-[90vw] lg:npw-1/2 z-50 bg-white p-8 rounded-lg flex flex-col gap-4 '
             >
               <RiCloseFill
-                onClick={() => setIsSendingModal(false)}
+                onClick={() => setPopUpOpen(false)}
                 className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
               />
               <h3 className='text-2xl font-bold'>{t('popUp.title')}</h3>
