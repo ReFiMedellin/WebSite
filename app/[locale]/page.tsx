@@ -171,7 +171,7 @@ export default function Home () {
           </motion.div>
         )}
       </AnimatePresence>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {popUpOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -218,7 +218,7 @@ export default function Home () {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen bg-[#1B2731] w-full'>
         <div className='h-full lg:w-5/6  flex flex-row justify-center items-center'>
