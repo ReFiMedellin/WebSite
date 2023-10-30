@@ -1,16 +1,16 @@
 {
   "Landing": {
-    "popUp":{
-      "title":"Apoya a ReFiMedellín en la ronda de QF de Giveth",
-      "description":{
-        "part1":"En esta ronda de QF desde el",
-        "part2":"10 de Octubre hasta el 23 de octubre 11:00 am (UTC-5)",
-        "part3":" no dejes pasar esta oportunidad, cada dólar cuenta."
+    "popUp": {
+      "title": "Asiste al próximo evento de RefiMedellín",
+      "description": {
+        "part1": "¡Entérate de los próximos eventos y apoya a la comunidad!",
+        "part2": "10 de Octubre hasta el 23 de octubre, 11:00 a.m. (UTC-5)",
+        "part3": "No dejes pasar esta oportunidad; cada dólar cuenta."
       },
-      "subDescription":"Recuerda que tu donación debe hacerse usando la red de Optimism",
-      "buttons":{
-        "option1":"Apoyar",
-        "option2":"Cerrar"
+      "subDescription": "Recuerda que tu donación debe hacerse usando la red de Optimism",
+      "buttons": {
+        "option1": "Asistir",
+        "option2": "Cerrar"
       }
     },
     "home": {
@@ -47,16 +47,17 @@
         "option2": "Apóyanos Directamente"
       }
     },
-    "projects":{
+    "projects": {
       "title": "Proyectos",
       "modalNotProject": "Actualmente estamos en construcción..."
     },
-    "team":"Equipo",
-    "footer":{
-      "title":"Más información",
-      "description":{
-        "part1":"Para contactarnos envianos un mensaje a",
-        "part2":"Si quieres apoyarnos puedes enviar tu donación a Wallet"
+    "team": "Equipo",
+    "patners": "Patrocinadores",
+    "footer": {
+      "title": "Más información",
+      "description": {
+        "part1": "Para contactarnos envianos un mensaje a",
+        "part2": "Si quieres apoyarnos puedes enviar tu donación a Wallet"
       }
     }
   },
@@ -86,58 +87,58 @@
       "description": "Host ReFi Medellín events. These events will include expert guest speakers in ReFi, Web3, and urban challenges in Latin American cities."
     }
   },
-  "ExclusiveContent":{
-    "hasNFT":{
-      "title":"Disponible pronto!",
-      "description":"Bienvenido a la sección de Contenido Exclusivo para Miembros de la Comunidad ReFiMedellín, si estás aquí es porque tienes uno de nuestros NFTs en tu Wallet, no lo pierdas porque si lo haces no Espera muchas Sorpresas..."
+  "ExclusiveContent": {
+    "hasNFT": {
+      "title": "Disponible pronto!",
+      "description": "Bienvenido a la sección de Contenido Exclusivo para Miembros de la Comunidad ReFiMedellín, si estás aquí es porque tienes uno de nuestros NFTs en tu Wallet, no lo pierdas porque si lo haces no Espera muchas Sorpresas..."
     },
-    "hasnotNFT":{
-      "title":"No tienes acceso",
-      "description":" El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno",
-      "link":"si no tienes uno puedes comprarlo acá."
+    "hasnotNFT": {
+      "title": "No tienes acceso",
+      "description": " El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno",
+      "link": "si no tienes uno puedes comprarlo acá."
     },
-    "modal":{
-      "title":"Para acceder aquí primero debes conectar tu wallet",
-      "description":" El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno,",
-      "link":"si no tienes uno puedes comprarlo acá.",
-      "button":"Volver"
+    "modal": {
+      "title": "Para acceder aquí primero debes conectar tu wallet",
+      "description": " El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno,",
+      "link": "si no tienes uno puedes comprarlo acá.",
+      "button": "Volver"
     }
   },
-  "Navbar":{
+  "Navbar": {
     "/": "Inicio",
-    "/community":"Contenido exclusivo",
+    "/community": "Contenido exclusivo",
     "https://blog": {
       "refimedellin": { "org/": "Blog" }
     }
   },
-  "Donate":{
-    "title":"Primero escoje donde",
-    "whichNetwork":"¿Que red quieres usar?",
-    "whichToken":"¿Que token quieres usar?",
-    "amount":"Cantidad",
-    "buttons":{
-      "whichNetwork":"Siguiente",
-      "donate":"Donar a ReFi Medellín"
+  "Donate": {
+    "title": "Primero escoje donde",
+    "whichNetwork": "¿Que red quieres usar?",
+    "whichToken": "¿Que token quieres usar?",
+    "amount": "Cantidad",
+    "buttons": {
+      "whichNetwork": "Siguiente",
+      "donate": "Donar a ReFi Medellín"
     },
-    "messages":{
-      "incorrectNetwork":"Estas en la red equivocada",
-      "connectWallet":"Primero conecta tu billetera",
-      "usdValue":"Valor aproximado en USD",
-      "minValue":"Dona desde 1 USD"
+    "messages": {
+      "incorrectNetwork": "Estas en la red equivocada",
+      "connectWallet": "Primero conecta tu billetera",
+      "usdValue": "Valor aproximado en USD",
+      "minValue": "Dona desde 1 USD"
     },
-    "modal":{
-      "state":{
-        "loading":{
-          "title":"Procesando tu transacción",
-          "description":"Revisa tu billetera y firma la transacción"
+    "modal": {
+      "state": {
+        "loading": {
+          "title": "Procesando tu transacción",
+          "description": "Revisa tu billetera y firma la transacción"
         },
-        "success":{
-          "title":"Donación completada con éxito",
-          "close":"Cerrar"
+        "success": {
+          "title": "Donación completada con éxito",
+          "close": "Cerrar"
         },
-        "error":{
-          "title":"Ha ocurrido un error con la operación, revisa nuevamente que poseas la cantidad de tokens en tu wallet",
-          "close":"Cerrar"
+        "error": {
+          "title": "Ha ocurrido un error con la operación, revisa nuevamente que poseas la cantidad de tokens en tu wallet",
+          "close": "Cerrar"
         }
       }
     }

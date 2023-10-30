@@ -1,15 +1,15 @@
 {
   "Landing": {
     "popUp": {
-      "title": "Support ReFiMedellín In Giveth QF",
+      "title": "Attend the Next RefiMedellin Event",
       "description": {
-        "part1": "In this QF round from",
-        "part2": "October 10th to October 23rd 11:00 am (UTC-5)",
-        "part3": "don't miss this opportunity, every dollar counts."
+        "part1": "Stay updated on upcoming events and support the community!",
+        "part2": "From October 10th to October 23rd, 11:00 a.m. (UTC-5)",
+        "part3": "Don't miss this opportunity; every dollar counts."
       },
       "subDescription": "Remember that your donation must be made using the Optimism network",
       "buttons": {
-        "option1": "Support",
+        "option1": "Attend",
         "option2": "Close"
       }
     },
@@ -52,6 +52,7 @@
       "modalNotProject": "We are currently under construction..."
     },
     "team": "Team",
+    "patners": "Patners",
     "footer": {
       "title": "More Information",
       "description": {

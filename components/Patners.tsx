@@ -14,87 +14,40 @@ import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
 import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
 
-const TeamMembers = () => {
-  const team = [
+const Patners = () => {
+  const patners = [
     {
-      name: 'Juan Giraldo',
-      role: 'Founder',
-      imageSrc: Juan,
+      name: 'Green Digital Guardians',
+      role: 'Partner',
+      imageSrc: GDG,
       socialLinks: {
-        twitter: 'https://twitter.com/JuanJGiraldoC',
-        instagram: 'https://www.instagram.com/juanjosegiraldo/',
-        telegram: 'https://t.me/juanjgiraldoc',
-        linkedin: 'https://www.linkedin.com/in/juancamp1987/'
+        twitter: 'https://twitter.com/dg_guardians',
+        instagram: 'https://www.instagram.com/dg_guardians/',
+        telegram: 'https://t.me/dg_guardians',
+        linkedin: 'https://www.linkedin.com/company/dg-guardians/'
       }
     },
     {
-      name: 'Tereza Bizkova',
-      role: 'Co-Founder',
-      imageSrc: Tereza,
+      name: 'Inkom.io',
+      role: 'Treasury',
+      imageSrc: Inkom,
       socialLinks: {
-        twitter: 'https://twitter.com/TerezaBizkova',
-        instagram: 'https://www.instagram.com/lightlust/',
-        telegram: 'https://t.me/TerezaBB',
-        linkedin: 'https://www.linkedin.com/in/tereza-bizkova/'
+        twitter: 'https://twitter.com/inkom_io',
+        instagram: 'https://www.instagram.com/inkom.io/',
+        telegram: 'https://t.me/inkom-io'
       }
     },
     {
-      name: 'Alejandro Soto',
-      role: 'Co-Founder',
-      imageSrc: Alejandro,
-      socialLinks: {
-        twitter: 'https://twitter.com/alejandro99so',
-        instagram: 'https://www.instagram.com/alejandro99so/',
-        telegram: 'https://t.me/alejandro99so',
-        linkedin: 'https://www.linkedin.com/in/alejandro99so/'
-      }
-    },
-    {
-      name: 'Ximena Monclou',
-      role: 'Legal',
-      imageSrc: Ximena,
-      socialLinks: {
-        twitter: 'https://twitter.com/ximemonclou',
-        instagram: 'https://www.instagram.com/ximemonclou/',
-        telegram: 'https://t.me/ximemonclou',
-        linkedin: 'https://www.linkedin.com/in/ximenamonclou/'
-      }
-    },
-    {
-      name: 'Edward',
-      role: 'Technical Stuff',
-      imageSrc: Edward,
-      socialLinks: {
-        twitter: 'https://twitter.com/Tiranicida',
-        instagram: 'https://www.instagram.com/edwardca.dev/',
-        telegram: 'https://t.me/Tiranicida'
-      }
-    },
-    {
-      name: '0xflypeztyc',
-      role: 'Branding & Social',
-      imageSrc: xflypeztyc,
-      socialLinks: {
-        twitter: 'https://twitter.com/0xflypeztic',
-        telegram: 'https://t.me/xflypeztic'
-      }
-    },
-    {
-      name: 'Eamon',
-      role: 'Co-Founder',
-      imageSrc: Eamon,
-      socialLinks: {
-        twitter: 'https://twitter.com/cryptochimba',
-        telegram: 'https://t.me/cryptochimba'
-      }
+      name: 'DotLabs()',
+      role: 'Educational Partner',
+      imageSrc: DotLabs,
+      socialLinks: {}
     }
   ]
 
-
-
   return (
     <div className='flex-row flex flex-wrap justify-center items-center gap-5'>
-      {team.map((member, index) => (
+      {patners.map((member, index) => (
         <div
           key={index}
           className='relative h-76 md:h-[17rem] w-64 md:w-52 pt-5 overflow-y-hidden rounded-md shadow-lg flex flex-col gap-2 bg-slate-200 group hover:bg-slate-300'
@@ -160,4 +113,4 @@ const TeamMembers = () => {
   )
 }
 
-export default TeamMembers
+export { Patners }

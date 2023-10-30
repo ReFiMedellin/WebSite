@@ -33,6 +33,7 @@ import { RiCloseFill } from 'react-icons/ri'
 import Cards from '@/components/Cards'
 import TeamMembers from '@/components/TeamMembers'
 import { useTranslations } from 'next-intl'
+import { Patners } from '@/components/Patners'
 
 export default function Home () {
   const t = useTranslations('Landing')
@@ -171,7 +172,7 @@ export default function Home () {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {popUpOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -192,19 +193,19 @@ export default function Home () {
               <h3 className='text-2xl font-bold'>{t('popUp.title')}</h3>
               <p>
                 {t('popUp.description.part1')}{' '}
-                <span className='font-bold'>
+                {/* <span className='font-bold'>
                   {t('popUp.description.part2')}{' '}
                 </span>
-                {t('popUp.description.part3')}
+                {t('popUp.description.part3')} */}
               </p>
-              <p className='font-light text-gray-500 text-center'>
+              {/* <p className='font-light text-gray-500 text-center'>
                 &quot;{t('popUp.subDescription')}&quot;
-              </p>
+              </p> */}
               <div className='flex flex-row w-full gap-2'>
                 <Link
                   target='_blank'
                   className='w-full rounded-md text-center px-4 py-2  bg-[#8C84EE] text-white font-bold text-base md:text-lg'
-                  href='https://giveth.io/project/refi-medellin'
+                  href='https://lu.ma/refimedellinpublic'
                 >
                   {t('popUp.buttons.option1')}
                 </Link>
@@ -218,7 +219,7 @@ export default function Home () {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
 
       <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen bg-[#1B2731] w-full'>
         <div className='h-full lg:w-5/6  flex flex-row justify-center items-center'>
@@ -397,7 +398,7 @@ export default function Home () {
         />
         <div className='h-full w-5/6 flex flex-row justify-center gap-10 items-center'>
           <div className='text-black flex gap-5  flex-col justify-center items-center h-full  w-full'>
-            <div className='flex gap-5 flex-col justify-center items-center h-full  w-full'>
+            <div className='flex gap-5 break-words flex-col justify-center items-center h-full  w-full'>
               <h2 className='text-4xl w-full font-bold'>{t('donate.title')}</h2>
               <p className='w-full'>
                 {t('donate.description.part1')}
@@ -460,6 +461,8 @@ export default function Home () {
         <div className='flex flex-col gap-5 justify-center  items-center'>
           <h2 className='font-bold text-4xl text-black'>{t('team')}</h2>
           <TeamMembers />
+          <h2 className='font-bold text-4xl text-black'>{t('patners')}</h2>
+          <Patners />
         </div>
       </section>
       <footer className='bg-slate-200 w-full '>
