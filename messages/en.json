@@ -3,8 +3,8 @@
     "popUp": {
       "title": "Find out about our events in the Public Calendar",
       "description": {
-        "part1": "Enter our Public Calendar of events and find out about upcoming events, don't be left out and support the community!",
-        "part2": "From October 10th to October 23rd, 11:00 a.m. (UTC-5)",
+        "part1": "Enter our Public Calendar of events and find out about upcoming events,",
+        "part2": "don't be left out and support the community!",
         "part3": "Don't miss this opportunity; every dollar counts."
       },
       "subDescription": "Remember that your donation must be made using the Optimism network",
