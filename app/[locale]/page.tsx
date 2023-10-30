@@ -193,10 +193,10 @@ export default function Home () {
               <h3 className='text-2xl font-bold'>{t('popUp.title')}</h3>
               <p>
                 {t('popUp.description.part1')}{' '}
-                {/* <span className='font-bold'>
+                <span className='font-bold'>
                   {t('popUp.description.part2')}{' '}
                 </span>
-                {t('popUp.description.part3')} */}
+                {/* {t('popUp.description.part3')} */}
               </p>
               {/* <p className='font-light text-gray-500 text-center'>
                 &quot;{t('popUp.subDescription')}&quot;
