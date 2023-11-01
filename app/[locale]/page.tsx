@@ -344,7 +344,7 @@ export default function Home () {
                 href={'https://twitter.com/cryptochimba'}
                 target='_blank'
               >
-                Eamonn
+                Cryptochimba
               </Link>
               ,{' '}
               <Link
