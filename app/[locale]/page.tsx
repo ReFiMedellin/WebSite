@@ -309,7 +309,7 @@ export default function Home () {
               ,{' '}
               <Link
                 className='text-blue-400 font-bold cursor-pointer'
-                href={'https://www.linkedin.com/in/tereza-bizkova/'}
+                href={'https://twitter.com/TerezaBizkova'}
                 target='_blank'
               >
                 Tereza Bizkova
@@ -317,7 +317,7 @@ export default function Home () {
               ,{' '}
               <Link
                 className='text-blue-400 font-bold cursor-pointer'
-                href={'https://github.com/alejandro99so'}
+                href={'https://twitter.com/alejandro99so'}
                 target='_blank'
               >
                 Alejandro Soto
@@ -325,7 +325,7 @@ export default function Home () {
               ,{' '}
               <Link
                 className='text-blue-400 font-bold cursor-pointer'
-                href={'https://www.linkedin.com/in/ximenamonclou/'}
+                href={'https://twitter.com/ximemonclou'}
                 target='_blank'
               >
                 Ximena Monclou
@@ -333,7 +333,7 @@ export default function Home () {
               ,{' '}
               <Link
                 className='text-blue-400 font-bold cursor-pointer'
-                href={''}
+                href={'https://twitter.com/0xflypeztic'}
                 target='_blank'
               >
                 0xflypeztic
