@@ -12,6 +12,7 @@ import {
   celoAlfajores
 } from 'wagmi/chains'
 import { GtagManager } from '@/components/utils/GTAG'
+import { Metricol } from '@/components/utils/Metricol'
 
 const chains = [arbitrum, mainnet, polygon, optimism, celo, celoAlfajores]
 const projectId = '344c4ee91d5e35fec2368e61edfbe959'
@@ -34,6 +35,7 @@ function Providers ({ children }: { children: React.ReactNode }) {
     <>
       <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
       <GtagManager />
+      <Metricol />
       {isMounted && (
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       )}
