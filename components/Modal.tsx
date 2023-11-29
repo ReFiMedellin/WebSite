@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Modal({ children, show }: any) {
+function Modal({ children, show }: {children: React.ReactNode, show: boolean}) {
   return (
     <AnimatePresence>
       {show && (

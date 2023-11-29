@@ -9,6 +9,7 @@ import Web3 from 'web3'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import LoanPanel from '@/components/LoanPanel'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -119,15 +120,10 @@ function Page () {
   }
 
   return (
-    <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>
+    <section className='flex py-20 flex-row relative first-bg justify-center items-center min-h-screen text-white bg-[#1B2731] w-full'>
       {hasNFT ? (
-        <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-4xl lg:text-8xl'>
-            {t('hasNFT.title')}
-          </h1>
-          <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            {t('hasNFT.description')}
-          </p>
+        <div className='min-h-screen w-screen flex flex-col gap-5 px-5  py-10 lg:px-20 text-center justify-center items-center'>
+          <LoanPanel />
         </div>
       ) : (
         <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
