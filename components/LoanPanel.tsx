@@ -13,7 +13,16 @@ import {
   CardDescription,
   CardContent,
   CardFooter
-} from './ui/card'
+} from '@/components/ui/card'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
@@ -109,22 +118,39 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
     }
   })
 
-  const handleOnCapitalize = async e => {
-    e.preventDefault()
-    await approve({
-      args: [
-        '0x19b375F5F06B6bC556624C0Df25De01dbDCf3c6d',
-        parseEther(e.target.amount.value.toString())
-      ]
-    })
-    await capitalize({
-      args: [parseEther(e.target.amount.value.toString())]
-    })
-  }
+  const { writeAsync: loan } = useContractWrite({
+    address: '0x19b375F5F06B6bC556624C0Df25De01dbDCf3c6d',
+    abi: CeloLoanAbi,
+    functionName: 'requestLoan',
+    onSuccess: async txn => {
+      toast({
+        title: 'Prestamo solicitado con exito',
+        description: abreviarHash(txn.hash),
+        action: (
+          <ToastAction altText='Copy'>
+            <button
+              className='Button'
+              onClick={async () =>
+                await navigator.clipboard.writeText(txn.hash)
+              }
+            >
+              Copy
+            </button>
+          </ToastAction>
+        )
+      })
+    },
+    onError: e => {
+      toast({
+        title: 'Error al solicitar prestamo',
+        description: e.message
+      })
+    }
+  })
 
   const form = useForm()
 
-  async function onFundSubmit (values: { amount: string }) {
+  async function onFundSubmit (values) {
     await approve({
       args: [
         '0x19b375F5F06B6bC556624C0Df25De01dbDCf3c6d',
@@ -134,6 +160,16 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
     await capitalize({
       args: [parseEther(values.amount)]
     })
+  }
+
+  async function onLoanSubmit (values) {
+    try {
+      await loan({
+        args: [parseEther(values.amount), values.months]
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const handleOnWithdraw = async () => {
@@ -159,23 +195,72 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
         <TabsContent value='Loan'>
           <Card>
             <CardHeader>
-              <CardTitle>Account</CardTitle>
+              <CardTitle>Pedir un prestamo</CardTitle>
               <CardDescription>
-                Make changes to your account here. Click save when you're done.
+                Recuerda que para acceder a un prestamo debes pedir la
+                validación
               </CardDescription>
             </CardHeader>
             <CardContent className='space-y-2'>
-              <div className='space-y-1'>
-                <Label htmlFor='name'>Name</Label>
-                <Input id='name' defaultValue='Pedro Duarte' />
-              </div>
-              <div className='space-y-1'>
-                <Label htmlFor='username'>Username</Label>
-                <Input id='username' defaultValue='@peduarte' />
-              </div>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onLoanSubmit)}
+                  className='flex flex-col  items-start gap-4'
+                >
+                  <FormField
+                    control={form.control}
+                    name='amount'
+                    rules={{
+                      required: 'Este campo es requerido',
+                      min: {
+                        value: 0,
+                        message: 'El monto debe ser mayor a 0'
+                      }
+                    }}
+                    render={({ field }) => (
+                      <FormItem className='text-start  w-full'>
+                        <FormLabel>Amount</FormLabel>
+                        <FormControl>
+                          <Input type='number' placeholder='100' {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Recuerda que el monto ingresado es en Cusd
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='months'
+                    rules={{
+                      required: 'Este campo es requerido',
+                      min: {
+                        value: 0,
+                        message: 'El monto debe ser mayor a 0'
+                      }
+                    }}
+                    render={({ field }) => (
+                      <FormItem className='text-start  w-full'>
+                        <FormLabel>Meses</FormLabel>
+                        <FormControl>
+                          <Input type='number' placeholder='6' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type='submit'>Pedir prestamo</Button>
+                </form>
+              </Form>
             </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
+            <CardFooter className='flex flex-col gap-2'>
+              <CardDescription>
+                Si deseas debitar un pago puedes dar click aquí
+              </CardDescription>
+              <Button className='w-full' onClick={handleOnWithdraw}>
+                Pagar
+              </Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -238,23 +323,6 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
           </Card>
         </TabsContent>
       </Tabs>
-
-      {/* <div className='w-full flex-col lg:flex-row flex justify-center gap-10 items-center'>
-        <button className=' w-44 lg:w-64 h-44 lg:h-64 font-bold rounded-md shadow-md bg-green-300 '>
-          Solicita un prestamo
-        </button>
-        <button
-          onClick={() => setShowCapitalize(true)}
-          className=' w-44 lg:w-64 h-44 lg:h-64 font-bold rounded-md shadow-md bg-green-300 '
-        >
-          Añadir Capital
-        </button>
-        {isAdmin && (
-          <button className=' w-44 lg:w-64 h-44 lg:h-64 font-bold rounded-md shadow-md bg-green-300 '>
-            Lista blanca
-          </button>
-        )}
-      </div> */}
     </>
   )
 }
