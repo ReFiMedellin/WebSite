@@ -3,10 +3,10 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Providers from './providers'
-import {NextIntlClientProvider} from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { Toaster } from '@/components/ui/toaster'
-
+import { unstable_setRequestLocale } from 'next-intl/server'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export async function generateStaticParams () {
   return [{ lang: 'en' }, { lang: 'es' }]
 }
-
+const locales = ['en', 'de']
 export default async function RootLayout ({
   children,
   params: { locale }
@@ -28,6 +28,8 @@ export default async function RootLayout ({
   pageProps: any
   params: any
 }) {
+  if (!locales.includes(locale as any)) notFound()
+  unstable_setRequestLocale(locale)
   let messages
   try {
     messages = (await import(`../../messages/${locale}.json`)).default
