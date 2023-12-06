@@ -3,18 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
-import {
-  arbitrum,
-  mainnet,
-  polygon,
-  optimism,
-  celo,
-  celoAlfajores
-} from 'wagmi/chains'
+import { celoAlfajores } from 'wagmi/chains'
 import { GtagManager } from '@/components/utils/GTAG'
 import { Metricol } from '@/components/utils/Metricol'
 
-const chains = [arbitrum, mainnet, polygon, optimism, celo, celoAlfajores]
+const chains = [celoAlfajores]
 const projectId = '344c4ee91d5e35fec2368e61edfbe959'
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
