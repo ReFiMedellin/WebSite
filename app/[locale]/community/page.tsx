@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LoanPanel from '@/components/LoanPanel'
+import { adminAddress } from '@/constants'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -31,9 +32,14 @@ function Page () {
     setIsMounted(true)
   }, [])
 
+  function isAdmin () {
+    return address === adminAddress
+  }
+
   //TODO: Cuando existan, implementar metodos e interfaces para ERC721 y ERC1155, además de una lista de RPC para cada chain
 
   useEffect(() => {
+    if (isDisconnected) return
     async function getNFT () {
       console.debug(contract.options.jsonInterface)
       try {
@@ -123,7 +129,7 @@ function Page () {
     <section className='flex py-20 flex-row relative first-bg justify-center items-center min-h-screen text-white bg-[#1B2731] w-full'>
       {hasNFT ? (
         <div className='min-h-screen w-screen flex flex-col gap-5 px-5  py-10 lg:px-20 text-center justify-center items-center'>
-          <LoanPanel />
+          <LoanPanel isAdmin={isAdmin()} />
         </div>
       ) : (
         <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
