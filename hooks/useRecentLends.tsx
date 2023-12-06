@@ -7,7 +7,8 @@ function useRecentLends () {
     address: celoLoanAddress,
     abi: celoLoanAbi,
     functionName: 'getActiveLoans',
-    args: [address as Address, 10, 10]
+    args: [address as Address, 0, 10],
+    watch: true
   })
   return recentLends
 }

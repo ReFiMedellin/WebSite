@@ -77,7 +77,6 @@ export default function Home () {
         }
       })
       // const content = Buffer.from(response.data.content, 'base64').toString('utf8');
-      console.debug(response.data)
       setModalMD(response.data)
       setIsModalMD(true)
       setShowModal(true)

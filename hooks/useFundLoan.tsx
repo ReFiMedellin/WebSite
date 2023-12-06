@@ -5,14 +5,19 @@ import abreviarHash from '@/functions/abreviateHash'
 import React from 'react'
 import { parseEther } from 'viem'
 import { useContractWrite, usePrepareContractWrite } from 'wagmi'
+import { useErc20Spendance } from './useErc20Spendance'
 
 function useFundLoan (value?: string) {
-  console.debug({ value })
-  const { config } = usePrepareContractWrite({
+  const { data } = useErc20Spendance()
+
+  console.debug((data as bigint) >= (value ? parseEther(value) : BigInt(0)))
+
+  const { config, refetch } = usePrepareContractWrite({
     address: celoLoanAddress,
     abi: celoLoanAbi,
     functionName: 'capitalize',
-    args: value ? [parseEther(value)] : [BigInt(0)]
+    args: value ? [parseEther(value)] : [BigInt(0)],
+    enabled: false
   })
   const fund = useContractWrite({
     ...config,
@@ -41,7 +46,8 @@ function useFundLoan (value?: string) {
       })
     }
   })
-  return fund
+  console.debug(fund.write)
+  return { ...fund, refetch }
 }
 
 export { useFundLoan }

@@ -37,11 +37,19 @@ function AdminLendPanel () {
     await incrementQuota.writeAsync({
       args: [values.Address, parseEther(values.amount)]
     })
+    increaseQuotaForm.reset({
+      Address: '',
+      amount: ''
+    })
   }
 
   const onDecreaseSubmit = async (values: any) => {
     await decrementQuota.writeAsync({
-      args: [ values.Address, parseEther(values.amount)]
+      args: [values.Address, parseEther(values.amount)]
+    })
+    decreaseQuotaForm.reset({
+      Address: '',
+      amount: ''
     })
   }
 
@@ -49,10 +57,16 @@ function AdminLendPanel () {
     await addToWhiteList.writeAsync({
       args: [values.Address]
     })
+    addToWhiteListForm.reset({
+      Address: ''
+    })
   }
   const onRemoveFromWhiteList = async (values: any) => {
     await removeFromWhiteList.writeAsync({
       args: [values.Address]
+    })
+    removeToWhiteListForm.reset({
+      Address: ''
     })
   }
 
@@ -100,7 +114,11 @@ function AdminLendPanel () {
                           <FormItem className='text-start  w-full'>
                             <FormLabel>Dirección</FormLabel>
                             <FormControl>
-                              <Input type='text' placeholder='0xd7sjh27shs68...' {...field} />
+                              <Input
+                                type='text'
+                                placeholder='0xd7sjh27shs68...'
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -140,7 +158,11 @@ function AdminLendPanel () {
                           <FormItem className='text-start  w-full'>
                             <FormLabel>Dirección</FormLabel>
                             <FormControl>
-                              <Input type='text' placeholder='0xd7sjh27shs68...' {...field} />
+                              <Input
+                                type='text'
+                                placeholder='0xd7sjh27shs68...'
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -219,7 +241,11 @@ function AdminLendPanel () {
                           <FormItem className='text-start  w-full'>
                             <FormLabel>Dirección</FormLabel>
                             <FormControl>
-                              <Input type='text' placeholder='0xd7sjh27shs68...' {...field} />
+                              <Input
+                                type='text'
+                                placeholder='0xd7sjh27shs68...'
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -234,7 +260,7 @@ function AdminLendPanel () {
             <TabsContent value='decrease'>
               <Card>
                 <CardHeader>
-                <CardTitle>Disminuir cupo</CardTitle>
+                  <CardTitle>Disminuir cupo</CardTitle>
                   <CardDescription>
                     Recuerda que primero debes añadir a la whitelist al usuario
                   </CardDescription>
@@ -285,7 +311,11 @@ function AdminLendPanel () {
                           <FormItem className='text-start  w-full'>
                             <FormLabel>Dirección</FormLabel>
                             <FormControl>
-                              <Input type='text' placeholder='0xd7sjh27shs68...' {...field} />
+                              <Input
+                                type='text'
+                                placeholder='0xd7sjh27shs68...'
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

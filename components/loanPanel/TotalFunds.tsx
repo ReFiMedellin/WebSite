@@ -17,7 +17,6 @@ import { formatEther } from 'viem'
 function TotalFunds () {
   const { data: totalValue, isLoading } = useTotalFunds()
   const { writeAsync: withdraw } = useWithdraw()
-  console.debug(totalValue)
   const handleOnWithdraw = async () => {
     try {
       await withdraw()

@@ -12,7 +12,6 @@ function useErc20Balance () {
     account:address,
     watch: true,
   })
-  console.debug(some.data, 'some')
   const balance = useContractRead({
     address: CusdAddress,
     abi: erc20ABI,

@@ -9,7 +9,6 @@ export default function useTxn (
   amount: number,
   chain: 'Ethereum' | 'Polygon' | 'Celo' | 'OP Mainnet' | 'Arbitrum One'
 ) {
-  // console.debug(recipents)
   const { address } = useAccount()
 
   const {

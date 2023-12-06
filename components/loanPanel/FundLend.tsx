@@ -21,7 +21,7 @@ import {
   CardFooter
 } from '@/components/ui/card'
 import { useForm } from 'react-hook-form'
-import { parseEther } from 'viem'
+import { formatEther, parseEther } from 'viem'
 import { useAccount } from 'wagmi'
 import { celoLoanAddress } from '@/constants'
 import {
@@ -39,37 +39,55 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
+import { useErc20Spendance } from '@/hooks/useErc20Spendance'
 
 function FundLend () {
-  const { address } = useAccount()
   const fundForm = useForm()
   const lendForm = useForm()
   const approveForm = useForm()
 
   const { writeAsync: approve } = useApproveErc20()
-  console.debug('watch',fundForm.watch('amount'))
-  const { writeAsync: fund, write: isFundAvailable } = useFundLoan(
-    fundForm.watch('amount')
-  )
-  console.debug(isFundAvailable, 'isFundAvailable')
+  const {
+    writeAsync: fund,
+    write: isFundAvailable,
+    refetch: refetchFund
+  } = useFundLoan(fundForm.watch('amount'))
   const { writeAsync: loan } = useLend()
   const { data: CusdBalance } = useErc20Balance()
+  const { data: CusdSpendance } = useErc20Spendance()
 
   async function onFundSubmit (values: any) {
+    if (
+      parseInt(CusdSpendance ? formatEther(CusdSpendance) : '0') < values.amount
+    )
+      return
     if (fund) {
       await fund()
     }
+    fundForm.reset({
+      amount: ''
+    })
   }
 
   async function onApproveSubmit (values: any) {
     await approve({
       args: [celoLoanAddress, parseEther(values.amount)]
     })
+    approveForm.reset({
+      amount: ''
+    })
+    fundForm.reset({
+      amount: ''
+    })
   }
 
   async function onLendSubmit (values: any) {
     await loan({
       args: [parseEther(values.amount), values.months]
+    })
+    lendForm.reset({
+      amount: '',
+      months: ''
     })
   }
 
@@ -186,7 +204,8 @@ function FundLend () {
                     </FormItem>
                   )}
                 />
-                {isFundAvailable ? (
+                {parseInt(CusdSpendance ? formatEther(CusdSpendance) : '0') >=
+                fundForm.watch('amount') ? (
                   <Button type='submit'>Fondear</Button>
                 ) : (
                   <Dialog>

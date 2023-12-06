@@ -41,7 +41,6 @@ function Page () {
   useEffect(() => {
     if (isDisconnected) return
     async function getNFT () {
-      console.debug(contract.options.jsonInterface)
       try {
         const data = await contract.methods
           //TODO: FIX THIS TYPE
