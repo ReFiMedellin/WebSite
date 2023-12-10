@@ -7,20 +7,11 @@ import { parseEther } from 'viem'
 import { useContractWrite, usePrepareContractWrite } from 'wagmi'
 import { useErc20Spendance } from './useErc20Spendance'
 
-function useFundLoan (value?: string) {
-  const { data } = useErc20Spendance()
-
-  console.debug((data as bigint) >= (value ? parseEther(value) : BigInt(0)))
-
-  const { config, refetch } = usePrepareContractWrite({
+function useFundLoan () {
+  const fund = useContractWrite({
     address: celoLoanAddress,
     abi: celoLoanAbi,
     functionName: 'capitalize',
-    args: value ? [parseEther(value)] : [BigInt(0)],
-    enabled: false
-  })
-  const fund = useContractWrite({
-    ...config,
     onSuccess: async txn => {
       toast({
         title: 'Capital añadido con exito',
@@ -46,8 +37,7 @@ function useFundLoan (value?: string) {
       })
     }
   })
-  console.debug(fund.write)
-  return { ...fund, refetch }
+  return fund
 }
 
 export { useFundLoan }

@@ -10,7 +10,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LoanPanel from '@/components/LoanPanel'
-import { adminAddress } from '@/constants'
+import { adminAddress, celoLoanAbi, celoLoanAddress } from '@/constants'
+import { useContractEvent } from 'wagmi'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -35,8 +36,6 @@ function Page () {
   function isAdmin () {
     return address === adminAddress
   }
-
-  //TODO: Cuando existan, implementar metodos e interfaces para ERC721 y ERC1155, además de una lista de RPC para cada chain
 
   useEffect(() => {
     if (isDisconnected) return

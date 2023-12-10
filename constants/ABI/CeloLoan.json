@@ -5,6 +5,11 @@
 				"internalType": "address",
 				"name": "_user",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
 			}
 		],
 		"name": "addToWhitelist",
@@ -71,6 +76,24 @@
 	{
 		"inputs": [],
 		"name": "pauseContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_lendingIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "payDebt",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -161,24 +184,6 @@
 		],
 		"name": "Paused",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_lendingIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "payDebt",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -363,6 +368,11 @@
 					},
 					{
 						"internalType": "uint256",
+						"name": "initialAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "startDate",
 						"type": "uint256"
 					},
@@ -432,6 +442,83 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "startIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "getWhitelistedUserDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "agreedQuota",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initialAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "startDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "blockMonths",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SmartContractCELO.Lending[]",
+						"name": "lendings",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct SmartContractCELO.UserLendingDetails[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "startIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "getWhitelistedUsers",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
 			}
 		],
 		"stateMutability": "view",
@@ -527,19 +614,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "some",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "totalFunds",
 		"outputs": [
 			{
@@ -576,8 +650,13 @@
 		"outputs": [
 			{
 				"internalType": "bool",
-				"name": "",
+				"name": "isWhitelisted",
 				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",

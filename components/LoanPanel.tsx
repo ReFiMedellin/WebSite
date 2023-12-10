@@ -18,6 +18,7 @@ import FundLend from './loanPanel/FundLend'
 import RecentLends from './loanPanel/RecentLends'
 import { TotalFunds } from './loanPanel/TotalFunds'
 import { AdminLendPanel } from './loanPanel/AdminLendPanel'
+import { AdminDashboard } from './loanPanel/AdminDashboard'
 
 const contractAddress = '0x1509199009DeC9cE8f1D36f7D20412226d77E476'
 
@@ -28,13 +29,15 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
         Bienvenido al panel de prestamos de RefiMedellín
       </h2>
       <div className='lendPanel'>
-        <TotalFunds/>
+        <TotalFunds />
         <FundLend />
         <RecentLends />
-        {
-          isAdmin && 
-          <AdminLendPanel />
-        }
+        {isAdmin && (
+          <>
+            <AdminLendPanel />
+            <AdminDashboard />
+          </>
+        )}
       </div>
     </section>
   )

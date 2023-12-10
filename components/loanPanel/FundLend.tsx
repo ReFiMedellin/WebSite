@@ -47,48 +47,58 @@ function FundLend () {
   const approveForm = useForm()
 
   const { writeAsync: approve } = useApproveErc20()
-  const {
-    writeAsync: fund,
-    write: isFundAvailable,
-    refetch: refetchFund
-  } = useFundLoan(fundForm.watch('amount'))
+  const { writeAsync: fund } = useFundLoan()
   const { writeAsync: loan } = useLend()
-  const { data: CusdBalance } = useErc20Balance()
+  const { data: CusdBalance, isLoading: isCusdBalanceLoading } =
+    useErc20Balance()
   const { data: CusdSpendance } = useErc20Spendance()
 
   async function onFundSubmit (values: any) {
-    if (
-      parseInt(CusdSpendance ? formatEther(CusdSpendance) : '0') < values.amount
-    )
-      return
-    if (fund) {
-      await fund()
+    try {
+      if (
+        parseInt(CusdSpendance ? formatEther(CusdSpendance) : '0') <
+        values.amount
+      )
+        return
+      await fund({
+        args: [parseEther(values.amount)]
+      })
+      fundForm.reset({
+        amount: ''
+      })
+    } catch (e) {
+      console.error(e)
     }
-    fundForm.reset({
-      amount: ''
-    })
   }
 
   async function onApproveSubmit (values: any) {
-    await approve({
-      args: [celoLoanAddress, parseEther(values.amount)]
-    })
-    approveForm.reset({
-      amount: ''
-    })
-    fundForm.reset({
-      amount: ''
-    })
+    try {
+      await approve({
+        args: [celoLoanAddress, parseEther(values.amount)]
+      })
+      approveForm.reset({
+        amount: ''
+      })
+      fundForm.reset({
+        amount: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   async function onLendSubmit (values: any) {
-    await loan({
-      args: [parseEther(values.amount), values.months]
-    })
-    lendForm.reset({
-      amount: '',
-      months: ''
-    })
+    try {
+      await loan({
+        args: [parseEther(values.amount), values.months]
+      })
+      lendForm.reset({
+        amount: '',
+        months: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -192,10 +202,12 @@ function FundLend () {
                       </FormControl>
                       <FormDescription>
                         {CusdBalance
-                          ? `Max: ${(
+                          ? `Cusd balance: ${(
                               CusdBalance / BigInt(10 ** 18)
                             ).toString()}`
-                          : 'loading'}
+                          : isCusdBalanceLoading
+                          ? 'loading'
+                          : '0'}
                       </FormDescription>
                       <FormDescription>
                         Recuerda que el monto ingresado es en Cusd

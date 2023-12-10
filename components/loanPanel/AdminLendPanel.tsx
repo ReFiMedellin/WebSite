@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   CardHeader,
   Card,
@@ -22,9 +22,11 @@ import { useForm } from 'react-hook-form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { isAddress, parseEther } from 'viem'
-import { useManageQuota, useManageWhitelist } from '@/hooks'
+import { useGetLenders, useManageQuota, useManageWhitelist } from '@/hooks'
 
 function AdminLendPanel () {
+  const [currentPage, setCurrentPage] = useState(0)
+
   const { incrementQuota, decrementQuota } = useManageQuota()
   const { addToWhiteList, removeFromWhiteList } = useManageWhitelist()
 
@@ -34,40 +36,57 @@ function AdminLendPanel () {
   const removeToWhiteListForm = useForm()
 
   const onIncreaseSubmit = async (values: any) => {
-    await incrementQuota.writeAsync({
-      args: [values.Address, parseEther(values.amount)]
-    })
-    increaseQuotaForm.reset({
-      Address: '',
-      amount: ''
-    })
+    try {
+      await incrementQuota.writeAsync({
+        args: [values.Address, parseEther(values.amount)]
+      })
+      increaseQuotaForm.reset({
+        Address: '',
+        amount: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const onDecreaseSubmit = async (values: any) => {
-    await decrementQuota.writeAsync({
-      args: [values.Address, parseEther(values.amount)]
-    })
-    decreaseQuotaForm.reset({
-      Address: '',
-      amount: ''
-    })
+    try {
+      await decrementQuota.writeAsync({
+        args: [values.Address, parseEther(values.amount)]
+      })
+      decreaseQuotaForm.reset({
+        Address: '',
+        amount: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const onAddToWhiteListSubmit = async (values: any) => {
-    await addToWhiteList.writeAsync({
-      args: [values.Address]
-    })
-    addToWhiteListForm.reset({
-      Address: ''
-    })
+    try {
+      await addToWhiteList.writeAsync({
+        args: [values.Address, parseEther(values.Amount)]
+      })
+      addToWhiteListForm.reset({
+        Address: '',
+        Amount: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
   const onRemoveFromWhiteList = async (values: any) => {
-    await removeFromWhiteList.writeAsync({
-      args: [values.Address]
-    })
-    removeToWhiteListForm.reset({
-      Address: ''
-    })
+    try {
+      await removeFromWhiteList.writeAsync({
+        args: [values.Address]
+      })
+      removeToWhiteListForm.reset({
+        Address: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   function isValidEthereumAddress (address: string) {
@@ -120,6 +139,33 @@ function AdminLendPanel () {
                                 {...field}
                               />
                             </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={addToWhiteListForm.control}
+                        name='Amount'
+                        rules={{
+                          required: 'Este campo es requerido',
+                          min: {
+                            value: 0,
+                            message: 'El cupo debe ser mayor a 0'
+                          }
+                        }}
+                        render={({ field }) => (
+                          <FormItem className='text-start  w-full'>
+                            <FormLabel>Cupo inicial</FormLabel>
+                            <FormControl>
+                              <Input
+                                type='text'
+                                placeholder='1000'
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormDescription>
+                              Recuerda que todos los valores son dados en Cusd
+                            </FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}

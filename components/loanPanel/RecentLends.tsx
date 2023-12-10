@@ -64,31 +64,38 @@ function RecentLends () {
   }
 
   const handleOnPayDebtSubmit = async (values: any) => {
-    if (
-      payDebt &&
-      parseFloat(spendance ? formatEther(spendance) : '0') >=
-        payDebtForm.watch('value')
-    ) {
-      await payDebt({
-        args: [id, parseEther(values.value)]
-      })
-      payDebtForm.reset({
-        value: ''
-      })
+    try {
+      if (
+        payDebt &&
+        parseFloat(spendance ? formatEther(spendance) : '0') >=
+          payDebtForm.watch('value')
+      ) {
+        await payDebt({
+          args: [id, parseEther(values.value)]
+        })
+        payDebtForm.reset({
+          value: ''
+        })
+      }
+    } catch (e) {
+      console.error(e)
     }
   }
 
   async function onApproveSubmit (values: any) {
-    console.debug(values.amount)
-    await approve({
-      args: [celoLoanAddress, parseEther(values.amount)]
-    })
-    approveForm.reset({
-      amount: ''
-    })
-    payDebtForm.reset({
-      value: ''
-    })
+    try {
+      await approve({
+        args: [celoLoanAddress, parseEther(values.amount)]
+      })
+      approveForm.reset({
+        amount: ''
+      })
+      payDebtForm.reset({
+        value: ''
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -101,7 +108,8 @@ function RecentLends () {
           <TableHeader>
             <TableRow>
               <TableHead className='text-center'>ID</TableHead>
-              <TableHead className='text-center'>Valor</TableHead>
+              <TableHead className='text-center'>Deuda</TableHead>
+              <TableHead className='text-center'>Valor inicial</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -112,7 +120,7 @@ function RecentLends () {
               recentLends.map((loan, index) => (
                 <TableRow key={index}>
                   <Dialog>
-                    <DialogTrigger className='cursor-pointer' asChild>
+                    <DialogTrigger className='cursor-pointer w-full' asChild>
                       <TableCell className='text-center'>{index}</TableCell>
                     </DialogTrigger>
                     <DialogContent className='sm:max-w-[425px]'>
@@ -234,6 +242,9 @@ function RecentLends () {
                   </Dialog>
                   <TableCell className='text-center'>
                     {formatEther(loan.amount)}
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    {formatEther(loan.initialAmount)}
                   </TableCell>
                 </TableRow>
               ))
