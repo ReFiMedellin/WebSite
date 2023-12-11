@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export async function generateStaticParams () {
   return [{ lang: 'en' }, { lang: 'es' }]
 }
-const locales = ['en', 'de']
+const locales = ['en', 'es']
 export default async function RootLayout ({
   children,
   params: { locale }
