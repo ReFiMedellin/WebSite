@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 const erc1155ABI = require('@/constants/ABI/erc1155ABI.json')
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import Image from 'next/image'
 import Web3 from 'web3'
@@ -15,6 +15,8 @@ import { useContractEvent } from 'wagmi'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const { chain, chains } = useNetwork()
+
   const t = useTranslations('ExclusiveContent')
   const [isMounted, setIsMounted] = useState(false)
   const [hasNFT, setHasNFT] = useState(false)
@@ -59,9 +61,14 @@ function Page () {
     }
     getNFT()
   }, [])
+  const { error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
 
   if (!isMounted) return null
 
+  if (chain?.id !== chains[0].id) {
+    switchNetwork?.(chains[0].id)
+    redirect('/')
+  }
   if (isDisconnected && isMounted) {
     return (
       <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>

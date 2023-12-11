@@ -1,4 +1,5 @@
 import { toast } from '@/components/ui/use-toast'
+import { CusdAddress } from '@/constants'
 import abreviarHash from '@/functions/abreviateHash'
 import { ToastAction } from '@radix-ui/react-toast'
 import React from 'react'
@@ -8,7 +9,7 @@ function useApproveErc20 () {
   const { address } = useAccount()
   
   const approve = useContractWrite({
-    address: '0x874069fa1eb16d44d622f2e0ca25eea172369bc1',
+    address: CusdAddress,
     abi: erc20ABI,
     functionName: 'approve',
     account: address,
