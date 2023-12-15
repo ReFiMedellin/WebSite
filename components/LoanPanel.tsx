@@ -8,7 +8,7 @@ import { AdminDashboard } from './loanPanel/AdminDashboard'
 
 function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
   return (
-    <section className='w-screen min-h-screen flex flex-col p-10 gap-10'>
+    <section className='w-screen min-h-screen flex flex-col lg:p-10 gap-10'>
       <h2 className='text-2xl font-bold'>
         Bienvenido al panel de prestamos de RefiMedellín
       </h2>

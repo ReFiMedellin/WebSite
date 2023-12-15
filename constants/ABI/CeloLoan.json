@@ -373,6 +373,11 @@
 					},
 					{
 						"internalType": "uint256",
+						"name": "interest",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "startDate",
 						"type": "uint256"
 					},
@@ -401,9 +406,9 @@
 		"name": "getCurrentQuota",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "uint256[2]",
 				"name": "",
-				"type": "uint256"
+				"type": "uint256[2]"
 			}
 		],
 		"stateMutability": "view",
@@ -470,6 +475,11 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "currentQuota",
+						"type": "uint256"
+					},
+					{
 						"components": [
 							{
 								"internalType": "uint256",
@@ -479,6 +489,11 @@
 							{
 								"internalType": "uint256",
 								"name": "initialAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "interest",
 								"type": "uint256"
 							},
 							{
@@ -537,6 +552,11 @@
 			{
 				"internalType": "uint256",
 				"name": "aggreedQuota",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "currentQuota",
 				"type": "uint256"
 			}
 		],

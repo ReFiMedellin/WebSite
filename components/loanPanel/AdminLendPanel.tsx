@@ -94,7 +94,7 @@ function AdminLendPanel () {
   }
 
   return (
-    <div className='col-span-2 flex flex-row justify-stretch items-stretch gap-10 '>
+    <div className='lg:col-span-2 flex w-full flex-col lg:flex-row justify-stretch items-stretch gap-10 '>
       <Card className='w-full recent '>
         <CardHeader>
           <CardTitle>Modificar lista blanca</CardTitle>
