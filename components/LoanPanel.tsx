@@ -24,7 +24,7 @@ const contractAddress = '0x1509199009DeC9cE8f1D36f7D20412226d77E476'
 
 function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
   return (
-    <section className='w-screen min-h-screen flex flex-col p-10 gap-10'>
+    <section className='w-screen min-h-screen flex flex-col lg:p-10 gap-10'>
       <h2 className='text-2xl font-bold'>
         Bienvenido al panel de prestamos de RefiMedellín
       </h2>

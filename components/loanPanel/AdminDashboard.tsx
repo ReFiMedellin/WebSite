@@ -31,6 +31,7 @@ import { useGetLenders, useRecentLoansPerAddress } from '@/hooks'
 import { Address, formatEther, zeroAddress } from 'viem'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
+import { useAggreedQuota } from '@/hooks/useAggreedQuota'
 function AdminDashboard () {
   const [currentPage, setCurrentPage] = useState(0)
   const [currentAddress, setCurrentAddress] = useState<string | null>(null)
@@ -40,14 +41,16 @@ function AdminDashboard () {
   const { data: addressData } = useRecentLoansPerAddress(
     currentAddress as Address
   )
+  const { data: currentAddresData } = useAggreedQuota(currentAddress as Address)
   return (
-    <div className='col-span-2'>
+    <div className='max-w-full overflow-y-scroll lg:col-span-2'>
       <Card className='w-full '>
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead className='text-center'>Address</TableHead>
               <TableHead className='text-center'>Cupo</TableHead>
+              <TableHead className='text-center'>Saldo actual</TableHead>
               <TableHead className='text-center'>Deudas</TableHead>
             </TableRow>
           </TableHeader>
@@ -67,6 +70,9 @@ function AdminDashboard () {
                     {formatEther(lender.agreedQuota)}
                   </TableCell>
                   <TableCell className='text-center'>
+                    {formatEther(lender.currentQuota)}
+                  </TableCell>
+                  <TableCell className='text-center'>
                     {lender.lendings ? (
                       <Dialog>
                         <DialogTrigger
@@ -82,6 +88,17 @@ function AdminDashboard () {
                               Acá podras ver todas las deudas de este usuario
                             </DialogDescription>
                           </DialogHeader>
+                          {(currentAddresData as any) && (
+                            <>
+                              <p>
+                                Cupo:{' '}
+                                {formatEther((currentAddresData as any)[0])}
+                                <br />
+                                Saldo Actual:{' '}
+                                {formatEther((currentAddresData as any)[1])}
+                              </p>
+                            </>
+                          )}
                           <ScrollArea className='h-[200px] w-[350px] rounded-md border p-4'>
                             {lender.lendings.map(
                               (lending: any, index: number) => (
@@ -91,6 +108,9 @@ function AdminDashboard () {
                                     <p>
                                       Valor inicial:{' '}
                                       {formatEther(lending.initialAmount)}
+                                    </p>
+                                    <p>
+                                      Intereses: {formatEther(lending.interest)}
                                     </p>
                                     <p>
                                       Deuda total: {formatEther(lending.amount)}
@@ -149,6 +169,17 @@ function AdminDashboard () {
                       placeholder='Escribe una dirección'
                       onChange={e => setCurrentAddress(e.target.value)}
                     />
+                    {(currentAddresData as any) && (
+                      <>
+                        <p>
+                          Cupo: {formatEther((currentAddresData as any)[0])}
+                          <br />
+                          Saldo Actual:{' '}
+                          {formatEther((currentAddresData as any)[1])}
+                        </p>
+                      </>
+                    )}
+
                     {addressData ? (
                       <ScrollArea className='h-[200px] w-[350px] rounded-md border p-4'>
                         {(addressData as any[]).map(
@@ -159,6 +190,9 @@ function AdminDashboard () {
                                 <p>
                                   Valor inicial:{' '}
                                   {formatEther(lending.initialAmount)}
+                                </p>
+                                <p>
+                                  Intereses: {formatEther(lending.interest)}
                                 </p>
                                 <p>
                                   Deuda total: {formatEther(lending.amount)}
