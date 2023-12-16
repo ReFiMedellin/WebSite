@@ -49,7 +49,7 @@ function AdminDashboard () {
           <TableHeader>
             <TableRow>
               <TableHead className='text-center'>Address</TableHead>
-              <TableHead className='text-center'>Cupo Aprovado</TableHead>
+              <TableHead className='text-center'>Cupo Aprobado</TableHead>
               <TableHead className='text-center'>Cupo Disponible</TableHead>
               <TableHead className='text-center'>Cupo Utilizado</TableHead>
             </TableRow>
