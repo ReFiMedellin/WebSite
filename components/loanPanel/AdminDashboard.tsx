@@ -49,9 +49,9 @@ function AdminDashboard () {
           <TableHeader>
             <TableRow>
               <TableHead className='text-center'>Address</TableHead>
-              <TableHead className='text-center'>Cupo</TableHead>
-              <TableHead className='text-center'>Saldo actual</TableHead>
-              <TableHead className='text-center'>Deudas</TableHead>
+              <TableHead className='text-center'>Cupo Aprovado</TableHead>
+              <TableHead className='text-center'>Cupo Disponible</TableHead>
+              <TableHead className='text-center'>Cupo Utilizado</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
