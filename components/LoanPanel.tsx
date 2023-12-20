@@ -13,7 +13,7 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
         Bienvenido al panel de prestamos de ReFiMedellín
       </h2>
       <div className='lendPanel'>
-        <TotalFunds />
+        <TotalFunds isAdmin={isAdmin} />
         <FundLend />
         <RecentLends />
         {isAdmin && (

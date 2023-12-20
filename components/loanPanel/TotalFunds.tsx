@@ -11,12 +11,14 @@ import {
 import AnimatedPrice from './AnimatedPrice'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
-import { useTotalFunds, useWithdraw } from '@/hooks'
+import { useContractBalance, useTotalFunds, useWithdraw } from '@/hooks'
 import { formatEther } from 'viem'
 
-function TotalFunds () {
+function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
   const { data: totalValue, isLoading } = useTotalFunds()
   const { writeAsync: withdraw } = useWithdraw()
+
+  const { data: contractValue } = useContractBalance()
   const handleOnWithdraw = async () => {
     try {
       await withdraw()
@@ -76,6 +78,12 @@ function TotalFunds () {
             <AnimatedPrice
               price={parseFloat(formatEther(totalValue as bigint))}
             />
+            {isAdmin && (
+              <p className='w-full text-start'>
+                Saldo actual del contrato:{' '}
+                <strong> {formatEther(contractValue as bigint)} CUsd$</strong>
+              </p>
+            )}
             {/* <p className='text-xs text-muted-foreground'>
               +
               {BigInt(totalValue as bigint) == BigInt(0) ||

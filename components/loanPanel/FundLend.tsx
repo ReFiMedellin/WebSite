@@ -40,6 +40,14 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { useErc20Spendance } from '@/hooks/useErc20Spendance'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../ui/select'
 
 function FundLend () {
   const fundForm = useForm()
@@ -125,11 +133,7 @@ function FundLend () {
                   control={lendForm.control}
                   name='amount'
                   rules={{
-                    required: 'Este campo es requerido',
-                    min: {
-                      value: 0,
-                      message: 'El monto debe ser mayor a 0'
-                    }
+                    required: 'Este campo es requerido'
                   }}
                   render={({ field }) => (
                     <FormItem className='text-start  w-full'>
@@ -155,14 +159,38 @@ function FundLend () {
                     },
                     max: {
                       value: 12,
-                      message: 'La cantidad de meses debe ser menor o igual a 12'
+                      message:
+                        'La cantidad de meses debe ser menor o igual a 12'
                     }
                   }}
                   render={({ field }) => (
                     <FormItem className='text-start  w-full'>
                       <FormLabel>Meses</FormLabel>
                       <FormControl>
-                        <Input type='number' placeholder='6' {...field} />
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder='Escoge una cantidad de meses' />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectItem value='1'>1</SelectItem>
+                              <SelectItem value='2'>2</SelectItem>
+                              <SelectItem value='3'>3</SelectItem>
+                              <SelectItem value='4'>4</SelectItem>
+                              <SelectItem value='5'>5</SelectItem>
+                              <SelectItem value='6'>6</SelectItem>
+                              <SelectItem value='7'>7</SelectItem>
+                              <SelectItem value='8'>8</SelectItem>
+                              <SelectItem value='9'>9</SelectItem>
+                              <SelectItem value='10'>10</SelectItem>
+                              <SelectItem value='11'>11</SelectItem>
+                              <SelectItem value='12'>12</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
