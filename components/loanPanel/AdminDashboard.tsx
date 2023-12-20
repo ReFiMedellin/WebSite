@@ -42,6 +42,18 @@ function AdminDashboard () {
     currentAddress as Address
   )
   const { data: currentAddresData } = useAggreedQuota(currentAddress as Address)
+  function getTotalTime (timeStamp: bigint) {
+    const initialDate = new Date(Number(timeStamp) * 1000)
+    const currentDate = new Date()
+
+    // Calcular la diferencia en milisegundos entre las dos fechas
+    const diffInMilliseconds = currentDate.getTime() - initialDate.getTime()
+
+    // Convertir la diferencia en milisegundos a días
+    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24))
+
+    return diffInDays >= 0 ? diffInDays : 0
+  }
   return (
     <div className='max-w-full overflow-y-scroll lg:col-span-2'>
       <Card className='w-full '>
@@ -113,11 +125,22 @@ function AdminDashboard () {
                                       Intereses: {formatEther(lending.interest)}
                                     </p>
                                     <p>
+                                      Valor pagado:{' '}
+                                      {parseFloat(formatEther(lending.amount)) -
+                                        parseFloat(
+                                          formatEther(lending.initialAmount)
+                                        )}
+                                    </p>
+                                    <p>
                                       Deuda total: {formatEther(lending.amount)}
                                     </p>
                                     <p>
                                       Cantidad de meses:{' '}
                                       {Number(lending.blockMonths)}
+                                    </p>
+                                    <p>
+                                      Dias transcurridos:{' '}
+                                      {getTotalTime(lending.startDate)}
                                     </p>
                                   </div>
                                   <br />
@@ -195,11 +218,22 @@ function AdminDashboard () {
                                   Intereses: {formatEther(lending.interest)}
                                 </p>
                                 <p>
+                                  Valor pagado:{' '}
+                                  {parseFloat(formatEther(lending.amount)) -
+                                    parseFloat(
+                                      formatEther(lending.initialAmount)
+                                    )}
+                                </p>
+                                <p>
                                   Deuda total: {formatEther(lending.amount)}
                                 </p>
                                 <p>
                                   Cantidad de meses:{' '}
                                   {Number(lending.blockMonths)}
+                                </p>
+                                <p>
+                                  Dias transcurridos:{' '}
+                                  {getTotalTime(lending.startDate)}
                                 </p>
                               </div>
                               <br />

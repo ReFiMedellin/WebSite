@@ -10,7 +10,9 @@ function useRecentLends () {
     args: [address as Address, 0, 10],
     watch: true
   })
+  console.debug(recentLends.data)
   return recentLends
+
 }
 
 export { useRecentLends }

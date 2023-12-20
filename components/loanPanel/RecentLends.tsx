@@ -98,6 +98,38 @@ function RecentLends () {
     }
   }
 
+  function getTotalTime (timeStamp: bigint, monthsToAdd: number) {
+    const initialDate = new Date(Number(timeStamp) * 1000)
+    // Añadir la cantidad de meses especificada a la fecha inicial
+    initialDate.setMonth(initialDate.getMonth() + monthsToAdd)
+
+    const currentDate = new Date()
+
+    // Calcular la diferencia en milisegundos entre las dos fechas
+    const diffInMilliseconds = initialDate.getTime() - currentDate.getTime()
+
+    // Convertir la diferencia en milisegundos a días
+    const diffInDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
+
+    return diffInDays > 0 ? diffInDays : 0
+  }
+  function getTotalDays (timeStamp: bigint, monthsToAdd: number) {
+    const initialDate = new Date(Number(timeStamp) * 1000)
+
+
+    // Crear una nueva fecha que es "monthsToAdd" meses después de "initialDate"
+    const futureDate = new Date(initialDate)
+    futureDate.setMonth(initialDate.getMonth() + monthsToAdd)
+
+    // Calcular la diferencia en milisegundos entre las dos fechas
+    const diffInMilliseconds = futureDate.getTime() - initialDate.getTime()
+
+    // Convertir la diferencia en milisegundos a días
+    const totalDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
+
+    return totalDays
+  }
+
   return (
     <Card className='min-h-full recent'>
       <CardHeader>
@@ -108,8 +140,12 @@ function RecentLends () {
           <TableHeader>
             <TableRow>
               <TableHead className='text-center'>ID</TableHead>
-              <TableHead className='text-center'>Deuda</TableHead>
               <TableHead className='text-center'>Valor inicial</TableHead>
+              <TableHead className='text-center'>Intereses</TableHead>
+              <TableHead className='text-center'>Deuda actual</TableHead>
+              <TableHead className='text-center'>Valor pagado</TableHead>
+              <TableHead className='text-center'>Plazo</TableHead>
+              <TableHead className='text-center'>Plazo restante</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -240,11 +276,26 @@ function RecentLends () {
                       </DialogHeader>
                     </DialogContent>
                   </Dialog>
+
+                  <TableCell className='text-center'>
+                    {formatEther(loan.initialAmount)}
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    {formatEther(loan.interest)}
+                  </TableCell>
                   <TableCell className='text-center'>
                     {formatEther(loan.amount)}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {formatEther(loan.initialAmount)}
+                    {parseFloat(formatEther(loan.amount)) -
+                      parseFloat(formatEther(loan.initialAmount))}
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    {getTotalDays(loan.startDate, Number(loan.blockMonths))} Dias
+                  </TableCell>
+                  <TableCell className='text-center'>
+                    {getTotalTime(loan.startDate, Number(loan.blockMonths))}{' '}
+                    Dias
                   </TableCell>
                 </TableRow>
               ))
@@ -252,7 +303,7 @@ function RecentLends () {
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TableCell colSpan={3}>Deuda total</TableCell>
+              <TableCell colSpan={6}>Deuda total</TableCell>
               <TableCell className='text-right'>{getTotaDebt()}$</TableCell>
             </TableRow>
           </TableFooter>
