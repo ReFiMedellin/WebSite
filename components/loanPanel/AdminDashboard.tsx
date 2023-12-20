@@ -54,6 +54,21 @@ function AdminDashboard () {
 
     return diffInDays >= 0 ? diffInDays : 0
   }
+  function getTotalDays (timeStamp: bigint, monthsToAdd: number) {
+    const initialDate = new Date(Number(timeStamp) * 1000)
+
+    // Crear una nueva fecha que es "monthsToAdd" meses después de "initialDate"
+    const futureDate = new Date(initialDate)
+    futureDate.setMonth(initialDate.getMonth() + monthsToAdd)
+
+    // Calcular la diferencia en milisegundos entre las dos fechas
+    const diffInMilliseconds = futureDate.getTime() - initialDate.getTime()
+
+    // Convertir la diferencia en milisegundos a días
+    const totalDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
+
+    return totalDays
+  }
   return (
     <div className='max-w-full overflow-y-scroll lg:col-span-2'>
       <Card className='w-full '>
@@ -135,8 +150,12 @@ function AdminDashboard () {
                                       Deuda total: {formatEther(lending.amount)}
                                     </p>
                                     <p>
-                                      Cantidad de meses:{' '}
-                                      {Number(lending.blockMonths)}
+                                      Plazo de prestamo:{' '}
+                                      {getTotalDays(
+                                        lending.startDate,
+                                        Number(lending.blockMonths)
+                                      )}{' '}
+                                      Dias
                                     </p>
                                     <p>
                                       Dias transcurridos:{' '}
@@ -228,8 +247,11 @@ function AdminDashboard () {
                                   Deuda total: {formatEther(lending.amount)}
                                 </p>
                                 <p>
-                                  Cantidad de meses:{' '}
-                                  {Number(lending.blockMonths)}
+                                  {getTotalDays(
+                                    lending.startDate,
+                                    Number(lending.blockMonths)
+                                  )}{' '}
+                                  Dias
                                 </p>
                                 <p>
                                   Dias transcurridos:{' '}

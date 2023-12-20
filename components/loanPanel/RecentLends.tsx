@@ -113,6 +113,7 @@ function RecentLends () {
 
     return diffInDays > 0 ? diffInDays : 0
   }
+  
   function getTotalDays (timeStamp: bigint, monthsToAdd: number) {
     const initialDate = new Date(Number(timeStamp) * 1000)
 
