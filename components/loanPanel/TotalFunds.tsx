@@ -18,7 +18,7 @@ function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
   const { data: totalValue, isLoading } = useTotalFunds()
   const { writeAsync: withdraw } = useWithdraw()
 
-  const { data: contractValue } = useContractBalance()
+  const { data } = useContractBalance()
   const handleOnWithdraw = async () => {
     try {
       await withdraw()
@@ -81,7 +81,7 @@ function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
             {isAdmin && (
               <p className='w-full text-start'>
                 Saldo actual del contrato:{' '}
-                <strong> {formatEther(contractValue as bigint)} CUsd$</strong>
+                <strong> {data ? formatEther(data as bigint) : 0} CUsd$</strong>
               </p>
             )}
             {/* <p className='text-xs text-muted-foreground'>
