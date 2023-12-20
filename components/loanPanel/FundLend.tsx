@@ -151,11 +151,11 @@ function FundLend () {
                     required: 'Este campo es requerido',
                     min: {
                       value: 0,
-                      message: 'El monto debe ser mayor a 0'
+                      message: 'La cantidad de meses debe ser mayor a 0'
                     },
                     max: {
                       value: 12,
-                      message: 'El monto debe ser menor a 12'
+                      message: 'La cantidad de meses debe ser menor o igual a 12'
                     }
                   }}
                   render={({ field }) => (
