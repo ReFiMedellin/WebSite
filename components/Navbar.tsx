@@ -1,15 +1,18 @@
 'use client'
 import { useIsMobile } from '@/hooks'
-import { Web3Button } from '@web3modal/react'
+import { Web3Button, useWeb3Modal } from '@web3modal/react'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { RxTextAlignJustify } from 'react-icons/rx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { useAccount } from 'wagmi'
 function Navbar () {
   const t = useTranslations('Navbar')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isMobile = useIsMobile()
+  const { isConnected } = useAccount()
+  const { open } = useWeb3Modal()
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -36,6 +39,28 @@ function Navbar () {
     return null
   }
 
+  function handleCommunity (link: string) {
+    if (isConnected) {
+      return (
+        <Link onClick={() => setIsMenuOpen(false)} href={link}>
+          {t(`${link}`)}
+        </Link>
+      )
+    } else {
+      return (
+        <button
+          className='bg-none border-none text-white font-bold'
+          onClick={() => {
+            open()
+          }}
+        >
+          {' '}
+          {t(`${link}`)}
+        </button>
+      )
+    }
+  }
+
   return (
     <nav className='fixed top-0 w-full py-6 z-50  bg-black backdrop-blur-md bg-opacity-40 shadow-lg'>
       <ul className='w-full text-white flex px-10 flex-row gap-2 justify-between font-bold items-center'>
@@ -53,9 +78,13 @@ function Navbar () {
           <>
             {routes.map(({ link }, index) => (
               <li key={index}>
-                <Link onClick={() => setIsMenuOpen(false)} href={link}>
-                  {t(`${link}`)}
-                </Link>
+                {link === '/community' ? (
+                  handleCommunity(link)
+                ) : (
+                  <Link onClick={() => setIsMenuOpen(false)} href={link}>
+                    {t(`${link}`)}
+                  </Link>
+                )}
               </li>
             ))}
             <li>
@@ -76,9 +105,13 @@ function Navbar () {
             {' '}
             {routes.map(({ link }, index) => (
               <li key={index}>
-                <Link onClick={() => setIsMenuOpen(false)} href={link}>
-                  {t(`${link}`)}
-                </Link>
+                {link === '/community' ? (
+                  handleCommunity(link)
+                ) : (
+                  <Link onClick={() => setIsMenuOpen(false)} href={link}>
+                    {t(`${link}`)}
+                  </Link>
+                )}
               </li>
             ))}
           </motion.ul>

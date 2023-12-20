@@ -21,7 +21,7 @@ function Page () {
   const [isMounted, setIsMounted] = useState(false)
   const [hasNFT, setHasNFT] = useState(false)
   const router = useRouter()
-  const { address, isDisconnected } = useAccount()
+  const { address, isDisconnected, isConnected } = useAccount()
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')
   )
@@ -64,8 +64,9 @@ function Page () {
   const { error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
 
   if (!isMounted) return null
+  if (isDisconnected) return redirect('/')
 
-  if (chain?.id !== chains[0].id) {
+  if (isConnected && chain?.id !== chains[0].id) {
     switchNetwork?.(chains[0].id)
     redirect('/')
   }
