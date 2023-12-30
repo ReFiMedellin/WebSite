@@ -60,7 +60,7 @@ export default function Home () {
       setIsSendingModal(false)
     }
   }
-// :)
+  // :)
   async function fetchMD (path: string) {
     if (path === '') {
       setIsModalMD(false)
@@ -172,55 +172,6 @@ export default function Home () {
           </motion.div>
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {popUpOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 100 }}
-            exit={{ opacity: 0 }}
-            className='fixed top-0 left-0 z-20 right-0 bottom-0 bg-black bg-opacity-25 flex justify-center items-center'
-          >
-            <motion.div
-              initial={{ y: -100 }}
-              animate={{ y: 0 }}
-              exit={{ y: 100 }}
-              className='relative max-w-[90vw] lg:npw-1/2 z-50 bg-white p-8 rounded-lg flex flex-col gap-4 '
-            >
-              <RiCloseFill
-                onClick={() => setPopUpOpen(false)}
-                className='absolute top-3 right-3 font-bold text-xl cursor-pointer  hover:bg-slate-400 hover:bg-opacity-20 hover:rounded-full'
-              />
-              <h3 className='text-2xl font-bold'>{t('popUp.title')}</h3>
-              <p>
-                {t('popUp.description.part1')}{' '}
-                <span className='font-bold'>
-                  {t('popUp.description.part2')}{' '}
-                </span>
-                {/* {t('popUp.description.part3')} */}
-              </p>
-              {/* <p className='font-light text-gray-500 text-center'>
-                &quot;{t('popUp.subDescription')}&quot;
-              </p> */}
-              <div className='flex flex-row w-full gap-2'>
-                <Link
-                  target='_blank'
-                  className='w-full rounded-md text-center px-4 py-2  bg-[#8C84EE] text-white font-bold text-base md:text-lg'
-                  href='https://lu.ma/refimedellinpublic'
-                >
-                  {t('popUp.buttons.option1')}
-                </Link>
-                <button
-                  className='w-full rounded-md text-center px-4 py-2 bg-[#c66363] text-white font-bold text-base md:text-lg'
-                  onClick={() => setPopUpOpen(false)}
-                >
-                  {t('popUp.buttons.option2')}
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen bg-[#1B2731] w-full'>
         <div className='h-full lg:w-5/6  flex flex-row justify-center items-center'>
           <div className='flex justify-center items-center w-full h-full'>

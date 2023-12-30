@@ -7,6 +7,10 @@ import { RxTextAlignJustify } from 'react-icons/rx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useAccount } from 'wagmi'
+import { Dialog } from '@radix-ui/react-dialog'
+import { ToastAction } from '@radix-ui/react-toast'
+import { toast } from './ui/use-toast'
+import { Button } from './ui/button'
 function Navbar () {
   const t = useTranslations('Navbar')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -14,6 +18,24 @@ function Navbar () {
   const { isConnected } = useAccount()
   const { open } = useWeb3Modal()
   const [isMounted, setIsMounted] = useState(false)
+
+  const [scroll, setScroll] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 25) {
+        setScroll(true)
+      } else {
+        setScroll(false)
+      }
+    }
+
+    // Event listener
+    window.addEventListener('scroll', onScroll)
+
+    // Limpiar el listener
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     setIsMounted(true)
@@ -51,10 +73,25 @@ function Navbar () {
         <button
           className='bg-none border-none text-white font-bold'
           onClick={() => {
-            open()
+            toast({
+              title: 'Opps',
+              description:
+                'To access this Section you need to connect your wallet to verify you hold one of our community NFTs',
+              action: (
+                <ToastAction altText='Connect wallet'>
+                  <Button
+                  variant={'ghost'}
+                    onClick={() => {
+                      open()
+                    }}
+                  >
+                    Connect
+                  </Button>
+                </ToastAction>
+              )
+            })
           }}
         >
-          {' '}
           {t(`${link}`)}
         </button>
       )
@@ -62,7 +99,11 @@ function Navbar () {
   }
 
   return (
-    <nav className='fixed top-0 w-full py-6 z-50  bg-black backdrop-blur-md bg-opacity-40 shadow-lg'>
+    <nav
+      className={`${
+        scroll ? 'top-0 fixed' : 'top-6 absolute'
+      }   w-full py-6 z-50  bg-black backdrop-blur-md bg-opacity-40 shadow-lg`}
+    >
       <ul className='w-full text-white flex px-10 flex-row gap-2 justify-between font-bold items-center'>
         {isMobile ? (
           <>

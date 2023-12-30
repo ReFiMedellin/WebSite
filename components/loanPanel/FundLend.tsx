@@ -110,7 +110,7 @@ function FundLend () {
   }
 
   return (
-    <Tabs defaultValue='Fund' className='fundLend'>
+    <Tabs defaultValue='Loan' className='fundLend'>
       <TabsList className='grid w-full grid-cols-2'>
         <TabsTrigger value='Loan'>Prestar</TabsTrigger>
         <TabsTrigger value='Fund'>Añadir capital</TabsTrigger>

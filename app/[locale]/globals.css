@@ -127,12 +127,10 @@
   .recent {
     grid-area: recent;
     width: 100%;
-
   }
   .total {
     grid-area: total;
     width: 100%;
-
   }
 }
 
@@ -162,4 +160,15 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+.animate {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  animation: slide infinite 20s linear;
+}
+@keyframes slide {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
