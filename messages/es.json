@@ -1,5 +1,7 @@
 {
   "Landing": {
+    "header": " ¡Entra a nuestro Calendario Público de eventos y entérate de los próximos eventos, no te quedes por fuera y apoya a la comunidad",
+
     "popUp": {
       "title": "Entérate de nuestros eventos en el Calendario Público",
       "description": {
@@ -51,8 +53,13 @@
       "title": "Proyectos",
       "modalNotProject": "Actualmente estamos en construcción..."
     },
-    "team": "Equipo",
-    "patners": "Proyectos Aliados",
+    "team": {
+      "title": "Equipo",
+      "patners": "Proyectos Aliados"
+    },
+    "patners": {
+      "title": "Patrocinadores"
+    },
     "footer": {
       "title": "Más información",
       "description": {
@@ -109,6 +116,11 @@
     "/community": "Contenido exclusivo",
     "https://blog": {
       "refimedellin": { "org/": "Blog" }
+    },
+    "toast": {
+      "title": "Opps",
+      "description": "Para acceder a esta sección necesitas conectar tu billetera para verificar que tienes alguno de los NFTs de nuestra comunidad.",
+      "connect": "Conectar"
     }
   },
   "Donate": {

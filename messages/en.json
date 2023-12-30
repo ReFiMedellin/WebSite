@@ -1,5 +1,6 @@
 {
   "Landing": {
+    "header": "Enter our Public Calendar of events and find out about upcoming events ",
     "popUp": {
       "title": "Find out about our events in the Public Calendar",
       "description": {
@@ -51,8 +52,13 @@
       "title": "Projects",
       "modalNotProject": "We are currently under construction..."
     },
-    "team": "Team",
-    "patners": "Patners",
+    "team": {
+      "title": "To access this area, you must first connect your wallet",
+      "patners": "Allied projects"
+    },
+    "patners": {
+      "title": "Patners"
+    },
     "footer": {
       "title": "More Information",
       "description": {
@@ -109,6 +115,11 @@
     "/community": "Exclusive content",
     "https://blog": {
       "refimedellin": { "org/": "Blog" }
+    },
+    "toast": {
+      "title": "Opps",
+      "description": "To access this Section you need to connect your wallet to verify you hold one of our community NFTs",
+      "connect": "Connect"
     }
   },
   "Donate": {

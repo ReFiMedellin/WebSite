@@ -74,18 +74,17 @@ function Navbar () {
           className='bg-none border-none text-white font-bold'
           onClick={() => {
             toast({
-              title: 'Opps',
-              description:
-                'To access this Section you need to connect your wallet to verify you hold one of our community NFTs',
+              title: t('toast.title'),
+              description: t('toast.description'),
               action: (
                 <ToastAction altText='Connect wallet'>
                   <Button
-                  variant={'ghost'}
+                    variant={'ghost'}
                     onClick={() => {
                       open()
                     }}
                   >
-                    Connect
+                    {t('toast.connect')}
                   </Button>
                 </ToastAction>
               )

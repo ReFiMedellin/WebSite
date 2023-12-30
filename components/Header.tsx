@@ -1,15 +1,15 @@
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import React from 'react'
 
 function Header () {
+  const t = useTranslations('Landing')
+
   return (
-    <div
-      className='w-screen  overflow-hidden  bg-[#0D1C17] text-white'
-    >
+    <div className='w-screen  overflow-hidden  bg-[#0D1C17] text-white'>
       <div className='animate font-bold'>
         <Link target='_blank' href='https://lu.ma/refimedellinpublic'>
-          ¡Entra a nuestro Calendario Público de eventos y entérate de los
-          próximos eventos, no te quedes por fuera y apoya a la comunidad
+          {t('header')}
         </Link>
       </div>
     </div>
