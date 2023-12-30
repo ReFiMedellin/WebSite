@@ -21,6 +21,7 @@ import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 import { useEffect, useState } from 'react'
 import { parseEther } from 'viem'
 import { AnimatePresence, motion } from 'framer-motion'
+import GlodollarLogo from '@/assets/images/Glodollar.png'
 import {
   RxInstagramLogo,
   RxLinkedinLogo,
@@ -410,10 +411,27 @@ export default function Home () {
           alt='borde superior'
         />
         <div className='flex flex-col gap-5 justify-center  items-center'>
-          <h2 className='font-bold text-4xl text-black'>{t('team')}</h2>
+          <h2 className='font-bold text-4xl text-black'>{t('team.title')}</h2>
           <TeamMembers />
-          <h2 className='font-bold text-4xl text-black'>{t('patners')}</h2>
+          <h2 className='font-bold text-4xl text-black'>{t('team.patners')}</h2>
           <Patners />
+        </div>
+      </section>
+      <section
+        id='patners'
+        className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
+      >
+        <h2 className='font-bold w-full text-center text-white text-5xl'>
+          {t('patners.title')}
+        </h2>
+        <div className='flex items-center gap-5'>
+          <div className=' text-white flex flex-col gap-2 justify-center items-center'>
+            <Image src={GlodollarLogo} alt='Glodollar Logo' />
+            <p className='w-full text-center'>
+              XXXXXX <br />
+              XXXXXX
+            </p>
+          </div>
         </div>
       </section>
       <footer className='bg-slate-200 w-full '>
