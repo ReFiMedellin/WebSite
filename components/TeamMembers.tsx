@@ -18,7 +18,7 @@ const TeamMembers = () => {
   const team = [
     {
       name: 'Juan Giraldo',
-      role: 'Founder',
+      role: 'Financial',
       imageSrc: Juan,
       socialLinks: {
         twitter: 'https://twitter.com/JuanJGiraldoC',
@@ -29,7 +29,7 @@ const TeamMembers = () => {
     },
     {
       name: 'Tereza Bizkova',
-      role: 'Co-Founder',
+      role: 'Relationships',
       imageSrc: Tereza,
       socialLinks: {
         twitter: 'https://twitter.com/TerezaBizkova',
@@ -40,7 +40,7 @@ const TeamMembers = () => {
     },
     {
       name: 'Alejandro Soto',
-      role: 'Co-Founder',
+      role: 'Education',
       imageSrc: Alejandro,
       socialLinks: {
         twitter: 'https://twitter.com/alejandro99so',
@@ -79,14 +79,14 @@ const TeamMembers = () => {
         telegram: 'https://t.me/xflypeztic'
       }
     },
-    {
-      name: 'Eamon',
-      role: 'Co-Founder',
-      imageSrc: Eamon,
-      socialLinks: {
-        twitter: 'https://twitter.com/cryptochimba',
-        telegram: 'https://t.me/cryptochimba'
-      }
+  //  {
+  //    name: 'Eamon',
+  //    role: 'Co-Founder',
+  //    imageSrc: Eamon,
+  //    socialLinks: {
+  //      twitter: 'https://twitter.com/cryptochimba',
+  //      telegram: 'https://t.me/cryptochimba'
+  //    }
     }
   ]
 
