@@ -26,7 +26,7 @@ const Patners = () => {
         telegram: 'https://t.me/dg_guardians',
         linkedin: 'https://www.linkedin.com/company/dg-guardians/'
       }
-   // },
+      },
    // {
    //   name: 'Inkom.io',
    //   role: 'Treasury',
@@ -44,6 +44,7 @@ const Patners = () => {
       imageSrc: DotLabs,
       socialLinks: {}
     }
+    },
   ]
 
   return (
