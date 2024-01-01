@@ -44,7 +44,6 @@ const Patners = () => {
       imageSrc: DotLabs,
       socialLinks: {}
     }
-    },
   ]
 
   return (
