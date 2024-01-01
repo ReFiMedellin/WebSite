@@ -11,7 +11,7 @@ import Ximena from '@/assets/images/PFP-Ximena.webp'
 import Eamon from '@/assets/images/PFP-Eamon.webp'
 import Edward from '@/assets/images/PFP-Edward.webp'
 import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
-import Inkom from '@/assets/images/PFP-Inkom.webp'
+// import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
 
 const TeamMembers = () => {
