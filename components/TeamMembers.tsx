@@ -87,7 +87,7 @@ const TeamMembers = () => {
   //      twitter: 'https://twitter.com/cryptochimba',
   //      telegram: 'https://t.me/cryptochimba'
   //    }
-    }
+  //  }
   ]
 
 
