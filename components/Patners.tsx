@@ -26,17 +26,18 @@ const Patners = () => {
         telegram: 'https://t.me/dg_guardians',
         linkedin: 'https://www.linkedin.com/company/dg-guardians/'
       }
-    },
-    {
-      name: 'Inkom.io',
-      role: 'Treasury',
-      imageSrc: Inkom,
-      socialLinks: {
-        twitter: 'https://twitter.com/inkom_io',
-        instagram: 'https://www.instagram.com/inkom.io/',
-        telegram: 'https://t.me/inkom-io'
-      }
-    },
+   // },
+   // {
+   //   name: 'Inkom.io',
+   //   role: 'Treasury',
+   //   imageSrc: Inkom,
+   //   socialLinks: {
+   //     twitter: 'https://twitter.com/inkom_io',
+   //     instagram: 'https://www.instagram.com/inkom.io/',
+   //     telegram: 'https://t.me/inkom-io'
+   //   }
+   // },
+  
     {
       name: 'DotLabs()',
       role: 'Educational Partner',
