@@ -428,8 +428,8 @@ export default function Home () {
           <div className=' text-white flex flex-col gap-2 justify-center items-center'>
             <Image src={GlodollarLogo} alt='Glodollar Logo' />
             <p className='w-full text-center'>
-              XXXXXX <br />
-              XXXXXX
+              Refi Medellín is the first local node from RefiDAO to swap part of their treasury for Glo Dollars.<br />
+              We're committed to hold at least 30% of our treasury in Glo Dollars. 
             </p>
           </div>
         </div>
