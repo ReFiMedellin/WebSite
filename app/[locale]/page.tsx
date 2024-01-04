@@ -414,15 +414,15 @@ export default function Home () {
           <h2 className='font-bold text-4xl text-black'>{t('team.title')}</h2>
           <TeamMembers />
           <h2 className='font-bold text-4xl text-black'>{t('team.patners')}</h2>
-          <Patners />
+          <Partners />
         </div>
       </section>
       <section
-        id='patners'
+        id='partners'
         className='min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10'
       >
         <h2 className='font-bold w-full text-center text-white text-5xl'>
-          {t('patners.title')}
+          {t('partners.title')}
         </h2>
         <div className='flex items-center gap-5'>
           <div className=' text-white flex flex-col gap-2 justify-center items-center'>
