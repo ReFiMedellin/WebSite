@@ -429,7 +429,7 @@ export default function Home () {
             <Image src={GlodollarLogo} alt='Glodollar Logo' />
             <p className='w-full text-center'>
               Refi Medellín is the first local node from RefiDAO to swap part of their treasury for Glo Dollars. <br />
-              We're committed to hold at least 30% of our treasury in Glo Dollars. 
+              We are committed to hold at least 30% of our treasury in Glo Dollars. 
             </p>
           </div>
         </div>
