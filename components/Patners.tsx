@@ -14,8 +14,8 @@ import GDG from '@/assets/images/PFP-Green Digital Guardians.webp'
 // import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from '@/assets/images/PFP-Dotlabs.webp'
 
-const Patners = () => {
-  const patners = [
+const Partners = () => {
+  const partners = [
     {
       name: 'Green Digital Guardians',
       role: 'Partner',
