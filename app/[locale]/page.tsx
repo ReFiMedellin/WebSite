@@ -35,7 +35,7 @@ import { RiCloseFill } from 'react-icons/ri'
 import Cards from '@/components/Cards'
 import TeamMembers from '@/components/TeamMembers'
 import { useTranslations } from 'next-intl'
-import { Patners } from '@/components/Patners'
+import { Partners } from '@/components/Partners'
 
 export default function Home () {
   const t = useTranslations('Landing')
