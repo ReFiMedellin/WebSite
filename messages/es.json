@@ -55,9 +55,9 @@
     },
     "team": {
       "title": "Equipo",
-      "patners": "Proyectos Aliados"
+      "partners": "Proyectos Aliados"
     },
-    "patners": {
+    "partners": {
       "title": "Patrocinadores"
     },
     "footer": {
