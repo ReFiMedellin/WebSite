@@ -6,7 +6,7 @@ function Header () {
   const t = useTranslations('Landing')
 
   return (
-    <div className='w-screen  overflow-hidden  bg-[#0D1C17] text-white'>
+    <div className='w-screen  overflow-hidden  bg-purple-950 text-white'>
       <div className='animate font-bold'>
         <Link target='_blank' href='https://lu.ma/refimedellinpublic'>
           {t('header')}
