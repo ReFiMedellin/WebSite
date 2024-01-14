@@ -1,19 +1,21 @@
 import { toast } from '@/components/ui/use-toast'
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import abreviarHash from '@/functions/abreviateHash'
 import { ToastAction } from '@radix-ui/react-toast'
 import React from 'react'
 import { Address, useContractRead, useContractWrite } from 'wagmi'
+import { useNetworkContract } from './useNetworkContract'
 
 function useManageQuota (address?: Address) {
+  const { lendAddress } = useNetworkContract()
   const { data: currentQuota, isLoading } = useContractRead({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'getCurrentQuota',
     args: [address]
   })
   const incrementQuota = useContractWrite({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'increaseQuota',
     onSuccess: async txn => {
@@ -42,7 +44,7 @@ function useManageQuota (address?: Address) {
     }
   })
   const decrementQuota = useContractWrite({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'decreaseQuota',
     onSuccess: async txn => {

@@ -1,21 +1,23 @@
 import { toast } from '@/components/ui/use-toast'
-import { CusdAddress } from '@/constants'
+import { celoLoanAbi, celoLoanAddress } from '@/constants'
 import abreviarHash from '@/functions/abreviateHash'
 import { ToastAction } from '@radix-ui/react-toast'
 import React from 'react'
-import { erc20ABI, useAccount, useContractWrite } from 'wagmi'
+import { useAccount, useContractWrite } from 'wagmi'
+import { useNetworkContract } from './useNetworkContract'
 
-function useApproveErc20 () {
+function useLend () {
   const { address } = useAccount()
-  
-  const approve = useContractWrite({
-    address: CusdAddress,
-    abi: erc20ABI,
-    functionName: 'approve',
+  const { lendAddress } = useNetworkContract()
+
+  const loan = useContractWrite({
+    address: lendAddress,
+    abi: celoLoanAbi,
+    functionName: 'requestLoan',
     account: address,
     onSuccess: async txn => {
       toast({
-        title: 'Capital aprobado con exito',
+        title: 'Prestamo solicitado con exito',
         description: abreviarHash(txn.hash),
         action: (
           <ToastAction altText='Copy'>
@@ -33,13 +35,12 @@ function useApproveErc20 () {
     },
     onError: e => {
       toast({
-        title: 'Error al aprobar capital',
+        title: 'Error al solicitar prestamo',
         description: e.message
       })
     }
   })
-
-  return approve
+  return loan
 }
 
-export { useApproveErc20 }
+export { useLend }

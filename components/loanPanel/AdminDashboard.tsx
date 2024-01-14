@@ -31,7 +31,7 @@ import { useGetLenders, useRecentLoansPerAddress } from '@/hooks'
 import { Address, formatEther, zeroAddress } from 'viem'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import { useAggreedQuota } from '@/hooks/useAggreedQuota'
+import { useAggreedQuota } from '@/hooks/Lend/useAggreedQuota'
 function AdminDashboard () {
   const [currentPage, setCurrentPage] = useState(0)
   const [currentAddress, setCurrentAddress] = useState<string | null>(null)

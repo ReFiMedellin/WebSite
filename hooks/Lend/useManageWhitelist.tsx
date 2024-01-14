@@ -4,10 +4,12 @@ import abreviarHash from '@/functions/abreviateHash'
 import { ToastAction } from '@radix-ui/react-toast'
 import React from 'react'
 import { useContractWrite } from 'wagmi'
+import { useNetworkContract } from './useNetworkContract'
 
 function useManageWhitelist () {
+  const { lendAddress } = useNetworkContract()
   const addToWhiteList = useContractWrite({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'addToWhitelist',
     onSuccess: async txn => {
@@ -36,7 +38,7 @@ function useManageWhitelist () {
     }
   })
   const removeFromWhiteList = useContractWrite({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'removeFromWhitelist',
     onSuccess: async txn => {

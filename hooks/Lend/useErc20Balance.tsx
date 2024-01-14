@@ -2,11 +2,14 @@ import { CusdAddress, celoLoanAbi, celoLoanAddress } from '@/constants'
 import React from 'react'
 import { zeroAddress } from 'viem'
 import { erc20ABI, useAccount, useContractRead } from 'wagmi'
+import { useNetworkContract } from './useNetworkContract'
 
 function useErc20Balance () {
+  const { tokenAddress } = useNetworkContract()
+
   const { address } = useAccount()
   const balance = useContractRead({
-    address: CusdAddress,
+    address: tokenAddress,
     abi: erc20ABI,
     functionName: 'balanceOf',
     watch: true,

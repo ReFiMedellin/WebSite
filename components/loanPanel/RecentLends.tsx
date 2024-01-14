@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import { useRecentLends } from '@/hooks/useRecentLends'
+import { useRecentLends } from '@/hooks/Lend/useRecentLends'
 import { formatEther, parseEther } from 'viem'
 import {
   Dialog,
@@ -40,7 +40,7 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { useApproveErc20, usePayDebt } from '@/hooks'
 import { celoLoanAddress } from '@/constants'
-import { useErc20Spendance } from '@/hooks/useErc20Spendance'
+import { useErc20Spendance } from '@/hooks/Lend/useErc20Spendance'
 
 function RecentLends () {
   const [id, setId] = useState<string | null>(null)

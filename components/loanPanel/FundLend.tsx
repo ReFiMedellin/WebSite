@@ -39,7 +39,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { useErc20Spendance } from '@/hooks/useErc20Spendance'
+import { useErc20Spendance } from '@/hooks/Lend/useErc20Spendance'
 import {
   Select,
   SelectContent,

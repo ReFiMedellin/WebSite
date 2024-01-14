@@ -2,17 +2,18 @@ import { toast } from '@/components/ui/use-toast'
 import { celoLoanAbi, celoLoanAddress } from '@/constants'
 import abreviarHash from '@/functions/abreviateHash'
 import { ToastAction } from '@radix-ui/react-toast'
-import React from 'react'
 import { useContractWrite } from 'wagmi'
+import { useNetworkContract } from './useNetworkContract'
 
-function useWithdraw () {
-  const withdraw = useContractWrite({
-    address: celoLoanAddress,
+function usePayDebt () {
+  const { lendAddress } = useNetworkContract()
+  const payDebt = useContractWrite({
+    address: lendAddress,
     abi: celoLoanAbi,
-    functionName: 'withdrawFunds',
+    functionName: 'payDebt',
     onSuccess: async txn => {
       toast({
-        title: 'Fondos retirados con exito',
+        title: 'Pago debitado con exito',
         description: abreviarHash(txn.hash),
         action: (
           <ToastAction altText='Copy'>
@@ -30,12 +31,12 @@ function useWithdraw () {
     },
     onError: e => {
       toast({
-        title: 'Error al retirar fondos',
+        title: 'Error al debitar pago',
         description: e.message
       })
     }
   })
-  return withdraw
+  return payDebt
 }
 
-export { useWithdraw }
+export { usePayDebt }

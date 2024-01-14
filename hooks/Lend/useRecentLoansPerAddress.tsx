@@ -1,10 +1,12 @@
 import React from 'react'
 import { celoLoanAbi, celoLoanAddress } from '@/constants'
 import { Address, useContractRead } from 'wagmi'
+import { useNetworkContract } from './useNetworkContract'
 
 function useRecentLoansPerAddress (address: Address) {
+  const { lendAddress } = useNetworkContract()
   const recentLends = useContractRead({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'getActiveLoans',
     args: [address as Address, 0, 10],

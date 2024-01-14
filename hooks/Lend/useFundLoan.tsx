@@ -6,10 +6,12 @@ import React from 'react'
 import { parseEther } from 'viem'
 import { useContractWrite, usePrepareContractWrite } from 'wagmi'
 import { useErc20Spendance } from './useErc20Spendance'
+import { useNetworkContract } from './useNetworkContract'
 
 function useFundLoan () {
+  const { lendAddress } = useNetworkContract()
   const fund = useContractWrite({
-    address: celoLoanAddress,
+    address: lendAddress,
     abi: celoLoanAbi,
     functionName: 'capitalize',
     onSuccess: async txn => {
