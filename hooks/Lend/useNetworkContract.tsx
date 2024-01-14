@@ -11,8 +11,8 @@ export function useNetworkContract () {
       }
     case 'optimism':
       return {
-        lendAddress: contractAddresses.celo.lendAddress,
-        tokenAddress: contractAddresses.celo.tokenAddress
+        lendAddress: contractAddresses.optimism.lendAddress,
+        tokenAddress: contractAddresses.optimism.tokenAddress
       }
     default:
       return {

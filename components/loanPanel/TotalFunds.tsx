@@ -81,7 +81,7 @@ function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
             {isAdmin && (
               <p className='w-full text-start'>
                 Saldo actual del contrato:{' '}
-                <strong> {data ? formatEther(data as bigint) : 0} CUsd$</strong>
+                <strong> {data ? formatEther(data as bigint) : 0} Usd$</strong>
               </p>
             )}
             {/* <p className='text-xs text-muted-foreground'>

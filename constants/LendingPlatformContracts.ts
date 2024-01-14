@@ -1,4 +1,4 @@
-import { CusdAddress, celoLoanAddress, optimismLoanAddress } from '.'
+import { CusdAddress, GloDollarAddress, celoLoanAddress, optimismLoanAddress } from '.'
 
 export const contractAddresses = {
   celo: {
@@ -7,6 +7,6 @@ export const contractAddresses = {
   },
   optimism: {
     lendAddress: optimismLoanAddress,
-    tokenAddress: CusdAddress
+    tokenAddress: GloDollarAddress
   }
 }

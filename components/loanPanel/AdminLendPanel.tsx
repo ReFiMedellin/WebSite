@@ -164,7 +164,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que todos los valores son dados en Cusd
+                              Recuerda que todos los valores son dados en Usd
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -266,7 +266,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que el monto ingresado es en Cusd
+                              Recuerda que el monto ingresado es en Usd
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -336,7 +336,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que el monto ingresado es en Cusd
+                              Recuerda que el monto ingresado es en Usd
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
