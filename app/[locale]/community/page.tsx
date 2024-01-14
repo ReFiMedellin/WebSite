@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 const erc1155ABI = require('@/constants/ABI/erc1155ABI.json')
 import { redirect, useRouter } from 'next/navigation'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
@@ -61,15 +61,11 @@ function Page () {
     }
     getNFT()
   }, [])
-  const { error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
+
 
   if (!isMounted) return null
   if (isDisconnected) return redirect('/')
 
-  if (isConnected && chain?.id !== chains[0].id) {
-    switchNetwork?.(chains[0].id)
-    redirect('/')
-  }
   if (isDisconnected && isMounted) {
     return (
       <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>
