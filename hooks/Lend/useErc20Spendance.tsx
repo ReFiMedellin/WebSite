@@ -1,4 +1,3 @@
-import { CusdAddress, celoLoanAddress } from '@/constants'
 import { Address, erc20ABI, useAccount, useContractRead } from 'wagmi'
 import { useNetworkContract } from './useNetworkContract'
 
@@ -10,7 +9,7 @@ function useErc20Spendance () {
     address: tokenAddress,
     abi: erc20ABI,
     functionName: 'allowance',
-    args: [address as Address, celoLoanAddress],
+    args: [address as Address, tokenAddress],
     watch: true
   })
   return spendance

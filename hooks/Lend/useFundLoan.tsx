@@ -1,11 +1,9 @@
 import { ToastAction } from '@/components/ui/toast'
 import { toast } from '@/components/ui/use-toast'
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import abreviarHash from '@/functions/abreviateHash'
 import React from 'react'
-import { parseEther } from 'viem'
-import { useContractWrite, usePrepareContractWrite } from 'wagmi'
-import { useErc20Spendance } from './useErc20Spendance'
+import { useContractWrite } from 'wagmi'
 import { useNetworkContract } from './useNetworkContract'
 
 function useFundLoan () {

@@ -1,5 +1,5 @@
 import { toast } from '@/components/ui/use-toast'
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import abreviarHash from '@/functions/abreviateHash'
 import { ToastAction } from '@radix-ui/react-toast'
 import React from 'react'

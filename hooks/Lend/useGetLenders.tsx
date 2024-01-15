@@ -1,4 +1,4 @@
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import { useContractRead } from 'wagmi'
 import { useNetworkContract } from './useNetworkContract'
 
@@ -12,9 +12,8 @@ function useGetLenders (index: number = 0) {
     watch: true,
     args: [index]
   })
-  console.debug({lenders})
+  console.debug({ lenders })
   return lenders
-
 }
 
 export { useGetLenders }

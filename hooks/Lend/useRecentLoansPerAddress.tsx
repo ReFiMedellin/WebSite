@@ -1,5 +1,5 @@
 import React from 'react'
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import { Address, useContractRead } from 'wagmi'
 import { useNetworkContract } from './useNetworkContract'
 

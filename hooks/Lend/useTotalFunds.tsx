@@ -1,4 +1,4 @@
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import React from 'react'
 import { Address } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'

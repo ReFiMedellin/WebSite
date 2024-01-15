@@ -1,4 +1,4 @@
-import { celoLoanAbi, celoLoanAddress } from '@/constants'
+import { celoLoanAbi } from '@/constants'
 import { Address, useAccount, useContractRead } from 'wagmi'
 import { useNetworkContract } from './useNetworkContract'
 
