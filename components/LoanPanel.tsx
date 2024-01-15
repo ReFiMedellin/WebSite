@@ -49,7 +49,7 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
     ) {
       switchNetwork?.(Chains.optimism)
     }
-  }, [networkQueryParam])
+  }, [networkQueryParam, pathName])
 
   const handleNetworkChange = async (value: string) => {
     console.debug('handleNetworkChange', value)
