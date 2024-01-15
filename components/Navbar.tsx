@@ -91,7 +91,7 @@ function Navbar () {
             })
           }}
         >
-          {t(`${link}`)}
+          {t(`${link === '/community?network=celo' ? '/community' : link}`)}
         </button>
       )
     }

@@ -101,7 +101,7 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
       ) : (
         <h2>
           Debes cambiar la red de tu billetera a{' '}
-          {capitalize(networkQueryParam || 'celo')}
+          {networkQueryParam ? capitalize(networkQueryParam) : 'Celo'}
         </h2>
       )}
     </section>
