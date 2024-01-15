@@ -22,7 +22,6 @@ import {
 } from '@/components/ui/card'
 import { useForm } from 'react-hook-form'
 import { formatEther, parseEther } from 'viem'
-import { useAccount } from 'wagmi'
 import {
   useApproveErc20,
   useErc20Balance,
