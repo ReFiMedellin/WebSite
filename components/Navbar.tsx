@@ -65,7 +65,7 @@ function Navbar () {
     if (isConnected) {
       return (
         <Link onClick={() => setIsMenuOpen(false)} href={link}>
-          {t(`${link}`)}
+          {t(`${link === '/community?network=celo' ? '/community' : link}`)}
         </Link>
       )
     } else {
