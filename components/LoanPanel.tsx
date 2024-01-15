@@ -35,6 +35,8 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
   useEffect(() => {
     if (chain?.id === Chains[networkQueryParam as keyof typeof Chains]) {
       return setIsCorrectNetwork(true)
+    } else {
+      setIsCorrectNetwork(false)
     }
     if (
       !networkQueryParam ||
