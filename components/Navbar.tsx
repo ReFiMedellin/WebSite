@@ -118,7 +118,7 @@ function Navbar () {
           <>
             {routes.map(({ link }, index) => (
               <li key={index}>
-                {link === '/community' ? (
+                {link === '/community?network=celo' ? (
                   handleCommunity(link)
                 ) : (
                   <Link onClick={() => setIsMenuOpen(false)} href={link}>
