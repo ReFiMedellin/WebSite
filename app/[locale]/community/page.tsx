@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LoanPanel from '@/components/LoanPanel'
-import { adminAddress, celoLoanAbi, celoLoanAddress } from '@/constants'
+import { adminAddress } from '@/constants'
 import { useContractEvent } from 'wagmi'
 
 function Page () {
@@ -61,7 +61,6 @@ function Page () {
     }
     getNFT()
   }, [])
-
 
   if (!isMounted) return null
   if (isDisconnected) return redirect('/')

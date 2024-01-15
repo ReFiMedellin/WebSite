@@ -23,7 +23,6 @@ import {
 import { useForm } from 'react-hook-form'
 import { formatEther, parseEther } from 'viem'
 import { useAccount } from 'wagmi'
-import { celoLoanAddress } from '@/constants'
 import {
   useApproveErc20,
   useErc20Balance,
@@ -48,6 +47,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '../ui/select'
+import { useNetworkContract } from '@/hooks/Lend/useNetworkContract'
 
 function FundLend () {
   const fundForm = useForm()
@@ -61,6 +61,7 @@ function FundLend () {
     useErc20Balance()
   const { data: CusdSpendance } = useErc20Spendance()
 
+  const { lendAddress } = useNetworkContract()
   async function onFundSubmit (values: any) {
     try {
       if (
@@ -82,7 +83,7 @@ function FundLend () {
   async function onApproveSubmit (values: any) {
     try {
       await approve({
-        args: [celoLoanAddress, parseEther(values.amount)]
+        args: [lendAddress, parseEther(values.amount)]
       })
       approveForm.reset({
         amount: ''

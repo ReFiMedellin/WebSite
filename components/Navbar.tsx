@@ -50,7 +50,7 @@ function Navbar () {
       link: '/'
     },
     {
-      link: '/community'
+      link: '/community?network=celo'
     },
     {
       link: 'https://blog.refimedellin.org/'
@@ -118,7 +118,7 @@ function Navbar () {
           <>
             {routes.map(({ link }, index) => (
               <li key={index}>
-                {link === '/community?network=celo' ? (
+                {link === '/community' ? (
                   handleCommunity(link)
                 ) : (
                   <Link onClick={() => setIsMenuOpen(false)} href={link}>

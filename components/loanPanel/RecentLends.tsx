@@ -39,8 +39,8 @@ import {
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { useApproveErc20, usePayDebt } from '@/hooks'
-import { celoLoanAddress } from '@/constants'
 import { useErc20Spendance } from '@/hooks/Lend/useErc20Spendance'
+import { useNetworkContract } from '@/hooks/Lend/useNetworkContract'
 
 function RecentLends () {
   const [id, setId] = useState<string | null>(null)
@@ -52,6 +52,7 @@ function RecentLends () {
 
   const { writeAsync: approve } = useApproveErc20()
   const { data: spendance } = useErc20Spendance()
+  const { lendAddress } = useNetworkContract()
 
   function getTotaDebt () {
     if (!recentLends) return 0
@@ -85,7 +86,7 @@ function RecentLends () {
   async function onApproveSubmit (values: any) {
     try {
       await approve({
-        args: [celoLoanAddress, parseEther(values.amount)]
+        args: [lendAddress, parseEther(values.amount)]
       })
       approveForm.reset({
         amount: ''
@@ -113,10 +114,9 @@ function RecentLends () {
 
     return diffInDays > 0 ? diffInDays : 0
   }
-  
+
   function getTotalDays (timeStamp: bigint, monthsToAdd: number) {
     const initialDate = new Date(Number(timeStamp) * 1000)
-
 
     // Crear una nueva fecha que es "monthsToAdd" meses después de "initialDate"
     const futureDate = new Date(initialDate)
@@ -292,7 +292,8 @@ function RecentLends () {
                       parseFloat(formatEther(loan.initialAmount))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {getTotalDays(loan.startDate, Number(loan.blockMonths))} Dias
+                    {getTotalDays(loan.startDate, Number(loan.blockMonths))}{' '}
+                    Dias
                   </TableCell>
                   <TableCell className='text-center'>
                     {getTotalTime(loan.startDate, Number(loan.blockMonths))}{' '}
