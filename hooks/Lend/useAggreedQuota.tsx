@@ -5,6 +5,7 @@ import { useNetworkContract } from './useNetworkContract'
 
 function useAggreedQuota (address: Address) {
   const { lendAddress } = useNetworkContract()
+  
   const data = useContractRead({
     address: lendAddress,
     abi: celoLoanAbi,

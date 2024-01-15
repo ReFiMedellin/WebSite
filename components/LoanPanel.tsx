@@ -25,7 +25,7 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
   const [isCorrectNetwork, setIsCorrectNetwork] = useState(false)
 
   const router = useRouter()
-  const { switchNetwork } = useSwitchNetwork()
+  const { switchNetwork, switchNetworkAsync } = useSwitchNetwork()
   const { chain } = useNetwork()
   const pathName = usePathname()
 
@@ -33,6 +33,9 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
   const networkQueryParam = searchParams.get('network')
 
   useEffect(() => {
+    if (chain?.id === Chains[networkQueryParam as keyof typeof Chains]) {
+      return setIsCorrectNetwork(true)
+    }
     if (
       !networkQueryParam ||
       (networkQueryParam !== 'celo' && networkQueryParam !== 'optimism')
@@ -45,14 +48,12 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
       chain?.id !== Chains.optimism
     ) {
       switchNetwork?.(Chains.optimism)
-    } else {
-      setIsCorrectNetwork(true)
     }
-  }, [networkQueryParam, chain, switchNetwork, router])
+  }, [networkQueryParam])
 
-  const handleNetworkChange = (value: string) => {
+  const handleNetworkChange = async (value: string) => {
     console.debug('handleNetworkChange', value)
-    switchNetwork?.(Chains[value as keyof typeof Chains])
+    await switchNetworkAsync?.(Chains[value as keyof typeof Chains])
     router.push(`${pathName}?network=${value}`)
   }
   return (
