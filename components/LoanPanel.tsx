@@ -38,6 +38,14 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
     } else {
       setIsCorrectNetwork(false)
     }
+  }, [chain])
+
+  useEffect(() => {
+    if (chain?.id === Chains[networkQueryParam as keyof typeof Chains]) {
+      return setIsCorrectNetwork(true)
+    } else {
+      setIsCorrectNetwork(false)
+    }
     if (
       !networkQueryParam ||
       (networkQueryParam !== 'celo' && networkQueryParam !== 'optimism')
