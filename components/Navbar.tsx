@@ -50,7 +50,7 @@ function Navbar () {
       link: '/'
     },
     {
-      link: '/community?network=celo'
+      link: '/community'
     },
     {
       link: 'https://blog.refimedellin.org/'
@@ -65,7 +65,7 @@ function Navbar () {
     if (isConnected) {
       return (
         <Link onClick={() => setIsMenuOpen(false)} href={link}>
-          {t(`${link === '/community?network=celo' ? '/community' : link}`)}
+          {t(`${link}`)}
         </Link>
       )
     } else {
@@ -75,7 +75,14 @@ function Navbar () {
           onClick={() => {
             toast({
               title: t('toast.title'),
-              description: t('toast.description'),
+              description: (
+                <p>
+                  {t('toast.description')}{' '}
+                  <Link className='text-blue-600 font-bold' href={'#'}>
+                    {t('toast.descriptionLink')}
+                  </Link>
+                </p>
+              ),
               action: (
                 <ToastAction altText='Connect wallet'>
                   <Button
@@ -91,7 +98,7 @@ function Navbar () {
             })
           }}
         >
-          {t(`${link === '/community?network=celo' ? '/community' : link}`)}
+          {t(`${link}`)}
         </button>
       )
     }
@@ -118,7 +125,7 @@ function Navbar () {
           <>
             {routes.map(({ link }, index) => (
               <li key={index}>
-                {link === '/community?network=celo' ? (
+                {link === '/community' ? (
                   handleCommunity(link)
                 ) : (
                   <Link onClick={() => setIsMenuOpen(false)} href={link}>
@@ -145,7 +152,7 @@ function Navbar () {
             {' '}
             {routes.map(({ link }, index) => (
               <li key={index}>
-                {link === '/community?network=celo' ? (
+                {link === '/communit' ? (
                   handleCommunity(link)
                 ) : (
                   <Link onClick={() => setIsMenuOpen(false)} href={link}>

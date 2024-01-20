@@ -15,6 +15,8 @@ import {
 } from '@/components/ui/select'
 import { useNetwork, useSwitchNetwork } from 'wagmi'
 import { capitalize } from '@/functions/capitalize'
+import { NetworkModal } from './loanPanel/NetworkModal'
+import { toast } from './ui/use-toast'
 
 const Chains = {
   celo: 42220,
@@ -22,88 +24,83 @@ const Chains = {
 }
 
 function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
-  const [isCorrectNetwork, setIsCorrectNetwork] = useState(false)
-
-  const router = useRouter()
-  const { switchNetwork, switchNetworkAsync } = useSwitchNetwork()
+  const [selectedChain, setSelectedChain] = useState<
+    keyof typeof Chains | null
+  >(null)
+  const [showNetworkModal, setShowNetworkModal] = useState(false)
   const { chain } = useNetwork()
-  const pathName = usePathname()
-
-  const searchParams = new URLSearchParams(window.location.search)
-  const networkQueryParam = searchParams.get('network')
+  const { switchNetworkAsync } = useSwitchNetwork()
 
   useEffect(() => {
-    if (chain?.id === Chains[networkQueryParam as keyof typeof Chains]) {
-      return setIsCorrectNetwork(true)
+    const currentChain =
+      chain?.id === Chains.celo
+        ? 'celo'
+        : chain?.id === Chains.optimism
+        ? 'optimism'
+        : null
+    setSelectedChain(currentChain)
+
+    if (chain?.id !== Chains.celo && chain?.id !== Chains.optimism) {
+      setShowNetworkModal(true)
     } else {
-      setIsCorrectNetwork(false)
+      setShowNetworkModal(false)
     }
   }, [chain])
 
-  useEffect(() => {
-    if (chain?.id === Chains[networkQueryParam as keyof typeof Chains]) {
-      return setIsCorrectNetwork(true)
-    } else {
-      setIsCorrectNetwork(false)
-    }
-    if (
-      !networkQueryParam ||
-      (networkQueryParam !== 'celo' && networkQueryParam !== 'optimism')
-    ) {
-      router.push(`?network=celo`)
-    } else if (networkQueryParam === 'celo' && chain?.id !== Chains.celo) {
-      switchNetwork?.(Chains.celo)
-    } else if (
-      networkQueryParam === 'optimism' &&
-      chain?.id !== Chains.optimism
-    ) {
-      switchNetwork?.(Chains.optimism)
-    }
-  }, [networkQueryParam, pathName])
+  const handleNetworkChange = async (value: keyof typeof Chains) => {
+    const desiredChainId = Chains[value]
+    toast({
+      title: 'Tip',
+      description: 'Recuerda aceptar el cambio de red en tu billetera'
+    })
+    await switchNetworkAsync?.(desiredChainId)
 
-  const handleNetworkChange = async (value: string) => {
-    console.debug('handleNetworkChange', value)
-    await switchNetworkAsync?.(Chains[value as keyof typeof Chains])
-    router.push(`${pathName}?network=${value}`)
+    const checkIfNetworkChanged = () => {
+      if (chain?.id !== desiredChainId) {
+        setTimeout(checkIfNetworkChanged, 1000)
+      } else {
+        setSelectedChain(value)
+      }
+    }
+
+    checkIfNetworkChanged()
+  }
+
+  if (showNetworkModal) {
+    return <NetworkModal onNetworkSelect={handleNetworkChange} />
   }
   return (
     <section className='w-screen min-h-screen flex flex-col lg:p-10 gap-10'>
       <h2 className='text-2xl font-bold'>
         Bienvenido al panel de prestamos de ReFiMedellín
       </h2>
-      {isCorrectNetwork ? (
-        <div className='lendPanel'>
-          <div className='flex flex-col gap-2 place-self-start'>
-            <h4>Selecciona la red</h4>
-            <Select
-              defaultValue={networkQueryParam as string}
-              onValueChange={handleNetworkChange}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder='Red' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='celo'>Celo</SelectItem>
-                <SelectItem value='optimism'>Optimism</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <TotalFunds isAdmin={isAdmin} />
-          <FundLend />
-          <RecentLends />
-          {isAdmin && (
-            <>
-              <AdminLendPanel />
-              <AdminDashboard />
-            </>
-          )}
+      <div className='lendPanel'>
+        <div className='flex flex-col gap-2 place-self-start'>
+          <h4>Selecciona la red</h4>
+          <Select
+            key={selectedChain}
+            defaultValue={selectedChain as string}
+            onValueChange={handleNetworkChange}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Red' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='celo'>Celo</SelectItem>
+              <SelectItem value='optimism'>Optimism</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
-      ) : (
-        <h2>
-          Debes cambiar la red de tu billetera a{' '}
-          {networkQueryParam ? capitalize(networkQueryParam) : 'Celo'}
-        </h2>
-      )}
+        <TotalFunds isAdmin={isAdmin} />
+        <FundLend />
+        <RecentLends />
+        {isAdmin && (
+          <>
+            <AdminLendPanel />
+            <AdminDashboard />
+          </>
+        )}
+      </div>
     </section>
   )
 }

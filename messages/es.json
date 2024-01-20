@@ -119,7 +119,8 @@
     },
     "toast": {
       "title": "Opps",
-      "description": "Para acceder a esta sección necesitas conectar tu billetera para verificar que tienes alguno de los NFTs de nuestra comunidad.",
+      "description": "Para acceder a esta sección necesitas conectar tu billetera para",
+      "descriptionLink": "verificar que tienes alguno de los NFTs de nuestra comunidad.",
       "connect": "Conectar"
     }
   },

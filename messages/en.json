@@ -118,7 +118,8 @@
     },
     "toast": {
       "title": "Opps",
-      "description": "To access this Section you need to connect your wallet to verify you hold one of our community NFTs",
+      "description": "To access this Section you need to connect your wallet to",
+      "descriptionLink": "verify you hold one of our community NFTs",
       "connect": "Connect"
     }
   },

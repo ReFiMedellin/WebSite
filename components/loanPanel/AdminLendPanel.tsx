@@ -214,7 +214,7 @@ function AdminLendPanel () {
                           </FormItem>
                         )}
                       />
-                      <Button type='submit'>Añadir a whitelist</Button>
+                      <Button type='submit'>Remover de la whitelist</Button>
                     </form>
                   </Form>
                 </CardContent>
