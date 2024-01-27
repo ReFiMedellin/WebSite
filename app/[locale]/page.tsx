@@ -413,7 +413,7 @@ export default function Home () {
         <div className='flex flex-col gap-5 justify-center  items-center'>
           <h2 className='font-bold text-4xl text-black'>{t('team.title')}</h2>
           <TeamMembers />
-          <h2 className='font-bold text-4xl text-black'>{t('team.patners')}</h2>
+          <h2 className='font-bold text-4xl text-black'>{t('team.partners')}</h2>
           <Partners />
         </div>
       </section>
