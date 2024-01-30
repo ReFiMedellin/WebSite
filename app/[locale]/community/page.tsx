@@ -62,7 +62,7 @@ function Page () {
     getNFT()
   }, [])
 
-  if (!isConnected) return redirect('/')
+  if (!isConnected && isMounted) return redirect('/')
 
   return (
     <section className='flex py-20 flex-row relative first-bg justify-center items-center min-h-screen text-white bg-[#1B2731] w-full'>
