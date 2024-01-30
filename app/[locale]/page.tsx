@@ -195,7 +195,7 @@ export default function Home () {
               </p>
               <div className='flex flex-row gap-2'>
                 <Link
-                  href={'https://t.me/refimedellin'}
+                  href={'https://t.me/reficolombia'}
                   target='_blank'
                   className='text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg'
                 >
@@ -467,7 +467,7 @@ export default function Home () {
               <Link
                 className='logo'
                 target='_blank'
-                href={'https://t.me/refimedellin'}
+                href={'https://t.me/reficolombia'}
               >
                 <FaTelegramPlane />
               </Link>
