@@ -11,7 +11,6 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LoanPanel from '@/components/LoanPanel'
 import { adminAddress } from '@/constants'
-import { useContractEvent } from 'wagmi'
 
 function Page () {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -21,6 +20,7 @@ function Page () {
   const [isMounted, setIsMounted] = useState(false)
   const [hasNFT, setHasNFT] = useState(false)
   const router = useRouter()
+
   const { address, isDisconnected, isConnected } = useAccount()
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')

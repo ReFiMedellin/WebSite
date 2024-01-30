@@ -23,17 +23,20 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { isAddress, parseEther } from 'viem'
 import { useGetLenders, useManageQuota, useManageWhitelist } from '@/hooks'
+import { useNetwork } from 'wagmi'
+import { currencies } from '@/constants'
 
 function AdminLendPanel () {
   const [currentPage, setCurrentPage] = useState(0)
 
   const { incrementQuota, decrementQuota } = useManageQuota()
   const { addToWhiteList, removeFromWhiteList } = useManageWhitelist()
-
+  const { chain } = useNetwork()
   const increaseQuotaForm = useForm()
   const decreaseQuotaForm = useForm()
   const addToWhiteListForm = useForm()
   const removeToWhiteListForm = useForm()
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies]
 
   const onIncreaseSubmit = async (values: any) => {
     try {
@@ -164,7 +167,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que todos los valores son dados en Usd
+                              Recuerda que todos los valores son dados en {currentCurrency}$
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -266,7 +269,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que el monto ingresado es en Usd
+                              Recuerda que el monto ingresado es en {currentCurrency}$
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -336,7 +339,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que el monto ingresado es en Usd
+                              Recuerda que el monto ingresado es en {currentCurrency}$
                             </FormDescription>
                             <FormMessage />
                           </FormItem>

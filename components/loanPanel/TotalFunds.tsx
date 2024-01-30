@@ -13,10 +13,16 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { useContractBalance, useTotalFunds, useWithdraw } from '@/hooks'
 import { formatEther } from 'viem'
+import { useNetwork } from 'wagmi'
+import { currencies } from '@/constants'
 
 function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
   const { data: totalValue, isLoading } = useTotalFunds()
   const { writeAsync: withdraw } = useWithdraw()
+  const { chain } = useNetwork()
+
+  
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies]
 
   const { data } = useContractBalance()
   const handleOnWithdraw = async () => {
@@ -81,26 +87,12 @@ function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
             {isAdmin && (
               <p className='w-full text-start'>
                 Saldo actual del contrato:{' '}
-                <strong> {data ? formatEther(data as bigint) : 0} Usd$</strong>
+                <strong>
+                  {' '}
+                  {data ? formatEther(data as bigint) : 0} {currentCurrency}$
+                </strong>
               </p>
             )}
-            {/* <p className='text-xs text-muted-foreground'>
-              +
-              {BigInt(totalValue as bigint) == BigInt(0) ||
-              BigInt(interest as bigint) == BigInt(0)
-                ? 0
-                : parseFloat(
-                    formatEther(
-                      (initialValue as bigint) / (totalValue as bigint)
-                    )
-                  ) *
-                  10 ** 17 *
-                  100}
-              % en total
-            </p> */}
-            {/* <p className='text-xs text-accent'>
-              En total hay ${formatEther(stakedAmount as bigint)} en fondeo
-            </p> */}
           </CardContent>
           <CardFooter>
             <Button onClick={handleOnWithdraw}>Retirar fondos</Button>

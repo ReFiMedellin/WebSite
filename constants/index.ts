@@ -11,3 +11,7 @@ export const GloDollarAddress =
   (process.env.NEXT_PUBLIC_GLODDOLLAR_ADDRESS as `0x${string}`) || '0x000000'
 export const celoLoanAbi = abiCeloLoan
 export const adminAddress = process.env.NEXT_PUBLIC_ADMIN_ADDRESS || '0x000000'
+export const currencies = {
+  42220: 'cUSD',
+  10: 'USDGLO'
+}

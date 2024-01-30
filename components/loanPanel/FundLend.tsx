@@ -47,6 +47,8 @@ import {
   SelectValue
 } from '../ui/select'
 import { useNetworkContract } from '@/hooks/Lend/useNetworkContract'
+import { useNetwork } from 'wagmi'
+import { currencies } from '@/constants'
 
 function FundLend () {
   const fundForm = useForm()
@@ -56,9 +58,12 @@ function FundLend () {
   const { writeAsync: approve } = useApproveErc20()
   const { writeAsync: fund } = useFundLoan()
   const { writeAsync: loan } = useLend()
+  const { chain } = useNetwork()
   const { data: CusdBalance, isLoading: isCusdBalanceLoading } =
     useErc20Balance()
   const { data: CusdSpendance } = useErc20Spendance()
+
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies]
 
   const { lendAddress } = useNetworkContract()
   async function onFundSubmit (values: any) {
@@ -142,7 +147,7 @@ function FundLend () {
                         <Input type='number' placeholder='100' {...field} />
                       </FormControl>
                       <FormDescription>
-                        Recuerda que el monto ingresado es en Cusd
+                        Recuerda que el monto ingresado es en {currentCurrency}$
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -242,7 +247,7 @@ function FundLend () {
                           : '0'}
                       </FormDescription>
                       <FormDescription>
-                        Recuerda que el monto ingresado es en Cusd
+                        Recuerda que el monto ingresado es en {currentCurrency}$
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
