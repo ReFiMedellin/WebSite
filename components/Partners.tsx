@@ -42,7 +42,12 @@ const Partners = () => {
       name: 'DotLabs()',
       role: 'Educational Partner',
       imageSrc: DotLabs,
-      socialLinks: {}
+      socialLinks: {
+        twitter: 'https://twitter.com/dotlabs__',
+        instagram: 'https://www.instagram.com/dotlabs__/',
+        telegram: '',
+        linkedin: ''
+    }
     }
   ]
 
