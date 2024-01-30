@@ -78,7 +78,11 @@ function Navbar () {
               description: (
                 <p>
                   {t('toast.description')}{' '}
-                  <Link className='text-blue-600 font-bold' href={'#'}>
+                  <Link
+                    className='text-blue-600 font-bold'
+                    href='https://bueno.art/refimedellin/refi-medellin-origin/tokens'
+                    target='_blank'
+                  >
                     {t('toast.descriptionLink')}
                   </Link>
                 </p>
