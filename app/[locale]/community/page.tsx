@@ -21,7 +21,7 @@ function Page () {
   const [hasNFT, setHasNFT] = useState(false)
   const router = useRouter()
 
-  const { address, isDisconnected, isConnected } = useAccount()
+  const { address, isConnected } = useAccount()
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')
   )
@@ -40,7 +40,7 @@ function Page () {
   }
 
   useEffect(() => {
-    if (isDisconnected) return
+    if (!isConnected) return
     async function getNFT () {
       try {
         const data = await contract.methods
@@ -62,69 +62,7 @@ function Page () {
     getNFT()
   }, [])
 
-  if (!isMounted) return null
-  if (isDisconnected) return redirect('/')
-
-  if (isDisconnected && isMounted) {
-    return (
-      <section className='flex py-20 flex-row relative first-bg justify-center items-center h-screen text-white bg-[#1B2731] w-full'>
-        <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-4xl lg:text-8xl'>
-            {t('hasnotNFT.title')}
-          </h1>
-          <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            {t('hasnotNFT.description')}{' '}
-            <Link
-              className='hover:text-blue-700 transition-all ease-in-out font-bold'
-              href={
-                'https://bueno.art/refimedellin/refi-medellin-origin/tokens'
-              }
-              target='_blank'
-            >
-              {t('hasnotNFT.link')}
-            </Link>
-            <br />
-          </p>
-        </div>
-        <Image
-          className='absolute bottom-0 w-[100vw] left-0'
-          src={BordeBottom}
-          alt='Medellin'
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 100 }}
-          className='fixed  top-0 left-0 z-50 right-0 bottom-0 backdrop-blur-sm flex justify-center items-center'
-        >
-          <motion.div className='text-black max-w-[90vw] relative bg-white rounded-lg flex flex-col gap-4 p-5 md:p-10'>
-            <h2 className='font-bold text-xl text-center lg:text-4xl '>
-              {t('modal.title')}
-            </h2>
-            <p className='text-center'>
-              {t('modal.description')}{' '}
-              <Link
-                className='hover:text-blue-700 transition-all ease-in-out font-bold'
-                href={
-                  'https://bueno.art/refimedellin/refi-medellin-origin/tokens'
-                }
-                target='_blank'
-              >
-                {t('modal.link')}
-              </Link>
-            </p>
-            <div className='flex flex-row gap-5 justify-center items-center'>
-              <button
-                className='p-3 rounded-md bg-[#4571E1] transition-all ease-in-out hover:bg-[#1a3e98] w-full text-white font-bold'
-                onClick={() => router.push('/')}
-              >
-                {t('modal.button')}
-              </button>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-    )
-  }
+  if (!isConnected) return redirect('/')
 
   return (
     <section className='flex py-20 flex-row relative first-bg justify-center items-center min-h-screen text-white bg-[#1B2731] w-full'>
