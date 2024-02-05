@@ -304,7 +304,7 @@ function RecentLends() {
             <TableRow>
               <TableCell colSpan={7}>Deuda total</TableCell>
               <TableCell className='text-right'>
-                {formatFiat(getTotaDebt())}$
+                {formatFiat(getTotaDebt())}
               </TableCell>
             </TableRow>
           </TableFooter>
