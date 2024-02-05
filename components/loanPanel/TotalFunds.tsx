@@ -1,37 +1,41 @@
-'use client'
+'use client';
 
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
-} from '@/components/ui/card'
-import AnimatedPrice from './AnimatedPrice'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Button } from '@/components/ui/button'
-import { useContractBalance, useTotalFunds, useWithdraw } from '@/hooks'
-import { formatEther } from 'viem'
-import { useNetwork } from 'wagmi'
-import { currencies } from '@/constants'
+  CardTitle,
+} from '@/components/ui/card';
+import AnimatedPrice from './AnimatedPrice';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import {
+  useContractBalance,
+  useNumbers,
+  useTotalFunds,
+  useWithdraw,
+} from '@/hooks';
+import { formatEther } from 'viem';
+import { useNetwork } from 'wagmi';
+import { currencies } from '@/constants';
 
-function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
-  const { data: totalValue, isLoading } = useTotalFunds()
-  const { writeAsync: withdraw } = useWithdraw()
-  const { chain } = useNetwork()
+function TotalFunds({ isAdmin }: { isAdmin: boolean }) {
+  const { data: totalValue, isLoading } = useTotalFunds();
+  const { writeAsync: withdraw } = useWithdraw();
+  const { formatFiat } = useNumbers();
+  const { chain } = useNetwork();
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies];
 
-  
-  const currentCurrency = currencies[chain?.id as keyof typeof currencies]
-
-  const { data } = useContractBalance()
+  const { data } = useContractBalance();
   const handleOnWithdraw = async () => {
     try {
-      await withdraw()
+      await withdraw();
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   return (
     <div className='w-full h-full total'>
@@ -89,7 +93,8 @@ function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
                 Saldo actual del contrato:{' '}
                 <strong>
                   {' '}
-                  {data ? formatEther(data as bigint) : 0} {currentCurrency}$
+                  {data ? formatFiat(formatEther(data as bigint)) : 0} {' '}
+                  {currentCurrency}
                 </strong>
               </p>
             )}
@@ -100,7 +105,7 @@ function TotalFunds ({ isAdmin }: { isAdmin: boolean }) {
         </Card>
       )}
     </div>
-  )
+  );
 }
 
-export { TotalFunds }
+export { TotalFunds };

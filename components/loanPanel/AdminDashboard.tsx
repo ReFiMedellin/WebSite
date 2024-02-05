@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   CardHeader,
   Card,
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter
-} from '@/components/ui/card'
+  CardFooter,
+} from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -14,60 +14,66 @@ import {
   TableFooter,
   TableHead,
   TableHeader,
-  TableRow
-} from '../ui/table'
+  TableRow,
+} from '../ui/table';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-import { useGetLenders, useRecentLoansPerAddress } from '@/hooks'
-import { Address, formatEther, zeroAddress } from 'viem'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { useAggreedQuota } from '@/hooks/Lend/useAggreedQuota'
-function AdminDashboard () {
-  const [currentPage, setCurrentPage] = useState(0)
-  const [currentAddress, setCurrentAddress] = useState<string | null>(null)
+import { useGetLenders, useNumbers, useRecentLoansPerAddress } from '@/hooks';
+import { Address, formatEther, zeroAddress } from 'viem';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { useAggreedQuota } from '@/hooks/Lend/useAggreedQuota';
+import { useNetwork } from 'wagmi';
+import { currencies } from '@/constants';
+function AdminDashboard() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [currentAddress, setCurrentAddress] = useState<string | null>(null);
+  const { formatFiat } = useNumbers();
+  const { data } = useGetLenders(currentPage * 10);
+  const { chain } = useNetwork();
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies];
 
-  const { data } = useGetLenders(currentPage * 10)
-  console.debug(data)
   const { data: addressData } = useRecentLoansPerAddress(
     currentAddress as Address
-  )
-  const { data: currentAddresData } = useAggreedQuota(currentAddress as Address)
-  function getTotalTime (timeStamp: bigint) {
-    const initialDate = new Date(Number(timeStamp) * 1000)
-    const currentDate = new Date()
+  );
+  const { data: currentAddresData } = useAggreedQuota(
+    currentAddress as Address
+  );
+  function getTotalTime(timeStamp: bigint) {
+    const initialDate = new Date(Number(timeStamp) * 1000);
+    const currentDate = new Date();
 
     // Calcular la diferencia en milisegundos entre las dos fechas
-    const diffInMilliseconds = currentDate.getTime() - initialDate.getTime()
+    const diffInMilliseconds = currentDate.getTime() - initialDate.getTime();
 
     // Convertir la diferencia en milisegundos a días
-    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24))
+    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
-    return diffInDays >= 0 ? diffInDays : 0
+    return diffInDays >= 0 ? diffInDays : 0;
   }
-  function getTotalDays (timeStamp: bigint, monthsToAdd: number) {
-    const initialDate = new Date(Number(timeStamp) * 1000)
+  function getTotalDays(timeStamp: bigint, monthsToAdd: number) {
+    const initialDate = new Date(Number(timeStamp) * 1000);
 
     // Crear una nueva fecha que es "monthsToAdd" meses después de "initialDate"
-    const futureDate = new Date(initialDate)
-    futureDate.setMonth(initialDate.getMonth() + monthsToAdd)
+    const futureDate = new Date(initialDate);
+    futureDate.setMonth(initialDate.getMonth() + monthsToAdd);
 
     // Calcular la diferencia en milisegundos entre las dos fechas
-    const diffInMilliseconds = futureDate.getTime() - initialDate.getTime()
+    const diffInMilliseconds = futureDate.getTime() - initialDate.getTime();
 
     // Convertir la diferencia en milisegundos a días
-    const totalDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
+    const totalDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
-    return totalDays
+    return totalDays;
   }
   return (
     <div className='max-w-full overflow-y-scroll lg:col-span-2'>
@@ -94,10 +100,12 @@ function AdminDashboard () {
                 <TableRow key={index}>
                   <TableCell className='text-center'>{lender.user}</TableCell>
                   <TableCell className='text-center'>
-                    {formatEther(lender.agreedQuota)}
+                    {formatFiat(formatEther(lender.agreedQuota))}{' '}
+                    {currentCurrency}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {formatEther(lender.currentQuota)}
+                    {formatFiat(formatEther(lender.currentQuota))}{' '}
+                    {currentCurrency}
                   </TableCell>
                   <TableCell className='text-center'>
                     {lender.lendings ? (
@@ -119,10 +127,12 @@ function AdminDashboard () {
                             <>
                               <p>
                                 Cupo:{' '}
-                                {formatEther((currentAddresData as any)[0])}
+                                {formatEther((currentAddresData as any)[0])} $
+                                {currentCurrency}
                                 <br />
                                 Saldo Actual:{' '}
-                                {formatEther((currentAddresData as any)[1])}
+                                {formatEther((currentAddresData as any)[1])} $
+                                {currentCurrency}
                               </p>
                             </>
                           )}
@@ -134,20 +144,34 @@ function AdminDashboard () {
                                     <p>Deuda #{index + 1} : </p>
                                     <p>
                                       Valor inicial:{' '}
-                                      {formatEther(lending.initialAmount)}
+                                      {formatFiat(
+                                        formatEther(lending.initialAmount)
+                                      )}{' '}
+                                      ${currentCurrency}
                                     </p>
                                     <p>
-                                      Intereses: {formatEther(lending.interest)}
+                                      Intereses:{' '}
+                                      {formatFiat(
+                                        formatEther(lending.interest)
+                                      )}{' '}
+                                      ${currentCurrency}
                                     </p>
                                     <p>
                                       Valor pagado:{' '}
-                                      {parseFloat(formatEther(lending.amount)) -
+                                      {formatFiat(
                                         parseFloat(
                                           formatEther(lending.initialAmount)
-                                        )}
+                                        ) -
+                                          parseFloat(
+                                            formatEther(lending.amount)
+                                          )
+                                      )}{' '}
+                                      ${currentCurrency}
                                     </p>
                                     <p>
-                                      Deuda total: {formatEther(lending.amount)}
+                                      Deuda total:{' '}
+                                      {formatFiat(formatEther(lending.amount))}{' '}
+                                      ${currentCurrency}
                                     </p>
                                     <p>
                                       Plazo de prestamo:{' '}
@@ -183,13 +207,13 @@ function AdminDashboard () {
               <TableCell>
                 <Button
                   className='mr-4'
-                  onClick={() => setCurrentPage(prev => prev + 1)}
+                  onClick={() => setCurrentPage((prev) => prev + 1)}
                 >
                   Siguiente pagina
                 </Button>
                 <Button
                   disabled={currentPage === 0}
-                  onClick={() => setCurrentPage(prev => prev - 1)}
+                  onClick={() => setCurrentPage((prev) => prev - 1)}
                 >
                   Pagina anterior
                 </Button>
@@ -209,15 +233,22 @@ function AdminDashboard () {
                     </DialogHeader>
                     <Input
                       placeholder='Escribe una dirección'
-                      onChange={e => setCurrentAddress(e.target.value)}
+                      onChange={(e) => setCurrentAddress(e.target.value)}
                     />
                     {(currentAddresData as any) && (
                       <>
                         <p>
-                          Cupo: {formatEther((currentAddresData as any)[0])}
+                          Cupo:{' '}
+                          {formatFiat(
+                            formatEther((currentAddresData as any)[0])
+                          )}{' '}
+                          {currentCurrency}
                           <br />
                           Saldo Actual:{' '}
-                          {formatEther((currentAddresData as any)[1])}
+                          {formatFiat(
+                            formatEther((currentAddresData as any)[1])
+                          )}{' '}
+                          {currentCurrency}
                         </p>
                       </>
                     )}
@@ -231,20 +262,29 @@ function AdminDashboard () {
                                 <p>Deuda #{index + 1} : </p>
                                 <p>
                                   Valor inicial:{' '}
-                                  {formatEther(lending.initialAmount)}
+                                  {formatFiat(
+                                    formatEther(lending.initialAmount)
+                                  )}{' '}
+                                  {currentCurrency}
                                 </p>
                                 <p>
-                                  Intereses: {formatEther(lending.interest)}
+                                  Intereses:{' '}
+                                  {formatFiat(formatEther(lending.interest))}{' '}
+                                  {currentCurrency}
                                 </p>
                                 <p>
                                   Valor pagado:{' '}
-                                  {parseFloat(formatEther(lending.amount)) -
+                                  {formatFiat(
                                     parseFloat(
                                       formatEther(lending.initialAmount)
-                                    )}
+                                    ) - parseFloat(formatEther(lending.amount))
+                                  )}{' '}
+                                  {currentCurrency}
                                 </p>
                                 <p>
-                                  Deuda total: {formatEther(lending.amount)}
+                                  Deuda total:{' '}
+                                  {formatFiat(formatEther(lending.amount))}{' '}
+                                  {currentCurrency}
                                 </p>
                                 <p>
                                   {getTotalDays(
@@ -274,7 +314,7 @@ function AdminDashboard () {
         </Table>
       </Card>
     </div>
-  )
+  );
 }
 
-export { AdminDashboard }
+export { AdminDashboard };

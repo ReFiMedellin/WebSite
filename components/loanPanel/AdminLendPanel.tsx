@@ -167,7 +167,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que todos los valores son dados en {currentCurrency}$
+                              Recuerda que todos los valores son dados en ${currentCurrency}
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -269,7 +269,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que el monto ingresado es en {currentCurrency}$
+                              Recuerda que el monto ingresado es en ${currentCurrency}
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -339,7 +339,7 @@ function AdminLendPanel () {
                               />
                             </FormControl>
                             <FormDescription>
-                              Recuerda que el monto ingresado es en {currentCurrency}$
+                              Recuerda que el monto ingresado es en ${currentCurrency}
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
