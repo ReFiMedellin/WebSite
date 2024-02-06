@@ -147,7 +147,7 @@ function FundLend () {
                         <Input type='number' placeholder='100' {...field} />
                       </FormControl>
                       <FormDescription>
-                        Recuerda que el monto ingresado es en ${currentCurrency}
+                        Recuerda que el monto ingresado es en {currentCurrency}$
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -247,7 +247,7 @@ function FundLend () {
                           : '0'}
                       </FormDescription>
                       <FormDescription>
-                        Recuerda que el monto ingresado es en ${currentCurrency}
+                        Recuerda que el monto ingresado es en {currentCurrency}$
                       </FormDescription>
                       <FormMessage />
                     </FormItem>

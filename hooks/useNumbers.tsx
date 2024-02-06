@@ -1,10 +1,8 @@
-import React from 'react';
-
 function useNumbers() {
   function formatFiat(value: number | string) {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('es-CO', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'COP',
     }).format(typeof value === 'string' ? parseFloat(value) : value);
   }
   return { formatFiat };

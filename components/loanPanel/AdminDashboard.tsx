@@ -100,12 +100,12 @@ function AdminDashboard() {
                 <TableRow key={index}>
                   <TableCell className='text-center'>{lender.user}</TableCell>
                   <TableCell className='text-center'>
-                    {formatFiat(formatEther(lender.agreedQuota))}{' '}
                     {currentCurrency}
+                    {formatFiat(formatEther(lender.agreedQuota))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {formatFiat(formatEther(lender.currentQuota))}{' '}
                     {currentCurrency}
+                    {formatFiat(formatEther(lender.currentQuota))}
                   </TableCell>
                   <TableCell className='text-center'>
                     {lender.lendings ? (
@@ -126,13 +126,11 @@ function AdminDashboard() {
                           {(currentAddresData as any) && (
                             <>
                               <p>
-                                Cupo:{' '}
+                                Cupo: {currentCurrency}
                                 {formatEther((currentAddresData as any)[0])} $
-                                {currentCurrency}
                                 <br />
-                                Saldo Actual:{' '}
+                                Saldo Actual: {currentCurrency}
                                 {formatEther((currentAddresData as any)[1])} $
-                                {currentCurrency}
                               </p>
                             </>
                           )}
@@ -143,21 +141,19 @@ function AdminDashboard() {
                                   <div key={index}>
                                     <p>Deuda #{index + 1} : </p>
                                     <p>
-                                      Valor inicial:{' '}
+                                      Valor inicial: {currentCurrency}
                                       {formatFiat(
                                         formatEther(lending.initialAmount)
-                                      )}{' '}
-                                      ${currentCurrency}
+                                      )}
                                     </p>
                                     <p>
-                                      Intereses:{' '}
+                                      Intereses: {currentCurrency}
                                       {formatFiat(
                                         formatEther(lending.interest)
                                       )}{' '}
-                                      ${currentCurrency}
                                     </p>
                                     <p>
-                                      Valor pagado:{' '}
+                                      Valor pagado: {currentCurrency}
                                       {formatFiat(
                                         parseFloat(
                                           formatEther(lending.initialAmount)
@@ -166,12 +162,12 @@ function AdminDashboard() {
                                             formatEther(lending.amount)
                                           )
                                       )}{' '}
-                                      ${currentCurrency}
                                     </p>
                                     <p>
-                                      Deuda total:{' '}
-                                      {formatFiat(formatEther(lending.amount))}{' '}
-                                      ${currentCurrency}
+                                      Deuda total: {currentCurrency}
+                                      {formatFiat(
+                                        formatEther(lending.amount)
+                                      )}{' '}
                                     </p>
                                     <p>
                                       Plazo de prestamo:{' '}
@@ -238,17 +234,15 @@ function AdminDashboard() {
                     {(currentAddresData as any) && (
                       <>
                         <p>
-                          Cupo:{' '}
+                          Cupo: {currentCurrency}
                           {formatFiat(
                             formatEther((currentAddresData as any)[0])
                           )}{' '}
-                          {currentCurrency}
                           <br />
-                          Saldo Actual:{' '}
+                          Saldo Actual: {currentCurrency}
                           {formatFiat(
                             formatEther((currentAddresData as any)[1])
                           )}{' '}
-                          {currentCurrency}
                         </p>
                       </>
                     )}
@@ -261,30 +255,28 @@ function AdminDashboard() {
                               <div key={index}>
                                 <p>Deuda #{index + 1} : </p>
                                 <p>
-                                  Valor inicial:{' '}
+                                  Valor inicial: {currentCurrency}
                                   {formatFiat(
                                     formatEther(lending.initialAmount)
                                   )}{' '}
-                                  {currentCurrency}
                                 </p>
                                 <p>
-                                  Intereses:{' '}
-                                  {formatFiat(formatEther(lending.interest))}{' '}
-                                  {currentCurrency}
+                                  Intereses: {currentCurrency}
+                                  {formatFiat(
+                                    formatEther(lending.interest)
+                                  )}{' '}
                                 </p>
                                 <p>
-                                  Valor pagado:{' '}
+                                  Valor pagado: {currentCurrency}
                                   {formatFiat(
                                     parseFloat(
                                       formatEther(lending.initialAmount)
                                     ) - parseFloat(formatEther(lending.amount))
                                   )}{' '}
-                                  {currentCurrency}
                                 </p>
                                 <p>
-                                  Deuda total:{' '}
+                                  Deuda total: {currentCurrency}
                                   {formatFiat(formatEther(lending.amount))}{' '}
-                                  {currentCurrency}
                                 </p>
                                 <p>
                                   {getTotalDays(

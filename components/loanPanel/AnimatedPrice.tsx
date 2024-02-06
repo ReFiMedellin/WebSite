@@ -15,7 +15,7 @@ function AnimatedPrice({ price }: { price: number }) {
   }, [price]);
   return (
     <div className='text-2xl flex flex-row gap-1 font-bold'>
-      $<motion.div>{rounded}</motion.div> {currentCurrency}
+      {currentCurrency}$ <motion.div>{rounded}</motion.div>
     </div>
   );
 }
