@@ -41,6 +41,8 @@ import { Button } from '../ui/button';
 import { useApproveErc20, useNumbers, usePayDebt } from '@/hooks';
 import { useErc20Spendance } from '@/hooks/Lend/useErc20Spendance';
 import { useNetworkContract } from '@/hooks/Lend/useNetworkContract';
+import { useNetwork } from 'wagmi';
+import { currencies } from '@/constants';
 
 function RecentLends() {
   const [id, setId] = useState<string | null>(null);
@@ -53,6 +55,11 @@ function RecentLends() {
   const { writeAsync: approve } = useApproveErc20();
   const { data: spendance } = useErc20Spendance();
   const { lendAddress } = useNetworkContract();
+
+
+  const { chain } = useNetwork();
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies];
+
 
   function getTotaDebt() {
     if (!recentLends) return 0;
@@ -159,16 +166,16 @@ function RecentLends() {
                 <TableRow key={index}>
                   <TableCell className='text-center'>{index}</TableCell>
                   <TableCell className='text-center'>
-                    {formatFiat(formatEther(loan.initialAmount))}
+                   {currentCurrency}{formatFiat(formatEther(loan.initialAmount))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {formatFiat(formatEther(loan.interest))}
+                    {currentCurrency}{formatFiat(formatEther(loan.interest))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {formatFiat(formatEther(loan.amount))}
+                    {currentCurrency}{formatFiat(formatEther(loan.amount))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {formatFiat(
+                    {currentCurrency}{formatFiat(
                       parseFloat(formatEther(loan.initialAmount)) -
                         parseFloat(formatEther(loan.amount))
                     )}
@@ -304,7 +311,7 @@ function RecentLends() {
             <TableRow>
               <TableCell colSpan={7}>Deuda total</TableCell>
               <TableCell className='text-right'>
-                {formatFiat(getTotaDebt())}
+              {currentCurrency}{formatFiat(getTotaDebt())}
               </TableCell>
             </TableRow>
           </TableFooter>
