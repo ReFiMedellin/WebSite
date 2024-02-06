@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import React, { useEffect, useState } from 'react';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -9,108 +9,110 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
-} from '@/components/ui/form'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+  FormMessage,
+} from '@/components/ui/form';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   CardHeader,
   Card,
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter
-} from '@/components/ui/card'
-import { useForm } from 'react-hook-form'
-import { formatEther, parseEther } from 'viem'
+  CardFooter,
+} from '@/components/ui/card';
+import { useForm } from 'react-hook-form';
+import { formatEther, parseEther } from 'viem';
 import {
   useApproveErc20,
   useErc20Balance,
   useFundLoan,
   useLend,
-  useWithdraw
-} from '@/hooks'
+  useNumbers,
+  useWithdraw,
+} from '@/hooks';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
-import { useErc20Spendance } from '@/hooks/Lend/useErc20Spendance'
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { useErc20Spendance } from '@/hooks/Lend/useErc20Spendance';
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue
-} from '../ui/select'
-import { useNetworkContract } from '@/hooks/Lend/useNetworkContract'
-import { useNetwork } from 'wagmi'
-import { currencies } from '@/constants'
+  SelectValue,
+} from '../ui/select';
+import { useNetworkContract } from '@/hooks/Lend/useNetworkContract';
+import { useNetwork } from 'wagmi';
+import { currencies } from '@/constants';
 
-function FundLend () {
-  const fundForm = useForm()
-  const lendForm = useForm()
-  const approveForm = useForm()
+function FundLend() {
+  const fundForm = useForm();
+  const lendForm = useForm();
+  const approveForm = useForm();
 
-  const { writeAsync: approve } = useApproveErc20()
-  const { writeAsync: fund } = useFundLoan()
-  const { writeAsync: loan } = useLend()
-  const { chain } = useNetwork()
+  const { writeAsync: approve } = useApproveErc20();
+  const { writeAsync: fund } = useFundLoan();
+  const { writeAsync: loan } = useLend();
+  const { chain } = useNetwork();
   const { data: CusdBalance, isLoading: isCusdBalanceLoading } =
-    useErc20Balance()
-  const { data: CusdSpendance } = useErc20Spendance()
+    useErc20Balance();
+  const { data: CusdSpendance } = useErc20Spendance();
+  const { formatFiat } = useNumbers();
 
-  const currentCurrency = currencies[chain?.id as keyof typeof currencies]
+  const currentCurrency = currencies[chain?.id as keyof typeof currencies];
 
-  const { lendAddress } = useNetworkContract()
-  async function onFundSubmit (values: any) {
+  const { lendAddress } = useNetworkContract();
+  async function onFundSubmit(values: any) {
     try {
       if (
         parseInt(CusdSpendance ? formatEther(CusdSpendance) : '0') <
         values.amount
       )
-        return
+        return;
       await fund({
-        args: [parseEther(values.amount)]
-      })
+        args: [parseEther(values.amount)],
+      });
       fundForm.reset({
-        amount: ''
-      })
+        amount: '',
+      });
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
-  async function onApproveSubmit (values: any) {
+  async function onApproveSubmit(values: any) {
     try {
       await approve({
-        args: [lendAddress, parseEther(values.amount)]
-      })
+        args: [lendAddress, parseEther(values.amount)],
+      });
       approveForm.reset({
-        amount: ''
-      })
+        amount: '',
+      });
       fundForm.reset({
-        amount: ''
-      })
+        amount: '',
+      });
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
-  async function onLendSubmit (values: any) {
+  async function onLendSubmit(values: any) {
     try {
       await loan({
-        args: [parseEther(values.amount), values.months]
-      })
+        args: [parseEther(values.amount), values.months],
+      });
       lendForm.reset({
         amount: '',
-        months: ''
-      })
+        months: '',
+      });
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
@@ -138,7 +140,7 @@ function FundLend () {
                   control={lendForm.control}
                   name='amount'
                   rules={{
-                    required: 'Este campo es requerido'
+                    required: 'Este campo es requerido',
                   }}
                   render={({ field }) => (
                     <FormItem className='text-start  w-full'>
@@ -160,13 +162,13 @@ function FundLend () {
                     required: 'Este campo es requerido',
                     min: {
                       value: 0,
-                      message: 'La cantidad de meses debe ser mayor a 0'
+                      message: 'La cantidad de meses debe ser mayor a 0',
                     },
                     max: {
                       value: 12,
                       message:
-                        'La cantidad de meses debe ser menor o igual a 12'
-                    }
+                        'La cantidad de meses debe ser menor o igual a 12',
+                    },
                   }}
                   render={({ field }) => (
                     <FormItem className='text-start  w-full'>
@@ -228,8 +230,8 @@ function FundLend () {
                     required: 'Este campo es requerido',
                     min: {
                       value: 0,
-                      message: 'El monto debe ser mayor a 0'
-                    }
+                      message: 'El monto debe ser mayor a 0',
+                    },
                   }}
                   render={({ field }) => (
                     <FormItem className='text-start  w-full'>
@@ -239,12 +241,12 @@ function FundLend () {
                       </FormControl>
                       <FormDescription>
                         {CusdBalance
-                          ? `Cusd balance: ${(
-                              CusdBalance / BigInt(10 ** 18)
-                            ).toString()}`
+                          ? `Balance: ${currentCurrency}${formatFiat(
+                              Number(CusdBalance / BigInt(10 ** 18))
+                            )}`
                           : isCusdBalanceLoading
                           ? 'loading'
-                          : '0'}
+                          : '$0,00'}
                       </FormDescription>
                       <FormDescription>
                         Recuerda que el monto ingresado es en {currentCurrency}$
@@ -281,8 +283,8 @@ function FundLend () {
                               required: 'Este campo es requerido',
                               min: {
                                 value: 0,
-                                message: 'El monto debe ser mayor a: 0'
-                              }
+                                message: 'El monto debe ser mayor a: 0',
+                              },
                             }}
                             render={({ field }) => (
                               <FormItem>
@@ -310,7 +312,7 @@ function FundLend () {
         </Card>
       </TabsContent>
     </Tabs>
-  )
+  );
 }
 
-export default FundLend
+export default FundLend;

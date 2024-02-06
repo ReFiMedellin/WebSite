@@ -93,7 +93,7 @@ function TotalFunds({ isAdmin }: { isAdmin: boolean }) {
                 Saldo actual del contrato:{' '}
                 <strong>
                   {currentCurrency}
-                  {data ? formatFiat(formatEther(data as bigint)) : 0}
+                  {data ? formatFiat(formatEther(data as bigint)) : formatFiat(0)}
                 </strong>
               </p>
             )}
