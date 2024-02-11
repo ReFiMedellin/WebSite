@@ -46,6 +46,7 @@ import { currencies } from '@/constants';
 
 function RecentLends() {
   const [id, setId] = useState<string | null>(null);
+  const [currentDebt, setCurrentDebt] = useState('');
   const { data: recentLends } = useRecentLends();
   const payDebtForm = useForm();
   const approveForm = useForm();
@@ -56,10 +57,8 @@ function RecentLends() {
   const { data: spendance } = useErc20Spendance();
   const { lendAddress } = useNetworkContract();
 
-
   const { chain } = useNetwork();
   const currentCurrency = currencies[chain?.id as keyof typeof currencies];
-
 
   function getTotaDebt() {
     if (!recentLends) return 0;
@@ -80,11 +79,12 @@ function RecentLends() {
           payDebtForm.watch('value')
       ) {
         await payDebt({
-          args: [id, parseEther(values.value)],
+          args: [id, parseEther(currentDebt)],
         });
         payDebtForm.reset({
           value: '',
         });
+        setCurrentDebt('');
       }
     } catch (e) {
       console.error(e);
@@ -94,7 +94,7 @@ function RecentLends() {
   async function onApproveSubmit(values: any) {
     try {
       await approve({
-        args: [lendAddress, parseEther(values.amount)],
+        args: [lendAddress, parseEther(currentDebt)],
       });
       approveForm.reset({
         amount: '',
@@ -166,16 +166,20 @@ function RecentLends() {
                 <TableRow key={index}>
                   <TableCell className='text-center'>{index}</TableCell>
                   <TableCell className='text-center'>
-                   {currentCurrency}{formatFiat(formatEther(loan.initialAmount))}
+                    {currentCurrency}
+                    {formatFiat(formatEther(loan.initialAmount))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {currentCurrency}{formatFiat(formatEther(loan.interest))}
+                    {currentCurrency}
+                    {formatFiat(formatEther(loan.interest))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {currentCurrency}{formatFiat(formatEther(loan.amount))}
+                    {currentCurrency}
+                    {formatFiat(formatEther(loan.amount))}
                   </TableCell>
                   <TableCell className='text-center'>
-                    {currentCurrency}{formatFiat(
+                    {currentCurrency}
+                    {formatFiat(
                       parseFloat(formatEther(loan.initialAmount)) -
                         parseFloat(formatEther(loan.amount))
                     )}
@@ -191,7 +195,14 @@ function RecentLends() {
                   <TableCell>
                     <Dialog>
                       <DialogTrigger className='cursor-pointer w-full' asChild>
-                        <Button type='button'>Pagar cuota</Button>
+                        <Button
+                          onClick={() =>
+                            setCurrentDebt(formatEther(loan.amount))
+                          }
+                          type='button'
+                        >
+                          Pagar cuota
+                        </Button>
                       </DialogTrigger>
                       <DialogContent className='sm:max-w-[425px]'>
                         <DialogHeader>
@@ -222,8 +233,11 @@ function RecentLends() {
                                       <Input
                                         type='number'
                                         placeholder='0'
-                                        defaultValue={formatEther(loan.amount)}
                                         {...field}
+                                        onChange={(e) =>
+                                          setCurrentDebt(e.target.value)
+                                        }
+                                        value={currentDebt}
                                       />
                                     </FormControl>
                                     <FormMessage />
@@ -281,10 +295,13 @@ function RecentLends() {
                                                 <Input
                                                   type='number'
                                                   placeholder='0'
-                                                  defaultValue={formatEther(
-                                                    loan.amount
-                                                  )}
                                                   {...field}
+                                                  onChange={(e) =>
+                                                    setCurrentDebt(
+                                                      e.target.value
+                                                    )
+                                                  }
+                                                  value={currentDebt}
                                                 />
                                               </FormControl>
                                               <FormMessage />
@@ -311,7 +328,8 @@ function RecentLends() {
             <TableRow>
               <TableCell colSpan={7}>Deuda total</TableCell>
               <TableCell className='text-right'>
-              {currentCurrency}{formatFiat(getTotaDebt())}
+                {currentCurrency}
+                {formatFiat(getTotaDebt())}
               </TableCell>
             </TableRow>
           </TableFooter>
