@@ -1,15 +1,82 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Web3 from 'web3';
 import erc1155ABI from '@/constants/ABI/erc1155ABI.json';
-import { useAccount } from 'wagmi';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Fund } from '@/components/lendV2/Fund';
+import { Lend } from '@/components/lendV2/Lend';
+import { UserInfo } from '@/components/lendV2/UserInfo';
+import { CurrentLends } from '@/components/lendV2/CurrentLends';
+import { CurrentSignatures } from '@/components/lendV2/CurrentSignatures';
+import { Card } from '@/components/ui/card';
+import { useGetUser } from '@/hooks/LendV2/useGetUser';
+import { redirect } from 'next/navigation';
+import { Chains } from '@/constants/chains';
+import { toast } from '@/components/ui/use-toast';
+import { NetworkModal } from '@/components/loanPanel/NetworkModal';
 
 export default function Page() {
+  const [selectedChain, setSelectedChain] = useState<
+    keyof typeof Chains | null
+  >(null);
+  const [showNetworkModal, setShowNetworkModal] = useState(false);
+  const { chain } = useNetwork();
+  const { switchNetworkAsync } = useSwitchNetwork();
+
+  useEffect(() => {
+    const currentChain =
+      chain?.id === Chains.celo
+        ? 'celo'
+        : chain?.id === Chains.optimism
+        ? 'optimism'
+        : chain?.id === Chains.sepolia
+        ? 'sepolia'
+        : null;
+    setSelectedChain(currentChain);
+
+    if (
+      chain?.id !== Chains.celo &&
+      chain?.id !== Chains.optimism &&
+      chain?.id !== Chains.sepolia
+    ) {
+      setShowNetworkModal(true);
+    } else {
+      setShowNetworkModal(false);
+    }
+  }, [chain]);
+
+  const handleNetworkChange = async (value: keyof typeof Chains) => {
+    const desiredChainId = Chains[value];
+    toast({
+      title: 'Tip',
+      description: 'Recuerda aceptar el cambio de red en tu billetera',
+    });
+    await switchNetworkAsync?.(desiredChainId);
+
+    const checkIfNetworkChanged = () => {
+      if (chain?.id !== desiredChainId) {
+        setTimeout(checkIfNetworkChanged, 1000);
+      } else {
+        setSelectedChain(value);
+      }
+    };
+
+    checkIfNetworkChanged();
+  };
+
   const [hasNft, setHasNft] = useState(false);
   const t = useTranslations('ExclusiveContent');
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
+  const [isMounted, setIsMounted] = useState(false);
+
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    isError: isUserError,
+  } = useGetUser(address!);
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')
@@ -38,7 +105,15 @@ export default function Page() {
       return false;
     }
   }
-  getNFT();
+  useEffect(() => {
+    getNFT();
+    setIsMounted(true);
+  }, []);
+
+  if (!isConnected && isMounted) return redirect('/');
+  if (showNetworkModal) {
+    return <NetworkModal onNetworkSelect={handleNetworkChange} />;
+  }
   if (!hasNft) {
     return (
       <section className='flex p-20 flex-col relative first-bg justify-center items-center min-h-screen text-white text-center gap-4 bg-[#1B2731] w-full'>
@@ -61,8 +136,28 @@ export default function Page() {
   }
 
   return (
-    <main className='bg-[#1B2731] min-h-screen flex justify-center items-center'>
+    <main className='lend__panel px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
+      <UserInfo
+        funded={(user as bigint[])?.[1]}
+        quota={(user as bigint[])?.[0]}
+        loading={isUserLoading}
+        error={isUserError}
+      />
+      <CurrentSignatures requests={[]} />
 
+      <Tabs defaultValue='lend'>
+        <TabsList className='grid w-full grid-cols-2 '>
+          <TabsTrigger value='fund'>Fund</TabsTrigger>
+          <TabsTrigger value='lend'>Lend</TabsTrigger>
+        </TabsList>
+        <TabsContent value='fund'>
+          <Fund />
+        </TabsContent>
+        <TabsContent value='lend'>
+          <Lend />
+        </TabsContent>
+      </Tabs>
+      <CurrentLends lends={[]} />
     </main>
   );
 }

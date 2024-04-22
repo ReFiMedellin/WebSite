@@ -177,3 +177,16 @@ html {
     transform: translateX(-100%);
   }
 }
+
+.lend__panel {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.lendManager {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    'info lends'
+    'manager lends';
+}

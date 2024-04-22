@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,8 +8,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger
-} from '../ui/alert-dialog'
+  AlertDialogTrigger,
+} from '../ui/alert-dialog';
 import {
   Select,
   SelectContent,
@@ -17,35 +17,35 @@ import {
   SelectLabel,
   SelectGroup,
   SelectTrigger,
-  SelectValue
-} from '../ui/select'
+  SelectValue,
+} from '../ui/select';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
   DialogFooter,
-  DialogHeader
-} from '../ui/dialog'
-import { Button } from '../ui/button'
-import { toast } from '../ui/use-toast'
+  DialogHeader,
+} from '../ui/dialog';
+import { Button } from '../ui/button';
+import { toast } from '../ui/use-toast';
 
-function NetworkModal ({
-  onNetworkSelect
+function NetworkModal({
+  onNetworkSelect,
 }: {
-  onNetworkSelect: (value: any) => void
+  onNetworkSelect: (value: any) => void;
 }) {
-  const [selectedNetwork, setSelectedNetwork] = useState<string | null>(null)
-  const [isConfirmed, setisConfirmed] = useState(false)
+  const [selectedNetwork, setSelectedNetwork] = useState<string | null>(null);
+  const [isConfirmed, setisConfirmed] = useState(false);
   const handleSelectChange = (value: string) => {
-    setSelectedNetwork(value)
-  }
+    setSelectedNetwork(value);
+  };
 
   const handleConfirm = () => {
     if (selectedNetwork) {
-      onNetworkSelect(selectedNetwork)
+      onNetworkSelect(selectedNetwork);
     }
-  }
+  };
   return (
     <Dialog open>
       <DialogContent>
@@ -62,16 +62,18 @@ function NetworkModal ({
           <SelectContent>
             <SelectItem value='celo'>Celo</SelectItem>
             <SelectItem value='optimism'>Optimism</SelectItem>
+            <SelectItem value='sepolia'>Sepolia</SelectItem>
           </SelectContent>
         </Select>
         <DialogFooter>
           <Button
             onClick={() => {
-              handleConfirm()
+              handleConfirm();
               toast({
                 title: 'Tip',
-                description: 'Recuerda aceptar el cambio de red en tu billetera'
-              })
+                description:
+                  'Recuerda aceptar el cambio de red en tu billetera',
+              });
             }}
           >
             Seleccionar Red
@@ -79,7 +81,7 @@ function NetworkModal ({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
-export { NetworkModal }
+export { NetworkModal };

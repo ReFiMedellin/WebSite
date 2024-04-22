@@ -23,7 +23,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { z } from 'zod';
-import { Select } from '../ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
+import { Address, formatEther } from 'viem';
+import { useErc20Balance } from '@/hooks/LendV2/useErc20Balance';
+import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
+import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
 
 const formSchema = z.object({
   amount: z.number().min(0),
@@ -33,6 +43,15 @@ const formSchema = z.object({
 
 function Lend() {
   const [interests, setInterests] = useState();
+  const {
+    data: tokens,
+    loading: isTokensLoading,
+    error: isTokensError,
+  } = useGetTokens();
+  const [token, setToken] = useState('');
+  const { lendAddress } = useNetworkContractV2();
+  const { data: balance } = useErc20Balance(token as Address, lendAddress);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -91,7 +110,35 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Token</FormLabel>
                   <FormControl>
-                    <Select {...field} />
+                    <Select
+                      onValueChange={(value) => setToken(value)}
+                      {...field}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select a token to withdraw' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {!isTokensLoading &&
+                          !isTokensError &&
+                          tokens?.tokens.map(
+                            ({
+                              tokenAddress,
+                              symbol,
+                            }: {
+                              tokenAddress: Address;
+                              symbol: string;
+                            }) => (
+                              <SelectItem
+                                key={tokenAddress}
+                                value={tokenAddress}
+                              >
+                                {symbol}
+                              </SelectItem>
+                            )
+                          )}
+                      </SelectContent>
+                      <p>Token balance: {formatEther(balance || BigInt(0))}$</p>
+                    </Select>
                   </FormControl>
                   <FormDescription>The token you want to lend</FormDescription>
                   <FormMessage />
@@ -103,7 +150,7 @@ function Lend() {
         </Form>
       </CardContent>
       <CardFooter>
-        <p>Estimated interests: {interests}</p>
+        {interests && <p>Estimated interests: {interests}</p>}
       </CardFooter>
     </Card>
   );
