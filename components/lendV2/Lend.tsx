@@ -78,7 +78,7 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Amount</FormLabel>
                   <FormControl>
-                    <Input placeholder='shadcn' {...field} />
+                    <Input placeholder='0' {...field} />
                   </FormControl>
                   <FormDescription>
                     The amount in USD you want to lend
@@ -94,7 +94,7 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Months</FormLabel>
                   <FormControl>
-                    <Input type='number' max={12} {...field} />
+                    <Input placeholder='0' type='number' max={12} {...field} />
                   </FormControl>
                   <FormDescription>
                     The amount of months you want to lend

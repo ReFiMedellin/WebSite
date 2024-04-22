@@ -157,7 +157,7 @@ export default function Page() {
           <Lend />
         </TabsContent>
       </Tabs>
-      <CurrentLends lends={[]} />
+      <CurrentLends/>
     </main>
   );
 }
