@@ -30,7 +30,7 @@ function CurrentLends() {
   return (
     <Card className='h-full w-full'>
       <CardHeader>
-        <CardTitle>Current lends</CardTitle>
+        <CardTitle>Community Current Lends</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>

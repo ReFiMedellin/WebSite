@@ -63,9 +63,7 @@ function Lend() {
       <CardHeader>
         <CardTitle>Ask for a lend</CardTitle>
         <CardDescription>
-          <Link href='#'>
-            If you don&apost have any quota, you can ask for that here
-          </Link>
+            If you don&apos; have any quota approved, you can ask for one <Link href='https://refimedellin.org'>here</Link>
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -78,7 +76,7 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Amount</FormLabel>
                   <FormControl>
-                    <Input placeholder='0' {...field} />
+                    <Input placeholder='100' {...field} />
                   </FormControl>
                   <FormDescription>
                     The amount in USD you want to lend
@@ -94,7 +92,7 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Months</FormLabel>
                   <FormControl>
-                    <Input placeholder='0' type='number' max={12} {...field} />
+                    <Input placeholder='12' type='number' max={12} {...field} />
                   </FormControl>
                   <FormDescription>
                     The amount of months you want to lend
