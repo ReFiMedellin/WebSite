@@ -13,7 +13,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { useAccount } from 'wagmi';
 import { useGetSignatureRequests } from '@/hooks/LendV2/useGetSignatureRequests';
-import { Address, getAddress } from 'viem';
+import { Address } from 'viem';
 import { Button } from '../ui/button';
 
 export type Request = {
@@ -40,12 +40,11 @@ function CurrentSignatures() {
       </CardHeader>
       <CardContent>
         <Table>
-          <TableCaption>🌟 In this section, you'll find the credit requests from your friends who have asked for your signature as a reference. Take a moment to review them and provide your signature if you support their request. They'll appreciate it! 🙌.</TableCaption>
+          <TableCaption>🌟 In this section, you&apos;ll find the credit requests from your friends who have asked for your signature as a reference. Take a moment to review them and provide your signature if you support their request. They&apos;ll appreciate it! 🙌.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className='w-[100px]'>Credit Requested </TableHead>
               <TableHead>Friend Address</TableHead>
-              <TableHead>Current Signatures</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
