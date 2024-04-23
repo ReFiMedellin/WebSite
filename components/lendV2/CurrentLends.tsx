@@ -30,11 +30,11 @@ function CurrentLends() {
   return (
     <Card className='h-full w-full'>
       <CardHeader>
-        <CardTitle>Community Current Lends</CardTitle>
+        <CardTitle>Your Current Lends</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
-          <TableCaption>A list of your recent lends.</TableCaption>
+          <TableCaption>Here you can see a list of your current & recent lends.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className='w-[100px]'>Initial amount</TableHead>

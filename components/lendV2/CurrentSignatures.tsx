@@ -26,11 +26,11 @@ function CurrentSignatures({ requests }: { requests: Request[] }) {
       </CardHeader>
       <CardContent>
         <Table>
-          <TableCaption>A list of your pending quota request signatures.</TableCaption>
+          <TableCaption>🌟 In this section, you'll find the credit requests from your friends who have asked for your signature as a reference. Take a moment to review them and provide your signature if you support their request. They'll appreciate it! 🙌.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className='w-[100px]'>Requested quota </TableHead>
-              <TableHead>User Address</TableHead>
+              <TableHead className='w-[100px]'>Credit Requested </TableHead>
+              <TableHead>Friend Address</TableHead>
               <TableHead>Current Signatures</TableHead>
             </TableRow>
           </TableHeader>
