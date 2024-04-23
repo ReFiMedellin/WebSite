@@ -28,7 +28,12 @@ function CurrentLends() {
   const { data, isLoading, isError } = useGetUserLends(address!, page);
 
   return (
-    <Card className='h-full w-full'>
+    <Card
+      style={{
+        gridArea: 'lends',
+      }}
+      className='h-full w-full'
+    >
       <CardHeader>
         <CardTitle>Your Current Lends</CardTitle>
       </CardHeader>

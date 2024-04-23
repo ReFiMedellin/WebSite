@@ -11,6 +11,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { useAccount } from 'wagmi';
+import { useGetSignatureRequests } from '@/hooks/LendV2/useGetSignatureRequests';
+import { Address, getAddress } from 'viem';
+import { Button } from '../ui/button';
 
 export type Request = {
   amount: number;
@@ -18,9 +22,19 @@ export type Request = {
   currentSignatures: number;
 };
 
-function CurrentSignatures({ requests }: { requests: Request[] }) {
+function CurrentSignatures() {
+  const { address } = useAccount();
+  const { data, loading, error } = useGetSignatureRequests([
+    address!.toLocaleLowerCase() as Address,
+  ]);
+
   return (
-    <Card className='h-full w-full'>
+    <Card
+      style={{
+        gridArea: 'signatures',
+      }}
+      className='h-full w-full'
+    >
       <CardHeader>
         <CardTitle>Pending signatures</CardTitle>
       </CardHeader>
@@ -35,13 +49,19 @@ function CurrentSignatures({ requests }: { requests: Request[] }) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {requests.map((request, key) => (
-              <TableRow key={key}>
-                <TableCell className='font-medium'>{request.amount}</TableCell>
-                <TableCell>{request.to}</TableCell>
-                <TableCell>{request.currentSignatures}</TableCell>
-              </TableRow>
-            ))}
+            {!loading &&
+              !error &&
+              data.userQuotaRequests.map((request, key) => (
+                <TableRow key={key}>
+                  <TableCell className='font-medium'>
+                    {request.amount}
+                  </TableCell>
+                  <TableCell>{request.user.id}</TableCell>
+                  <TableCell>
+                    <Button>Sign</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </CardContent>

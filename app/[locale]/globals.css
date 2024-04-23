@@ -181,11 +181,15 @@ html {
 .lend__panel {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    'info signatures'
+    'info lends';
 }
 
 .lendManager {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
   grid-template-areas:
     'info lends'
     'manager lends';

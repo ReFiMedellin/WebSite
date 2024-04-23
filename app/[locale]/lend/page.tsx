@@ -137,27 +137,35 @@ export default function Page() {
 
   return (
     <main className='lend__panel px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
-      <UserInfo
-        funded={(user as bigint[])?.[1]}
-        quota={(user as bigint[])?.[0]}
-        loading={isUserLoading}
-        error={isUserError}
-      />
-      <CurrentSignatures requests={[]} />
+      <div
+        style={{
+          gridArea: 'info',
+        }}
+        className='flex flex-col gap-4  w-full h-full'
+      >
+        <UserInfo
+          funded={(user as bigint[])?.[1]}
+          quota={(user as bigint[])?.[0]}
+          loading={isUserLoading}
+          error={isUserError}
+        />
+        <Tabs defaultValue='lend'>
+          <TabsList className='grid w-full grid-cols-2 '>
+            <TabsTrigger value='fund'>Fund</TabsTrigger>
+            <TabsTrigger value='lend'>Lend</TabsTrigger>
+          </TabsList>
+          <TabsContent value='fund'>
+            <Fund />
+          </TabsContent>
+          <TabsContent value='lend'>
+            <Lend />
+          </TabsContent>
+        </Tabs>
+      </div>
 
-      <Tabs defaultValue='lend'>
-        <TabsList className='grid w-full grid-cols-2 '>
-          <TabsTrigger value='fund'>Fund</TabsTrigger>
-          <TabsTrigger value='lend'>Lend</TabsTrigger>
-        </TabsList>
-        <TabsContent value='fund'>
-          <Fund />
-        </TabsContent>
-        <TabsContent value='lend'>
-          <Lend />
-        </TabsContent>
-      </Tabs>
-      <CurrentLends/>
+      <CurrentSignatures />
+
+      <CurrentLends />
     </main>
   );
 }

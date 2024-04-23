@@ -15,13 +15,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { useRequestQuotaIncrease } from '@/hooks/LendV2/useRequestQuotaIncrease';
-
 const formSchema = z.object({
-  amount: z.string(),
-  user: z.string(),
-  signers: z.array(
-    z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address')
-  ),
+  amount: z.number().min(0).optional().default(0),
+  user: z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'),
+  signers: z
+    .array(z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'))
+    .min(3, 'At least 3 signers are required')
+    .max(10, 'No more than 10 signers are allowed'),
 });
 
 function QuotaManager() {
@@ -32,15 +32,15 @@ function QuotaManager() {
       signers: [''],
     },
   });
-
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: 'signers',
   });
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     await writeAsync({
-      args: [values.amount, values.user, values.signers],
+      args: [values.user, values.amount, values.signers],
     });
   }
   return (
@@ -58,7 +58,13 @@ function QuotaManager() {
                 <FormItem>
                   <FormLabel>Amount</FormLabel>
                   <FormControl>
-                    <Input placeholder='0' {...field} />
+                    <Input
+                      placeholder='0'
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(parseFloat(e.target.value) || null);
+                      }}
+                    />
                   </FormControl>
                   <FormDescription>
                     The amount you want to spend
