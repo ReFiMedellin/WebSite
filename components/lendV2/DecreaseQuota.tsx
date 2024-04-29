@@ -18,7 +18,7 @@ import { useDecreaseQuota } from '@/hooks/LendV2/useDecreaseQuota';
 
 const formSchema = z.object({
   amount: z.string(),
-  user: z.string(),
+  user: z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'),
 });
 
 function DecreaseQuota() {
@@ -50,7 +50,7 @@ function DecreaseQuota() {
                     <Input placeholder='0' {...field} />
                   </FormControl>
                   <FormDescription>
-                    The amount you want to spend
+                    The amount you want to decrease
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -67,7 +67,7 @@ function DecreaseQuota() {
                     <Input placeholder='0x...' {...field} />
                   </FormControl>
                   <FormDescription>
-                    The address you want to spend
+                    The address you want to decrease
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

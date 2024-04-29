@@ -193,4 +193,5 @@ html {
   grid-template-areas:
     'info lends'
     'manager lends';
+  align-items: flex-start;
 }
