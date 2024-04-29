@@ -20,5 +20,9 @@ import RMLABI from './ABI/ReFiMedLend.json';
 export const ReFiMedLendABI = RMLABI;
 export const ReFiMedLendAddressCelo = process.env
   .NEXT_PUBLIC_REFIMED_LEND_ADDRESS_CELO as Address;
-  export const ReFiMedLendAddressSepolia = process.env
+export const ReFiMedLendAddressSepolia = process.env
   .NEXT_PUBLIC_REFIMED_LEND_ADDRESS_SEPOLIA as Address;
+export const schemaUIDSepolia = process.env
+  .NEXT_PUBLIC_REFIMED_LEND_SCHEMA_SEPOLIA as Address;
+export const easAddressSepolia = process.env
+  .NEXT_PUBLIC_EAS_ADDRESS_SEPOLIA as Address;

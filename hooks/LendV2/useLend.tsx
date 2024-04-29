@@ -1,5 +1,5 @@
 import { toast } from '@/components/ui/use-toast';
-import { celoLoanAbi } from '@/constants';
+import { celoLoanAbi, ReFiMedLendABI } from '@/constants';
 import abreviarHash from '@/functions/abreviateHash';
 import { ToastAction } from '@radix-ui/react-toast';
 import React from 'react';
@@ -12,7 +12,7 @@ function useLend() {
 
   const loan = useContractWrite({
     address: lendAddress,
-    abi: celoLoanAbi,
+    abi: ReFiMedLendABI,
     functionName: 'requestLend',
     account: address,
     onSuccess: async (txn) => {

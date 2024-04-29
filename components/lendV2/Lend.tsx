@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import {
   Card,
   CardContent,
@@ -34,6 +34,8 @@ import { Address, formatEther } from 'viem';
 import { useErc20Balance } from '@/hooks/LendV2/useErc20Balance';
 import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
 import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
+import { useLend } from '@/hooks/LendV2/useLend';
+import { useErc20Decimals } from '@/hooks/LendV2/useErc20Decimals';
 
 const formSchema = z.object({
   amount: z.number().min(0),
@@ -43,6 +45,7 @@ const formSchema = z.object({
 
 function Lend() {
   const [interests, setInterests] = useState();
+  const { writeAsync } = useLend();
   const {
     data: tokens,
     loading: isTokensLoading,
@@ -51,19 +54,30 @@ function Lend() {
   const [token, setToken] = useState('');
   const { lendAddress } = useNetworkContractV2();
   const { data: balance } = useErc20Balance(token as Address, lendAddress);
+  const { data: decimals } = useErc20Decimals(token as Address);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const currentDate = new Date();
+    currentDate.setMonth(currentDate.getMonth() + Number(values.months));
+
+    writeAsync({
+      args: [
+        values.amount,
+        values.token,
+        Math.floor(currentDate.getTime() / 1000),
+      ],
+    });
   }
   return (
     <Card>
       <CardHeader>
         <CardTitle>Ask for a lend</CardTitle>
         <CardDescription>
-            If you don&apos; have any quota approved, you can ask for one <Link href='https://refimedellin.org'>here</Link>
+          If you don&apos; have any quota approved, you can ask for one{' '}
+          <Link href='https://refimedellin.org'>here</Link>
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -76,7 +90,13 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Amount</FormLabel>
                   <FormControl>
-                    <Input placeholder='100' {...field} />
+                    <Input
+                      placeholder='100'
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(parseFloat(e.target.value) || null);
+                      }}
+                    />
                   </FormControl>
                   <FormDescription>
                     The amount in USD you want to lend
@@ -108,37 +128,45 @@ function Lend() {
                 <FormItem>
                   <FormLabel>Token</FormLabel>
                   <FormControl>
-                    <Select
-                      onValueChange={(value) => setToken(value)}
-                      {...field}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder='Select a token to withdraw' />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {!isTokensLoading &&
-                          !isTokensError &&
-                          tokens?.tokens.map(
-                            ({
-                              tokenAddress,
-                              symbol,
-                            }: {
-                              tokenAddress: Address;
-                              symbol: string;
-                            }) => (
-                              <SelectItem
-                                key={tokenAddress}
-                                value={tokenAddress}
-                              >
-                                {symbol}
-                              </SelectItem>
-                            )
-                          )}
-                      </SelectContent>
-                      <p>Token balance: {formatEther(balance || BigInt(0))}$</p>
-                    </Select>
+                    <Controller
+                      control={form.control}
+                      name='token'
+                      render={({ field }) => (
+                        <Select
+                          onValueChange={(value) => {
+                            field.onChange(value);
+                            setToken(value as Address);
+                          }}
+                          defaultValue={field.value}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder='Select a token to fund' />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {!isTokensLoading &&
+                              !isTokensError &&
+                              tokens?.tokens.map(
+                                ({
+                                  tokenAddress,
+                                  symbol,
+                                }: {
+                                  tokenAddress: Address;
+                                  symbol: string;
+                                }) => (
+                                  <SelectItem
+                                    key={tokenAddress}
+                                    value={tokenAddress}
+                                  >
+                                    {symbol}
+                                  </SelectItem>
+                                )
+                              )}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
                   </FormControl>
-                  <FormDescription>The token you want to lend</FormDescription>
+                  <FormDescription>The token you want to fund</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

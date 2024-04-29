@@ -5,7 +5,11 @@ function useGetSignatureRequests(signers: Address[]) {
   const GET_USER_QUOTA_REQUESTS = gql`
     query GetUserQuotaRequests($signerAddress: [String!]) {
       userQuotaRequests(
-        where: { signers_contains: $signerAddress, complete: false }
+        where: {
+          signers_contains: $signerAddress
+          signedBy_not_contains: $signerAddress
+          complete: false
+        }
       ) {
         id
         amount

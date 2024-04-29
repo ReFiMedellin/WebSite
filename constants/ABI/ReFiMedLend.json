@@ -135,7 +135,9 @@
     "type": "function",
     "name": "getUserQuotaRequests",
     "inputs": [
-      { "name": "userAddress", "type": "address", "internalType": "address" }
+      { "name": "userAddress", "type": "address", "internalType": "address" },
+      { "name": "page", "type": "uint256", "internalType": "uint256" },
+      { "name": "pageSize", "type": "uint256", "internalType": "uint256" }
     ],
     "outputs": [
       {
@@ -190,7 +192,8 @@
     "inputs": [
       { "name": "recipent", "type": "address", "internalType": "address" },
       { "name": "index", "type": "uint16", "internalType": "uint16" },
-      { "name": "caller", "type": "address", "internalType": "address" }
+      { "name": "caller", "type": "address", "internalType": "address" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
     ],
     "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
     "stateMutability": "nonpayable"
@@ -647,6 +650,12 @@
         "internalType": "address"
       },
       {
+        "name": "index",
+        "type": "uint16",
+        "indexed": true,
+        "internalType": "uint16"
+      },
+      {
         "name": "recipent",
         "type": "address",
         "indexed": true,
@@ -676,6 +685,12 @@
         "type": "address",
         "indexed": true,
         "internalType": "address"
+      },
+      {
+        "name": "index",
+        "type": "uint16",
+        "indexed": true,
+        "internalType": "uint16"
       },
       {
         "name": "recipent",

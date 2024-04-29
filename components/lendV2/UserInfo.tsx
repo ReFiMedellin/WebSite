@@ -42,6 +42,7 @@ function UserInfo({
   error: boolean;
 }) {
   const { writeAsync } = useWithdraw();
+  const [amount, setAmount] = useState<undefined | number>();
   const [token, setToken] = useState('');
   const { lendAddress } = useNetworkContractV2();
   const { data: balance } = useErc20Balance(token as Address, lendAddress);
@@ -54,7 +55,7 @@ function UserInfo({
   } = useGetTokens();
   const handleWithdraw = async () => {
     await writeAsync({
-      args: [formatUnits(funded, 3), token],
+      args: [amount, token],
     });
   };
 
@@ -121,6 +122,26 @@ function UserInfo({
                   </p>
                 </Select>
               </div>
+
+              <div className='space-y-2'>
+                <h4 className='font-medium leading-none'>Options</h4>
+                <p className='text-sm text-muted-foreground'>
+                  Amount to withdraw
+                </p>
+              </div>
+              <div className='grid grid-cols-1 items-center gap-4'>
+                <Label htmlFor='token-select'>Amount</Label>
+                <Input
+                  placeholder='amount'
+                  value={amount}
+                  onChange={(event) => {
+                    if (event.target.value) {
+                      setAmount(parseInt(event.target.value));
+                    }
+                  }}
+                />
+              </div>
+
               <Button type='button' onClick={handleWithdraw}>
                 Withdraw funds
               </Button>
