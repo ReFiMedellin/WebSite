@@ -13,11 +13,35 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { useAccount } from 'wagmi';
 import { useGetUserLends } from '@/hooks/LendV2/useGetUserLends';
-import { Address, formatUnits } from 'viem';
-import { Button } from '../ui/button';
+import {
+  Address,
+  formatEther,
+  formatUnits,
+  parseUnits,
+  zeroAddress,
+} from 'viem';
 import { getDaysBetween } from '@/functions/daysBetween';
 import { usePayDebt } from '@/hooks/LendV2/usePayDebt';
 import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useErc20Spendance } from '@/hooks/LendV2/useErc20Spendance';
+import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
+import { useApproveErc20 } from '@/hooks/LendV2/useApproveErc20';
+import { useErc20Decimals } from '@/hooks/LendV2/useErc20Decimals';
 
 type Lend = {
   initialAmount: number;
@@ -28,25 +52,35 @@ type Lend = {
 };
 function CurrentLends() {
   const [page, setPage] = useState(1);
+  const [amount, setAmount] = useState<undefined | number>();
   const { address } = useAccount();
+  const { lendAddress } = useNetworkContractV2();
+  const [token, setToken] = useState<Address>(zeroAddress);
+  const { data: spendance } = useErc20Spendance(token, address!, lendAddress);
+  const { data: decimals } = useErc20Decimals(token);
   const { data, isLoading, isError } = useGetUserLends(address!, page);
-  const { writeAsync } = usePayDebt();
+  const { writeAsync: payDebt } = usePayDebt();
+  const { writeAsync: approve } = useApproveErc20(token);
   const {
     data: tokens,
     loading: isTokensLoading,
     error: isTokensError,
   } = useGetTokens();
 
-  const handleOnPayDebt = async (
-    amount: number,
-    token: Address,
-    index: number
-  ) => {
-    writeAsync({
-      args: [amount, token, index],
+  const handleOnPayDebt = async (index: number) => {
+    console.debug(index)
+    await payDebt({
+      args: [amount, token, index ],
     });
   };
 
+  const handleOnApproveSpendance = async () => {
+    const response = await approve({
+      args: [lendAddress, parseUnits(amount!.toString(), decimals || 18)],
+    });
+  };
+
+  console.debug(data)
 
   return (
     <Card
@@ -73,8 +107,8 @@ function CurrentLends() {
           </TableHeader>
           {!isLoading && !isError && (
             <TableBody>
-              {(data as any[]).map((lend, key) => (
-                <TableRow key={key}>
+              {(data as any[]).map((lend, index) => (
+                <TableRow key={index}>
                   <TableCell className='font-medium'>
                     {formatUnits(lend.initialAmount, 3)}
                   </TableCell>
@@ -91,7 +125,92 @@ function CurrentLends() {
                     {getDaysBetween(Number(lend.expectPaymentDue))}
                   </TableCell>
                   <TableCell>
-                    <Button>Pay debt</Button>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button>Pay debt</Button>
+                      </PopoverTrigger>
+                      <PopoverContent className='w-80'>
+                        <form className='grid gap-4'>
+                          <div className='space-y-2'>
+                            <h4 className='font-medium leading-none'>
+                              Options
+                            </h4>
+                            <p className='text-sm text-muted-foreground'>
+                              Select a token to pay debt
+                            </p>
+                          </div>
+                          <div className='grid grid-cols-1 items-center gap-4'>
+                            <Label htmlFor='token-select'>Token</Label>
+                            <Select
+                              onValueChange={(value: Address) =>
+                                setToken(value)
+                              }
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder='Select a token to withdraw' />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {!isTokensLoading &&
+                                  !isTokensError &&
+                                  tokens?.tokens.map(
+                                    ({
+                                      tokenAddress,
+                                      symbol,
+                                    }: {
+                                      tokenAddress: Address;
+                                      symbol: string;
+                                    }) => (
+                                      <SelectItem
+                                        key={tokenAddress}
+                                        value={tokenAddress}
+                                      >
+                                        {symbol}
+                                      </SelectItem>
+                                    )
+                                  )}
+                              </SelectContent>
+                              {/* <p>
+                    Token balance:{' '}
+                    {formatUnits(balance || BigInt(0), decimals || 18)}$
+                  </p> */}
+                            </Select>
+                          </div>
+                          <div className='grid grid-cols-1 items-center gap-4'>
+                            <Label htmlFor='token-select'>Amount</Label>
+                            <Input
+                              placeholder='100'
+                              value={amount}
+                              onChange={(event) => {
+                                if (event.target.value) {
+                                  setAmount(parseInt(event.target.value));
+                                } else {
+                                  setAmount(undefined);
+                                }
+                              }}
+                            />
+                          </div>
+
+                          {parseFloat(formatEther(spendance ?? BigInt(0))) >=
+                          (amount ?? 0) ? (
+                            <Button
+                              type='button'
+                              onClick={() =>
+                                handleOnPayDebt(index + (page - 1) * 10)
+                              }
+                            >
+                              Pay debt
+                            </Button>
+                          ) : (
+                            <Button
+                              type='button'
+                              onClick={handleOnApproveSpendance}
+                            >
+                              Approve spendance
+                            </Button>
+                          )}
+                        </form>
+                      </PopoverContent>
+                    </Popover>
                   </TableCell>
                 </TableRow>
               ))}

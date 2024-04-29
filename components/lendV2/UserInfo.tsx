@@ -116,23 +116,16 @@ function UserInfo({
                         )
                       )}
                   </SelectContent>
-                  <p>
+                  {/* <p>
                     Token balance:{' '}
                     {formatUnits(balance || BigInt(0), decimals || 18)}$
-                  </p>
+                  </p> */}
                 </Select>
-              </div>
-
-              <div className='space-y-2'>
-                <h4 className='font-medium leading-none'>Options</h4>
-                <p className='text-sm text-muted-foreground'>
-                  Amount to withdraw
-                </p>
               </div>
               <div className='grid grid-cols-1 items-center gap-4'>
                 <Label htmlFor='token-select'>Amount</Label>
                 <Input
-                  placeholder='amount'
+                  placeholder='100'
                   value={amount}
                   onChange={(event) => {
                     if (event.target.value) {

@@ -41,7 +41,6 @@ function CurrentSignatures() {
     recipent: Address,
     index: number
   ) => {
-    console.debug(EASContractAddress);
     const eas = new EAS(EASContractAddress);
     eas.connect(signer as any);
     const schemaEncoder = new SchemaEncoder(
@@ -61,11 +60,8 @@ function CurrentSignatures() {
         data: encodedData,
       },
     });
-    const response = await tx.wait();
-    console.debug(response);
+    await tx.wait();
   };
-
-  console.debug(data);
 
   return (
     <Card
