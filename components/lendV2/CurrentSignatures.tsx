@@ -47,7 +47,7 @@ function CurrentSignatures() {
       'int256 amount,address recipent,uint16 index'
     );
     const encodedData = schemaEncoder.encodeData([
-      { name: 'amount', value: amount, type: 'int256' },
+      { name: 'amount', value: amount * 1e3, type: 'int256' },
       { name: 'recipent', value: recipent, type: 'address' },
       { name: 'index', value: index, type: 'uint16' },
     ]);

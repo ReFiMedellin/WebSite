@@ -13,12 +13,21 @@ import { CurrentLends } from '@/components/lendV2/CurrentLends';
 import { CurrentSignatures } from '@/components/lendV2/CurrentSignatures';
 import { Card } from '@/components/ui/card';
 import { useGetUser } from '@/hooks/LendV2/useGetUser';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { Chains } from '@/constants/chains';
 import { toast } from '@/components/ui/use-toast';
 import { NetworkModal } from '@/components/loanPanel/NetworkModal';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
 
 export default function Page() {
+  const { push } = useRouter();
   const [selectedChain, setSelectedChain] = useState<
     keyof typeof Chains | null
   >(null);
@@ -38,8 +47,8 @@ export default function Page() {
     setSelectedChain(currentChain);
 
     if (
-      chain?.id !== Chains.celo &&
-      chain?.id !== Chains.optimism &&
+      // chain?.id !== Chains.celo &&
+      // chain?.id !== Chains.optimism &&
       chain?.id !== Chains.sepolia
     ) {
       setShowNetworkModal(true);
@@ -136,7 +145,25 @@ export default function Page() {
   }
 
   return (
-    <main className='lend__panel px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
+    <main className='lend__panel px-5  text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
+      <div className='flex flex-row gap-4'>
+        <div className='flex flex-col gap-2 place-self-start'>
+          <h4>Selecciona la red</h4>
+          <Select
+            key={selectedChain}
+            defaultValue={selectedChain as string}
+            onValueChange={handleNetworkChange}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Red' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='celo'>Celo</SelectItem>
+              <SelectItem value='optimism'>Optimism</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <div
         style={{
           gridArea: 'info',

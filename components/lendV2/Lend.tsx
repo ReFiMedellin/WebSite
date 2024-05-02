@@ -140,7 +140,7 @@ function Lend() {
                           defaultValue={field.value}
                         >
                           <SelectTrigger>
-                            <SelectValue placeholder='Select a token to fund' />
+                            <SelectValue placeholder='Select a token to lend' />
                           </SelectTrigger>
                           <SelectContent>
                             {!isTokensLoading &&
@@ -166,7 +166,7 @@ function Lend() {
                       )}
                     />
                   </FormControl>
-                  <FormDescription>The token you want to fund</FormDescription>
+                  <FormDescription>The token you want to lend</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

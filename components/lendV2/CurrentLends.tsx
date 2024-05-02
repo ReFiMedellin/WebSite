@@ -68,19 +68,18 @@ function CurrentLends() {
   } = useGetTokens();
 
   const handleOnPayDebt = async (index: number) => {
-    console.debug(index)
     await payDebt({
-      args: [amount, token, index ],
+      args: [amount! * 1e3, token, index],
     });
   };
 
   const handleOnApproveSpendance = async () => {
-    const response = await approve({
+    await approve({
       args: [lendAddress, parseUnits(amount!.toString(), decimals || 18)],
     });
   };
 
-  console.debug(data)
+  console.debug(data);
 
   return (
     <Card
@@ -127,7 +126,15 @@ function CurrentLends() {
                   <TableCell>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button>Pay debt</Button>
+                        <Button
+                          onClick={() =>
+                            setAmount(
+                              Number(formatUnits(lend.currentAmount, 3))
+                            )
+                          }
+                        >
+                          Pay debt
+                        </Button>
                       </PopoverTrigger>
                       <PopoverContent className='w-80'>
                         <form className='grid gap-4'>
@@ -147,7 +154,7 @@ function CurrentLends() {
                               }
                             >
                               <SelectTrigger>
-                                <SelectValue placeholder='Select a token to withdraw' />
+                                <SelectValue placeholder='Select a token to pay debt' />
                               </SelectTrigger>
                               <SelectContent>
                                 {!isTokensLoading &&

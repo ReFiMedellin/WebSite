@@ -7,7 +7,10 @@ function useGetAllLends(page: number) {
             lender
             amount
             token
+            currentAmount
             transactionHash
+            paymentDue
+            interests
             
           }
     }

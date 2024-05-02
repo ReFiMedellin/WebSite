@@ -21,6 +21,9 @@ import { Address, formatUnits } from 'viem';
 import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
 import { getDaysBetween } from '@/functions/daysBetween';
 import { Button } from '../ui/button';
+import abreviarHash from '@/functions/abreviateHash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 function LendsManager() {
   const [page, setPage] = useState(0);
@@ -47,8 +50,10 @@ function LendsManager() {
           <TableCaption>A list of the whole lends.</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>User</TableHead>
               <TableHead className='w-[100px]'>Initial amount</TableHead>
               <TableHead>Current amount</TableHead>
+              <TableHead>Interests</TableHead>
               <TableHead>Token</TableHead>
               <TableHead>Days remaining</TableHead>
             </TableRow>
@@ -57,12 +62,21 @@ function LendsManager() {
             <TableBody>
               {(data.lendings as any[]).map((lend, key) => (
                 <TableRow key={key}>
+                  <TableCell className='flex flex-row gap-2 items-center '>
+                    <Button
+                      className='w-8 h-8'
+                      variant={'outline'}
+                      onClick={() => navigator.clipboard.writeText(lend.lender)}
+                    >
+                      <FontAwesomeIcon icon={faCopy} />
+                    </Button>
+                    {abreviarHash(lend.lender)}
+                  </TableCell>
                   <TableCell className='font-medium'>
-                    {Number(lend.amount)}
+                    {formatUnits(lend.amount, 3)}
                   </TableCell>
-                  <TableCell>
-                    {formatUnits(lend.currentAmount ?? 0, 3)}
-                  </TableCell>
+                  <TableCell>{formatUnits(lend.currentAmount, 3)}</TableCell>
+                  <TableCell>{formatUnits(lend.interests, 3)}</TableCell>
                   <TableCell>
                     {!isTokensLoading && !isTokensError
                       ? tokens.tokens.filter(
@@ -72,7 +86,7 @@ function LendsManager() {
                       : lend.token}
                   </TableCell>
                   <TableCell>
-                    {/* {getDaysBetween(Number(lend.expectPaymentDue))} */}
+                    {getDaysBetween(Number(lend.paymentDue))}
                   </TableCell>
                 </TableRow>
               ))}
