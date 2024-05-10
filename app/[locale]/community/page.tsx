@@ -1,68 +1,65 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import { useAccount, useNetwork } from 'wagmi'
-const erc1155ABI = require('@/constants/ABI/erc1155ABI.json')
-import { redirect, useRouter } from 'next/navigation'
-import BordeBottom from '@/assets/images/Borde-ReFi.png'
-import Image from 'next/image'
-import Web3 from 'web3'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
-import LoanPanel from '@/components/LoanPanel'
-import { adminAddress } from '@/constants'
+'use client';
+import React, { useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
+const erc1155ABI = require('@/constants/ABI/erc1155ABI.json');
+import { redirect } from 'next/navigation';
+import BordeBottom from '@/assets/images/Borde-ReFi.png';
+import Image from 'next/image';
+import Web3 from 'web3';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import LoanPanel from '@/components/LoanPanel';
+import { adminAddress } from '@/constants';
 
-function Page () {
-  const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  const { chain, chains } = useNetwork()
+function Page() {
+  const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const t = useTranslations('ExclusiveContent')
-  const [isMounted, setIsMounted] = useState(false)
-  const [hasNFT, setHasNFT] = useState(false)
-  const router = useRouter()
+  const t = useTranslations('ExclusiveContent');
+  const [isMounted, setIsMounted] = useState(false);
+  const [hasNFT, setHasNFT] = useState(false);
 
-  const { address, isConnected } = useAccount()
+  const { address, isConnected } = useAccount();
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')
-  )
+  );
 
   const contract = new web3.eth.Contract(
     erc1155ABI,
     '0x6500dD04e67925A94975D787eF08E2d7786649D9'
-  )
+  );
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
-  function isAdmin () {
-    return address === adminAddress
+  function isAdmin() {
+    return address === adminAddress;
   }
 
   useEffect(() => {
-    if (!isConnected) return
-    async function getNFT () {
+    if (!isConnected) return;
+    async function getNFT() {
       try {
         const data = await contract.methods
           //TODO: FIX THIS TYPE
           // @ts-ignore
           .balanceOfBatch(Array(tokenIds.length).fill(address), tokenIds)
-          .call()
+          .call();
         data &&
           data.forEach((nft: bigint) => {
             if (nft > BigInt(0)) {
-              setHasNFT(true)
+              setHasNFT(true);
             }
-          })
-        console.log('Datos del contrato:', data)
+          });
+        console.log('Datos del contrato:', data);
       } catch (error) {
-        console.error('Error al leer el contrato:', error)
+        console.error('Error al leer el contrato:', error);
       }
     }
-    getNFT()
-  }, [])
+    getNFT();
+  }, []);
 
-  if (!isConnected && isMounted) return redirect('/')
+  if (!isConnected && isMounted) return redirect('/');
 
   return (
     <section className='flex py-20 flex-row relative first-bg justify-center items-center min-h-screen text-white bg-[#1B2731] w-full'>
@@ -96,7 +93,7 @@ function Page () {
         alt='Medellin'
       />
     </section>
-  )
+  );
 }
 
-export default Page
+export default Page;

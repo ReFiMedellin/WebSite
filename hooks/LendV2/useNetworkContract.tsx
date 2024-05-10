@@ -1,6 +1,4 @@
-import { easAddressCelo } from '@/constants';
 import { ReFiMedLendContracts } from '@/constants/ReFiMedLendContracts';
-import { zeroAddress } from 'viem';
 import { useNetwork } from 'wagmi';
 
 export const chainIds = {

@@ -27,13 +27,16 @@ import {
 import { Switch } from '@/components/ui/switch';
 
 export default function Page() {
-  const { push } = useRouter();
   const [selectedChain, setSelectedChain] = useState<
     keyof typeof Chains | null
   >(null);
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const { chain } = useNetwork();
   const { switchNetworkAsync } = useSwitchNetwork();
+  const [hasNft, setHasNft] = useState(false);
+  const t = useTranslations('ExclusiveContent');
+  const { address, isConnected } = useAccount();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const currentChain =
@@ -41,14 +44,18 @@ export default function Page() {
         ? 'celo'
         : chain?.id === Chains.optimism
         ? 'optimism'
+        : chain?.id === Chains.polygon
+        ? 'polygon'
         : chain?.id === Chains.sepolia
         ? 'sepolia'
         : null;
     setSelectedChain(currentChain);
 
+    console.debug({ chainID: chain?.id });
     if (
-      // chain?.id !== Chains.celo &&
-      // chain?.id !== Chains.optimism &&
+      chain?.id !== Chains.celo &&
+      chain?.id !== Chains.optimism &&
+      chain?.id !== Chains.polygon &&
       chain?.id !== Chains.sepolia
     ) {
       setShowNetworkModal(true);
@@ -75,11 +82,6 @@ export default function Page() {
 
     checkIfNetworkChanged();
   };
-
-  const [hasNft, setHasNft] = useState(false);
-  const t = useTranslations('ExclusiveContent');
-  const { address, isConnected } = useAccount();
-  const [isMounted, setIsMounted] = useState(false);
 
   const {
     data: user,
@@ -161,6 +163,7 @@ export default function Page() {
             <SelectContent>
               <SelectItem value='celo'>Celo</SelectItem>
               <SelectItem value='optimism'>Optimism</SelectItem>
+              <SelectItem value='polygon'>Polygon</SelectItem>
             </SelectContent>
           </Select>
         </div>
