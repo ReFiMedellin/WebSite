@@ -119,6 +119,7 @@ export default function Page() {
     setIsMounted(true);
   }, []);
 
+  console.debug({ user });
   if (!isConnected && isMounted) return redirect('/');
   if (showNetworkModal) {
     return <NetworkModal onNetworkSelect={handleNetworkChange} />;

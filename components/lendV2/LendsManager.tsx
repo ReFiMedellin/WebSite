@@ -4,7 +4,6 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -51,7 +50,7 @@ function LendsManager() {
           <TableHeader>
             <TableRow>
               <TableHead>User</TableHead>
-              <TableHead className='w-[100px]'>Initial amount</TableHead>
+              <TableHead>Initial amount</TableHead>
               <TableHead>Current amount</TableHead>
               <TableHead>Interests</TableHead>
               <TableHead>Token</TableHead>

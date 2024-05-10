@@ -190,9 +190,8 @@ html {
 .lendManager {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto;
   grid-template-areas:
-    'info lends'
-    'manager lends';
+    'info manager'
+    'info manager';
   align-items: flex-start;
 }

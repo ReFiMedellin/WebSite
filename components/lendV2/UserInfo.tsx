@@ -45,8 +45,8 @@ function UserInfo({
   const [amount, setAmount] = useState<undefined | number>();
   const [token, setToken] = useState('');
   const { lendAddress } = useNetworkContractV2();
-  const { data: balance } = useErc20Balance(token as Address, lendAddress);
-  const { data: decimals } = useErc20Decimals(token as Address);
+
+  console.debug();
 
   const {
     data: tokens,

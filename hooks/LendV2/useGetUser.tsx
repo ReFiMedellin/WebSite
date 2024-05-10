@@ -11,7 +11,7 @@ function useGetUser(address: Address) {
     abi: ReFiMedLendABI,
     functionName: 'user',
     watch: true,
-    args: ['0x5E15DBf75d3819Dd9DA31Fc159Ce5bc5f3751AB0'],
+    args: [address],
   });
   return response;
 }

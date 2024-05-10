@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Table,
@@ -42,6 +42,7 @@ import { useErc20Spendance } from '@/hooks/LendV2/useErc20Spendance';
 import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
 import { useApproveErc20 } from '@/hooks/LendV2/useApproveErc20';
 import { useErc20Decimals } from '@/hooks/LendV2/useErc20Decimals';
+import { useGetCurrentLendInterests } from '@/hooks/LendV2/useGetCurrentLendInterests';
 
 type Lend = {
   initialAmount: number;
@@ -53,6 +54,7 @@ type Lend = {
 function CurrentLends() {
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState<undefined | number>();
+  const [currentLend, setCurrentLend] = useState(0);
   const { address } = useAccount();
   const { lendAddress } = useNetworkContractV2();
   const [token, setToken] = useState<Address>(zeroAddress);
@@ -66,6 +68,24 @@ function CurrentLends() {
     loading: isTokensLoading,
     error: isTokensError,
   } = useGetTokens();
+
+  const {
+    data: currentInterests,
+    isError: isCurrentInterestsError,
+    isLoading: isCurrentInterestsLoading,
+  } = useGetCurrentLendInterests(currentLend);
+
+  useEffect(() => {
+    if (!isCurrentInterestsError && !isCurrentInterestsLoading) {
+      //@ts-ignore
+      setAmount(currentInterests.totalDebt);
+      console.debug(
+        { currentInterests },
+        isCurrentInterestsError,
+        isCurrentInterestsLoading
+      );
+    }
+  }, [currentInterests]);
 
   const handleOnPayDebt = async (index: number) => {
     await payDebt({
@@ -117,7 +137,7 @@ function CurrentLends() {
                       ? tokens.tokens.filter(
                           ({ tokenAddress }: { tokenAddress: Address }) =>
                             tokenAddress === lend.token.toLowerCase()
-                        )[0].symbol
+                        )[0]?.symbol || 'null'
                       : lend.token}
                   </TableCell>
                   <TableCell>
@@ -126,13 +146,7 @@ function CurrentLends() {
                   <TableCell>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button
-                          onClick={() =>
-                            setAmount(
-                              Number(formatUnits(lend.currentAmount, 3))
-                            )
-                          }
-                        >
+                        <Button onClick={() => setCurrentLend(index)}>
                           Pay debt
                         </Button>
                       </PopoverTrigger>
@@ -187,12 +201,9 @@ function CurrentLends() {
                             <Input
                               placeholder='100'
                               value={amount}
+                              step={0.001}
                               onChange={(event) => {
-                                if (event.target.value) {
-                                  setAmount(parseInt(event.target.value));
-                                } else {
-                                  setAmount(undefined);
-                                }
+                                setAmount(event.target.value);
                               }}
                             />
                           </div>
