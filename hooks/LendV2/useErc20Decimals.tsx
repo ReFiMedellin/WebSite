@@ -1,4 +1,4 @@
-import { Address, erc20ABI, useAccount, useContractRead } from 'wagmi';
+import { Address, erc20ABI, useContractRead } from 'wagmi';
 
 function useErc20Decimals(tokenAddress: Address) {
   const balance = useContractRead({
