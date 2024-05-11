@@ -16,7 +16,7 @@ import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { useRequestQuotaIncrease } from '@/hooks/LendV2/useRequestQuotaIncrease';
 const formSchema = z.object({
-  amount: z.number().min(0).optional().default(0),
+  amount: z.number().min(0),
   user: z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'),
   signers: z
     .array(
@@ -111,7 +111,9 @@ function QuotaManager() {
                         <div className='flex flex-col gap-2' key={field.id}>
                           <Input
                             placeholder='Enter signer address'
-                            {...form.register(`signers.${index}` as const)}
+                            {...form.register(
+                              `signers.${index}.value` as const
+                            )}
                           />
                           <Button
                             variant='destructive'
