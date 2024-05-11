@@ -19,7 +19,14 @@ const formSchema = z.object({
   amount: z.number().min(0).optional().default(0),
   user: z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'),
   signers: z
-    .array(z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'))
+    .array(
+      z.object({
+        value: z
+          .string()
+          .regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid wallet address'),
+        id: z.string(),
+      })
+    )
     .min(3, 'At least 3 signers are required')
     .max(10, 'No more than 10 signers are allowed'),
 });
@@ -29,18 +36,20 @@ function QuotaManager() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      signers: [''],
+      signers: [],
     },
   });
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove } = useFieldArray<z.infer<typeof formSchema>>({
     control: form.control,
     name: 'signers',
+    keyName: 'id',
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    const addresses = values.signers.map((signer) => signer.value);
     await writeAsync({
-      args: [values.user, values.amount, values.signers],
+      args: [values.user, values.amount, addresses],
     });
   }
   return (
@@ -115,7 +124,12 @@ function QuotaManager() {
                       ))}
                       <Button
                         variant='outline'
-                        onClick={() => append('')}
+                        onClick={() =>
+                          append({
+                            value: '',
+                            id: Math.random().toString(),
+                          })
+                        }
                         type='button'
                       >
                         Add Signer
