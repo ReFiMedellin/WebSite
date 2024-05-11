@@ -25,6 +25,7 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { Button } from '@/components/ui/button';
 
 export default function Page() {
   const [selectedChain, setSelectedChain] = useState<
@@ -37,6 +38,7 @@ export default function Page() {
   const t = useTranslations('ExclusiveContent');
   const { address, isConnected } = useAccount();
   const [isMounted, setIsMounted] = useState(false);
+  const { push } = useRouter();
 
   useEffect(() => {
     const currentChain =
@@ -149,7 +151,7 @@ export default function Page() {
 
   return (
     <main className='lend__panel px-5  text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
-      <div className='flex flex-row gap-4'>
+      <div className='flex flex-row gap-4 items-end'>
         <div className='flex flex-col gap-2 place-self-start'>
           <h4>Selecciona la red</h4>
           <Select
@@ -167,6 +169,10 @@ export default function Page() {
             </SelectContent>
           </Select>
         </div>
+        <Button onClick={() => push('/community')} variant='outline'>
+          V1
+        </Button>
+        <Button variant='secondary'> NEW! V2</Button>
       </div>
       <div
         style={{

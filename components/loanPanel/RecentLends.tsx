@@ -53,8 +53,6 @@ function RecentLends() {
   const { formatFiat } = useNumbers();
   const { writeAsync: payDebt } = usePayDebt();
 
-  const {data: decimals, loading: decimalsLoading} = useDecimals();
-
   const { writeAsync: approve } = useApproveErc20();
   const { data: spendance } = useErc20Spendance();
   const { lendAddress } = useNetworkContract();

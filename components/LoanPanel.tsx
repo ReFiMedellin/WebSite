@@ -1,73 +1,74 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import FundLend from './loanPanel/FundLend'
-import RecentLends from './loanPanel/RecentLends'
-import { TotalFunds } from './loanPanel/TotalFunds'
-import { AdminLendPanel } from './loanPanel/AdminLendPanel'
-import { AdminDashboard } from './loanPanel/AdminDashboard'
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+'use client';
+import React, { useEffect, useState } from 'react';
+import FundLend from './loanPanel/FundLend';
+import RecentLends from './loanPanel/RecentLends';
+import { TotalFunds } from './loanPanel/TotalFunds';
+import { AdminLendPanel } from './loanPanel/AdminLendPanel';
+import { AdminDashboard } from './loanPanel/AdminDashboard';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
-import { useNetwork, useSwitchNetwork } from 'wagmi'
-import { capitalize } from '@/functions/capitalize'
-import { NetworkModal } from './loanPanel/NetworkModal'
-import { toast } from './ui/use-toast'
+  SelectValue,
+} from '@/components/ui/select';
+import { useNetwork, useSwitchNetwork } from 'wagmi';
+import { capitalize } from '@/functions/capitalize';
+import { NetworkModal } from './loanPanel/NetworkModal';
+import { toast } from './ui/use-toast';
+import { Button } from './ui/button';
 
 const Chains = {
   celo: 42220,
-  optimism: 10
-}
+  optimism: 10,
+};
 
-function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
+function LoanPanel({ isAdmin }: { isAdmin: boolean }) {
   const [selectedChain, setSelectedChain] = useState<
     keyof typeof Chains | null
-  >(null)
-  const [showNetworkModal, setShowNetworkModal] = useState(false)
-  const { chain } = useNetwork()
-  const { switchNetworkAsync } = useSwitchNetwork()
-
+  >(null);
+  const [showNetworkModal, setShowNetworkModal] = useState(false);
+  const { chain } = useNetwork();
+  const { switchNetworkAsync } = useSwitchNetwork();
+  const { push } = useRouter();
   useEffect(() => {
     const currentChain =
       chain?.id === Chains.celo
         ? 'celo'
         : chain?.id === Chains.optimism
         ? 'optimism'
-        : null
-    setSelectedChain(currentChain)
+        : null;
+    setSelectedChain(currentChain);
 
     if (chain?.id !== Chains.celo && chain?.id !== Chains.optimism) {
-      setShowNetworkModal(true)
+      setShowNetworkModal(true);
     } else {
-      setShowNetworkModal(false)
+      setShowNetworkModal(false);
     }
-  }, [chain])
+  }, [chain]);
 
   const handleNetworkChange = async (value: keyof typeof Chains) => {
-    const desiredChainId = Chains[value]
+    const desiredChainId = Chains[value];
     toast({
       title: 'Tip',
-      description: 'Recuerda aceptar el cambio de red en tu billetera'
-    })
-    await switchNetworkAsync?.(desiredChainId)
+      description: 'Recuerda aceptar el cambio de red en tu billetera',
+    });
+    await switchNetworkAsync?.(desiredChainId);
 
     const checkIfNetworkChanged = () => {
       if (chain?.id !== desiredChainId) {
-        setTimeout(checkIfNetworkChanged, 1000)
+        setTimeout(checkIfNetworkChanged, 1000);
       } else {
-        setSelectedChain(value)
+        setSelectedChain(value);
       }
-    }
+    };
 
-    checkIfNetworkChanged()
-  }
+    checkIfNetworkChanged();
+  };
 
   if (showNetworkModal) {
-    return <NetworkModal onNetworkSelect={handleNetworkChange} />
+    return <NetworkModal onNetworkSelect={handleNetworkChange} />;
   }
   return (
     <section className='w-screen min-h-screen flex flex-col lg:p-10 gap-10'>
@@ -75,22 +76,30 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
         Bienvenido al panel de prestamos de ReFiMedellín
       </h2>
       <div className='lendPanel'>
-        <div className='flex flex-col gap-2 place-self-start'>
-          <h4>Selecciona la red</h4>
-          <Select
-            key={selectedChain}
-            defaultValue={selectedChain as string}
-            onValueChange={handleNetworkChange}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder='Red' />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='celo'>Celo</SelectItem>
-              <SelectItem value='optimism'>Optimism</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className='flex flex-row gap-4 items-end'>
+          <div className='flex flex-col gap-2 place-self-start'>
+            <h4>Selecciona la red</h4>
+            <Select
+              key={selectedChain}
+              defaultValue={selectedChain as string}
+              onValueChange={handleNetworkChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder='Red' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='celo'>Celo</SelectItem>
+                <SelectItem value='optimism'>Optimism</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Button variant='secondary'>V1</Button>
+          <Button onClick={() => push('/lend')} variant='outline'>
+            {' '}
+            NEW! V2
+          </Button>
         </div>
+
         <TotalFunds isAdmin={isAdmin} />
         <FundLend />
         <RecentLends />
@@ -102,7 +111,7 @@ function LoanPanel ({ isAdmin }: { isAdmin: boolean }) {
         )}
       </div>
     </section>
-  )
+  );
 }
 
-export default LoanPanel
+export default LoanPanel;
