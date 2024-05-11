@@ -10,12 +10,8 @@ import { configureChains, createConfig, sepolia, WagmiConfig } from 'wagmi';
 import { celo, arbitrum, mainnet, optimism, polygon } from 'wagmi/chains';
 import { GtagManager } from '@/components/utils/GTAG';
 import { Metricol } from '@/components/utils/Metricol';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from '@apollo/client';
+import ApolloProviderNetworkBased from './apolloProvider';
+
 const chains = [celo, arbitrum, mainnet, optimism, polygon, sepolia];
 const projectId = '344c4ee91d5e35fec2368e61edfbe959';
 
@@ -33,20 +29,17 @@ function Providers({ children }: { children: React.ReactNode }) {
     setIsMounted(true);
   }, []);
 
-  const client = new ApolloClient({
-    uri: 'https://api.studio.thegraph.com/query/72352/refimedlending/version/latest',
-    cache: new InMemoryCache(),
-  });
-
   return (
-    <ApolloProvider client={client}>
-      <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
+    <>
+      <WagmiConfig config={wagmiConfig}>
+        <ApolloProviderNetworkBased>{children}</ApolloProviderNetworkBased>
+      </WagmiConfig>
       <GtagManager />
       <Metricol />
       {isMounted && (
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       )}
-    </ApolloProvider>
+    </>
   );
 }
 
