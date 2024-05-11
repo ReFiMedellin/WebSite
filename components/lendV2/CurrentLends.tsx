@@ -53,7 +53,7 @@ type Lend = {
 };
 function CurrentLends() {
   const [page, setPage] = useState(1);
-  const [amount, setAmount] = useState<undefined | number>();
+  const [amount, setAmount] = useState<undefined | string>();
   const [currentLend, setCurrentLend] = useState(0);
   const { address } = useAccount();
   const { lendAddress } = useNetworkContractV2();
@@ -89,7 +89,7 @@ function CurrentLends() {
 
   const handleOnPayDebt = async (index: number) => {
     await payDebt({
-      args: [amount! * 1e3, token, index],
+      args: [parseFloat(amount ?? '0') * 1e3, token, index],
     });
   };
 
@@ -146,70 +146,36 @@ function CurrentLends() {
                   <TableCell>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button onClick={() => setCurrentLend(index)}>
+                        <Button
+                          onClick={() => {
+                            setCurrentLend(index);
+                            setToken(lend.token);
+                          }}
+                        >
                           Pay debt
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className='w-80'>
                         <form className='grid gap-4'>
-                          <div className='space-y-2'>
-                            <h4 className='font-medium leading-none'>
-                              Options
-                            </h4>
-                            <p className='text-sm text-muted-foreground'>
-                              Select a token to pay debt
-                            </p>
-                          </div>
-                          <div className='grid grid-cols-1 items-center gap-4'>
-                            <Label htmlFor='token-select'>Token</Label>
-                            <Select
-                              onValueChange={(value: Address) =>
-                                setToken(value)
-                              }
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder='Select a token to pay debt' />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {!isTokensLoading &&
-                                  !isTokensError &&
-                                  tokens?.tokens.map(
-                                    ({
-                                      tokenAddress,
-                                      symbol,
-                                    }: {
-                                      tokenAddress: Address;
-                                      symbol: string;
-                                    }) => (
-                                      <SelectItem
-                                        key={tokenAddress}
-                                        value={tokenAddress}
-                                      >
-                                        {symbol}
-                                      </SelectItem>
-                                    )
-                                  )}
-                              </SelectContent>
-                              {/* <p>
-                    Token balance:{' '}
-                    {formatUnits(balance || BigInt(0), decimals || 18)}$
-                  </p> */}
-                            </Select>
-                          </div>
                           <div className='grid grid-cols-1 items-center gap-4'>
                             <Label htmlFor='token-select'>Amount</Label>
                             <Input
                               placeholder='100'
                               value={amount}
+                              type='decimals'
                               step={0.001}
+                              pattern='^\d*\.?\d*$'
                               onChange={(event) => {
-                                setAmount(event.target.value);
+                                const inputValue = event.target.value;
+                                if (/^\d*\.?\d*$/.test(inputValue)) {
+                                  setAmount(inputValue);
+                                }
                               }}
                             />
                           </div>
 
                           {parseFloat(formatEther(spendance ?? BigInt(0))) >=
-                          (amount ?? 0) ? (
+                          parseFloat(amount ?? '0') ? (
                             <Button
                               type='button'
                               onClick={() =>

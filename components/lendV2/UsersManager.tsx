@@ -20,7 +20,6 @@ import {
 } from '@/components/ui/table';
 import { Button } from '../ui/button';
 import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
-import { useGetAllLends } from '@/hooks/LendV2/useGetAllLends';
 import { getDaysBetween } from '@/functions/daysBetween';
 import { useGetAllLendsPerUser } from '@/hooks/LendV2/useGetAllLendsPerUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -50,8 +49,6 @@ function UsersManager() {
     loading: isTokensLoading,
     error: isTokensError,
   } = useGetTokens();
-
-  console.debug(user);
 
   return (
     <Card

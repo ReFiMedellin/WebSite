@@ -32,8 +32,6 @@ function LendsManager() {
     loading: isTokensLoading,
     error: isTokensError,
   } = useGetTokens();
-  console.debug(data);
-
   return (
     <Card
       style={{

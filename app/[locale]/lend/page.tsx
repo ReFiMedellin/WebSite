@@ -151,8 +151,8 @@ export default function Page() {
 
   return (
     <main className='lend__panel px-5  text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
-      <div className='flex flex-row gap-4 items-end'>
-        <div className='flex flex-col gap-2 place-self-start'>
+      <div className='flex flex-row gap-4 w-full items-end'>
+        <div className='flex flex-col gap-2  place-self-start'>
           <h4>Selecciona la red</h4>
           <Select
             key={selectedChain}
@@ -173,6 +173,7 @@ export default function Page() {
           V1
         </Button>
         <Button variant='secondary'> NEW! V2</Button>
+        <Button variant='outline' className='justify-self-end' onClick={()=>push('lend-manager')}>Admin manager</Button>
       </div>
       <div
         style={{
