@@ -27,7 +27,7 @@ export type Request = {
 };
 
 function CurrentSignatures() {
-  const { eas: EASContractAddress } = useNetworkContractV2();
+  const { eas: EASContractAddress, schema } = useNetworkContractV2();
 
   const { address } = useAccount();
   const signer = useEthersSigner();
@@ -44,15 +44,17 @@ function CurrentSignatures() {
     const eas = new EAS(EASContractAddress);
     eas.connect(signer as any);
     const schemaEncoder = new SchemaEncoder(
-      'int256 amount,address recipent,uint16 index'
+      'uint256 amount,address recipent,uint16 index'
     );
+    console.debug(recipent);
     const encodedData = schemaEncoder.encodeData([
-      { name: 'amount', value: amount * 1e3, type: 'int256' },
+      { name: 'amount', value: amount * 1e3, type: 'uint256' },
       { name: 'recipent', value: recipent, type: 'address' },
       { name: 'index', value: index, type: 'uint16' },
     ]);
+    console.debug(encodedData);
     const tx = await eas.attest({
-      schema: schemaUIDSepolia,
+      schema,
       data: {
         recipient: recipent,
         expirationTime: BigInt(0),
@@ -100,7 +102,7 @@ function CurrentSignatures() {
                     <Button
                       onClick={() =>
                         handleAttest(
-                          request.amount,
+                          parseFloat(request.amount),
                           request.user.id,
                           request.id.split('-')[1]
                         )

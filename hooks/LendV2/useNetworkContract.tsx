@@ -1,3 +1,9 @@
+import {
+  schemaUIDCelo,
+  schemaUIDOptimism,
+  schemaUIDPolygon,
+  schemaUIDSepolia,
+} from '@/constants';
 import { ReFiMedLendContracts } from '@/constants/ReFiMedLendContracts';
 import { useNetwork } from 'wagmi';
 
@@ -16,32 +22,37 @@ export function useNetworkContractV2() {
       return {
         lendAddress: ReFiMedLendContracts.celo.lendAddress,
         eas: ReFiMedLendContracts.celo.eas,
-        subgraph: 'refimedlending-celo'
+        subgraph: 'refimedlending-celo',
+        schema: schemaUIDCelo,
       };
     case chainIds.sepolia:
       return {
         lendAddress: ReFiMedLendContracts.sepolia.lendAddress,
         eas: ReFiMedLendContracts.sepolia.eas,
-        subgraph: 'refimedlending'
+        subgraph: 'refimedlending',
+        schema: schemaUIDSepolia,
       };
     case chainIds.optimism: {
       return {
         lendAddress: ReFiMedLendContracts.optimism.lendAddress,
         eas: ReFiMedLendContracts.optimism.eas,
-        subgraph: 'refimedlending-optimism'
+        subgraph: 'refimedlending-optimism',
+        schema: schemaUIDOptimism,
       };
     }
     case chainIds.polygon:
       return {
         lendAddress: ReFiMedLendContracts.polygon.lendAddress,
         eas: ReFiMedLendContracts.polygon.eas,
-        subgraph: 'refimedlending-polygon'
+        subgraph: 'refimedlending-polygon',
+        schema: schemaUIDPolygon,
       };
     default:
       return {
         lendAddress: ReFiMedLendContracts.celo.lendAddress,
         eas: ReFiMedLendContracts.celo.eas,
-        subgraph: 'refimedlending-celo'
+        subgraph: 'refimedlending-celo',
+        schema: schemaUIDCelo,
       };
   }
 }
