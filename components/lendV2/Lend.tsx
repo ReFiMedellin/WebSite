@@ -36,6 +36,7 @@ import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
 import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
 import { useLend } from '@/hooks/LendV2/useLend';
 import { useErc20Decimals } from '@/hooks/LendV2/useErc20Decimals';
+import { toast } from '../ui/use-toast';
 
 const formSchema = z.object({
   amount: z.number().min(0),
@@ -63,12 +64,16 @@ function Lend() {
     const currentDate = new Date();
     currentDate.setMonth(currentDate.getMonth() + Number(values.months));
 
-    writeAsync({
-      args: [
-        values.amount,
-        values.token,
-        Math.floor(currentDate.getTime() / 1000),
-      ],
+    // writeAsync({
+    //   args: [
+    //     values.amount,
+    //     values.token,
+    //     Math.floor(currentDate.getTime() / 1000),
+    //   ],
+    // });
+    toast({
+      title: 'Sorry',
+      description: "Currently we've disabled the lending feature.",
     });
   }
   return (
@@ -171,7 +176,7 @@ function Lend() {
                 </FormItem>
               )}
             />
-            <Button type='submit'>Lend</Button>
+            <Button type='button'>Lend</Button>
           </form>
         </Form>
       </CardContent>
