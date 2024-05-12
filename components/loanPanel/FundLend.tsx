@@ -104,8 +104,9 @@ function FundLend() {
 
   async function onLendSubmit(values: any) {
     try {
-      await loan({
-        args: [parseEther(values.amount), values.months],
+      toast({
+        title: 'Sorry',
+        description: "Currently we've disabled the lending feature.",
       });
       lendForm.reset({
         amount: '',

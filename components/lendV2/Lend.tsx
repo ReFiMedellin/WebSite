@@ -64,16 +64,12 @@ function Lend() {
     const currentDate = new Date();
     currentDate.setMonth(currentDate.getMonth() + Number(values.months));
 
-    // writeAsync({
-    //   args: [
-    //     values.amount,
-    //     values.token,
-    //     Math.floor(currentDate.getTime() / 1000),
-    //   ],
-    // });
-    toast({
-      title: 'Sorry',
-      description: "Currently we've disabled the lending feature.",
+    writeAsync({
+      args: [
+        values.amount,
+        values.token,
+        Math.floor(currentDate.getTime() / 1000),
+      ],
     });
   }
   return (
