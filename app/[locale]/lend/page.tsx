@@ -175,7 +175,7 @@ export default function Page() {
           V1
         </Button>
         <Button variant='secondary'> NEW! V2</Button>
-        {isAdmin && !isAdminLoading && (
+        {!!isAdmin && !isAdminLoading && (
           <Button
             variant='outline'
             className='justify-self-end'
