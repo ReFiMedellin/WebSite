@@ -50,6 +50,7 @@ import {
 import { useNetworkContract } from '@/hooks/Lend/useNetworkContract';
 import { useNetwork } from 'wagmi';
 import { currencies } from '@/constants';
+import { toast } from '../ui/use-toast';
 
 function FundLend() {
   const fundForm = useForm();
