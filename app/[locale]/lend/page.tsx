@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
+import { useIsAdmin } from '@/hooks/LendV2/useIsAdmin';
 
 export default function Page() {
   const [selectedChain, setSelectedChain] = useState<
@@ -39,6 +40,7 @@ export default function Page() {
   const { address, isConnected } = useAccount();
   const [isMounted, setIsMounted] = useState(false);
   const { push } = useRouter();
+  const { data: isAdmin, isLoading: isAdminLoading } = useIsAdmin();
 
   useEffect(() => {
     const currentChain =
@@ -120,8 +122,8 @@ export default function Page() {
   }
   useEffect(() => {
     getNFT();
-    setIsMounted(true);
-  }, []);
+    if (!isMounted) setIsMounted(true);
+  }, [address]);
 
   console.debug({ user });
   if (!isConnected && isMounted) return redirect('/');
@@ -173,7 +175,15 @@ export default function Page() {
           V1
         </Button>
         <Button variant='secondary'> NEW! V2</Button>
-        <Button variant='outline' className='justify-self-end' onClick={()=>push('lend-manager')}>Admin manager</Button>
+        {isAdmin && !isAdminLoading && (
+          <Button
+            variant='outline'
+            className='justify-self-end'
+            onClick={() => push('lend-manager')}
+          >
+            Admin manager
+          </Button>
+        )}
       </div>
       <div
         style={{
