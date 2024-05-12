@@ -18,7 +18,7 @@ import { toast } from '@/components/ui/use-toast';
 import { Chains } from '@/constants/chains';
 import { useIsAdmin } from '@/hooks/LendV2/useIsAdmin';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
 
 function Page() {
@@ -32,6 +32,19 @@ function Page() {
 
   const { chain } = useNetwork();
   const { push } = useRouter();
+  useEffect(() => {
+    const currentChain =
+      chain?.id === Chains.celo
+        ? 'celo'
+        : chain?.id === Chains.optimism
+        ? 'optimism'
+        : chain?.id === Chains.polygon
+        ? 'polygon'
+        : chain?.id === Chains.sepolia
+        ? 'sepolia'
+        : null;
+    setSelectedChain(currentChain);
+  }, [chain]);
   if (isLoading) {
     return (
       <main className='flex px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen justify-center items-center'>
