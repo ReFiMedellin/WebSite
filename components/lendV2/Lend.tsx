@@ -172,7 +172,7 @@ function Lend() {
                 </FormItem>
               )}
             />
-            <Button type='button'>Lend</Button>
+            <Button type='submit'>Lend</Button>
           </form>
         </Form>
       </CardContent>
