@@ -20,7 +20,7 @@ function Page() {
 
   const { address, isConnected } = useAccount();
   const web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com/')
+    new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/')
   );
 
   const contract = new web3.eth.Contract(
