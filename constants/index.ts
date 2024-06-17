@@ -54,3 +54,16 @@ export const schemaUIDPolygon = process.env
 
 export const easAddressPolygon = process.env
   .NEXT_PUBLIC_EAS_ADDRESS_POLYGON as Address;
+
+
+export const ReFiMedLendAddressArbitrum = process.env
+  .NEXT_PUBLIC_REFIMED_LEND_ADDRESS_ARBITRUM as Address;
+
+export const schemaUIDArbitrum = process.env
+  .NEXT_PUBLIC_REFIMED_LEND_SCHEMA_ARBITRUM as Address;
+
+export const easAddressArbitrum = process.env
+  .NEXT_PUBLIC_EAS_ADDRESS_ARBITRUM as Address;
+
+
+  

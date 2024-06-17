@@ -1,8 +1,10 @@
 import {
+  easAddressArbitrum,
   easAddressCelo,
   easAddressOptimism,
   easAddressPolygon,
   easAddressSepolia,
+  ReFiMedLendAddressArbitrum,
   ReFiMedLendAddressCelo,
   ReFiMedLendAddressOptimism,
   ReFiMedLendAddressPolygon,
@@ -26,4 +28,8 @@ export const ReFiMedLendContracts = {
     lendAddress: ReFiMedLendAddressPolygon,
     eas: easAddressPolygon,
   },
+  arbitrum: {
+    lendAddress: ReFiMedLendAddressArbitrum,
+    eas: easAddressArbitrum,
+  }
 };

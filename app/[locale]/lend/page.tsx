@@ -52,6 +52,8 @@ export default function Page() {
         ? 'polygon'
         : chain?.id === Chains.sepolia
         ? 'sepolia'
+        : chain?.id === Chains.arbitrum
+        ? 'arbitrum'
         : null;
     setSelectedChain(currentChain);
 
@@ -60,7 +62,8 @@ export default function Page() {
       chain?.id !== Chains.celo &&
       chain?.id !== Chains.optimism &&
       chain?.id !== Chains.polygon &&
-      chain?.id !== Chains.sepolia
+      chain?.id !== Chains.sepolia &&
+      chain?.id !== Chains.arbitrum
     ) {
       setShowNetworkModal(true);
     } else {
@@ -125,7 +128,7 @@ export default function Page() {
     if (!isMounted) setIsMounted(true);
   }, [address]);
 
-  console.debug({ user });
+  console.debug({ selectedChain });
   if (!isConnected && isMounted) return redirect('/');
   if (showNetworkModal) {
     return <NetworkModal onNetworkSelect={handleNetworkChange} />;
@@ -162,12 +165,13 @@ export default function Page() {
             onValueChange={handleNetworkChange}
           >
             <SelectTrigger>
-              <SelectValue placeholder='Red' />
+              <SelectValue placeholder='Network' />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value='celo'>Celo</SelectItem>
               <SelectItem value='optimism'>Optimism</SelectItem>
               <SelectItem value='polygon'>Polygon</SelectItem>
+              <SelectItem value='arbitrum'>Arbitrum</SelectItem>
             </SelectContent>
           </Select>
         </div>

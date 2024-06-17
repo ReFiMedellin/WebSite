@@ -1,4 +1,5 @@
 import {
+  schemaUIDArbitrum,
   schemaUIDCelo,
   schemaUIDOptimism,
   schemaUIDPolygon,
@@ -12,6 +13,7 @@ export const chainIds = {
   optimism: 10,
   sepolia: 11155111,
   polygon: 137,
+  arbitrum: 42161,
 };
 
 export function useNetworkContractV2() {
@@ -46,6 +48,13 @@ export function useNetworkContractV2() {
         eas: ReFiMedLendContracts.polygon.eas,
         subgraph: 'refimedlending-polygon',
         schema: schemaUIDPolygon,
+      };
+    case chainIds.arbitrum:
+      return {
+        lendAddress: ReFiMedLendContracts.arbitrum.lendAddress,
+        eas: ReFiMedLendContracts.arbitrum.eas,
+        subgraph: 'refimedlending-arbitrum',
+        schema: schemaUIDArbitrum,
       };
     default:
       return {
