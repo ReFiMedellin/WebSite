@@ -96,7 +96,7 @@ export default function Page() {
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/')
-  );
+  )
 
   const contract = new web3.eth.Contract(
     erc1155ABI,
