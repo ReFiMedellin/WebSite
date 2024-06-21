@@ -1,21 +1,8 @@
 import React, { useState } from 'react';
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '../ui/alert-dialog';
-import {
   Select,
   SelectContent,
   SelectItem,
-  SelectLabel,
-  SelectGroup,
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
@@ -29,14 +16,16 @@ import {
 } from '../ui/dialog';
 import { Button } from '../ui/button';
 import { toast } from '../ui/use-toast';
+import { useTranslations } from 'next-intl';
 
 function NetworkModal({
   onNetworkSelect,
 }: {
   onNetworkSelect: (value: any) => void;
 }) {
+  const t = useTranslations('ExclusiveContent.lending.dialog');
+
   const [selectedNetwork, setSelectedNetwork] = useState<string | null>(null);
-  const [isConfirmed, setisConfirmed] = useState(false);
   const handleSelectChange = (value: string) => {
     setSelectedNetwork(value);
   };
@@ -50,19 +39,18 @@ function NetworkModal({
     <Dialog open>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Escoge alguna de las siguientes redes</DialogTitle>
-          <DialogDescription>
-            De momento las únicas redes disponibles son las siguientes
-          </DialogDescription>
+          <DialogTitle>{t('content.header.title')}</DialogTitle>
+          <DialogDescription>{t('content.header.description')}</DialogDescription>
         </DialogHeader>
         <Select onValueChange={handleSelectChange}>
           <SelectTrigger>
-            <SelectValue placeholder='Select a network' />
+            <SelectValue placeholder={t('content.select.trigger.placeholder')} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value='celo'>Celo</SelectItem>
             <SelectItem value='optimism'>Optimism</SelectItem>
-            <SelectItem value='sepolia'>Sepolia</SelectItem>
+            <SelectItem value='arbitrum'>Arbitrum</SelectItem>
+            <SelectItem value='polygon'>Polygon</SelectItem>
           </SelectContent>
         </Select>
         <DialogFooter>
@@ -70,13 +58,12 @@ function NetworkModal({
             onClick={() => {
               handleConfirm();
               toast({
-                title: 'Tip',
-                description:
-                  'Recuerda aceptar el cambio de red en tu billetera',
+                title: t('content.footer.button.toast.title'),
+                description: t('content.footer.button.toast.description'),
               });
             }}
           >
-            Seleccionar Red
+            {t('content.footer.button.text')}
           </Button>
         </DialogFooter>
       </DialogContent>

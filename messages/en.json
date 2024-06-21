@@ -108,6 +108,31 @@
       "description": "Exclusive content is only available to holders of any ReFiMedellin NFT collection. Please connect your wallet to verify that you own one.",
       "link": "If you don't have one, you can buy it here.",
       "button": "Go back"
+    },
+      "lending": {
+        "dialog": {
+          "open": true,
+          "content": {
+            "header": {
+              "title": "Choose one of the following networks",
+              "description": "Currently, the only available networks are the following"
+            },
+            "select": {
+              "trigger": {
+                "placeholder": "Select a network"
+              }
+            },
+            "footer": {
+              "button": {
+                "text": "Select Network",
+                "toast": {
+                  "title": "Tip",
+                  "description": "Remember to accept the network change in your wallet"
+                }
+              }
+            }
+          }
+        }
     }
   },
   "Navbar": {

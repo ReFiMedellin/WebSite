@@ -109,6 +109,31 @@
       "description": " El contenido exclusivo está disponible únicamente para los holders de cualquier colección de NFTs ReFiMedellin, por favor conecta tu billetera para poder verificar que poseas uno,",
       "link": "si no tienes uno puedes comprarlo acá.",
       "button": "Volver"
+    },
+      "lending": {
+        "dialog": {
+          "open": true,
+          "content": {
+            "header": {
+              "title": "Escoge alguna de las siguientes redes",
+              "description": "De momento las únicas redes disponibles son las siguientes"
+            },
+            "select": {
+              "trigger": {
+                "placeholder": "Selecciona una red"
+              }
+            },
+            "footer": {
+              "button": {
+                "text": "Seleccionar Red",
+                "toast": {
+                  "title": "Consejo",
+                  "description": "Recuerda aceptar el cambio de red en tu billetera"
+                }
+              }
+            }
+          }
+        }
     }
   },
   "Navbar": {

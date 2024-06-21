@@ -1,24 +1,99 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useAccount } from 'wagmi';
-const erc1155ABI = require('@/constants/ABI/erc1155ABI.json');
-import { redirect } from 'next/navigation';
-import BordeBottom from '@/assets/images/Borde-ReFi.png';
-import Image from 'next/image';
 import Web3 from 'web3';
+import erc1155ABI from '@/constants/ABI/erc1155ABI.json';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import LoanPanel from '@/components/LoanPanel';
-import { adminAddress } from '@/constants';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Fund } from '@/components/lendV2/Fund';
+import { Lend } from '@/components/lendV2/Lend';
+import { UserInfo } from '@/components/lendV2/UserInfo';
+import { CurrentLends } from '@/components/lendV2/CurrentLends';
+import { CurrentSignatures } from '@/components/lendV2/CurrentSignatures';
+import { useGetUser } from '@/hooks/LendV2/useGetUser';
+import { redirect, useRouter } from 'next/navigation';
+import { Chains } from '@/constants/chains';
+import { toast } from '@/components/ui/use-toast';
+import { NetworkModal } from '@/components/loanPanel/NetworkModal';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { useIsAdmin } from '@/hooks/LendV2/useIsAdmin';
 
-function Page() {
-  const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+export default function Page() {
+  const [selectedChain, setSelectedChain] = useState<
+    keyof typeof Chains | null
+  >(null);
+  const [showNetworkModal, setShowNetworkModal] = useState(false);
+  const { chain } = useNetwork();
+  const { switchNetworkAsync } = useSwitchNetwork();
+  const [hasNft, setHasNft] = useState(false);
   const t = useTranslations('ExclusiveContent');
-  const [isMounted, setIsMounted] = useState(false);
-  const [hasNFT, setHasNFT] = useState(false);
-
   const { address, isConnected } = useAccount();
+  const [isMounted, setIsMounted] = useState(false);
+  const { push } = useRouter();
+  const { data: isAdmin, isLoading: isAdminLoading } = useIsAdmin();
+
+  useEffect(() => {
+    const currentChain =
+      chain?.id === Chains.celo
+        ? 'celo'
+        : chain?.id === Chains.optimism
+        ? 'optimism'
+        : chain?.id === Chains.polygon
+        ? 'polygon'
+        : chain?.id === Chains.sepolia
+        ? 'sepolia'
+        : chain?.id === Chains.arbitrum
+        ? 'arbitrum'
+        : null;
+    setSelectedChain(currentChain);
+
+    console.debug({ chainID: chain?.id });
+    if (
+      chain?.id !== Chains.celo &&
+      chain?.id !== Chains.optimism &&
+      chain?.id !== Chains.polygon &&
+      chain?.id !== Chains.sepolia &&
+      chain?.id !== Chains.arbitrum
+    ) {
+      setShowNetworkModal(true);
+    } else {
+      setShowNetworkModal(false);
+    }
+  }, [chain]);
+
+  const handleNetworkChange = async (value: keyof typeof Chains) => {
+    const desiredChainId = Chains[value];
+    toast({
+      title: 'Tip',
+      description: 'Recuerda aceptar el cambio de red en tu billetera',
+    });
+    await switchNetworkAsync?.(desiredChainId);
+
+    const checkIfNetworkChanged = () => {
+      if (chain?.id !== desiredChainId) {
+        setTimeout(checkIfNetworkChanged, 1000);
+      } else {
+        setSelectedChain(value);
+      }
+    };
+
+    checkIfNetworkChanged();
+  };
+
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    isError: isUserError,
+  } = useGetUser(address!);
+  const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/')
   );
@@ -27,73 +102,116 @@ function Page() {
     erc1155ABI,
     '0x6500dD04e67925A94975D787eF08E2d7786649D9'
   );
-
+  async function getNFT() {
+    try {
+      const data = await contract.methods
+        //TODO: FIX THIS TYPE
+        // @ts-ignore
+        .balanceOfBatch(Array(tokenIds.length).fill(address), tokenIds)
+        .call();
+      data &&
+        data.forEach((nft: bigint) => {
+          if (nft > BigInt(0)) {
+            setHasNft(true);
+          }
+        });
+      console.log('Datos del contrato:', data);
+    } catch (error) {
+      console.error('Error al leer el contrato:', error);
+      return false;
+    }
+  }
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    getNFT();
+    if (!isMounted) setIsMounted(true);
+  }, [address]);
 
-  function isAdmin() {
-    return address === adminAddress;
+  console.debug({ selectedChain });
+  if (!isConnected && isMounted) return redirect('/');
+  if (showNetworkModal) {
+    return <NetworkModal onNetworkSelect={handleNetworkChange} />;
+  }
+  if (!hasNft) {
+    return (
+      <section className='flex p-20 flex-col relative first-bg justify-center items-center min-h-screen text-white text-center gap-4 bg-[#1B2731] w-full'>
+        <h1 className='font-bold text-4xl lg:text-8xl'>
+          {t('hasnotNFT.title')}
+        </h1>
+        <p className='text-sm md:text-lg lg:text-2xl font-light'>
+          {t('hasnotNFT.description')}{' '}
+          <Link
+            className='hover:text-blue-700  transition-all ease-in-out font-bold'
+            href={'https://bueno.art/refimedellin/refi-medellin-origin/tokens'}
+            target='_blank'
+          >
+            {t('hasnotNFT.link')}
+          </Link>
+          <br />
+        </p>
+      </section>
+    );
   }
 
-  useEffect(() => {
-    if (!isConnected) return;
-    async function getNFT() {
-      try {
-        const data = await contract.methods
-          //TODO: FIX THIS TYPE
-          // @ts-ignore
-          .balanceOfBatch(Array(tokenIds.length).fill(address), tokenIds)
-          .call();
-        data &&
-          data.forEach((nft: bigint) => {
-            if (nft > BigInt(0)) {
-              setHasNFT(true);
-            }
-          });
-        console.log('Datos del contrato:', data);
-      } catch (error) {
-        console.error('Error al leer el contrato:', error);
-      }
-    }
-    getNFT();
-  }, []);
-
-  if (!isConnected && isMounted) return redirect('/');
-
   return (
-    <section className='flex py-20 flex-row relative first-bg justify-center items-center min-h-screen text-white bg-[#1B2731] w-full'>
-      {hasNFT ? (
-        <div className='min-h-screen w-screen flex flex-col gap-5 px-5  py-10 lg:px-20 text-center justify-center items-center'>
-          <LoanPanel isAdmin={isAdmin()} />
+    <main className='lend__panel px-5  text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
+      <div className='flex flex-row gap-4 w-full items-end'>
+        <div className='flex flex-col gap-2  place-self-start'>
+          <h4>Selecciona la red</h4>
+          <Select
+            key={selectedChain}
+            defaultValue={selectedChain as string}
+            onValueChange={handleNetworkChange}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Network' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='celo'>Celo</SelectItem>
+              <SelectItem value='optimism'>Optimism</SelectItem>
+              <SelectItem value='polygon'>Polygon</SelectItem>
+              <SelectItem value='arbitrum'>Arbitrum</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
-      ) : (
-        <div className='h-screen w-screen flex flex-col gap-5 px-5 lg:px-20 text-center justify-center items-center'>
-          <h1 className='font-bold text-4xl lg:text-8xl'>
-            {t('hasnotNFT.title')}
-          </h1>
-          <p className='text-sm md:text-lg lg:text-2xl font-light'>
-            {t('hasnotNFT.description')}{' '}
-            <Link
-              className='hover:text-blue-700 transition-all ease-in-out font-bold'
-              href={
-                'https://bueno.art/refimedellin/refi-medellin-origin/tokens'
-              }
-              target='_blank'
-            >
-              {t('hasnotNFT.link')}
-            </Link>
-            <br />
-          </p>
-        </div>
-      )}
-      <Image
-        className='absolute bottom-0 w-[100vw] left-0'
-        src={BordeBottom}
-        alt='Medellin'
-      />
-    </section>
+        {!!isAdmin && !isAdminLoading && (
+          <Button
+            variant='outline'
+            className='justify-self-end'
+            onClick={() => push('lend-manager')}
+          >
+            Admin manager
+          </Button>
+        )}
+      </div>
+      <div
+        style={{
+          gridArea: 'info',
+        }}
+        className='flex flex-col gap-4  w-full h-full'
+      >
+        <UserInfo
+          funded={(user as bigint[])?.[1]}
+          quota={(user as bigint[])?.[0]}
+          loading={isUserLoading}
+          error={isUserError}
+        />
+        <Tabs defaultValue='lend'>
+          <TabsList className='grid w-full grid-cols-2 '>
+            <TabsTrigger value='fund'>Fund</TabsTrigger>
+            <TabsTrigger value='lend'>Lend</TabsTrigger>
+          </TabsList>
+          <TabsContent value='fund'>
+            <Fund />
+          </TabsContent>
+          <TabsContent value='lend'>
+            <Lend />
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      <CurrentSignatures />
+
+      <CurrentLends />
+    </main>
   );
 }
-
-export default Page;
