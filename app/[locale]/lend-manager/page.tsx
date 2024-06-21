@@ -104,11 +104,7 @@ function Page() {
           </Select>
         </div>
         <Button onClick={() => push('/community')} variant='outline'>
-          V1
-        </Button>
-        <Button onClick={() => push('/lend')} variant='outline'>
-          {' '}
-          NEW! V2
+          Lending dashboard
         </Button>
         {!!isAdmin && !isAdminLoading && (
           <Button variant='secondary' className='justify-self-end'>
