@@ -27,9 +27,14 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import abreviarHash from '@/functions/abreviateHash';
 import { useGetUser } from '@/hooks/LendV2/useGetUser';
 import { getDate } from '@/functions/getDate';
+import { Select } from '@radix-ui/react-select';
+import { SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { LendStatus } from '@/hooks/LendV2/useGetAllLends';
 
 function UsersManager() {
   const [page, setPage] = useState(0);
+  const [lendStatus, setLendStatus] = useState(LendStatus.ACTIVE);
+
 
   const [currentUser, setCurrentUser] = useState<string | undefined>(undefined);
   const {
@@ -43,7 +48,7 @@ function UsersManager() {
     data,
     loading: isLoading,
     error: isError,
-  } = useGetAllLendsPerUser(page, currentUser);
+  } = useGetAllLendsPerUser(page, currentUser, lendStatus);
   const {
     data: tokens,
     loading: isTokensLoading,
@@ -57,7 +62,21 @@ function UsersManager() {
       }}
     >
       <CardHeader>
-        <CardTitle>Users Manager</CardTitle>
+        <div className='flex justify-between'>
+          <CardTitle>Users Manager</CardTitle>
+          <Select onValueChange={(value: LendStatus) => setLendStatus(value)} defaultValue={LendStatus.ACTIVE}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Filters" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value={LendStatus.ALL}>All Loans</SelectItem>
+                <SelectItem value={LendStatus.REPAID}>Repaid Loans</SelectItem>
+                <SelectItem value={LendStatus.ACTIVE}>Active loans</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent>
         <Input
@@ -107,9 +126,9 @@ function UsersManager() {
                     <TableCell>
                       {!isTokensLoading && !isTokensError
                         ? tokens.tokens.filter(
-                            ({ tokenAddress }: { tokenAddress: Address }) =>
-                              tokenAddress === lend.token.toLowerCase()
-                          )[0].symbol
+                          ({ tokenAddress }: { tokenAddress: Address }) =>
+                            tokenAddress === lend.token.toLowerCase()
+                        )[0].symbol
                         : lend.token}
                     </TableCell>
                     <TableCell>
