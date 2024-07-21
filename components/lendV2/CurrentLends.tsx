@@ -78,14 +78,14 @@ function CurrentLends() {
   useEffect(() => {
     if (!isCurrentInterestsError && !isCurrentInterestsLoading) {
       //@ts-ignore
-      setAmount(currentInterests.totalDebt);
+      setAmount(formatUnits(currentInterests[1], 3));
       console.debug(
         { currentInterests },
         isCurrentInterestsError,
         isCurrentInterestsLoading
       );
     }
-  }, [currentInterests]);
+  }, [currentInterests, currentLend, isCurrentInterestsLoading]);
 
   const handleOnPayDebt = async (index: number) => {
     await payDebt({

@@ -46,7 +46,6 @@ function QuotaManager() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     const addresses = values.signers.map((signer) => signer.value);
     await writeAsync({
       args: [values.user, values.amount, addresses],

@@ -21,6 +21,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Loader2 } from "lucide-react"
+
 import { Input } from '@/components/ui/input';
 import { z } from 'zod';
 import {
@@ -47,6 +49,7 @@ const formSchema = z.object({
 function Lend() {
   const [interests, setInterests] = useState();
   const { writeAsync } = useLend();
+  const [isLendLoading, setIsLendLoading] = useState(false)
   const {
     data: tokens,
     loading: isTokensLoading,
@@ -60,17 +63,26 @@ function Lend() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLendLoading(true)
     const currentDate = new Date();
     currentDate.setMonth(currentDate.getMonth() + Number(values.months));
+    try {
 
-    writeAsync({
-      args: [
-        values.amount,
-        values.token,
-        Math.floor(currentDate.getTime() / 1000),
-      ],
-    });
+      await writeAsync({
+        args: [
+          values.amount,
+          values.token,
+          Math.floor(currentDate.getTime() / 1000),
+        ],
+      });
+      setIsLendLoading(false)
+
+    } catch (e) {
+      console.error(e)
+      setIsLendLoading(false)
+    }
+
   }
   return (
     <Card>
@@ -172,7 +184,11 @@ function Lend() {
                 </FormItem>
               )}
             />
-            <Button type='submit'>Lend</Button>
+            <Button disabled={isLendLoading} type='submit'>
+              {isLendLoading &&
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              }
+              Lend</Button>
           </form>
         </Form>
       </CardContent>

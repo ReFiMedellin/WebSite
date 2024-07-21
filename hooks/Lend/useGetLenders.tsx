@@ -12,7 +12,6 @@ function useGetLenders (index: number = 0) {
     watch: true,
     args: [index]
   })
-  console.debug({ lenders })
   return lenders
 }
 

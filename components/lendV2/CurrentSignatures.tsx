@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Table,
@@ -19,6 +19,8 @@ import { EAS, SchemaEncoder } from '@ethereum-attestation-service/eas-sdk';
 import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
 import { useEthersSigner } from '@/hooks/eas-utils';
 import { schemaUIDSepolia } from '@/constants';
+import { Loader2 } from "lucide-react"
+
 
 export type Request = {
   amount: number;
@@ -28,11 +30,12 @@ export type Request = {
 
 function CurrentSignatures() {
   const { eas: EASContractAddress, schema } = useNetworkContractV2();
+  const [loadingRequests, setLoadingRequests] = useState<number[]>([]);
 
   const { address } = useAccount();
   const signer = useEthersSigner();
 
-  const { data, loading, error } = useGetSignatureRequests([
+  const { data, loading, error, refetch } = useGetSignatureRequests([
     address!.toLocaleLowerCase() as Address,
   ]);
 
@@ -41,18 +44,20 @@ function CurrentSignatures() {
     recipent: Address,
     index: number
   ) => {
-    const eas = new EAS(EASContractAddress);
-    eas.connect(signer as any);
+    setLoadingRequests((prev) => [...prev, index]);
+
+    try{
+
+      const eas = new EAS(EASContractAddress);
+      eas.connect(signer as any);
     const schemaEncoder = new SchemaEncoder(
       'uint256 amount,address recipent,uint16 index'
     );
-    console.debug(recipent);
     const encodedData = schemaEncoder.encodeData([
       { name: 'amount', value: amount * 1e3, type: 'uint256' },
       { name: 'recipent', value: recipent, type: 'address' },
       { name: 'index', value: index, type: 'uint16' },
     ]);
-    console.debug(encodedData);
     const tx = await eas.attest({
       schema,
       data: {
@@ -63,6 +68,13 @@ function CurrentSignatures() {
       },
     });
     await tx.wait();
+    refetch()
+    setLoadingRequests((prev) => prev.filter((i) => i !== index));
+  }catch(e){
+    console.error(e);
+    setLoadingRequests((prev) => prev.filter((i) => i !== index));
+  }
+
   };
 
   return (
@@ -100,6 +112,7 @@ function CurrentSignatures() {
                   <TableCell>{request.user.id}</TableCell>
                   <TableCell>
                     <Button
+                      disabled={loadingRequests.includes(request.id.split('-')[1])}
                       onClick={() =>
                         handleAttest(
                           parseFloat(request.amount),
@@ -108,6 +121,9 @@ function CurrentSignatures() {
                         )
                       }
                     >
+                      {loadingRequests.includes(request.id.split('-')[1]) && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      )}
                       Sign
                     </Button>
                   </TableCell>

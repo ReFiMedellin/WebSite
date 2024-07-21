@@ -15,7 +15,6 @@ function useTotalFunds () {
     args: [address as Address | '0x000'],
     watch: true
   })
-  console.debug(funds)
 
   return funds
 }

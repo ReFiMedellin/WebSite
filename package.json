@@ -46,6 +46,7 @@
     "ethers": "^6.7.1",
     "framer-motion": "^10.16.4",
     "graphql": "^16.8.1",
+    "lucide-react": "^0.412.0",
     "motion": "^10.16.2",
     "negotiator": "^0.6.3",
     "next": "13.4.19",

@@ -13,7 +13,6 @@ function useAggreedQuota (address: Address) {
     watch: true,
     args: [address]
   })
-  console.debug(address, data.data)
   return data
 }
 

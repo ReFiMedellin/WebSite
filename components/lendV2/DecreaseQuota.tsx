@@ -27,7 +27,6 @@ function DecreaseQuota() {
     resolver: zodResolver(formSchema),
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     await writeAsync({
       args: [values.user, values.amount],
     });

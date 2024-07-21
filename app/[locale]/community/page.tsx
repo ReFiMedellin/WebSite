@@ -55,7 +55,6 @@ export default function Page() {
         : null;
     setSelectedChain(currentChain);
 
-    console.debug({ chainID: chain?.id });
     if (
       chain?.id !== Chains.celo &&
       chain?.id !== Chains.optimism &&

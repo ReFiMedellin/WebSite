@@ -46,7 +46,6 @@ function UserInfo({
   const [token, setToken] = useState('');
   const { lendAddress } = useNetworkContractV2();
 
-  console.debug();
 
   const {
     data: tokens,

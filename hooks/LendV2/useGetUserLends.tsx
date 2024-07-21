@@ -11,7 +11,6 @@ function useGetUserLends(address: Address, page: number, pageSize = 10) {
     args: [address, page, pageSize.toString()],
     watch: true,
   });
-  console.debug({ error: recentLends.isError });
   return recentLends;
 }
 

@@ -5,6 +5,8 @@ import { ToastAction } from '@radix-ui/react-toast';
 import React from 'react';
 import { useAccount, useContractWrite } from 'wagmi';
 import { useNetworkContractV2 } from './useNetworkContract';
+import { waitForTransaction } from '@wagmi/core'
+
 
 function useLend() {
   const { address } = useAccount();
@@ -16,6 +18,10 @@ function useLend() {
     functionName: 'requestLend',
     account: address,
     onSuccess: async (txn) => {
+      await waitForTransaction({
+        hash: txn.hash,
+      })
+
       toast({
         title: 'Loan requested successfully',
         description: abreviarHash(txn.hash),
