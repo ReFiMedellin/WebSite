@@ -1,5 +1,4 @@
-# WebSite
-Join the movement towards a more sustainable and equitable future in Medellín, Colombia.
+# Join the movement towards a more sustainable and equitable future in Medellín, Colombia.
 Welcome to the first Local Node of ReFiDAO in Colombia: ReFi Medellín,led by Juan Giraldo, Tereza Bizkova, Alejandro Soto, Ximena Monclou, 0xflypeztic, with the support of Green Digital Guardians and Dotlabs() communities.
 
 Our goal is to promote community conversations about innovative regenerative solutions enabled by Web3 technology.
