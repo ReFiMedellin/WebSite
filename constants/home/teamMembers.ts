@@ -4,7 +4,7 @@ import Alejandro from "@/assets/images/PFP-Alejandro.webp";
 import xflypeztyc from "@/assets/images/PFP-0xflypeztic.webp";
 import Ximena from "@/assets/images/PFP-Ximena.webp";
 import Edward from "@/assets/images/PFP-Edward.webp";
-import Angel from "@/assets/images/PFP-Angel.webp";
+import Gasbe from "@/assets/images/PFP-Gasbe.webp"
 // import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from "@/assets/images/PFP-Dotlabs.webp";
 
@@ -62,9 +62,9 @@ export const currentMembers = [
     },
   },
   {
-    name: "Elfotoreportero",
+    name: "Gasbe",
     role: "Media",
-    imageSrc: Angel,
+    imageSrc: Gasbe,
     socialLinks: {
       twitter: "https://twitter.com/elfotoreportero",
       instagram: "https://www.instagram.com/angelphotojournalist/",

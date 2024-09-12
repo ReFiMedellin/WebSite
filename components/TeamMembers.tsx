@@ -21,8 +21,19 @@ const TeamMembers = ({ show }: Props) => {
     }
   }, [show]);
 
+  const opaque = useMemo(() => {
+    switch (membersToShow) {
+      case currentMembers:
+        return currentMembers;
+      case pastMembers:
+        return pastMembers;
+      default:
+        throw new Error(`Invalid value of members to show: ${membersToShow}`);
+    }
+  }, [membersToShow]);
+
   return (
-    <div className="flex-row flex flex-wrap justify-center items-center gap-5">
+    <div className="flex flex-row items-center gap-5">
       {membersToShow.map((member, index) => (
         <div
           key={index}
