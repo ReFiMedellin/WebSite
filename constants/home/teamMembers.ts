@@ -1,10 +1,10 @@
-
 import Juan from "@/assets/images/PFP-Juan.webp";
 import Tereza from "@/assets/images/PFP-Tereza.webp";
 import Alejandro from "@/assets/images/PFP-Alejandro.webp";
 import xflypeztyc from "@/assets/images/PFP-0xflypeztic.webp";
 import Ximena from "@/assets/images/PFP-Ximena.webp";
 import Edward from "@/assets/images/PFP-Edward.webp";
+import Angel from "@/assets/images/PFP-Angel.webp";
 // import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from "@/assets/images/PFP-Dotlabs.webp";
 
@@ -59,6 +59,18 @@ export const currentMembers = [
     socialLinks: {
       twitter: "https://twitter.com/0xflypeztic",
       telegram: "https://t.me/xflypeztic",
+    },
+  },
+  {
+    name: "Elfotoreportero",
+    role: "Media",
+    imageSrc: Angel,
+    socialLinks: {
+      twitter: "https://twitter.com/elfotoreportero",
+      instagram: "https://www.instagram.com/angelphotojournalist/",
+      telegram: "https://t.me/gasbewithus",
+      linkedin:
+        "https://www.linkedin.com/in/andr%C3%A9s-%C3%A1ngel-g%C3%B3mez-279b1534/",
     },
   },
 ];
