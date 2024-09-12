@@ -24,9 +24,9 @@ const TeamMembers = ({ show }: Props) => {
   const opaque = useMemo(() => {
     switch (membersToShow) {
       case currentMembers:
-        return currentMembers;
+        return false;
       case pastMembers:
-        return pastMembers;
+        return true;
       default:
         throw new Error(`Invalid value of members to show: ${membersToShow}`);
     }
@@ -37,7 +37,9 @@ const TeamMembers = ({ show }: Props) => {
       {membersToShow.map((member, index) => (
         <div
           key={index}
-          className="relative h-76 md:h-[17rem] w-64 md:w-52 pt-5 overflow-y-hidden rounded-md shadow-lg flex flex-col gap-2 bg-slate-200 group hover:bg-slate-300"
+          className={`relative h-76 md:h-[17rem] w-64 md:w-52 pt-5 overflow-y-hidden rounded-md shadow-lg flex flex-col gap-2 bg-slate-200 group hover:bg-slate-300 ${
+            opaque ? "filter brightness-90 opacity-80" : ""
+          }`}
         >
           <div className="px-5 text-center">
             <h1 className="text-start w-full font-bold text-sm">
