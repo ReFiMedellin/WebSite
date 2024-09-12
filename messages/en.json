@@ -54,6 +54,7 @@
     },
     "team": {
       "title": "To access this area, you must first connect your wallet",
+      "pastMembersTitle": "Past members",
       "partners": "Allied projects"
     },
     "partners": {
