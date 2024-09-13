@@ -38,7 +38,7 @@ const TeamMembers = ({ show }: Props) => {
         <div
           key={index}
           className={`relative h-76 md:h-[17rem] w-64 md:w-52 pt-5 overflow-y-hidden rounded-md shadow-lg flex flex-col gap-2 bg-slate-200 group hover:bg-slate-300 ${
-            opaque ? "filter brightness-90 opacity-80" : ""
+            opaque ? "filter brightness-90 grayscale color opacity-80" : ""
           }`}
         >
           <div className="px-5 text-center">
