@@ -5,6 +5,7 @@ import xflypeztyc from "@/assets/images/PFP-0xflypeztic.webp";
 import Ximena from "@/assets/images/PFP-Ximena.webp";
 import Edward from "@/assets/images/PFP-Edward.webp";
 import Gasbe from "@/assets/images/PFP-Gasbe.webp"
+import Eamon from "@/assets/images/PFP-Eamon.webp"
 // import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from "@/assets/images/PFP-Dotlabs.webp";
 
@@ -79,6 +80,17 @@ export const pastMembers = [
     name: "Alejandro Soto",
     role: "Education",
     imageSrc: Alejandro,
+    socialLinks: {
+      twitter: "https://twitter.com/alejandro99so",
+      instagram: "https://www.instagram.com/alejandro99so/",
+      telegram: "https://t.me/alejandro99so",
+      linkedin: "https://www.linkedin.com/in/alejandro99so/",
+    },
+  },
+  {
+    name: "Eamon",
+    role: "Education",
+    imageSrc: Eamon,
     socialLinks: {
       twitter: "https://twitter.com/alejandro99so",
       instagram: "https://www.instagram.com/alejandro99so/",
