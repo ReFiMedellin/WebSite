@@ -33,7 +33,7 @@ const TeamMembers = ({ show }: Props) => {
   }, [membersToShow]);
 
   return (
-    <div className="grid grid-cols-4 gap-5">
+    <div className="grid grid-cols-4 place-items-center justify-items-center gap-5">
       {membersToShow.map((member, index) => (
         <div
           key={index}
