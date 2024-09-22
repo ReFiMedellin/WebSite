@@ -90,7 +90,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen w-screen overflow-x-hidden flex-col items-center justify-between">
       <AnimatePresence>
         {showModal && (
           <motion.div
@@ -411,15 +411,17 @@ export default function Home() {
           src={BordeTop}
           alt="borde superior"
         />
-        <div className="flex flex-col gap-5 justify-center  items-center">
-          <h2 className="font-bold text-4xl text-black">
-            {t("team.currentMembersTitle")}
-          </h2>
-          <TeamMembers members={currentMembers} />
-          <h2 className="font-bold text-4xl text-black">
-            {t("team.pastMembersTitle")}
-          </h2>
-          <TeamMembers members={pastMembers} opaque={true} />
+        <div className="flex flex-col gap-8 justify-center  items-center">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <h2 className="font-bold text-4xl text-black">
+              {t("team.currentMembersTitle")}
+            </h2>
+            <TeamMembers members={currentMembers} />
+            <h2 className="font-bold text-4xl text-black">
+              {t("team.pastMembersTitle")}
+            </h2>
+            <TeamMembers members={pastMembers} opaque={true} />
+          </div>
           <h2 className="font-bold text-4xl text-black">
             {t("team.partners")}
           </h2>
