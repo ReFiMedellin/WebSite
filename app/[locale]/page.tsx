@@ -394,7 +394,7 @@ export default function Home() {
         </h2>
         <Cards fetchMD={fetchMD} />
       </section>
-      <section className="min-h-screen py-32 relative flex justify-center bg-[#F1F0FF] items-center w-full">
+      <section className="min-h-screen py-40 relative flex justify-center bg-[#F1F0FF] items-center w-full">
         <Image
           className="w-screen absolute top-0 "
           src={BordeTop}
