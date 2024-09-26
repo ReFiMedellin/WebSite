@@ -5,20 +5,10 @@ import BordeBottom from "@/assets/images/Borde-ReFi.png";
 import BordeTop from "@/assets/images/Borde Superior Sección.webp";
 import LogoMan from "@/assets/images/Logo Transparent-Man.png";
 import LogoWoman from "@/assets/images/Logo Transparent-Woman.png";
-import Juan from "@/assets/images/PFP-Juan.webp";
-import Tereza from "@/assets/images/PFP-Tereza.webp";
-import Alejandro from "@/assets/images/PFP-Alejandro.webp";
-import xflypeztyc from "@/assets/images/PFP-0xflypeztic.webp";
-import Ximena from "@/assets/images/PFP-Ximena.webp";
-import Eamon from "@/assets/images/PFP-Eamon.webp";
-import Edward from "@/assets/images/PFP-Edward.webp";
-import GDG from "@/assets/images/PFP-Green Digital Guardians.webp";
-// import Inkom from '@/assets/images/PFP-Inkom.webp'
-import DotLabs from "@/assets/images/PFP-Dotlabs.webp";
 import Link from "next/link";
 import LOGO from "@/assets/images/Logo Transparent-Man.png";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { parseEther } from "viem";
 import { AnimatePresence, motion } from "framer-motion";
 import GlodollarLogo from "@/assets/images/Glodollar.png";
@@ -33,10 +23,9 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { RiCloseFill } from "react-icons/ri";
 import Cards from "@/components/Cards";
-import TeamMembers from "@/components/TeamMembers";
 import { useTranslations } from "next-intl";
 import { Partners } from "@/components/Partners";
-import { pastMembers, currentMembers } from "@/constants/teamMembers";
+import TeamSection from "@/components/teamSection/TeamSection";
 
 export default function Home() {
   const t = useTranslations("Landing");
@@ -411,26 +400,8 @@ export default function Home() {
           src={BordeTop}
           alt="borde superior"
         />
-        <div className="flex flex-col gap-8 justify-center  items-center">
-          <div className="flex flex-col items-center justify-center gap-12">
-            <h2 className="font-bold text-4xl text-black">
-              {t("team.title")}
-            </h2>
-            <div className="flex gap-8 justify-between items-start">
-              <div className="flex-1 flex flex-col items-center justify-center gap-8">
-                <h2 className="font-bold text-4xl text-black">
-                  {t("team.currentMembersTitle")}
-                </h2>
-                <TeamMembers members={currentMembers} />
-              </div>
-              <div className="flex-1 flex flex-col items-center justify-center gap-8">
-                <h2 className="font-bold text-4xl text-black">
-                  {t("team.pastMembersTitle")}
-                </h2>
-                <TeamMembers members={pastMembers} opaque={true} />
-              </div>
-            </div>
-          </div>
+        <div className="flex flex-col gap-20 justify-center items-center">
+          <TeamSection />
           <h2 className="font-bold text-4xl text-black">
             {t("team.partners")}
           </h2>

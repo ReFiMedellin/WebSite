@@ -1,10 +1,10 @@
 import React from "react";
-import { TeamMemberType } from "@/types/members";
-import TeamMemberComponent from "./teamSection/teamMembers/TeamMember";
+import TeamMemberComponent from "./teamMember/TeamMember";
+import {type TeamMemberType } from "@/types/members";
 
 type Props = {
   members: TeamMemberType[][];
-  opaque?: boolean;
+  opaque: boolean;
 };
 
 const TeamMembers = ({ members, opaque }: Props) => {
@@ -13,10 +13,10 @@ const TeamMembers = ({ members, opaque }: Props) => {
       {members.map((membersRow, index) => (
         <div
           key={index}
-          className="flex-row flex flex-wrap justify-center items-center gap-5"
+          className="flex justify-center items-center gap-5"
         >
           {membersRow.map((member, index) => (
-            <TeamMemberComponent key={index} member={member} />
+            <TeamMemberComponent key={index} member={member} opaque={opaque} />
           ))}
         </div>
       ))}
