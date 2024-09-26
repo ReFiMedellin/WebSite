@@ -54,7 +54,8 @@
       "modalNotProject": "Actualmente estamos en construcción..."
     },
     "team": {
-      "currentMembersTitle": "Equipo",
+      "title": "Equipo",
+      "currentMembersTitle": "Miembros actuales",
       "pastMembersTitle": "Miembros antiguos",
       "partners": "Proyectos Aliados"
     },

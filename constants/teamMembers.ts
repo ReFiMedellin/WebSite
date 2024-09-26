@@ -8,9 +8,9 @@ import Edward from "@/assets/images/PFP-Edward.webp";
 import GDG from "@/assets/images/PFP-Green Digital Guardians.webp";
 // import Inkom from '@/assets/images/PFP-Inkom.webp'
 import DotLabs from "@/assets/images/PFP-Dotlabs.webp";
-import { TeamMember } from "@/types/members";
+import { TeamMemberType } from "@/types/members";
 
-export const currentMembers: TeamMember[][] = [
+export const currentMembers: TeamMemberType[][] = [
   [
     {
       name: "Juan Giraldo",
@@ -45,6 +45,8 @@ export const currentMembers: TeamMember[][] = [
         linkedin: "https://www.linkedin.com/in/ximenamonclou/",
       },
     },
+  ],
+  [
     {
       name: "Edward",
       role: "Technical Stuff",
@@ -56,8 +58,6 @@ export const currentMembers: TeamMember[][] = [
         linkedin: "",
       },
     },
-  ],
-  [
     {
       name: "0xflypeztyc",
       role: "Branding & Social",
@@ -72,7 +72,7 @@ export const currentMembers: TeamMember[][] = [
   ],
 ];
 
-export const pastMembers: TeamMember[][] = [
+export const pastMembers: TeamMemberType[][] = [
   [
     {
       name: "Alejandro Soto",

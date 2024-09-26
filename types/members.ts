@@ -1,4 +1,4 @@
-export type TeamMember = {
+export type TeamMemberType = {
   name: string;
   role: string;
   imageSrc: any;
