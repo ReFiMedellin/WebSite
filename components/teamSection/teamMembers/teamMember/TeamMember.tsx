@@ -14,14 +14,14 @@ type Props = {
   member: TeamMemberType;
   opaque: boolean
 };
-export default function TeamMemberComponent({ member }: Props) {
+export default function TeamMemberComponent({ member, opaque }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles["card--article"]}>
         <Image
           src={member.imageSrc}
           alt="Refi member"
-          className={`${styles["card--profile"]} w-28 h-28 rounded-full border-white border-2`}
+          className={`${styles["card--profile"]} w-28 h-28 rounded-full border-white border-2 ${opaque ? 'opacity-50' : '' } ${opaque ? 'filter brightness-75' : ''}`}
           // Combine CSS module class with tailwind classes
         />
         <div className={styles["card--tooltip"]}>
