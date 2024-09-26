@@ -412,15 +412,24 @@ export default function Home() {
           alt="borde superior"
         />
         <div className="flex flex-col gap-8 justify-center  items-center">
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-12">
             <h2 className="font-bold text-4xl text-black">
-              {t("team.currentMembersTitle")}
+              {t("team.title")}
             </h2>
-            <TeamMembers members={currentMembers} />
-            <h2 className="font-bold text-4xl text-black">
-              {t("team.pastMembersTitle")}
-            </h2>
-            <TeamMembers members={pastMembers} opaque={true} />
+            <div className="flex gap-8 justify-between items-start">
+              <div className="flex-1 flex flex-col items-center justify-center gap-8">
+                <h2 className="font-bold text-4xl text-black">
+                  {t("team.currentMembersTitle")}
+                </h2>
+                <TeamMembers members={currentMembers} />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center gap-8">
+                <h2 className="font-bold text-4xl text-black">
+                  {t("team.pastMembersTitle")}
+                </h2>
+                <TeamMembers members={pastMembers} opaque={true} />
+              </div>
+            </div>
           </div>
           <h2 className="font-bold text-4xl text-black">
             {t("team.partners")}

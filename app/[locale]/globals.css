@@ -79,7 +79,7 @@
     @apply p-3 rounded-full bg-purple-700 text-2xl text-white;
   }
   .logo_teammember {
-    @apply p-2 rounded-full bg-purple-700 text-lg text-white;
+    @apply p-2 rounded-full bg-purple-700 text-sm text-white;
   }
 
   .card {
