@@ -511,10 +511,6 @@ export default function Home() {
               Refi Medellín Team{" "}
             </Link>
           </p>
-          <Link target="_blank" href={"https://github.com/Another-DevX"}>
-            Developed by{" "}
-            <span className="text-blue-400 font-bold">Another_Dev</span>
-          </Link>
         </div>
       </footer>
     </main>
