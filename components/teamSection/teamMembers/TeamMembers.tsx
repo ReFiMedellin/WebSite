@@ -13,7 +13,7 @@ const TeamMembers = ({ members, opaque }: Props) => {
       {members.map((membersRow, index) => (
         <div
           key={index}
-          className="flex justify-center items-center gap-5"
+          className="flex justify-center items-center flex-wrap gap-5"
         >
           {membersRow.map((member, index) => (
             <TeamMemberComponent key={index} member={member} opaque={opaque} />
