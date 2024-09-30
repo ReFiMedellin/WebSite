@@ -8,7 +8,7 @@ export default function TeamSection() {
   return (
     <div className="flex flex-col items-center justify-center gap-12">
       <h2 className="font-bold text-4xl text-black">{t("team.title")}</h2>
-      <div className="w-screen px-40 flex gap-8 justify-center items-start">
+      <div className="w-screen md:w-[80vw] flex flex-col md:flex-row justify-center items-center gap-8">
         <div className="flex-1 flex flex-col items-center justify-center gap-8">
           <h2 className="font-bold text-2xl text-black">
             {t("team.currentMembersTitle")}
