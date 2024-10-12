@@ -394,7 +394,7 @@ export default function Home() {
         </h2>
         <Cards fetchMD={fetchMD} />
       </section>
-      <section className="min-h-screen py-40 relative flex justify-center bg-[#F1F0FF] items-center w-full">
+      <section className="py-40 relative flex justify-center bg-[#F1F0FF] items-center w-full">
         <Image
           className="w-screen absolute top-0 "
           src={BordeTop}
@@ -402,9 +402,6 @@ export default function Home() {
         />
         <div className="flex flex-col gap-20 justify-center items-center">
           <TeamSection />
-          <h2 className="font-bold text-4xl text-black">
-            {t("team.partners")}
-          </h2>
           <Partners />
         </div>
       </section>

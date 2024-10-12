@@ -22,7 +22,7 @@ const TeamMembers = ({ members }: Props) => {
           delay: 2000,
         }),
       ]}
-      className="w-full max-w-sm md:max-w-lg lg:max-w-4xl xl: xl:max-w-5xl 2xl:max-w-7xl"
+      className="w-full max-w-sm md:max-w-lg lg:max-w-4xl xl: xl:max-w-5xl 2xl:max-w-6xl"
     >
       <CarouselContent>
         {members.map((member, index) => (
