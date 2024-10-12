@@ -11,58 +11,46 @@ type Props = {
 export default function TeamMemberComponent({ member }: Props) {
   return (
     <div
-      className={`relative h-76 md:h-[17rem] w-64 md:w-52 pt-5 overflow-y-hidden rounded-md shadow-lg flex flex-col gap-2 bg-slate-200 group hover:bg-slate-300 ${
-        member.isPastMember ? "opacity-60 filter brightness-90" : ""
+      className={`w-60 h-full relative p-4 flex flex-col gap-12 md:gap-8 rounded-xl overflow-hidden ${
+        member.isPastMember ? "opacity-70 filter grayscale" : ""
       }`}
     >
-      <div className="px-5 text-center">
-        <h1 className="text-start w-full font-bold text-sm">{member.name}</h1>
-        <p className="w-full text-start font-light text-sm text-slate-700">
-          {member.role}
-        </p>
-      </div>
       <Image
         src={member.imageSrc}
         alt="Refi member"
-        className="w-full max-h-full rounded-b-md"
+        className="-z-10 w-4/5 absolute top-1/2 -translate-y-1/2 -right-12 md:w-4/5 md:-top-1/2 md:-right-1/4 rounded-full opacity-40"
       />
-      <div className="bg-slate-200 absolute bottom-0 left-0 w-full h-12 rounded-b-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="flex text-sm h-full flex-row justify-center items-center gap-5">
-          <Link
-            className="logo_teammember"
-            target="_blank"
-            href={member.socialLinks.twitter ? member.socialLinks.twitter : ""}
-          >
-            <RxTwitterLogo />
-          </Link>
-          <Link
-            className="logo_teammember"
-            target="_blank"
-            href={
-              member.socialLinks.instagram ? member.socialLinks.instagram : ""
-            }
-          >
-            <RxInstagramLogo />
-          </Link>
-          <Link
-            className="logo_teammember"
-            target="_blank"
-            href={
-              member.socialLinks.telegram ? member.socialLinks.telegram : ""
-            }
-          >
-            <FaTelegramPlane />
-          </Link>
-          <Link
-            className="logo_teammember"
-            target="_blank"
-            href={
-              member.socialLinks.linkedin ? member.socialLinks.linkedin : ""
-            }
-          >
-            <RxLinkedinLogo />
-          </Link>
-        </div>
+      <div>
+        <h1 className="font-bold">{member.name}</h1>
+        <p className="font-medium text-sm text-slate-500">{member.role}</p>
+      </div>
+      <div className="flex gap-1">
+        <Link
+          target="_blank"
+          href={member.socialLinks.twitter ? member.socialLinks.twitter : ""}
+        >
+          <RxTwitterLogo />
+        </Link>
+        <Link
+          target="_blank"
+          href={
+            member.socialLinks.instagram ? member.socialLinks.instagram : ""
+          }
+        >
+          <RxInstagramLogo />
+        </Link>
+        <Link
+          target="_blank"
+          href={member.socialLinks.telegram ? member.socialLinks.telegram : ""}
+        >
+          <FaTelegramPlane />
+        </Link>
+        <Link
+          target="_blank"
+          href={member.socialLinks.linkedin ? member.socialLinks.linkedin : ""}
+        >
+          <RxLinkedinLogo />
+        </Link>
       </div>
     </div>
   );

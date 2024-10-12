@@ -17,20 +17,19 @@ type Props = {
 const TeamMembers = ({ members }: Props) => {
   return (
     <Carousel
-      className="w-64 md:w-52"
-      opts={{
-        dragFree: true,
-      }}
-      plugins={[
-        Autoplay({
-          delay: 2000,
-        }),
-      ]}
+      // plugins={[
+      //   Autoplay({
+      //     delay: 2000,
+      //   }),
+      // ]}
+      className="w-full max-w-sm"
     >
       <CarouselContent>
         {members.map((member, index) => (
-          <CarouselItem key={index}>
-            <TeamMemberComponent member={member} />
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <div className="flex items-center justify-center">
+              <TeamMemberComponent member={member} />
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>

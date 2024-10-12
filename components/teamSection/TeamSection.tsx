@@ -9,18 +9,16 @@ export default function TeamSection() {
     <div className="flex flex-col items-center justify-center gap-12">
       <h2 className="font-bold text-4xl text-black">{t("team.title")}</h2>
       <div className="w-screen md:w-[80vw] flex flex-col md:flex-row justify-center items-center gap-8">
-        <div className="flex-1 flex flex-col items-center justify-center gap-8">
-          <TeamMembers
-            members={[
-              ...currentMembers.map((member) => {
-                return { ...member, isPastMember: false };
-              }),
-              ...pastMembers.map((member) => {
-                return { ...member, isPastMember: true };
-              }),
-            ]}
-          />
-        </div>
+        <TeamMembers
+          members={[
+            ...currentMembers.map((member) => {
+              return { ...member, isPastMember: false };
+            }),
+            ...pastMembers.map((member) => {
+              return { ...member, isPastMember: true };
+            }),
+          ]}
+        />
       </div>
     </div>
   );
