@@ -10,16 +10,16 @@ export default function TeamSection() {
       <h2 className="font-bold text-4xl text-black">{t("team.title")}</h2>
       <div className="w-screen md:w-[80vw] flex flex-col md:flex-row justify-center items-center gap-8">
         <div className="flex-1 flex flex-col items-center justify-center gap-8">
-          <h2 className="font-bold text-2xl text-black">
-            {t("team.currentMembersTitle")}
-          </h2>
-          <TeamMembers members={currentMembers} opaque={false} />
-        </div>
-        <div className="flex-1 flex flex-col items-center justify-center gap-8">
-          <h2 className="font-bold text-2xl text-black">
-            {t("team.pastMembersTitle")}
-          </h2>
-          <TeamMembers members={pastMembers} opaque={true} />
+          <TeamMembers
+            members={[
+              ...currentMembers.map((member) => {
+                return { ...member, isPastMember: false };
+              }),
+              ...pastMembers.map((member) => {
+                return { ...member, isPastMember: true };
+              }),
+            ]}
+          />
         </div>
       </div>
     </div>

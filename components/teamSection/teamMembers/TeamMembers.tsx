@@ -1,5 +1,5 @@
 import React from "react";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
 import TeamMemberComponent from "./teamMember/TeamMember";
 import { type TeamMemberType } from "@/types/members";
 import {
@@ -8,19 +8,18 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
-
+} from "@/components/ui/carousel";
 
 type Props = {
   members: TeamMemberType[];
-  opaque: boolean;
 };
 
-const TeamMembers = ({ members, opaque }: Props) => {
+const TeamMembers = ({ members }: Props) => {
   return (
-    <Carousel className="w-64 md:w-52"
+    <Carousel
+      className="w-64 md:w-52"
       opts={{
-        dragFree: true
+        dragFree: true,
       }}
       plugins={[
         Autoplay({
@@ -31,7 +30,7 @@ const TeamMembers = ({ members, opaque }: Props) => {
       <CarouselContent>
         {members.map((member, index) => (
           <CarouselItem key={index}>
-            <TeamMemberComponent member={member} opaque={opaque} />
+            <TeamMemberComponent member={member} />
           </CarouselItem>
         ))}
       </CarouselContent>
