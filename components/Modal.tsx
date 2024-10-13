@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function Modal({ children, show }: {children: React.ReactNode, show: boolean}) {

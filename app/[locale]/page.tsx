@@ -1,6 +1,7 @@
 // :)
 "use client";
 import Image from "next/image";
+import SeedingImage from "@/assets/images/seeding.webp";
 import BordeBottom from "@/assets/images/Borde-ReFi.png";
 import BordeTop from "@/assets/images/Borde Superior Sección.webp";
 import LogoMan from "@/assets/images/Logo Transparent-Man.png";
@@ -25,7 +26,7 @@ import { RiCloseFill } from "react-icons/ri";
 import Cards from "@/components/Cards";
 import { useTranslations } from "next-intl";
 import { Partners } from "@/components/home/teamPartnersSection/Partners";
-import TeamSection from "@/components/teamSection/TeamSection";
+import TeamSection from "@/components/home/teamSection";
 
 export default function Home() {
   const t = useTranslations("Landing");
@@ -164,9 +165,14 @@ export default function Home() {
         )}
       </AnimatePresence>
       <section className="flex py-20 flex-row relative first-bg justify-center items-center h-screen bg-[#1B2731] w-full">
-        <div className="h-full lg:w-5/6  flex flex-row justify-center items-center">
+        <div className="relative h-full lg:w-5/6  flex flex-row justify-center items-center">
+          <Image
+            src={SeedingImage}
+            alt="seeding-image"
+          className="w-full lg:w-3/4 xl:w-1/2 absolute -top-20 -left-1/4 opacity-10 rounded-full"
+          />
           <div className="flex justify-center items-center w-full h-full">
-            <div className="text-white w-5/6 flex flex-col gap-5">
+            <div className="z-10 text-white w-5/6 flex flex-col gap-5">
               <h1 className="font-bold text-4xl md:text-6xl">
                 {t("home.title")}
               </h1>
@@ -209,12 +215,12 @@ export default function Home() {
               alt="Medellin"
             />
           </div>
-          <Image
-            className="absolute bottom-0 w-[100vw] left-0"
-            src={BordeBottom}
-            alt="Medellin"
-          />
         </div>
+        <Image
+          className="absolute bottom-0 w-[100vw] left-0"
+          src={BordeBottom}
+          alt="Medellin"
+        />
       </section>
       <section
         id="aboutUS"
