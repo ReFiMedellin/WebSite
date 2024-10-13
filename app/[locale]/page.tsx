@@ -24,7 +24,7 @@ import ReactMarkdown from "react-markdown";
 import { RiCloseFill } from "react-icons/ri";
 import Cards from "@/components/Cards";
 import { useTranslations } from "next-intl";
-import { Partners } from "@/components/Partners";
+import { Partners } from "@/components/home/teamPartnersSection/Partners";
 import TeamSection from "@/components/teamSection/TeamSection";
 
 export default function Home() {

@@ -2,8 +2,14 @@ import React from "react";
 import GDG from "@/assets/images/PFP-Green Digital Guardians.webp";
 import DotLabs from "@/assets/images/PFP-Dotlabs.webp";
 import { useTranslations } from "next-intl";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
-import TeamMemberComponent from "./teamSection/teamMembers/teamMember/TeamMember";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../../ui/carousel";
+import MemberCard from "../MemberCard";
 import Autoplay from "embla-carousel-autoplay";
 
 const Partners = () => {
@@ -46,7 +52,9 @@ const Partners = () => {
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <h2 className="font-bold text-4xl text-black">{t("team.partners")}</h2>
+      <h2 className="font-bold text-2xl sm:text-4xl text-black">
+        {t("team.partners")}
+      </h2>
       <Carousel
         plugins={[
           Autoplay({
@@ -62,7 +70,7 @@ const Partners = () => {
               className="md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
             >
               <div className="flex items-center justify-center py-2">
-                <TeamMemberComponent member={member} />
+                <MemberCard member={member} />
               </div>
             </CarouselItem>
           ))}
