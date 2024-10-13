@@ -1,9 +1,9 @@
-import TeamMembers from "./teamMembers";
+import TeamMembers from "./Members";
 import { pastMembers, currentMembers } from "@/constants/teamMembers";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-export default function TeamSection() {
+export default function Team() {
   const t = useTranslations("Landing");
   return (
     <div className="flex flex-col items-center justify-center gap-12">

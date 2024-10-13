@@ -8,7 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../ui/carousel";
+} from "@/components/ui/carousel";
 import MemberCard from "../MemberCard";
 import Autoplay from "embla-carousel-autoplay";
 

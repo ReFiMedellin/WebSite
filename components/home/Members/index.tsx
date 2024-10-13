@@ -1,10 +1,10 @@
-import Image from "next/image";
 import React from "react";
-import TeamSection from "../teamSection";
+import Team from "./Team";
 import BordeTop from "@/assets/images/Borde Superior Sección.webp";
-import { Partners } from "./Partners";
+import Image from "next/image";
+import { Partners } from "./Partners/Partners";
 
-export default function TeamPartnersSection() {
+export default function MembersSection() {
   return (
     <section className="py-40 relative flex justify-center bg-[#F1F0FF] items-center w-full">
       <Image
@@ -13,7 +13,7 @@ export default function TeamPartnersSection() {
         alt="borde superior"
       />
       <div className="flex flex-col gap-20 justify-center items-center">
-        <TeamSection />
+        <Team />
         <Partners />
       </div>
     </section>
