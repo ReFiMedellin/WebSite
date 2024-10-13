@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import MemberCard from "../MemberCard";
+import MemberCard from "../../MemberCard";
 import Autoplay from "embla-carousel-autoplay";
 
 const Partners = () => {

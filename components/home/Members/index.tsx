@@ -2,7 +2,7 @@ import React from "react";
 import Team from "./Team";
 import BordeTop from "@/assets/images/Borde Superior Sección.webp";
 import Image from "next/image";
-import { Partners } from "./Partners/Partners";
+import { Partners } from "./PartnersSection/Partners";
 
 export default function MembersSection() {
   return (
