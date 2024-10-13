@@ -1,31 +1,21 @@
 // :)
 "use client";
-import Image from "next/image";
-import BordeBottom from "@/assets/images/Borde-ReFi.png";
-import BordeTop from "@/assets/images/Borde Superior Sección.webp";
-import LogoMan from "@/assets/images/Logo Transparent-Man.png";
-import LogoWoman from "@/assets/images/Logo Transparent-Woman.png";
-import Link from "next/link";
-import LOGO from "@/assets/images/Logo Transparent-Man.png";
+
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
 import { useState } from "react";
 import { parseEther } from "viem";
 import { AnimatePresence, motion } from "framer-motion";
-import GlodollarLogo from "@/assets/images/Glodollar.png";
-import {
-  RxInstagramLogo,
-  RxLinkedinLogo,
-  RxNotionLogo,
-  RxTwitterLogo,
-} from "react-icons/rx";
-import { FaTelegramPlane, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { RiCloseFill } from "react-icons/ri";
 import Cards from "@/components/Cards";
 import { useTranslations } from "next-intl";
-import { Partners } from "@/components/Partners";
-import TeamSection from "@/components/teamSection/TeamSection";
+import HomeMainView from "@/components/home/Main";
+import AboutUs from "@/components/home/AboutUs";
+import SupportUs from "@/components/home/SupportUs";
+import MembersSection from "@/components/home/Members";
+import Sponsors from "@/components/home/Sponsors";
+import Footer from "@/components/home/Footer";
 
 export default function Home() {
   const t = useTranslations("Landing");
@@ -163,228 +153,9 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-      <section className="flex py-20 flex-row relative first-bg justify-center items-center h-screen bg-[#1B2731] w-full">
-        <div className="h-full lg:w-5/6  flex flex-row justify-center items-center">
-          <div className="flex justify-center items-center w-full h-full">
-            <div className="text-white w-5/6 flex flex-col gap-5">
-              <h1 className="font-bold text-4xl md:text-6xl">
-                {t("home.title")}
-              </h1>
-              <p className="text-base">
-                {t("home.description.part1")}{" "}
-                <Link
-                  className="text-blue-400 font-bold cursor-pointer"
-                  href={"https://www.refidao.com/"}
-                  target="_blank"
-                >
-                  ReFiDAO{" "}
-                </Link>
-                {t("home.description.part2")}
-                <br /> <br />
-                {t("home.description.part3")}
-              </p>
-              <div className="flex flex-row gap-2">
-                <Link
-                  href={"https://t.me/reficolombia"}
-                  target="_blank"
-                  className="text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg"
-                >
-                  {t("home.button1")}
-                </Link>
-                <Link
-                  href={"https://giveth.io/project/refi-medellin"}
-                  target="_blank"
-                  className="text-center px-4 py-2 w-full rounded-md bg-[#4571E1] text-white font-bold text-base md:text-lg"
-                >
-                  {t("home.button2")}
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div>
-            <Image
-              className="hidden lg:block w-full h-full"
-              height={300}
-              src={LOGO}
-              alt="Medellin"
-            />
-          </div>
-          <Image
-            className="absolute bottom-0 w-[100vw] left-0"
-            src={BordeBottom}
-            alt="Medellin"
-          />
-        </div>
-      </section>
-      <section
-        id="aboutUS"
-        className="min-h-screen relative py-20 flex justify-center items-center bg-slate-900 w-full"
-      >
-        <div className="h-full w-5/6 flex flex-row justify-center gap-10 items-center">
-          <Image
-            className="hidden lg:block"
-            src={LogoWoman}
-            alt="refi logo"
-            height={480}
-          />
-          <div className="text-white flex gap-5  flex-col justify-center items-center h-full  w-full">
-            <h2 className="text-4xl font-bold">{t("aboutUs.title")}</h2>
-            <p>
-              {t("aboutUs.description.part1")}{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://www.refidao.com/"}
-                target="_blank"
-              >
-                ReFiDAO{" "}
-              </Link>{" "}
-              {t("aboutUs.description.part2")}{" "}
-              <span className="font-bold">ReFi Medellín</span>,
-              {t("aboutUs.description.part3")}{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://linktr.ee/juanjgiraldoc"}
-                target="_blank"
-              >
-                Juan Giraldo
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://twitter.com/TerezaBizkova"}
-                target="_blank"
-              >
-                Tereza Bizkova
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://twitter.com/alejandro99so"}
-                target="_blank"
-              >
-                Alejandro Soto
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://twitter.com/ximemonclou"}
-                target="_blank"
-              >
-                Ximena Monclou
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://twitter.com/0xflypeztic"}
-                target="_blank"
-              >
-                0xflypeztic
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://twitter.com/cryptochimba"}
-                target="_blank"
-              >
-                Cryptochimba
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://dgguardians.com/"}
-                target="_blank"
-              >
-                Green Digital Guardians
-              </Link>
-              ,{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://inkom.io/"}
-                target="_blank"
-              >
-                Inkom.io
-              </Link>{" "}
-              y{" "}
-              <Link
-                className="text-blue-400 font-bold cursor-pointer"
-                href={"https://dotlabs.academy/"}
-                target="_blank"
-              >
-                Dotlabs()
-              </Link>
-              !
-              <br />
-              <br />
-              {t("aboutUs.description.part4")}
-              <br />
-              <br />
-              {t("aboutUs.description.part5")}
-              <br />
-              <br />
-              {t("aboutUs.description.part6")}
-            </p>
-            <Link
-              href={"#proyectos"}
-              className="w-full text-center bg-[#4571E1] rounded-md text-white font-bold  text-lg px-12 py-2"
-            >
-              {t("aboutUs.button")}
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className="min-h-screen py-32 relative bg-[#F1F0FF] flex justify-center items-center w-full">
-        <Image
-          className="w-screen absolute top-0 "
-          src={BordeTop}
-          alt="borde superior"
-        />
-        <div className="h-full w-5/6 flex flex-row justify-center gap-10 items-center">
-          <div className="text-black flex gap-5  flex-col justify-center items-center h-full  w-full">
-            <div className="flex gap-5 break-words flex-col justify-center items-center h-full  w-full">
-              <h2 className="text-4xl w-full font-bold">{t("donate.title")}</h2>
-              <p className="w-full">
-                {t("donate.description.part1")}
-                <br />
-                <br />
-                {t("donate.description.part2")}
-                <br />
-                <br />
-                {t("donate.description.part3")}
-                <br />
-                <br />
-                <span className="font-bold">Wallet (Ethereum):</span>
-                0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
-              </p>
-            </div>
-            <div className="flex z-10 flex-row w-full justify-center items-center gap-2 lg:gap-4">
-              <Link
-                target="_blank"
-                href={"https://giveth.io/project/refi-medellin"}
-                className="text-center bg-[#4571E1] text-white rounded-md w-full text-sm font-bold  py-2 font-sm lg:px-8 lg:py-4"
-              >
-                {t("donate.buttons.option1")}
-              </Link>
-              <Link
-                href={"/donate?network=ethereum"}
-                className="text-center bg-[#4571E1] text-white rounded-md w-full  text-sm font-bold  py-2 font-sm lg:px-8 lg:py-4"
-              >
-                {t("donate.buttons.option2")}
-              </Link>
-            </div>
-          </div>
-          <Image
-            className="hidden lg:block"
-            src={LogoMan}
-            alt="refi logo"
-            height={380}
-          />
-          <Image
-            className="absolute bottom-0 w-[100vw] left-0"
-            src={BordeBottom}
-            alt="Medellin"
-          />
-        </div>
-      </section>
+      <HomeMainView />
+      <AboutUs />
+      <SupportUs />
       <section
         id="proyectos"
         className="min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10"
@@ -394,125 +165,9 @@ export default function Home() {
         </h2>
         <Cards fetchMD={fetchMD} />
       </section>
-      <section className="min-h-screen py-40 relative flex justify-center bg-[#F1F0FF] items-center w-full">
-        <Image
-          className="w-screen absolute top-0 "
-          src={BordeTop}
-          alt="borde superior"
-        />
-        <div className="flex flex-col gap-20 justify-center items-center">
-          <TeamSection />
-          <h2 className="font-bold text-4xl text-black">
-            {t("team.partners")}
-          </h2>
-          <Partners />
-        </div>
-      </section>
-      <section
-        id="partners"
-        className="min-h-screen py-20 w-full bg-[#1B2731] flex flex-col justify-center items-center gap-10"
-      >
-        <h2 className="font-bold w-full text-center text-white text-5xl">
-          {t("partners.title")}
-        </h2>
-        <div className="flex items-center gap-5">
-          <div className=" text-white flex flex-col gap-2 justify-center items-center">
-            <Image src={GlodollarLogo} alt="Glodollar Logo" />
-            <p className="w-full text-center">
-              Refi Medellín is the first local node from RefiDAO to swap part of
-              their treasury for Glo Dollars. <br />
-              We are committed to hold at least 30% of our treasury in Glo
-              Dollars.
-            </p>
-          </div>
-        </div>
-      </section>
-      <footer className="bg-slate-200 w-full ">
-        <div className="flex px-5 py-10 lg:px-14 flex-row justify-between items-center gap-20">
-          <div className="flex flex-col justify-center gap-5 items-start w-full lg:w-1/2">
-            <h2 className="text-4xl font-bold">{t("footer.title")}</h2>
-            <div className="w-full">
-              <p>
-                {t("footer.description.part1")}{" "}
-                <span className="font-bold">admin@refimedellin.org</span>
-              </p>
-              <p className="break-words">
-                {t("footer.description.part2")}{" "}
-                <span className="font-bold">(Ethereum):</span>
-                0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
-              </p>
-            </div>
-            <div className="flex flex-row flex-wrap justify-start items-center gap-5">
-              <Link
-                className="logo"
-                target="_blank"
-                href={"https://twitter.com/ReFiMedellin"}
-              >
-                <RxTwitterLogo />
-              </Link>
-              <Link
-                className="logo"
-                target="_blank"
-                href={"https://instagram.com/refimedellin"}
-              >
-                <RxInstagramLogo />
-              </Link>
-              <Link
-                className="logo"
-                target="_blank"
-                href={"https://t.me/reficolombia"}
-              >
-                <FaTelegramPlane />
-              </Link>
-              <Link
-                className="logo"
-                target="_blank"
-                href={"https://www.linkedin.com/company/refimedellin"}
-              >
-                <RxLinkedinLogo />
-              </Link>
-
-              <Link
-                className="logo"
-                target="_blank"
-                href={"https://youtube.com/@ReFiMedellin"}
-              >
-                <FaYoutube />
-              </Link>
-              <Link
-                className="logo"
-                target="_blank"
-                href={"https://chat.whatsapp.com/C2dUH2dmZyTJdLjWkE1ILG"}
-              >
-                <FaWhatsapp />
-              </Link>
-              <Link
-                className="logo"
-                target="_blank"
-                href={
-                  "https://refimedellin.notion.site/cacd321bb2204a5888d88d3288d1bec4?v=d1871f2a1dd34bfeae1afe476e6d8b9f"
-                }
-              >
-                <RxNotionLogo />
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="py-5 bg-gray-700 text-white  px-2 flex flex-col gap-1 justify-center items-center text-center">
-          <p>
-            ®2023 Refi Medellín, made with 🩵 by{" "}
-            <Link
-              className="text-blue-400 font-bold cursor-pointer"
-              href={
-                "https://refimedellin.notion.site/0fd39ac0a6cf4ee8bfe3d950c18bc9ed?v=d9dafe69cda7413a8d85cac3da405c40"
-              }
-              target="_blank"
-            >
-              Refi Medellín Team{" "}
-            </Link>
-          </p>
-        </div>
-      </footer>
+      <MembersSection />
+      <Sponsors />
+      <Footer />
     </main>
   );
 }
