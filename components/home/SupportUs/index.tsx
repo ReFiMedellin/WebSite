@@ -5,9 +5,15 @@ import LogoMan from "@/assets/images/Logo Transparent-Man.png";
 import React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { PiCopyBold } from "react-icons/pi";
 
 export default function SupportUs() {
   const t = useTranslations("Landing");
+  const address = "0xd4AC6c14B4C96F7e66049210F56cb07468028d4e";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(address);
+  };
   return (
     <section className="min-h-screen py-32 relative bg-[#F1F0FF] flex justify-center items-center w-full">
       <Image
@@ -29,8 +35,19 @@ export default function SupportUs() {
               {t("donate.description.part3")}
               <br />
               <br />
-              <span className="font-bold">Wallet (Ethereum):</span>
-              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              <span
+                onClick={copyToClipboard}
+                className="flex flex-row items-center gap-1"
+              >
+                <span className="font-bold">(Ethereum):</span>
+                <span
+                  title="Copy to clipboard"
+                  className="flex flex-row items-center gap-1 text-[#4571E1] font-semibold cursor-pointer"
+                >
+                  {address}
+                  <PiCopyBold />
+                </span>
+              </span>
             </p>
           </div>
           <div className="flex z-10 flex-row w-full justify-center items-center gap-2 lg:gap-4">
