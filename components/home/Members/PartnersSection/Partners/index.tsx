@@ -69,7 +69,7 @@ const Partners = () => {
               key={index}
               className="md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
             >
-              <div className="flex items-center justify-center py-2">
+              <div className="h-full flex items-center justify-center py-2">
                 <MemberCard member={member} />
               </div>
             </CarouselItem>
