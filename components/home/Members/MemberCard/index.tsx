@@ -24,7 +24,7 @@ export default function MemberCard({ member }: Props) {
         alt="Refi member"
         className="-z-10 w-4/5 md:w-3/5 absolute top-1/2 -translate-y-1/2 -right-12 md:-right-10 rounded-full opacity-80"
       />
-      <div>
+      <div className="max-w-[60%]">
         <h1 className="font-bold sm:text-lg">{member.name}</h1>
         <p className="font-medium text-sm text-slate-500">{member.role}</p>
       </div>
