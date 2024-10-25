@@ -28,7 +28,7 @@ const TeamMembers = ({ members }: Props) => {
         {members.map((member, index) => (
           <CarouselItem
             key={index}
-            className="h-full md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
+            className="md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
           >
             <div className="h-full flex items-center justify-center py-2">
               <MemberCard member={member} />

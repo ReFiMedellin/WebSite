@@ -1,5 +1,6 @@
 import Image from "next/image";
 import LogoWoman from "@/assets/images/Logo Transparent-Woman.png";
+import ReffiSticker from "@/assets/images/reffiSticker.webp"
 import React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -9,9 +10,15 @@ export default function AboutUs() {
   return (
     <section
       id="aboutUS"
-      className="min-h-screen relative py-20 flex justify-center items-center bg-slate-900 w-full"
+      className="min-h-screen relative py-20 flex justify-center items-center bg-slate-900 w-full overflow-hidden"
     >
-      <div className="h-full w-5/6 flex flex-row justify-center gap-10 items-center">
+      <Image
+        className="w-1/2 absolute opacity-20 -top-[20%] -right-[10%] rounded-full"
+        src={ReffiSticker}
+        alt="refi logo"
+        height={480}
+      />
+      <div className="z-10 h-full w-5/6 flex flex-row justify-center gap-10 items-center">
         <Image
           className="hidden lg:block"
           src={LogoWoman}

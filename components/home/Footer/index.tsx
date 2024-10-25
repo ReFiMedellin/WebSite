@@ -3,6 +3,7 @@ import {
   PiTelegramLogoBold,
   PiInstagramLogoBold,
   PiXBold,
+  PiCopyBold,
 } from "react-icons/pi";
 import { RxLinkedinLogo, RxNotionLogo } from "react-icons/rx";
 import { FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -11,6 +12,11 @@ import React from "react";
 
 export default function Footer() {
   const t = useTranslations("Landing");
+  const address = "0xd4AC6c14B4C96F7e66049210F56cb07468028d4e";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(address);
+  };
   return (
     <footer className="bg-slate-200 w-full ">
       <div className="flex px-4 py-10 lg:px-14 flex-row justify-between items-center gap-20">
@@ -23,8 +29,16 @@ export default function Footer() {
             </p>
             <p className="break-words">
               {t("footer.description.part2")}{" "}
-              <span className="font-bold">(Ethereum):</span>
-              0xd4AC6c14B4C96F7e66049210F56cb07468028d4e
+              <span
+                onClick={copyToClipboard}
+                className="flex flex-row items-center gap-1"
+              >
+                <span className="font-bold">(Ethereum):</span>
+                <span title="Copy to clipboard" className="flex flex-row items-center gap-1 text-purple-900 font-semibold cursor-pointer">
+                  {address}
+                  <PiCopyBold />
+                </span>
+              </span>
             </p>
           </div>
           <div className="flex flex-row flex-wrap justify-start items-center gap-2">
