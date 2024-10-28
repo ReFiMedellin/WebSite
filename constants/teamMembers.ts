@@ -2,6 +2,7 @@ import Juan from "@/assets/images/PFP-Juan.webp";
 import Tereza from "@/assets/images/PFP-Tereza.webp";
 import Alejandro from "@/assets/images/PFP-Alejandro.webp";
 import xflypeztyc from "@/assets/images/PFP-0xflypeztic.webp";
+import gasbewithus from "@/assets/images/PFP-Gasbewithus.webp";
 import Ximena from "@/assets/images/PFP-Ximena.webp";
 import Eamon from "@/assets/images/PFP-Eamon.webp";
 import Edward from "@/assets/images/PFP-Edward.webp";
@@ -45,17 +46,6 @@ export const currentMembers: TeamMemberType[] = [
     },
   },
   {
-    name: "Edward",
-    role: "Technical Stuff",
-    imageSrc: Edward,
-    socialLinks: {
-      twitter: "https://twitter.com/Tiranicida",
-      instagram: "https://www.instagram.com/edwardca.dev/",
-      telegram: "https://t.me/Tiranicida",
-      linkedin: "",
-    },
-  },
-  {
     name: "0xflypeztyc",
     role: "Branding & Social",
     imageSrc: xflypeztyc,
@@ -66,9 +56,32 @@ export const currentMembers: TeamMemberType[] = [
       linkedin: "",
     },
   },
+  {
+    name: "Gasbewithus",
+    role: "Education",
+    imageSrc: gasbewithus,
+    socialLinks: {
+      twitter: "https://x.com/elfotoreportero",
+      instagram: "https://www.instagram.com/angelphotojournalist/",
+      telegram: "https://t.me/gasbewithus",
+      linkedin:
+        "https://www.linkedin.com/in/andr%C3%A9s-%C3%A1ngel-g%C3%B3mez-279b1534/",
+    },
+  },
 ];
 
 export const pastMembers: TeamMemberType[] = [
+  {
+    name: "Edward",
+    role: "Technical Stuff",
+    imageSrc: Edward,
+    socialLinks: {
+      twitter: "https://twitter.com/Tiranicida",
+      instagram: "https://www.instagram.com/edwardca.dev/",
+      telegram: "https://t.me/Tiranicida",
+      linkedin: "",
+    },
+  },
   {
     name: "Alejandro Soto",
     role: "Education",
