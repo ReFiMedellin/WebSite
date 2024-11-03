@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -7,31 +7,40 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../ui/card';
-import { LendStatus, useGetAllLends } from '@/hooks/LendV2/useGetAllLends';
-import { Address, formatUnits } from 'viem';
-import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
-import { getDaysBetween } from '@/functions/daysBetween';
-import { Button } from '../ui/button';
-import abreviarHash from '@/functions/abreviateHash';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select';
-
-
-
+} from "../ui/card";
+import { LendStatus, useGetAllLends } from "@/hooks/LendV2/useGetAllLends";
+import { Address, formatUnits } from "viem";
+import { useGetTokens } from "@/hooks/LendV2/useGetTokens";
+import { getDaysBetween } from "@/functions/daysBetween";
+import { Button } from "../ui/button";
+import abreviarHash from "@/functions/abreviateHash";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 function LendsManager() {
   const [page, setPage] = useState(0);
   const [lendStatus, setLendStatus] = useState(LendStatus.ACTIVE);
-  const { data, loading: isLoading, error: isError } = useGetAllLends(page, lendStatus);
+  const {
+    data,
+    loading: isLoading,
+    error: isError,
+  } = useGetAllLends(page, lendStatus);
   const {
     data: tokens,
     loading: isTokensLoading,
@@ -40,16 +49,18 @@ function LendsManager() {
   return (
     <Card
       style={{
-        gridArea: 'lends',
+        gridArea: "lends",
       }}
-      className='align-top w-full'
+      className="align-top w-full"
     >
       <CardHeader>
-        <div className='flex justify-between'>
-
+        <div className="flex justify-between">
           <CardTitle>Current lends</CardTitle>
 
-          <Select onValueChange={(value: LendStatus) => setLendStatus(value)} defaultValue={LendStatus.ACTIVE}>
+          <Select
+            onValueChange={(value: LendStatus) => setLendStatus(value)}
+            defaultValue={LendStatus.ACTIVE}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filters" />
             </SelectTrigger>
@@ -62,13 +73,13 @@ function LendsManager() {
             </SelectContent>
           </Select>
         </div>
-
       </CardHeader>
       <CardContent>
         <Table>
           <TableCaption>A list of the whole lends.</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>Address</TableHead>
               <TableHead>User</TableHead>
               <TableHead>Initial amount</TableHead>
               <TableHead>Current amount</TableHead>
@@ -81,17 +92,18 @@ function LendsManager() {
             <TableBody>
               {(data.lendings as any[]).map((lend, key) => (
                 <TableRow key={key}>
-                  <TableCell className='flex flex-row gap-2 items-center '>
+                  <TableCell className="flex flex-row gap-2 items-center ">
                     <Button
-                      className='w-8 h-8'
-                      variant={'outline'}
+                      className="w-8 h-8"
+                      variant={"outline"}
                       onClick={() => navigator.clipboard.writeText(lend.lender)}
                     >
                       <FontAwesomeIcon icon={faCopy} />
                     </Button>
                     {abreviarHash(lend.lender)}
                   </TableCell>
-                  <TableCell className='font-medium'>
+                  <TableCell className="font-medium">N/A</TableCell>
+                  <TableCell className="font-medium">
                     {formatUnits(lend.amount, 3)}
                   </TableCell>
                   <TableCell>{formatUnits(lend.currentAmount, 3)}</TableCell>
@@ -99,9 +111,9 @@ function LendsManager() {
                   <TableCell>
                     {!isTokensLoading && !isTokensError
                       ? tokens.tokens.filter(
-                        ({ tokenAddress }: { tokenAddress: Address }) =>
-                          tokenAddress === lend.token.toLowerCase()
-                      )[0].symbol
+                          ({ tokenAddress }: { tokenAddress: Address }) =>
+                            tokenAddress === lend.token.toLowerCase()
+                        )[0].symbol
                       : lend.token}
                   </TableCell>
                   <TableCell>
@@ -113,7 +125,7 @@ function LendsManager() {
           )}
         </Table>
       </CardContent>
-      <CardFooter className='flex flex-row gap-4'>
+      <CardFooter className="flex flex-row gap-4">
         <Button
           disabled={isLoading || !data || data.lendings.length === 0}
           onClick={() => setPage(page + 1)}

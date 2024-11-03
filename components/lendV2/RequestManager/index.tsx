@@ -78,6 +78,7 @@ function LendsManager() {
           <TableCaption>A list of the whole requests.</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>Address</TableHead>
               <TableHead>User</TableHead>
               <TableHead>Signatures / References</TableHead>
             </TableRow>
@@ -96,9 +97,8 @@ function LendsManager() {
                     </Button>
                     {abreviarHash(lend.lender)}
                   </TableCell>
-                  <TableCell className="font-medium">
-                    NA / NA
-                  </TableCell>
+                  <TableCell className="font-medium">NA / NA</TableCell>
+                  <TableCell className="font-medium">NA / NA</TableCell>
                   <TableCell className="flex flex-row gap-2 items-center ">
                     <Button className="p-2" variant={"outline"}>
                       <PiBroomBold className="text-xl text-teal-950" />
