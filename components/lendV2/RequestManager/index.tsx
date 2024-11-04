@@ -14,12 +14,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import { LendStatus, useGetAllLends } from "@/hooks/LendV2/useGetAllLends";
-import { Address, formatUnits } from "viem";
-import { useGetTokens } from "@/hooks/LendV2/useGetTokens";
-import { getDaysBetween } from "@/functions/daysBetween";
-import { Button } from "../ui/button";
+import { formatUnits } from "viem";
+import { Button } from "@/components/ui/button";
 import abreviarHash from "@/functions/abreviateHash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
@@ -28,10 +26,11 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
+import { PiBroomBold } from "react-icons/pi";
+import { RequestStatus } from "@/hooks/LendV2/useGetAllRequests";
 
 function LendsManager() {
   const [page, setPage] = useState(0);
@@ -41,11 +40,6 @@ function LendsManager() {
     loading: isLoading,
     error: isError,
   } = useGetAllLends(page, lendStatus);
-  const {
-    data: tokens,
-    loading: isTokensLoading,
-    error: isTokensError,
-  } = useGetTokens();
   return (
     <Card
       style={{
@@ -55,7 +49,7 @@ function LendsManager() {
     >
       <CardHeader>
         <div className="flex justify-between">
-          <CardTitle>Current lends</CardTitle>
+          <CardTitle>Current requests</CardTitle>
 
           <Select
             onValueChange={(value: LendStatus) => setLendStatus(value)}
@@ -66,8 +60,13 @@ function LendsManager() {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value={LendStatus.ALL}>All Loans</SelectItem>
-                <SelectItem value={LendStatus.REPAID}>Repaid Loans</SelectItem>
+                <SelectItem value={RequestStatus.ALL}>All request</SelectItem>
+                <SelectItem value={RequestStatus.SIGNED}>
+                  Signed requests
+                </SelectItem>
+                <SelectItem value={RequestStatus.COMPLETED}>
+                  Completed requests
+                </SelectItem>
                 <SelectItem value={LendStatus.ACTIVE}>Active loans</SelectItem>
               </SelectGroup>
             </SelectContent>
@@ -76,16 +75,12 @@ function LendsManager() {
       </CardHeader>
       <CardContent>
         <Table>
-          <TableCaption>A list of the whole lends.</TableCaption>
+          <TableCaption>A list of the whole requests.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead>Address</TableHead>
               <TableHead>User</TableHead>
-              <TableHead>Initial amount</TableHead>
-              <TableHead>Current amount</TableHead>
-              <TableHead>Interests</TableHead>
-              <TableHead>Token</TableHead>
-              <TableHead>Days remaining</TableHead>
+              <TableHead>Signatures / References</TableHead>
             </TableRow>
           </TableHeader>
           {!isLoading && !isError && (
@@ -102,22 +97,12 @@ function LendsManager() {
                     </Button>
                     {abreviarHash(lend.lender)}
                   </TableCell>
-                  <TableCell className="font-medium">N/A</TableCell>
-                  <TableCell className="font-medium">
-                    {formatUnits(lend.amount, 3)}
-                  </TableCell>
-                  <TableCell>{formatUnits(lend.currentAmount, 3)}</TableCell>
-                  <TableCell>{formatUnits(lend.interests, 3)}</TableCell>
-                  <TableCell>
-                    {!isTokensLoading && !isTokensError
-                      ? tokens.tokens.filter(
-                          ({ tokenAddress }: { tokenAddress: Address }) =>
-                            tokenAddress === lend.token.toLowerCase()
-                        )[0].symbol
-                      : lend.token}
-                  </TableCell>
-                  <TableCell>
-                    {getDaysBetween(Number(lend.paymentDue))}
+                  <TableCell className="font-medium">NA / NA</TableCell>
+                  <TableCell className="font-medium">NA / NA</TableCell>
+                  <TableCell className="flex flex-row gap-2 items-center ">
+                    <Button className="p-2" variant={"outline"}>
+                      <PiBroomBold className="text-xl text-teal-950" />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
