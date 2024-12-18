@@ -1,6 +1,6 @@
 import Image from "next/image";
 import LogoWoman from "@/assets/images/Logo Transparent-Woman.png";
-import ReffiSticker from "@/assets/images/reffiSticker.webp"
+import ReffiSticker from "@/assets/images/reffiSticker.webp";
 import React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -41,10 +41,10 @@ export default function AboutUs() {
             {t("aboutUs.description.part3")}{" "}
             <Link
               className="text-blue-400 font-bold cursor-pointer"
-              href={"https://linktr.ee/juanjgiraldoc"}
+              href={"https://linktr.ee/0xj4an_work"}
               target="_blank"
             >
-              Juan Giraldo
+              0xj4an
             </Link>
             ,{" "}
             <Link
@@ -52,23 +52,7 @@ export default function AboutUs() {
               href={"https://twitter.com/TerezaBizkova"}
               target="_blank"
             >
-              Tereza Bizkova
-            </Link>
-            ,{" "}
-            <Link
-              className="text-blue-400 font-bold cursor-pointer"
-              href={"https://twitter.com/alejandro99so"}
-              target="_blank"
-            >
-              Alejandro Soto
-            </Link>
-            ,{" "}
-            <Link
-              className="text-blue-400 font-bold cursor-pointer"
-              href={"https://twitter.com/ximemonclou"}
-              target="_blank"
-            >
-              Ximena Monclou
+              Tereza
             </Link>
             ,{" "}
             <Link
@@ -81,10 +65,10 @@ export default function AboutUs() {
             ,{" "}
             <Link
               className="text-blue-400 font-bold cursor-pointer"
-              href={"https://twitter.com/cryptochimba"}
+              href={"https://twitter.com/ximemonclou"}
               target="_blank"
             >
-              Cryptochimba
+              Ximena
             </Link>
             ,{" "}
             <Link
@@ -94,15 +78,7 @@ export default function AboutUs() {
             >
               Green Digital Guardians
             </Link>
-            ,{" "}
-            <Link
-              className="text-blue-400 font-bold cursor-pointer"
-              href={"https://inkom.io/"}
-              target="_blank"
-            >
-              Inkom.io
-            </Link>{" "}
-            y{" "}
+            , y{" "}
             <Link
               className="text-blue-400 font-bold cursor-pointer"
               href={"https://dotlabs.academy/"}

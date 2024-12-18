@@ -56,18 +56,6 @@ export const currentMembers: TeamMemberType[] = [
       linkedin: "",
     },
   },
-  {
-    name: "Gasbewithus",
-    role: "Education",
-    imageSrc: gasbewithus,
-    socialLinks: {
-      twitter: "https://x.com/elfotoreportero",
-      instagram: "https://www.instagram.com/angelphotojournalist/",
-      telegram: "https://t.me/gasbewithus",
-      linkedin:
-        "https://www.linkedin.com/in/andr%C3%A9s-%C3%A1ngel-g%C3%B3mez-279b1534/",
-    },
-  },
 ];
 
 export const pastMembers: TeamMemberType[] = [
@@ -102,6 +90,18 @@ export const pastMembers: TeamMemberType[] = [
       instagram: "",
       telegram: "https://t.me/cryptochimba",
       linkedin: "",
+    },
+  },
+  {
+    name: "Gasbewithus",
+    role: "Education",
+    imageSrc: gasbewithus,
+    socialLinks: {
+      twitter: "https://x.com/elfotoreportero",
+      instagram: "https://www.instagram.com/angelphotojournalist/",
+      telegram: "https://t.me/gasbewithus",
+      linkedin:
+        "https://www.linkedin.com/in/andr%C3%A9s-%C3%A1ngel-g%C3%B3mez-279b1534/",
     },
   },
 ];

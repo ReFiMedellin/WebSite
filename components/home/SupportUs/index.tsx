@@ -10,9 +10,10 @@ import { PiCopyBold } from "react-icons/pi";
 export default function SupportUs() {
   const t = useTranslations("Landing");
   const address = "0xd4AC6c14B4C96F7e66049210F56cb07468028d4e";
+  const cCopAddress = "0x8A567e2aE79CA692Bd748aB832081C45de4041eA";
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(address);
+  const copyToClipboard = (selectedAddress: string) => {
+    navigator.clipboard.writeText(selectedAddress);
   };
   return (
     <section className="min-h-screen py-32 relative bg-[#F1F0FF] flex justify-center items-center w-full">
@@ -36,7 +37,7 @@ export default function SupportUs() {
               <br />
               <br />
               <span
-                onClick={copyToClipboard}
+                onClick={() => copyToClipboard(address)}
                 className="flex flex-row items-center gap-1"
               >
                 <span className="font-bold">(Ethereum):</span>
@@ -45,6 +46,19 @@ export default function SupportUs() {
                   className="flex flex-row items-center gap-1 text-[#4571E1] font-semibold cursor-pointer"
                 >
                   {address}
+                  <PiCopyBold />
+                </span>
+              </span>
+              <span
+                onClick={() => copyToClipboard(cCopAddress)}
+                className="flex flex-row items-center gap-1"
+              >
+                <span className="font-bold">(cCop):</span>
+                <span
+                  title="Copy to clipboard"
+                  className="flex flex-row items-center gap-1 text-[#4571E1] font-semibold cursor-pointer"
+                >
+                  {cCopAddress}
                   <PiCopyBold />
                 </span>
               </span>
