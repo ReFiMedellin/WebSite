@@ -49,19 +49,6 @@ export default function SupportUs() {
                   <PiCopyBold />
                 </span>
               </span>
-              <span
-                onClick={() => copyToClipboard(cCopAddress)}
-                className="flex flex-row items-center gap-1"
-              >
-                <span className="font-bold">(cCop):</span>
-                <span
-                  title="Copy to clipboard"
-                  className="flex flex-row items-center gap-1 text-[#4571E1] font-semibold cursor-pointer"
-                >
-                  {cCopAddress}
-                  <PiCopyBold />
-                </span>
-              </span>
             </p>
           </div>
           <div className="flex z-10 flex-row w-full justify-center items-center gap-2 lg:gap-4">
