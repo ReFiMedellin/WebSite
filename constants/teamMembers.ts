@@ -13,7 +13,7 @@ import { TeamMemberType } from "@/types/members";
 
 export const currentMembers: TeamMemberType[] = [
   {
-    name: "Juan Giraldo",
+    name: "0xj4an",
     role: "Financial",
     imageSrc: Juan,
     socialLinks: {
@@ -24,7 +24,7 @@ export const currentMembers: TeamMemberType[] = [
     },
   },
   {
-    name: "Tereza Bizkova",
+    name: "Tereza",
     role: "Relationships",
     imageSrc: Tereza,
     socialLinks: {
@@ -35,7 +35,7 @@ export const currentMembers: TeamMemberType[] = [
     },
   },
   {
-    name: "Ximena Monclou",
+    name: "Ximena",
     role: "Legal",
     imageSrc: Ximena,
     socialLinks: {
