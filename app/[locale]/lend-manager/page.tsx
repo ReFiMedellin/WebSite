@@ -21,10 +21,11 @@ import { useIsAdmin } from "@/hooks/LendV2/useIsAdmin";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useNetwork, useSwitchNetwork } from "wagmi";
-
+import { useGlobalCurrency } from '@/context/CurrencyContext';
+import { ProtocolInfoV2 } from "@/components/lendV2/ProtocolInfoV2";
 function Page() {
   const { data, isLoading } = useIsAdmin();
-
+  const { currency } = useGlobalCurrency();
   const [selectedChain, setSelectedChain] = useState<
     keyof typeof Chains | null
   >(null);
@@ -132,7 +133,9 @@ function Page() {
         }}
         className="flex flex-col gap-4  w-full h-full"
       >
-        <ProtocolInfo />
+        {
+          currency === 'COP' ? <ProtocolInfoV2 /> : <ProtocolInfo />
+        }
 
         <Tabs defaultValue="increase">
           <TabsList className="grid w-full grid-cols-3">

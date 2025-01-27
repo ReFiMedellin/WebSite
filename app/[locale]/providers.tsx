@@ -11,11 +11,32 @@ import { celo, arbitrum, mainnet, optimism, polygon } from 'wagmi/chains';
 import { GtagManager } from '@/components/utils/GTAG';
 import { Metricol } from '@/components/utils/Metricol';
 import ApolloProviderNetworkBased from './apolloProvider';
+import { GlobalCurrencyProvider } from '@/context/CurrencyContext';
 
-const chains = [celo, arbitrum, mainnet, optimism, polygon, sepolia];
+const chains = [
+  celo,
+  arbitrum,
+  mainnet,
+  optimism,
+  polygon,
+  {
+    ...sepolia,
+    rpcUrls: {
+      default: {
+        http: ['https://rpc.ankr.com/eth_sepolia'],
+        webSocket: ['wss://ws.ankr.com/eth_sepolia'],
+      },
+      public: {
+        http: ['https://rpc.ankr.com/eth_sepolia'],
+        webSocket: ['wss://ws.ankr.com/eth_sepolia'],
+      },
+    },
+  },
+];
 const projectId = '344c4ee91d5e35fec2368e61edfbe959';
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
+
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: w3mConnectors({ projectId, chains }),
@@ -30,7 +51,7 @@ function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <>
+    <GlobalCurrencyProvider>
       <WagmiConfig config={wagmiConfig}>
         <ApolloProviderNetworkBased>{children}</ApolloProviderNetworkBased>
       </WagmiConfig>
@@ -39,7 +60,7 @@ function Providers({ children }: { children: React.ReactNode }) {
       {isMounted && (
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       )}
-    </>
+    </GlobalCurrencyProvider>
   );
 }
 

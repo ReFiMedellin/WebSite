@@ -31,7 +31,7 @@ export function useNetworkContractV2() {
       return {
         lendAddress: ReFiMedLendContracts.sepolia.lendAddress,
         eas: ReFiMedLendContracts.sepolia.eas,
-        subgraph: 'refimedlending',
+        subgraph: 'refimedlend',
         schema: schemaUIDSepolia,
       };
     case chainIds.optimism: {

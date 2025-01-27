@@ -32,6 +32,26 @@
     "type": "error"
   },
   {
+    "type": "function",
+    "name": "tokenFunds",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [
+      { "name": "totalFunds", "type": "uint256", "internalType": "uint256" },
+      { "name": "interests", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "totalInterestShares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "interestPerShare",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",

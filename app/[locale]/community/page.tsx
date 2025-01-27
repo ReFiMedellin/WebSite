@@ -25,11 +25,13 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { useIsAdmin } from '@/hooks/LendV2/useIsAdmin';
+import { useGlobalCurrency } from '@/context/CurrencyContext';
 
 export default function Page() {
   const [selectedChain, setSelectedChain] = useState<
     keyof typeof Chains | null
   >(null);
+  const { currency, setCurrency } = useGlobalCurrency();
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const { chain } = useNetwork();
   const { switchNetworkAsync } = useSwitchNetwork();
@@ -68,7 +70,22 @@ export default function Page() {
     }
   }, [chain]);
 
+  const handleCurrencyChange = async (currency: "COP" | "USD") => {
+    setCurrency(currency);
+    if (currency === "COP") {
+      setSelectedChain("sepolia");
+      const desiredChainId = Chains.sepolia;
+      toast({
+        title: 'Tip',
+        description: 'Recuerda aceptar el cambio de red en tu billetera',
+      });
+      await switchNetworkAsync?.(desiredChainId);
+    }
+  };
+
   const handleNetworkChange = async (value: keyof typeof Chains) => {
+    if (currency === "COP") return;
+
     const desiredChainId = Chains[value];
     toast({
       title: 'Tip',
@@ -92,6 +109,7 @@ export default function Page() {
     isLoading: isUserLoading,
     isError: isUserError,
   } = useGetUser(address!);
+  console.debug({ user, address });
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/')
@@ -114,9 +132,7 @@ export default function Page() {
             setHasNft(true);
           }
         });
-      console.log('Datos del contrato:', data);
     } catch (error) {
-      console.error('Error al leer el contrato:', error);
       return false;
     }
   }
@@ -155,17 +171,33 @@ export default function Page() {
     <main className='lend__panel px-5  text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
       <div className='flex flex-row gap-4 w-full items-end'>
         <div className='flex flex-col gap-2  place-self-start'>
+          <h4>Selecciona la moneda</h4>
+          <Select
+            defaultValue={currency}
+            onValueChange={handleCurrencyChange}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Moneda' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='USD'>USD</SelectItem>
+              <SelectItem value='COP'>COP</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className='flex flex-col gap-2  place-self-start'>
           <h4>Selecciona la red</h4>
           <Select
             key={selectedChain}
             defaultValue={selectedChain as string}
             onValueChange={handleNetworkChange}
+            disabled={currency === "COP"}
           >
             <SelectTrigger>
               <SelectValue placeholder='Network' />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value='celo'>Celo</SelectItem>
+              <SelectItem value='sepolia'>Celo</SelectItem>
               <SelectItem value='optimism'>Optimism</SelectItem>
               <SelectItem value='polygon'>Polygon</SelectItem>
               <SelectItem value='arbitrum'>Arbitrum</SelectItem>
