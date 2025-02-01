@@ -56,7 +56,7 @@ export default function Page() {
         ? 'arbitrum'
         : null;
     setSelectedChain(currentChain);
-
+    
     if (
       chain?.id !== Chains.celo &&
       chain?.id !== Chains.optimism &&
@@ -73,8 +73,8 @@ export default function Page() {
   const handleCurrencyChange = async (currency: "COP" | "USD") => {
     setCurrency(currency);
     if (currency === "COP") {
-      setSelectedChain("sepolia");
-      const desiredChainId = Chains.sepolia;
+      setSelectedChain("celo");
+      const desiredChainId = Chains.celo;
       toast({
         title: 'Tip',
         description: 'Recuerda aceptar el cambio de red en tu billetera',
@@ -109,7 +109,6 @@ export default function Page() {
     isLoading: isUserLoading,
     isError: isUserError,
   } = useGetUser(address!);
-  console.debug({ user, address });
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const web3 = new Web3(
     new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/')
@@ -141,7 +140,6 @@ export default function Page() {
     if (!isMounted) setIsMounted(true);
   }, [address]);
 
-  console.debug({ selectedChain });
   if (!isConnected && isMounted) return redirect('/');
   if (showNetworkModal) {
     return <NetworkModal onNetworkSelect={handleNetworkChange} />;
@@ -197,7 +195,7 @@ export default function Page() {
               <SelectValue placeholder='Network' />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value='sepolia'>Celo</SelectItem>
+              <SelectItem value='celo'>Celo</SelectItem>
               <SelectItem value='optimism'>Optimism</SelectItem>
               <SelectItem value='polygon'>Polygon</SelectItem>
               <SelectItem value='arbitrum'>Arbitrum</SelectItem>

@@ -14,7 +14,19 @@ import ApolloProviderNetworkBased from './apolloProvider';
 import { GlobalCurrencyProvider } from '@/context/CurrencyContext';
 
 const chains = [
-  celo,
+  {
+    ...celo,
+    rpcUrls: {
+      default: {
+        http: ['https://rpc.ankr.com/celo'],
+        webSocket: ['wss://ws.ankr.com/celo'],
+      },
+      public: {
+        http: ['https://rpc.ankr.com/celo'],
+        webSocket: ['wss://ws.ankr.com/celo'],
+      },
+    },
+  },
   arbitrum,
   mainnet,
   optimism,

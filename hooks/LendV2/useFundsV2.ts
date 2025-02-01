@@ -10,7 +10,7 @@ function useFundsV2(tokenAddress: Address) {
     abi: ReFiMedLendABI,
     functionName: 'tokenFunds',
     watch: true,
-    args: ["0x87eb12b84018be3e3914c0380e668638f6229216"],
+    args: [tokenAddress],
   });
   return response;
 }

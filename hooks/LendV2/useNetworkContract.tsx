@@ -1,11 +1,13 @@
 import {
   schemaUIDArbitrum,
   schemaUIDCelo,
+  schemaUIDCeloV2,
   schemaUIDOptimism,
   schemaUIDPolygon,
   schemaUIDSepolia,
 } from '@/constants';
 import { ReFiMedLendContracts } from '@/constants/ReFiMedLendContracts';
+import { useGlobalCurrency } from '@/context/CurrencyContext';
 import { useNetwork } from 'wagmi';
 
 export const chainIds = {
@@ -18,18 +20,19 @@ export const chainIds = {
 
 export function useNetworkContractV2() {
   const { chain } = useNetwork();
+  const { currency } = useGlobalCurrency();
 
   switch (chain?.id) {
     case chainIds.celo:
       return {
-        lendAddress: ReFiMedLendContracts.celo.lendAddress,
+        lendAddress: currency === 'COP' ? ReFiMedLendContracts.celoV2.lendAddress : ReFiMedLendContracts.celo.lendAddress,
         eas: ReFiMedLendContracts.celo.eas,
         subgraph: 'refimedlending-celo',
-        schema: schemaUIDCelo,
+        schema: currency === 'COP' ? schemaUIDCeloV2 : schemaUIDCelo,
       };
     case chainIds.sepolia:
       return {
-        lendAddress: ReFiMedLendContracts.sepolia.lendAddress,
+        lendAddress:  ReFiMedLendContracts.sepolia.lendAddress,
         eas: ReFiMedLendContracts.sepolia.eas,
         subgraph: 'refimedlend',
         schema: schemaUIDSepolia,

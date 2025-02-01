@@ -19,8 +19,8 @@ import { EAS, SchemaEncoder } from '@ethereum-attestation-service/eas-sdk';
 import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
 import { useEthersSigner } from '@/hooks/eas-utils';
 import { schemaUIDSepolia } from '@/constants';
-import { Loader2 } from "lucide-react"
-
+import { Loader2 } from 'lucide-react';
+import { useGlobalCurrency } from '@/context/CurrencyContext';
 
 export type Request = {
   amount: number;
@@ -39,6 +39,8 @@ function CurrentSignatures() {
     address!.toLocaleLowerCase() as Address,
   ]);
 
+  const { currency } = useGlobalCurrency();
+
   const handleAttest = async (
     amount: number,
     recipent: Address,
@@ -46,35 +48,40 @@ function CurrentSignatures() {
   ) => {
     setLoadingRequests((prev) => [...prev, index]);
 
-    try{
-
+    try {
       const eas = new EAS(EASContractAddress);
       eas.connect(signer as any);
-    const schemaEncoder = new SchemaEncoder(
-      'uint256 amount,address recipent,uint16 index'
-    );
-    const encodedData = schemaEncoder.encodeData([
-      { name: 'amount', value: amount * 1e3, type: 'uint256' },
-      { name: 'recipent', value: recipent, type: 'address' },
-      { name: 'index', value: index, type: 'uint16' },
-    ]);
-    const tx = await eas.attest({
-      schema,
-      data: {
-        recipient: recipent,
-        expirationTime: BigInt(0),
-        revocable: false,
-        data: encodedData,
-      },
-    });
-    await tx.wait();
-    refetch()
-    setLoadingRequests((prev) => prev.filter((i) => i !== index));
-  }catch(e){
-    console.error(e);
-    setLoadingRequests((prev) => prev.filter((i) => i !== index));
-  }
-
+      const schemaEncoder = new SchemaEncoder(
+        'uint256 amount,address recipient,uint16 index'
+      );
+      const encodedData = schemaEncoder.encodeData([
+        { name: 'amount', value: amount * 1e3, type: 'uint256' },
+        {
+          name: currency === 'COP' ? 'recipient' : 'recipent',
+          value: recipent,
+          type: 'address',
+        },
+        { name: 'index', value: index, type: 'uint16' },
+      ]);
+      console.debug({ encodedData, amount, recipent, index, currency, schema });
+      const tx = await eas.attest({
+        schema,
+        data: {
+          recipient: recipent,
+          expirationTime: BigInt(0),
+          revocable: false,
+          data: encodedData,
+          value: BigInt(0),
+        },
+      });
+      console.debug({ tx });
+      await tx.wait();
+      refetch();
+      setLoadingRequests((prev) => prev.filter((i) => i !== index));
+    } catch (e) {
+      console.error(e);
+      setLoadingRequests((prev) => prev.filter((i) => i !== index));
+    }
   };
 
   return (
@@ -107,12 +114,14 @@ function CurrentSignatures() {
               data.userQuotaRequests.map((request: any, key: number) => (
                 <TableRow key={key}>
                   <TableCell className='font-medium'>
-                    {request.amount}$ USD
+                    {request.amount}$ {currency}
                   </TableCell>
                   <TableCell>{request.user.id}</TableCell>
                   <TableCell>
                     <Button
-                      disabled={loadingRequests.includes(request.id.split('-')[1])}
+                      disabled={loadingRequests.includes(
+                        request.id.split('-')[1]
+                      )}
                       onClick={() =>
                         handleAttest(
                           parseFloat(request.amount),
@@ -122,7 +131,7 @@ function CurrentSignatures() {
                       }
                     >
                       {loadingRequests.includes(request.id.split('-')[1]) && (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                       )}
                       Sign
                     </Button>

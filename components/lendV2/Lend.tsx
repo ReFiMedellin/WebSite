@@ -39,6 +39,7 @@ import { useGetTokens } from '@/hooks/LendV2/useGetTokens';
 import { useLend } from '@/hooks/LendV2/useLend';
 import { useErc20Decimals } from '@/hooks/LendV2/useErc20Decimals';
 import { toast } from '../ui/use-toast';
+import { useGlobalCurrency } from '@/context/CurrencyContext';
 
 const formSchema = z.object({
   amount: z.number().min(0),
@@ -59,6 +60,7 @@ function Lend() {
   const { lendAddress } = useNetworkContractV2();
   const { data: balance } = useErc20Balance(token as Address, lendAddress);
   const { data: decimals } = useErc20Decimals(token as Address);
+  const { currency } = useGlobalCurrency();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -89,7 +91,7 @@ function Lend() {
       <CardHeader>
         <CardTitle>Ask for a lend</CardTitle>
         <CardDescription>
-          If you don&apos; have any quota approved, you can ask for one{' '}
+          If you don&apos; don't have any quota approved, you can ask for one{' '}
           <Link href='https://refimedellin.org'>here</Link>
         </CardDescription>
       </CardHeader>
@@ -112,7 +114,7 @@ function Lend() {
                     />
                   </FormControl>
                   <FormDescription>
-                    The amount in USD you want to lend
+                    The amount in {currency} you want to lend
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

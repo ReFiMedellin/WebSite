@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.11",
-    "@ethereum-attestation-service/eas-sdk": "^2.1.2",
+    "@ethereum-attestation-service/eas-sdk": "^2.7.0",
     "@formatjs/intl-localematcher": "^0.4.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",

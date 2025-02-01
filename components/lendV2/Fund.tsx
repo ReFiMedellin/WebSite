@@ -44,6 +44,7 @@ import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
 import { useAccount } from 'wagmi';
 import { useErc20Decimals } from '@/hooks/LendV2/useErc20Decimals';
 import { useApproveErc20 } from '@/hooks/LendV2/useApproveErc20';
+import { useGlobalCurrency } from '@/context/CurrencyContext';
 
 const formSchema = z.object({
   amount: z.number({ description: 'The value must be a number' }).min(0),
@@ -64,6 +65,7 @@ function Fund() {
   const { data: spendance } = useErc20Spendance(token, address!, lendAddress);
   const { data: decimals } = useErc20Decimals(token);
   const { writeAsync } = useApproveErc20(token);
+  const { currency } = useGlobalCurrency();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -111,7 +113,7 @@ function Fund() {
                     />
                   </FormControl>
                   <FormDescription>
-                    The amount in USD you want to fund
+                    The amount in {currency} you want to fund
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
