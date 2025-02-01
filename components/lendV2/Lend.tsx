@@ -91,7 +91,7 @@ function Lend() {
       <CardHeader>
         <CardTitle>Ask for a lend</CardTitle>
         <CardDescription>
-          If you don&apos; don't have any quota approved, you can ask for one{' '}
+          If you don&apos; have any quota approved, you can ask for one{' '}
           <Link href='https://refimedellin.org'>here</Link>
         </CardDescription>
       </CardHeader>
