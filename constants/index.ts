@@ -31,8 +31,13 @@ export const ReFiMedLendAddressSepolia = process.env
 export const ReFiMedLendAddressCelo = process.env
   .NEXT_PUBLIC_REFIMED_LEND_ADDRESS_CELO as Address;
 
+export const ReFiMedLendAddressCeloV2 = process.env
+  .NEXT_PUBLIC_REFIMED_LEND_ADDRESS_CELO_V2 as Address;
+
 export const schemaUIDCelo = process.env
   .NEXT_PUBLIC_REFIMED_LEND_SCHEMA_CELO as Address;
+export const schemaUIDCeloV2 = process.env
+  .NEXT_PUBLIC_REFIMED_LEND_SCHEMA_CELO_V2 as Address;
 
 export const easAddressCelo = process.env
   .NEXT_PUBLIC_EAS_ADDRESS_CELO as Address;

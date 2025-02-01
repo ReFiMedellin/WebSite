@@ -32,6 +32,26 @@
     "type": "error"
   },
   {
+    "type": "function",
+    "name": "tokenFunds",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [
+      { "name": "totalFunds", "type": "uint256", "internalType": "uint256" },
+      { "name": "interests", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "totalInterestShares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "interestPerShare",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -931,6 +951,18 @@
     "type": "function"
   },
   {
+    "type": "function",
+    "name": "requestIncreaseQuota",
+    "inputs": [
+      { "name": "recipent", "type": "address", "internalType": "address" },
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" },
+      { "name": "signers", "type": "address[]", "internalType": "address[]" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -1103,6 +1135,25 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "type": "function",
+    "name": "getUserFunds",
+    "inputs": [
+      { "name": "userAddress", "type": "address", "internalType": "address" },
+      { "name": "token", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      { "name": "quota", "type": "uint256", "internalType": "uint256" },
+      { "name": "currentFund", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "interestShares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "lastFund", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
   },
   {
     "inputs": [

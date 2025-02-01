@@ -6,6 +6,7 @@ import {
   easAddressSepolia,
   ReFiMedLendAddressArbitrum,
   ReFiMedLendAddressCelo,
+  ReFiMedLendAddressCeloV2,
   ReFiMedLendAddressOptimism,
   ReFiMedLendAddressPolygon,
   ReFiMedLendAddressSepolia,
@@ -14,6 +15,10 @@ import {
 export const ReFiMedLendContracts = {
   celo: {
     lendAddress: ReFiMedLendAddressCelo,
+    eas: easAddressCelo,
+  },
+  celoV2: {
+    lendAddress: ReFiMedLendAddressCeloV2,
     eas: easAddressCelo,
   },
   sepolia: {

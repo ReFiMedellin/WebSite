@@ -25,11 +25,13 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { useIsAdmin } from '@/hooks/LendV2/useIsAdmin';
+import { useGlobalCurrency } from '@/context/CurrencyContext';
 
 export default function Page() {
   const [selectedChain, setSelectedChain] = useState<
     keyof typeof Chains | null
   >(null);
+  const { currency, setCurrency } = useGlobalCurrency();
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const { chain } = useNetwork();
   const { switchNetworkAsync } = useSwitchNetwork();
@@ -54,7 +56,7 @@ export default function Page() {
         ? 'arbitrum'
         : null;
     setSelectedChain(currentChain);
-
+    
     if (
       chain?.id !== Chains.celo &&
       chain?.id !== Chains.optimism &&
@@ -68,7 +70,22 @@ export default function Page() {
     }
   }, [chain]);
 
+  const handleCurrencyChange = async (currency: "COP" | "USD") => {
+    setCurrency(currency);
+    if (currency === "COP") {
+      setSelectedChain("celo");
+      const desiredChainId = Chains.celo;
+      toast({
+        title: 'Tip',
+        description: 'Recuerda aceptar el cambio de red en tu billetera',
+      });
+      await switchNetworkAsync?.(desiredChainId);
+    }
+  };
+
   const handleNetworkChange = async (value: keyof typeof Chains) => {
+    if (currency === "COP") return;
+
     const desiredChainId = Chains[value];
     toast({
       title: 'Tip',
@@ -114,9 +131,7 @@ export default function Page() {
             setHasNft(true);
           }
         });
-      console.log('Datos del contrato:', data);
     } catch (error) {
-      console.error('Error al leer el contrato:', error);
       return false;
     }
   }
@@ -125,7 +140,6 @@ export default function Page() {
     if (!isMounted) setIsMounted(true);
   }, [address]);
 
-  console.debug({ selectedChain });
   if (!isConnected && isMounted) return redirect('/');
   if (showNetworkModal) {
     return <NetworkModal onNetworkSelect={handleNetworkChange} />;
@@ -155,11 +169,27 @@ export default function Page() {
     <main className='lend__panel px-5  text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen flex justify-center items-center'>
       <div className='flex flex-row gap-4 w-full items-end'>
         <div className='flex flex-col gap-2  place-self-start'>
+          <h4>Selecciona la moneda</h4>
+          <Select
+            defaultValue={currency}
+            onValueChange={handleCurrencyChange}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Moneda' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='USD'>USD</SelectItem>
+              <SelectItem value='COP'>COP</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className='flex flex-col gap-2  place-self-start'>
           <h4>Selecciona la red</h4>
           <Select
             key={selectedChain}
             defaultValue={selectedChain as string}
             onValueChange={handleNetworkChange}
+            disabled={currency === "COP"}
           >
             <SelectTrigger>
               <SelectValue placeholder='Network' />
