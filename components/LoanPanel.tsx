@@ -78,7 +78,7 @@ function LoanPanel({ isAdmin }: { isAdmin: boolean }) {
       <div className='lendPanel'>
         <div className='flex flex-row gap-4 items-end'>
           <div className='flex flex-col gap-2 place-self-start'>
-            <h4>Selecciona la red</h4>
+            <h4>Red</h4>
             <Select
               key={selectedChain}
               defaultValue={selectedChain as string}

@@ -169,7 +169,7 @@ export default function Page() {
     <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 bg-[#1B2731] min-h-screen flex justify-center items-center'>
       <div className='flex flex-row gap-4 items-end'>
         <div className='flex flex-col gap-2 place-self-start'>
-          <h4>Selecciona la moneda</h4>
+          <h4>Moneda</h4>
           <Select
             defaultValue={currency}
             onValueChange={handleCurrencyChange}
@@ -184,7 +184,7 @@ export default function Page() {
           </Select>
         </div>
         <div className='flex flex-col gap-2 place-self-start'>
-          <h4>Selecciona la red</h4>
+          <h4>Red</h4>
           <Select
             key={selectedChain}
             defaultValue={selectedChain as string}
