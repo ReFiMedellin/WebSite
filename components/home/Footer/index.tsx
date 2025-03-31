@@ -80,7 +80,7 @@ export default function Footer() {
             </Link>
             <Link
               target="_blank"
-              href={"https://chat.whatsapp.com/C2dUH2dmZyTJdLjWkE1ILG"}
+              href={"https://chat.whatsapp.com/HqxQiE7yGtgFpLvRUZ6f84"}
               className="text-purple-900 text-2xl"
             >
               <FaWhatsapp />
