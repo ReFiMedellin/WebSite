@@ -166,43 +166,41 @@ export default function Page() {
   }
 
   return (
-    <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 bg-[#1B2731] min-h-screen flex flex-col items-center'>
-      <div className='w-full flex flex-row gap-4 items-end justify-between mb-4'>
-        <div className='flex flex-row gap-4 items-end'>
-          <div className='flex flex-col gap-2'>
-            <h4>Selecciona la moneda</h4>
-            <Select
-              defaultValue={currency}
-              onValueChange={handleCurrencyChange}
-            >
-              <SelectTrigger className="min-w-[200px]">
-                <SelectValue placeholder='Moneda' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='USD'>USD</SelectItem>
-                <SelectItem value='COP'>COP</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className='flex flex-col gap-2'>
-            <h4>Selecciona la red</h4>
-            <Select
-              key={selectedChain}
-              defaultValue={selectedChain as string}
-              onValueChange={handleNetworkChange}
-              disabled={currency === "COP"}
-            >
-              <SelectTrigger className="min-w-[200px]">
-                <SelectValue placeholder='Network' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='celo'>Celo</SelectItem>
-                <SelectItem value='optimism'>Optimism</SelectItem>
-                <SelectItem value='polygon'>Polygon</SelectItem>
-                <SelectItem value='arbitrum'>Arbitrum</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+    <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 bg-[#1B2731] min-h-screen flex justify-center items-center'>
+      <div className='flex flex-row gap-4 items-end'>
+        <div className='flex flex-col gap-2 place-self-start'>
+          <h4>Selecciona la moneda</h4>
+          <Select
+            defaultValue={currency}
+            onValueChange={handleCurrencyChange}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Moneda' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='USD'>USD</SelectItem>
+              <SelectItem value='COP'>COP</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className='flex flex-col gap-2 place-self-start'>
+          <h4>Selecciona la red</h4>
+          <Select
+            key={selectedChain}
+            defaultValue={selectedChain as string}
+            onValueChange={handleNetworkChange}
+            disabled={currency === "COP"}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder='Network' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='celo'>Celo</SelectItem>
+              <SelectItem value='optimism'>Optimism</SelectItem>
+              <SelectItem value='polygon'>Polygon</SelectItem>
+              <SelectItem value='arbitrum'>Arbitrum</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         {!!isAdmin && !isAdminLoading && (
           <Button
@@ -214,37 +212,36 @@ export default function Page() {
           </Button>
         )}
       </div>
-      <div className='max-w-[1200px] w-full flex flex-col gap-4'>
-        <div
-          style={{
-            gridArea: 'info',
-          }}
-          className='flex flex-col gap-4 w-full h-full'
-        >
-          <UserInfo
-            funded={(user as bigint[])?.[1]}
-            quota={(user as bigint[])?.[0]}
-            loading={isUserLoading}
-            error={isUserError}
-          />
-          <Tabs defaultValue='lend'>
-            <TabsList className='grid w-full grid-cols-2'>
-              <TabsTrigger value='fund'>Fund</TabsTrigger>
-              <TabsTrigger value='lend'>Lend</TabsTrigger>
-            </TabsList>
-            <TabsContent value='fund'>
-              <Fund />
-            </TabsContent>
-            <TabsContent value='lend'>
-              <Lend />
-            </TabsContent>
-          </Tabs>
-        </div>
 
-        <CurrentSignatures />
-
-        <CurrentLends />
+      <div
+        style={{
+          gridArea: 'info',
+        }}
+        className='flex flex-col gap-4 w-full h-full'
+      >
+        <UserInfo
+          funded={(user as bigint[])?.[1]}
+          quota={(user as bigint[])?.[0]}
+          loading={isUserLoading}
+          error={isUserError}
+        />
+        <Tabs defaultValue='lend'>
+          <TabsList className='grid w-full grid-cols-2'>
+            <TabsTrigger value='fund'>Fund</TabsTrigger>
+            <TabsTrigger value='lend'>Lend</TabsTrigger>
+          </TabsList>
+          <TabsContent value='fund'>
+            <Fund />
+          </TabsContent>
+          <TabsContent value='lend'>
+            <Lend />
+          </TabsContent>
+        </Tabs>
       </div>
+
+      <CurrentSignatures />
+
+      <CurrentLends />
     </main>
   );
 }
