@@ -107,7 +107,7 @@ function Page() {
     <main className='lendManager px-5 text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen justify-center items-center'>
       <div className='flex flex-row gap-4 w-full items-end'>
         <div className='flex flex-col gap-2  place-self-start'>
-          <h4>Selecciona la moneda</h4>
+          <h4>Moneda</h4>
           <Select defaultValue={currency} onValueChange={handleCurrencyChange}>
             <SelectTrigger>
               <SelectValue placeholder='Moneda' />
@@ -119,7 +119,7 @@ function Page() {
           </Select>
         </div>
         <div className='flex flex-col gap-2  place-self-start'>
-          <h4>Selecciona la red</h4>
+          <h4>Red</h4>
           <Select
             key={selectedChain}
             defaultValue={selectedChain as string}
