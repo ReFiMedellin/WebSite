@@ -166,9 +166,9 @@ export default function Page() {
   }
 
   return (
-    <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 bg-[#1B2731] min-h-screen flex flex-col w-full'>
-      <div className='flex flex-row gap-4 w-full items-end justify-between max-w-full'>
-        <div className='flex flex-row gap-4 items-end flex-1'>
+    <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 bg-[#1B2731] min-h-screen flex flex-col items-center'>
+      <div className='w-full flex flex-row gap-4 items-end justify-between mb-4'>
+        <div className='flex flex-row gap-4 items-end'>
           <div className='flex flex-col gap-2'>
             <h4>Selecciona la moneda</h4>
             <Select
@@ -214,35 +214,37 @@ export default function Page() {
           </Button>
         )}
       </div>
-      <div
-        style={{
-          gridArea: 'info',
-        }}
-        className='flex flex-col gap-4  w-full h-full'
-      >
-        <UserInfo
-          funded={(user as bigint[])?.[1]}
-          quota={(user as bigint[])?.[0]}
-          loading={isUserLoading}
-          error={isUserError}
-        />
-        <Tabs defaultValue='lend'>
-          <TabsList className='grid w-full grid-cols-2 '>
-            <TabsTrigger value='fund'>Fund</TabsTrigger>
-            <TabsTrigger value='lend'>Lend</TabsTrigger>
-          </TabsList>
-          <TabsContent value='fund'>
-            <Fund />
-          </TabsContent>
-          <TabsContent value='lend'>
-            <Lend />
-          </TabsContent>
-        </Tabs>
+      <div className='max-w-[1200px] w-full flex flex-col gap-4'>
+        <div
+          style={{
+            gridArea: 'info',
+          }}
+          className='flex flex-col gap-4 w-full h-full'
+        >
+          <UserInfo
+            funded={(user as bigint[])?.[1]}
+            quota={(user as bigint[])?.[0]}
+            loading={isUserLoading}
+            error={isUserError}
+          />
+          <Tabs defaultValue='lend'>
+            <TabsList className='grid w-full grid-cols-2'>
+              <TabsTrigger value='fund'>Fund</TabsTrigger>
+              <TabsTrigger value='lend'>Lend</TabsTrigger>
+            </TabsList>
+            <TabsContent value='fund'>
+              <Fund />
+            </TabsContent>
+            <TabsContent value='lend'>
+              <Lend />
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        <CurrentSignatures />
+
+        <CurrentLends />
       </div>
-
-      <CurrentSignatures />
-
-      <CurrentLends />
     </main>
   );
 }
