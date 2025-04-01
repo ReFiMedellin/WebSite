@@ -111,7 +111,7 @@ export default function Page() {
   } = useGetUser(address!);
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/')
+    new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/ce29f559c4c7897dd275a46c6d99296b8efe3a3810193fda29402c8edb38f88c')
   )
 
   const contract = new web3.eth.Contract(

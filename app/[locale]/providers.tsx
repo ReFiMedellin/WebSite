@@ -18,12 +18,12 @@ const chains = [
     ...celo,
     rpcUrls: {
       default: {
-        http: ['https://rpc.ankr.com/celo'],
-        webSocket: ['wss://ws.ankr.com/celo'],
+        http: ['https://rpc.ankr.com/celo/ce29f559c4c7897dd275a46c6d99296b8efe3a3810193fda29402c8edb38f88c'],
+        webSocket: ['wss://ws.ankr.com/celo/ce29f559c4c7897dd275a46c6d99296b8efe3a3810193fda29402c8edb38f88c'],
       },
       public: {
-        http: ['https://rpc.ankr.com/celo'],
-        webSocket: ['wss://ws.ankr.com/celo'],
+        http: ['https://rpc.ankr.com/celo/ce29f559c4c7897dd275a46c6d99296b8efe3a3810193fda29402c8edb38f88c'],
+        webSocket: ['wss://ws.ankr.com/celo/ce29f559c4c7897dd275a46c6d99296b8efe3a3810193fda29402c8edb38f88c'],
       },
     },
   },
