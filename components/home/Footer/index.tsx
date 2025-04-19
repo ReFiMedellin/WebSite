@@ -88,7 +88,7 @@ export default function Footer() {
             <Link
               target="_blank"
               href={
-                "https://refimedellin.notion.site/cacd321bb2204a5888d88d3288d1bec4?v=d1871f2a1dd34bfeae1afe476e6d8b9f"
+                "https://refimedellin.notion.site/"
               }
               className="text-purple-900 text-2xl"
             >
@@ -103,7 +103,7 @@ export default function Footer() {
           <Link
             className="text-blue-400 font-bold cursor-pointer"
             href={
-              "https://refimedellin.notion.site/0fd39ac0a6cf4ee8bfe3d950c18bc9ed?v=d9dafe69cda7413a8d85cac3da405c40"
+              "https://refimedellin.notion.site/team"
             }
             target="_blank"
           >

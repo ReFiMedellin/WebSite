@@ -67,14 +67,18 @@ function UserInfo({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {!loading && !error && (
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error loading user info</p>
+        ) : (
           <>
             <p>
-              <strong>Total funded:</strong> {formatUnits(funded, 3)}
+              <strong>Total funded:</strong> {funded ? formatUnits(funded, 3) : '0'}
             </p>
             <p>
               <strong>Current quota: </strong>
-              {formatUnits(quota, 3)}
+              {quota ? formatUnits(quota, 3) : '0'}
             </p>
           </>
         )}
