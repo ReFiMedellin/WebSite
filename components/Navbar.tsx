@@ -1,73 +1,79 @@
-'use client'
-import { useIsMobile } from '@/hooks'
-import { Web3Button, useWeb3Modal } from '@web3modal/react'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { RxTextAlignJustify } from 'react-icons/rx'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
-import { useAccount } from 'wagmi'
-import { Dialog } from '@radix-ui/react-dialog'
-import { ToastAction } from '@radix-ui/react-toast'
-import { toast } from './ui/use-toast'
-import { Button } from './ui/button'
-function Navbar () {
-  const t = useTranslations('Navbar')
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const isMobile = useIsMobile()
-  const { isConnected } = useAccount()
-  const { open } = useWeb3Modal()
-  const [isMounted, setIsMounted] = useState(false)
+'use client';
+import { useIsMobile } from '@/hooks';
+import { Web3Button, useWeb3Modal } from '@web3modal/react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { RxTextAlignJustify } from 'react-icons/rx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { Dialog } from '@radix-ui/react-dialog';
+import { ToastAction } from '@radix-ui/react-toast';
+import { toast } from './ui/use-toast';
+import { Button } from './ui/button';
+import { InjectedConnector } from 'wagmi/connectors/injected';
+function Navbar() {
+  const t = useTranslations('Navbar');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const { open } = useWeb3Modal();
+  const [isMounted, setIsMounted] = useState(false);
 
-  const [scroll, setScroll] = useState(false)
+  const [scroll, setScroll] = useState(false);
+
+  const { address, isConnected } = useAccount();
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
+  const { disconnect } = useDisconnect();
 
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 25) {
-        setScroll(true)
+        setScroll(true);
       } else {
-        setScroll(false)
+        setScroll(false);
       }
-    }
+    };
 
     // Event listener
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll);
 
     // Limpiar el listener
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
   type Routes = {
-    link: string
-  }
+    link: string;
+  };
 
   const routes: Routes[] = [
     {
-      link: '/'
+      link: '/',
     },
     {
-      link: '/community'
+      link: '/community',
     },
     {
-      link: 'https://blog.refimedellin.org/'
-    }
-  ]
+      link: 'https://blog.refimedellin.org/',
+    },
+  ];
 
   if (!isMounted) {
-    return null
+    return null;
   }
 
-  function handleCommunity (link: string) {
+  function handleCommunity(link: string) {
     if (isConnected) {
       return (
         <Link onClick={() => setIsMenuOpen(false)} href={link}>
           {t(`${link}`)}
         </Link>
-      )
+      );
     } else {
       return (
         <button
@@ -92,19 +98,19 @@ function Navbar () {
                   <Button
                     variant={'ghost'}
                     onClick={() => {
-                      open()
+                      open();
                     }}
                   >
                     {t('toast.connect')}
                   </Button>
                 </ToastAction>
-              )
-            })
+              ),
+            });
           }}
         >
           {t(`${link}`)}
         </button>
-      )
+      );
     }
   }
 
@@ -123,7 +129,14 @@ function Navbar () {
                 isMenuOpen && 'rotate-90'
               }`}
             />
-            <Web3Button />
+                 {isConnected ? (
+                <div>
+                  Connected to {address}
+                  <button onClick={() => disconnect()}>Disconnect</button>
+                </div>
+              ) : (
+                <button onClick={() => connect()}>Connect Wallet</button>
+              )}
           </>
         ) : (
           <>
@@ -139,7 +152,14 @@ function Navbar () {
               </li>
             ))}
             <li>
-              <Web3Button />
+              {isConnected ? (
+                <div>
+                  Connected to {address}
+                  <button onClick={() => disconnect()}>Disconnect</button>
+                </div>
+              ) : (
+                <button onClick={() => connect()}>Connect Wallet</button>
+              )}
             </li>
           </>
         )}
@@ -169,7 +189,7 @@ function Navbar () {
         )}
       </AnimatePresence>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

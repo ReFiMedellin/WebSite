@@ -6,12 +6,19 @@ import {
   w3mProvider,
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
-import { configureChains, createConfig, sepolia, WagmiConfig } from 'wagmi';
+import {
+  configureChains,
+  createConfig,
+  sepolia,
+  useConnect,
+  WagmiConfig,
+} from 'wagmi';
 import { celo, arbitrum, mainnet, optimism, polygon } from 'wagmi/chains';
 import { GtagManager } from '@/components/utils/GTAG';
 import { Metricol } from '@/components/utils/Metricol';
 import ApolloProviderNetworkBased from './apolloProvider';
 import { GlobalCurrencyProvider } from '@/context/CurrencyContext';
+import { InjectedConnector } from 'wagmi/connectors/injected';
 
 const chains = [
   {
@@ -73,16 +80,17 @@ const chains = [
     },
   },
 ];
-const projectId = '344c4ee91d5e35fec2368e61edfbe959';
+const projectId = '7326ebd4b7670327335ce12403d94bec';
 
-const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
+const { publicClient } = configureChains(
+  [mainnet],
+  [w3mProvider({ projectId })]
+);
 
 const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: w3mConnectors({ projectId, chains }),
   publicClient,
 });
-const ethereumClient = new EthereumClient(wagmiConfig, chains);
 
 function Providers({ children }: { children: React.ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -94,12 +102,10 @@ function Providers({ children }: { children: React.ReactNode }) {
     <GlobalCurrencyProvider>
       <WagmiConfig config={wagmiConfig}>
         <ApolloProviderNetworkBased>{children}</ApolloProviderNetworkBased>
+        
       </WagmiConfig>
       <GtagManager />
       <Metricol />
-      {isMounted && (
-        <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-      )}
     </GlobalCurrencyProvider>
   );
 }
